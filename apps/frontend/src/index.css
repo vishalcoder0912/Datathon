@@ -7,6 +7,15 @@
 
 @layer base {
   :root {
+    /* KAVACH AI Brand Colors */
+    --kavach-navy: #0F172A;
+    --kavach-blue: #1D4ED8;
+    --kavach-cyan: #0891B2;
+    --kavach-amber: #D97706;
+    --kavach-red: #DC2626;
+    --kavach-green: #15803D;
+    --kavach-surface: #F8FAFC;
+    --kavach-card: #FFFFFF;
     --background: 210 20% 98%;
     --foreground: 222 47% 11%;
     --card: 0 0% 100%;

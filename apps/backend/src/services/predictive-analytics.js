@@ -163,12 +163,13 @@ export class PredictiveAnalytics {
 
     if (!regression) return { error: 'Prediction failed' };
 
+    const currentValue = values[values.length - 1];
     const predicted = regression.slope * values.length + regression.intercept;
     const confidence = regression.r2 > 0.7 ? 'high' : regression.r2 > 0.4 ? 'medium' : 'low';
 
     return {
       column,
-      currentValue: last,
+      currentValue,
       predicted: Math.max(0, predicted),
       confidence,
       r2: regression.r2,
