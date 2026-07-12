@@ -1,0 +1,30 @@
+{
+  "backend": [
+    "Health endpoint works",
+    "Schema dashboard endpoint works",
+    "Dashboard command endpoint works",
+    "Schema chat endpoint works",
+    "Fallback works when Ollama is unavailable"
+  ],
+  "frontend": [
+    "Dashboard renders KPIs",
+    "Dashboard renders charts",
+    "AI assistant works",
+    "Chart commands update UI",
+    "Loading and error states exist"
+  ],
+  "aiSafety": [
+    "LLM receives schema only",
+    "Raw rows are never sent to LLM",
+    "LLM chart.data is ignored",
+    "KPI values are calculated locally",
+    "Invalid chart commands are rejected safely"
+  ],
+  "quality": [
+    "Unit tests exist",
+    "Integration tests exist",
+    "E2E tests exist",
+    "Coverage report exists",
+    "Professional report is generated"
+  ]
+}

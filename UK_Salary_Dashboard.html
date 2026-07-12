@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UK Tech Salary Dashboard 2025</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; color: #1a1a2e; padding: 40px 20px; }
+  .container { max-width: 1300px; margin: 0 auto; }
+  
+  h1 { font-size: 2.5rem; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; }
+  .subtitle { font-size: 1.1rem; color: #555; margin-bottom: 30px; }
+  .section-title { font-size: 1.5rem; font-weight: 600; color: #1a1a2e; margin: 40px 0 20px 0; padding-bottom: 10px; border-bottom: 3px solid #4361ee; display: inline-block; }
+  .insight-tag { display: inline-block; background: #4361ee; color: white; font-size: 0.7rem; font-weight: 600; padding: 2px 10px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+
+  /* KPI Cards */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 30px; }
+  .kpi-card { background: white; border-radius: 12px; padding: 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 4px solid #4361ee; }
+  .kpi-card.gold { border-top-color: #f72585; }
+  .kpi-card.green { border-top-color: #06d6a0; }
+  .kpi-card.orange { border-top-color: #fb8500; }
+  .kpi-card.purple { border-top-color: #7209b7; }
+  .kpi-card.teal { border-top-color: #4cc9f0; }
+  .kpi-label { font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin-bottom: 6px; }
+  .kpi-value { font-size: 1.8rem; font-weight: 700; color: #1a1a2e; }
+
+  /* Story section */
+  .story-box { background: linear-gradient(135deg, #4361ee 0%, #7209b7 100%); color: white; border-radius: 14px; padding: 32px; margin-bottom: 30px; }
+  .story-box h2 { font-size: 1.6rem; margin-bottom: 12px; }
+  .story-box p { font-size: 1.05rem; line-height: 1.7; opacity: 0.95; margin-bottom: 10px; }
+  .story-box strong { color: #f72585; }
+  .highlight-number { font-size: 1.3rem; font-weight: 700; color: #f72585; }
+
+  /* Chart grid */
+  .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .chart-card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .chart-card.full { grid-column: 1 / -1; }
+  .chart-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; color: #1a1a2e; }
+  .chart-card .chart-desc { font-size: 0.85rem; color: #777; margin-bottom: 10px; }
+  .chart-container { position: relative; height: 300px; }
+  .chart-container.tall { height: 350px; }
+  .insight-box { margin-top: 14px; padding: 14px 16px; background: #f8f9ff; border-radius: 8px; border-left: 4px solid #4361ee; }
+  .insight-box p { font-size: 0.9rem; color: #333; line-height: 1.5; }
+
+  /* Table styles */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .data-table th { background: #f8f9ff; color: #4361ee; font-weight: 600; text-align: left; padding: 10px 14px; border-bottom: 2px solid #4361ee; }
+  .data-table td { padding: 9px 14px; border-bottom: 1px solid #eee; }
+  .data-table tr:hover { background: #f8f9ff; }
+
+  /* Recommendations */
+  .rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 30px; }
+  .rec-card { background: white; border-radius: 12px; padding: 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #06d6a0; }
+  .rec-card.high { border-left-color: #f72585; }
+  .rec-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
+  .rec-card p { font-size: 0.9rem; color: #555; line-height: 1.5; }
+
+  /* Key Takeaways */
+  .takeaways { background: #1a1a2e; color: white; border-radius: 14px; padding: 32px; margin-top: 30px; }
+  .takeaways h2 { font-size: 1.5rem; margin-bottom: 16px; }
+  .takeaways li { font-size: 1rem; line-height: 1.6; margin-bottom: 10px; opacity: 0.92; }
+
+  @media (max-width: 800px) {
+    .chart-grid { grid-template-columns: 1fr; }
+    .rec-grid { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <h1>UK Tech Salary Dashboard</h1>
+  <p class="subtitle">A clear, business-friendly analysis of salary trends for tech professionals in the United Kingdom</p>
+
+  <!-- 1. Executive Summary -->
+  <div class="story-box">
+    <h2>The Big Picture</h2>
+    <p>The UK tech job market is strong and rewarding. Based on data from <strong>4,013 UK tech professionals</strong>, the typical (median) annual salary sits at <strong>$124,987</strong> — roughly £98,000. This means half of professionals earn above this figure and half earn below.</p>
+    <p>The average salary is slightly higher at <strong>$127,016</strong>, pulled upward by senior experts who earn top dollar. The highest salary recorded is <strong>$257,170</strong>, while the lowest is <strong>$48,272</strong>. Most professionals have 20+ years of experience, reflecting a mature and experienced workforce.</p>
+    <p><strong>Key takeaway:</strong> Experience is the single biggest driver of earnings. Professionals with 21+ years earn more than double what entry-level workers make.</p>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Total UK Professionals</div>
+      <div class="kpi-value">4,013</div>
+    </div>
+    <div class="kpi-card gold">
+      <div class="kpi-label">Average Salary</div>
+      <div class="kpi-value">$127,016</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Median Salary</div>
+      <div class="kpi-value">$124,987</div>
+    </div>
+    <div class="kpi-card orange">
+      <div class="kpi-label">Highest Salary</div>
+      <div class="kpi-value">$257,170</div>
+    </div>
+    <div class="kpi-card purple">
+      <div class="kpi-label">Average Experience</div>
+      <div class="kpi-value">20.1 yrs</div>
+    </div>
+    <div class="kpi-card teal">
+      <div class="kpi-label">Most Common Level</div>
+      <div class="kpi-value">21+ yrs</div>
+    </div>
+  </div>
+
+  <!-- 2. Charts Section -->
+  <h2 class="section-title">Salary by Experience</h2>
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Average Salary by Experience Level</h3>
+      <p class="chart-desc">How earnings grow as professionals gain more years of experience</p>
+      <div class="chart-container"><canvas id="chartExperience"></canvas></div>
+      <div class="insight-box">
+        <p><strong>What this means:</strong> Salary grows steadily with experience. The biggest jump happens between 16-20 years and 21+ years — a <strong>31% increase</strong>. This suggests that deep expertise and leadership roles are highly valued in the UK market.</p>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>Experience Distribution</h3>
+      <p class="chart-desc">How many professionals fall into each experience group</p>
+      <div class="chart-container"><canvas id="chartExpDist"></canvas></div>
+      <div class="insight-box">
+        <p><strong>What this means:</strong> Nearly half (49%) of UK tech professionals have 21+ years of experience. This is a very experienced workforce. Entry-level positions make up only 7% of the dataset, suggesting the UK market is dominated by senior talent.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Salary by Education</h2>
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Average Salary by Education Level</h3>
+      <p class="chart-desc">How different education levels affect earnings</p>
+      <div class="chart-container"><canvas id="chartEducation"></canvas></div>
+      <div class="insight-box">
+        <p><strong>What this means:</strong> Higher education generally leads to higher pay, but the difference is modest. PhD holders earn about <strong>18% more</strong> than Bachelors holders on average. Interestingly, even professionals with only a High School education earn competitive salaries — especially once they have significant experience.</p>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>Education Distribution</h3>
+      <p class="chart-desc">Breakdown of education levels across UK professionals</p>
+      <div class="chart-container"><canvas id="chartEduDist"></canvas></div>
+      <div class="insight-box">
+        <p><strong>What this means:</strong> Half of UK tech professionals (50%) hold a Bachelors degree. Another 30% have a Masters. Only 5% have a PhD and 5% have only High School. The UK market clearly values formal education, but experience often matters more.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Company Insights</h2>
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Average Salary by Company Size</h3>
+      <p class="chart-desc">How company size impacts earnings in the UK</p>
+      <div class="chart-container"><canvas id="chartCompanySize"></canvas></div>
+      <div class="insight-box">
+        <p><strong>What this means:</strong> Large corporations (5,000+ employees) pay the highest average salary at <strong>$139,191</strong> — about 12% more than mid-sized companies. Small companies (1-50 employees) and large enterprises (1,000-5,000) pay similarly, suggesting company culture and role matter more than size alone.</p>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>Company Size Distribution</h3>
+      <p class="chart-desc">How UK professionals are spread across company sizes</p>
+      <div class="chart-container"><canvas id="chartSizeDist"></canvas></div>
+      <div class="insight-box">
+        <p><strong>What this means:</strong> UK tech professionals are very evenly distributed across company sizes. Each category (from tiny startups to massive enterprises) employs roughly 16-17% of the workforce. No single company size dominates the market.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Skills & Salary</h2>
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Top Programming Languages by Salary</h3>
+      <p class="chart-desc">Which programming languages are associated with higher pay</p>
+      <div class="chart-container"><canvas id="chartLanguages"></canvas></div>
+      <div class="insight-box">
+        <p><strong>What this means:</strong> Salaries across programming languages are very similar in the UK market — ranging from $125k to $128k. PHP and Ruby top the list, but the differences are small (just 2-3%). <strong>Python and JavaScript</strong> are the most common skills and pay competitively. In the UK, <strong>versatility matters more than any single language.</strong></p>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>Top Frameworks by Salary</h3>
+      <p class="chart-desc">Which frameworks are linked to the highest earnings</p>
+      <div class="chart-container"><canvas id="chartFrameworks"></canvas></div>
+      <div class="insight-box">
+        <p><strong>What this means:</strong> React developers earn the most on average at <strong>$129,425</strong>, followed closely by Django and Flask. Modern front-end frameworks (React, Vue) and backend frameworks (Django, Spring) all pay well. ASP.NET pays slightly lower but is still very competitive.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Salary Distribution in the UK</h2>
+  <div class="chart-grid">
+    <div class="chart-card full">
+      <h3>Salary Range Distribution</h3>
+      <p class="chart-desc">Where most UK professionals fall on the salary spectrum</p>
+      <div class="chart-container tall"><canvas id="chartSalaryDist"></canvas></div>
+      <div class="insight-box">
+        <p><strong>What this means:</strong> The largest group of UK tech professionals (27%) earn between <strong>$150,000 and $200,000</strong>. The next biggest groups earn between $75k-$100k (20%) and $100k-$125k (20%). Only 0.1% earn below $50k, confirming that tech is a high-paying career in the UK. The salary distribution leans toward the higher end, reflecting the experienced workforce.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Salary Growth Story -->
+  <h2 class="section-title">The Salary Growth Story</h2>
+  <div class="chart-grid">
+    <div class="chart-card full">
+      <h3>Salary Growth at Each Career Stage</h3>
+      <p class="chart-desc">How much salary increases as you progress through your career</p>
+      <div class="chart-container"><canvas id="chartGrowth"></canvas></div>
+      <div class="insight-box">
+        <p><strong>What this means:</strong> Salary grows consistently through every career stage. The <strong>slowest growth</strong> happens between entry-level and junior (+11.5%) — this is the "proving ground" phase. Growth accelerates in mid-career (15-16% per stage). The <strong>biggest leap</strong> is from Lead to Expert (+31.4%), where experienced professionals step into senior leadership or specialized expert roles that command significantly higher pay.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Education & Experience Intersection -->
+  <h2 class="section-title">How Education + Experience Work Together</h2>
+  <div class="chart-grid">
+    <div class="chart-card full">
+      <h3>Salary by Experience and Education Combined</h3>
+      <p class="chart-desc">The combined effect of education and experience on earnings</p>
+      <div class="chart-container tall"><canvas id="chartEduExp"></canvas></div>
+      <div class="insight-box">
+        <p><strong>What this means:</strong> At every experience level, a <strong>PhD consistently earns the most</strong>. But the pattern reveals something important: the salary gap between education levels is <strong>much smaller at early career stages</strong> and <strong>widens with experience</strong>. For example, a PhD with 0-2 years earns $92k vs $66k for a Bachelors (+39%), while a PhD with 21+ years earns $174k vs $155k for a Bachelors — a much larger absolute gap. <strong>Both education and experience compound over time.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Recommendations -->
+  <h2 class="section-title">Business Recommendations</h2>
+  <div class="rec-grid">
+    <div class="rec-card high">
+      <h4>Invest in Senior Talent</h4>
+      <p>The biggest salary jump happens at 21+ years experience. Retaining senior professionals through leadership tracks, mentoring roles, and expert career paths will help companies keep their top earners.</p>
+    </div>
+    <div class="rec-card">
+      <h4>Focus on Versatility, Not Just One Skill</h4>
+      <p>Salary differences between programming languages are small. What matters more is having a versatile skill set. Professionals who pair Python with C# or JavaScript with Go earn at the top of the market.</p>
+    </div>
+    <div class="rec-card">
+      <h4>Support Education & Certification</h4>
+      <p>Masters and PhD holders earn 8-18% more than Bachelors holders. Companies that offer tuition reimbursement or learning budgets will attract and retain higher-earning talent.</p>
+    </div>
+    <div class="rec-card">
+      <h4>Large Companies Pay More — But Not by Much</h4>
+      <p>Enterprise companies (5,000+ employees) pay 12% more on average. However, mid-sized and small companies can compete by offering equity, flexibility, and faster career growth — which many professionals value over base salary.</p>
+    </div>
+    <div class="rec-card">
+      <h4>React and Django Skills Are Most Lucrative</h4>
+      <p>React and Django are the frameworks tied to the highest average salaries. Investing in training for these technologies can improve team compensation outcomes.</p>
+    </div>
+    <div class="rec-card">
+      <h4>Plan for the Mid-Career Salary Surge</h4>
+      <p>Salary growth accelerates significantly after 10 years. Companies should plan retention strategies and compensation reviews around the 10-15 year mark, when professionals are most likely to be recruited by competitors.</p>
+    </div>
+  </div>
+
+  <!-- 4. Key Takeaways -->
+  <div class="takeaways">
+    <h2>Key Takeaways for Decision-Makers</h2>
+    <ol>
+      <li><strong>UK tech salaries are strong:</strong> The median salary of $124,987 confirms a high-paying market. Most professionals earn between $100k and $200k.</li>
+      <li><strong>Experience is the #1 salary driver:</strong> Professionals with 21+ years earn 2.3x more than entry-level workers. Retaining experienced staff directly impacts company salary competitiveness.</li>
+      <li><strong>Education adds value gradually:</strong> A PhD adds about 18% over a Bachelors, but the real benefit combines education <em>with</em> experience. The gap widens over a career.</li>
+      <li><strong>Large companies lead on pay, but not dramatically:</strong> Enterprise firms pay 12% more, but the difference is modest. Small-to-mid companies can attract talent with non-salary benefits.</li>
+      <li><strong>Language and framework choice is less important than versatility:</strong> All major languages pay within 3% of each other. What matters is having a broad, modern skill set (e.g., combining front-end and back-end technologies).</li>
+      <li><strong>The UK market rewards long careers:</strong> With half of professionals having 21+ years of experience, the UK tech sector is mature. Entry-level hiring is less common, but opportunities grow significantly with tenure.</li>
+      <li><strong>React and Django are the highest-paying frameworks:</strong> Companies using these technologies may have a compensation advantage in hiring.</li>
+    </ol>
+  </div>
+
+  <p style="text-align: center; margin-top: 30px; color: #888; font-size: 0.85rem;">UK Tech Salary Dashboard &mdash; Based on 4,013 UK tech professionals &mdash; InsightFlow Analytics</p>
+
+</div>
+
+<script>
+// Chart colors
+const colors = {
+  blue: '#4361ee',
+  pink: '#f72585',
+  green: '#06d6a0',
+  orange: '#fb8500',
+  purple: '#7209b7',
+  teal: '#4cc9f0',
+  navy: '#1a1a2e',
+  lightBlue: '#e0e7ff'
+};
+
+// 1. Salary by Experience
+new Chart(document.getElementById('chartExperience'), {
+  type: 'bar',
+  data: {
+    labels: ['Entry (0-2 yrs)', 'Junior (3-5 yrs)', 'Mid (6-10 yrs)', 'Senior (11-15 yrs)', 'Lead (16-20 yrs)', 'Expert (21+ yrs)'],
+    datasets: [{
+      label: 'Average Salary (USD)',
+      data: [70523, 78630, 90763, 104061, 120584, 158463],
+      backgroundColor: ['#4cc9f0', '#4361ee', '#7209b7', '#f72585', '#fb8500', '#06d6a0'],
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, ticks: { callback: v => '$' + (v/1000) + 'k' } } }
+  }
+});
+
+// 2. Experience Distribution
+new Chart(document.getElementById('chartExpDist'), {
+  type: 'bar',
+  data: {
+    labels: ['0-2 yrs', '3-5 yrs', '6-10 yrs', '11-15 yrs', '16-20 yrs', '21+ yrs'],
+    datasets: [{
+      label: 'Number of People',
+      data: [277, 311, 492, 451, 506, 1976],
+      backgroundColor: '#4361ee',
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+
+// 3. Salary by Education
+new Chart(document.getElementById('chartEducation'), {
+  type: 'bar',
+  data: {
+    labels: ['High School', 'Some College', 'Bachelors', 'Masters', 'PhD'],
+    datasets: [{
+      label: 'Average Salary (USD)',
+      data: [124430, 123738, 122921, 132332, 144910],
+      backgroundColor: ['#4cc9f0', '#4361ee', '#7209b7', '#f72585', '#06d6a0'],
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, ticks: { callback: v => '$' + (v/1000) + 'k' } } }
+  }
+});
+
+// 4. Education Distribution (Donut)
+new Chart(document.getElementById('chartEduDist'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Bachelors (50%)', 'Masters (30%)', 'Some College (10%)', 'PhD (5%)', 'High School (5%)'],
+    datasets: [{
+      data: [1989, 1210, 405, 200, 209],
+      backgroundColor: ['#4361ee', '#7209b7', '#4cc9f0', '#06d6a0', '#fb8500']
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'right' } }
+  }
+});
+
+// 5. Company Size Salary
+new Chart(document.getElementById('chartCompanySize'), {
+  type: 'bar',
+  data: {
+    labels: ['1-10', '11-50', '51-200', '201-1000', '1001-5000', '5000+'],
+    datasets: [{
+      label: 'Average Salary (USD)',
+      data: [124392, 124713, 126516, 124423, 123264, 139191],
+      backgroundColor: '#f72585',
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, ticks: { callback: v => '$' + (v/1000) + 'k' } } }
+  }
+});
+
+// 6. Company Size Distribution (Pie)
+new Chart(document.getElementById('chartSizeDist'), {
+  type: 'pie',
+  data: {
+    labels: ['1-10 (17%)', '11-50 (17%)', '51-200 (17%)', '201-1000 (16%)', '1001-5000 (16%)', '5000+ (16%)'],
+    datasets: [{
+      data: [672, 691, 686, 657, 660, 647],
+      backgroundColor: ['#4361ee', '#7209b7', '#f72585', '#fb8500', '#06d6a0', '#4cc9f0']
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'right' } }
+  }
+});
+
+// 7. Top Languages by Salary
+new Chart(document.getElementById('chartLanguages'), {
+  type: 'bar',
+  data: {
+    labels: ['PHP', 'Ruby', 'C++', 'Python', 'C#', 'Go', 'JavaScript', 'Rust', 'Java', 'Swift'],
+    datasets: [{
+      label: 'Average Salary (USD)',
+      data: [128414, 127915, 127906, 127027, 126813, 126722, 126691, 126636, 126613, 125387],
+      backgroundColor: '#06d6a0',
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, ticks: { callback: v => '$' + (v/1000) + 'k' } } }
+  }
+});
+
+// 8. Top Frameworks by Salary
+new Chart(document.getElementById('chartFrameworks'), {
+  type: 'bar',
+  data: {
+    labels: ['React', 'Django', 'Flask', 'Spring', 'Laravel', 'Rails', 'Express', 'Angular', 'Vue', 'ASP.NET'],
+    datasets: [{
+      label: 'Average Salary (USD)',
+      data: [129425, 128298, 127532, 127185, 127149, 126769, 126619, 126558, 125898, 124991],
+      backgroundColor: '#7209b7',
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, ticks: { callback: v => '$' + (v/1000) + 'k' } } }
+  }
+});
+
+// 9. Salary Distribution
+new Chart(document.getElementById('chartSalaryDist'), {
+  type: 'bar',
+  data: {
+    labels: ['$0-50k', '$50-75k', '$75-100k', '$100-125k', '$125-150k', '$150-200k', '$200k+'],
+    datasets: [{
+      label: 'Number of People',
+      data: [4, 378, 810, 816, 788, 1072, 145],
+      backgroundColor: ['#4cc9f0', '#4361ee', '#7209b7', '#f72585', '#fb8500', '#06d6a0', '#1a1a2e'],
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+
+// 10. Salary Growth by Stage
+new Chart(document.getElementById('chartGrowth'), {
+  type: 'bar',
+  data: {
+    labels: ['Entry\n(0-2 yrs)', 'Junior\n(3-5 yrs)', 'Mid\n(6-10 yrs)', 'Senior\n(11-15 yrs)', 'Lead\n(16-20 yrs)', 'Expert\n(21+ yrs)'],
+    datasets: [{
+      label: 'Average Salary (USD)',
+      data: [70523, 78630, 90763, 104061, 120584, 158463],
+      backgroundColor: ['#4cc9f0', '#4361ee', '#7209b7', '#f72585', '#fb8500', '#06d6a0'],
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { 
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => '$' + ctx.parsed.y.toLocaleString() } }
+    },
+    scales: { y: { beginAtZero: true, ticks: { callback: v => '$' + (v/1000) + 'k' } } }
+  }
+});
+
+// 11. Education x Experience Combined
+new Chart(document.getElementById('chartEduExp'), {
+  type: 'bar',
+  data: {
+    labels: ['0-2 yrs', '3-5 yrs', '6-10 yrs', '11-15 yrs', '16-20 yrs', '21+ yrs'],
+    datasets: [
+      { label: 'High School', data: [67856, 75121, 89199, 102406, 114836, 152102], backgroundColor: '#4cc9f0', borderRadius: 4 },
+      { label: 'Some College', data: [66650, 76871, 87557, 98358, 117275, 156560], backgroundColor: '#4361ee', borderRadius: 4 },
+      { label: 'Bachelors', data: [66349, 74401, 86351, 98198, 115805, 154742], backgroundColor: '#7209b7', borderRadius: 4 },
+      { label: 'Masters', data: [76066, 84494, 96463, 110983, 126804, 164020], backgroundColor: '#f72585', borderRadius: 4 },
+      { label: 'PhD', data: [91863, 89768, 110899, 127496, 139713, 173732], backgroundColor: '#06d6a0', borderRadius: 4 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' } },
+    scales: { 
+      x: { stacked: false },
+      y: { beginAtZero: true, ticks: { callback: v => '$' + (v/1000) + 'k' } } 
+    }
+  }
+});
+</script>
+</body>
+</html>

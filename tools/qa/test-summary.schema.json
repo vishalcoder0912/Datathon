@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "InsightFlow Software Test Summary",
+  "type": "object",
+  "required": ["project", "generatedAt", "summary", "coverage", "readinessScore"],
+  "properties": {
+    "project": { "type": "string" },
+    "generatedAt": { "type": "string" },
+    "summary": {
+      "type": "object",
+      "required": ["total", "passed", "failed", "skipped", "durationMs"]
+    },
+    "coverage": { "type": "object" },
+    "readinessScore": { "type": "number" }
+  }
+}

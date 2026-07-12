@@ -1,0 +1,8 @@
+Project structure notes
+
+Main frontend app: apps/frontend
+Dashboard page: apps/frontend/src/features/dashboard/pages
+Dashboard components: apps/frontend/src/features/dashboard/components
+Dashboard analytics logic: apps/frontend/src/features/dashboard/utils
+Dashboard hook: apps/frontend/src/features/dashboard/hooks
+Project notes folder: agentics-ai

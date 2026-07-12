@@ -1,0 +1,11 @@
+{
+  "name": "Student Small",
+  "columns": ["student_id", "class", "gender", "score", "attendance", "result"],
+  "rows": [
+    { "student_id": "STU001", "class": "A", "gender": "Female", "score": 82, "attendance": 93, "result": "Pass" },
+    { "student_id": "STU002", "class": "B", "gender": "Female", "score": 91, "attendance": 88, "result": "Pass" },
+    { "student_id": "STU003", "class": "A", "gender": "Male", "score": 77, "attendance": 81, "result": "Pass" },
+    { "student_id": "STU004", "class": "B", "gender": "Male", "score": 45, "attendance": 70, "result": "Fail" },
+    { "student_id": "STU005", "class": "C", "gender": "Female", "score": 60, "attendance": 85, "result": "Pass" }
+  ]
+}
