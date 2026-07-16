@@ -73,7 +73,10 @@ export class KavachRepository {
   _applyIncidentFilters(incidents, filters = {}) {
     let result = [...incidents];
     const {
-      district, policeStation, crimeType, severity, status,
+      district, districts,
+      policeStation, policeStations,
+      crimeType, crimeCategories,
+      severity, status,
       timeOfDay, dateFrom, dateTo, date
     } = filters;
 
@@ -86,27 +89,76 @@ export class KavachRepository {
     if (dateTo) {
       result = result.filter(i => i.incident_date && i.incident_date <= dateTo);
     }
+
+    // Handle districts / district (plural/singular)
+    let targetDistricts = [];
+    if (districts) {
+      if (Array.isArray(districts)) {
+        targetDistricts = districts;
+      } else if (typeof districts === 'string') {
+        targetDistricts = districts.split(',').map(s => s.trim()).filter(Boolean);
+      }
+    }
     if (district) {
-      const normalized = normalizeDistrictName(district) || district;
+      targetDistricts.push(district);
+    }
+    if (targetDistricts.length > 0) {
+      const normalizedTargets = targetDistricts.map(d => normalizeDistrictName(d) || d);
       result = result.filter(i => {
         const d = normalizeDistrictName(i.district) || i.district;
-        return d === normalized;
+        return normalizedTargets.includes(d);
       });
     }
+
+    // Handle policeStations / policeStation (plural/singular)
+    let targetStations = [];
+    if (policeStations) {
+      if (Array.isArray(policeStations)) {
+        targetStations = policeStations;
+      } else if (typeof policeStations === 'string') {
+        targetStations = policeStations.split(',').map(s => s.trim()).filter(Boolean);
+      }
+    }
     if (policeStation) {
-      const ps = policeStation.toLowerCase();
-      result = result.filter(i => (i.police_station || '').toLowerCase() === ps);
+      targetStations.push(policeStation);
+    }
+    if (targetStations.length > 0) {
+      const lowerTargets = targetStations.map(s => s.toLowerCase());
+      result = result.filter(i => {
+        const ps = (i.police_station || '').toLowerCase();
+        return lowerTargets.includes(ps);
+      });
+    }
+
+    // Handle crimeCategories / crimeType (plural/singular)
+    let targetCategories = [];
+    if (crimeCategories) {
+      if (Array.isArray(crimeCategories)) {
+        targetCategories = crimeCategories;
+      } else if (typeof crimeCategories === 'string') {
+        targetCategories = crimeCategories.split(',').map(s => s.trim()).filter(Boolean);
+      }
     }
     if (crimeType) {
-      const ct = crimeType.toLowerCase();
-      result = result.filter(i => (i.crime_type || '').toLowerCase() === ct);
+      targetCategories.push(crimeType);
     }
+    if (targetCategories.length > 0) {
+      const lowerTargets = targetCategories.map(s => s.toLowerCase());
+      result = result.filter(i => {
+        const ct = (i.crime_type || '').toLowerCase();
+        return lowerTargets.includes(ct);
+      });
+    }
+
     if (severity) {
       const s = severity.toUpperCase();
       result = result.filter(i => i.severity === s);
     }
     if (status) {
-      const st = status.toUpperCase();
+      let st = status.toUpperCase().replace(/ /g, '_');
+      if (st === 'CHARGE_SHEET_FILED') st = 'PENDING';
+      if (st === 'PENDING_TRIAL') st = 'PENDING';
+      if (st === 'AWAITING_ACTION') st = 'PENDING';
       result = result.filter(i => i.status === st);
     }
     if (timeOfDay) {
@@ -122,12 +174,21 @@ export class KavachRepository {
     const hour = parseInt(parts[0], 10);
     if (isNaN(hour)) return false;
     const period = targetPeriod.toLowerCase();
+
+    // Check exact original enum values first
     if (period === 'dawn') return hour >= 5 && hour < 7;
     if (period === 'morning') return hour >= 7 && hour < 12;
     if (period === 'afternoon') return hour >= 12 && hour < 17;
     if (period === 'evening') return hour >= 17 && hour < 21;
     if (period === 'night') return hour >= 21 || hour < 0;
     if (period === 'late_night') return hour >= 0 && hour < 5;
+
+    // Support frontend options (containing time ranges in parens)
+    if (period.includes('early morning')) return hour >= 0 && hour < 6;
+    if (period.includes('morning')) return hour >= 6 && hour < 12;
+    if (period.includes('afternoon')) return hour >= 12 && hour < 18;
+    if (period.includes('night')) return hour >= 18 || hour < 0;
+
     return true;
   }
 

@@ -45,11 +45,10 @@ export default function ReportsPage() {
       const reportFilters = { ...filters, dateFrom: dateFrom || filters.dateFrom, dateTo: dateTo || filters.dateTo };
       const res = await kavachApi.generateReport(reportFilters, format);
       setReportGenerated(true);
-      if (res.data?.html) {
-        setReportHtml(res.data.html);
-      } else {
-        setReportHtml(null);
-      }
+      const htmlContent = typeof res.data === 'string'
+        ? res.data
+        : res.data?.data?.html || res.data?.html || '';
+      setReportHtml(htmlContent || null);
     } catch (err: any) {
       setError(err?.message || 'Failed to generate report');
       setReportGenerated(true);

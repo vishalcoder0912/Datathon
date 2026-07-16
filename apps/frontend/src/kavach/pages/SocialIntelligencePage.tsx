@@ -24,8 +24,9 @@ export default function SocialIntelligencePage() {
   const [rankedCorrelations, setRankedCorrelations] = useState<{ pair: string; value: number }[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [scatterData, setScatterData] = useState<Record<string, unknown>[]>([]);
+  const [scatterData, setScatterData] = useState<any[]>([]);
   const [selectedPair, setSelectedPair] = useState<string | null>(null);
+  const [districtsData, setDistrictsData] = useState<any[]>([]);
 
   useEffect(() => {
     let cancelled = false;
@@ -34,17 +35,74 @@ export default function SocialIntelligencePage() {
     Promise.all([
       kavachApi.getCorrelationMatrix(),
       kavachApi.getRankedCorrelations(),
+      kavachApi.getDistricts(),
     ])
-      .then(([matrixRes, rankedRes]) => {
+      .then(([matrixRes, rankedRes, distRes]) => {
         if (!cancelled) {
-          setCorrelationMatrix(matrixRes.data?.matrix || matrixRes.data || []);
-          setRankedCorrelations(rankedRes.data?.correlations || rankedRes.data || []);
+          const matrixData = matrixRes.data?.data || matrixRes.data || {};
+          const metrics = matrixData.metrics || [];
+          const matrixObj = matrixData.matrix || {};
+          const processedMatrix = metrics.map((metric: string) => ({
+            variable: metric,
+            correlations: matrixObj[metric] || {}
+          }));
+          setCorrelationMatrix(processedMatrix);
+
+          const metricLabels: Record<string, string> = {
+            literacyRate: 'Literacy Rate',
+            unemploymentRate: 'Unemployment Rate',
+            policePresence: 'Police Presence',
+            povertyRate: 'Poverty Rate',
+            urbanizationRate: 'Urbanization Rate',
+          };
+
+          const rawRanked = rankedRes.data?.data || rankedRes.data?.correlations || rankedRes.data || [];
+          const processedRanked = rawRanked.map((item: any) => {
+            const label = metricLabels[item.metric] || item.metric;
+            return {
+              pair: `Crime Rate vs ${label}`,
+              value: item.value ?? 0
+            };
+          });
+          setRankedCorrelations(processedRanked);
+          if (processedRanked.length > 0) {
+            setSelectedPair(processedRanked[0].pair);
+          }
+
+          setDistrictsData(distRes.data?.data || distRes.data || []);
         }
       })
       .catch((err) => { if (!cancelled) setError(err?.message || 'Failed to load correlation data'); })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
   }, []);
+
+  useEffect(() => {
+    if (!selectedPair || districtsData.length === 0) {
+      setScatterData([]);
+      return;
+    }
+
+    const pairText = selectedPair.toLowerCase();
+    let key = 'literacyRate';
+    if (pairText.includes('unemployment')) key = 'unemploymentRate';
+    else if (pairText.includes('police')) key = 'policePresence';
+    else if (pairText.includes('poverty')) key = 'povertyRate';
+    else if (pairText.includes('urbanization')) key = 'urbanizationRate';
+
+    const points = districtsData.map((d) => {
+      const population = d.indicators?.population || 1;
+      const crimeRate = d.indicators?.population ? (d.totalIncidents / d.indicators.population) * 100000 : d.totalIncidents;
+      return {
+        district: d.district,
+        x: d.indicators?.[key] ?? 0,
+        y: Math.round(crimeRate * 100) / 100,
+        name: d.district
+      };
+    }).filter(p => p.x !== 0);
+
+    setScatterData(points);
+  }, [selectedPair, districtsData]);
 
   const maxCorrValue = Math.max(...rankedCorrelations.map((c) => Math.abs(c.value)), 0.01);
 

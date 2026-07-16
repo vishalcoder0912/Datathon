@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
 import { Search, Users, GitBranch, AlertTriangle, X, ZoomIn, Expand, Shrink, UserCheck } from 'lucide-react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { kavachApi } from '@/kavach/api/kavachApi';
 import { useKavachFilters } from '@/kavach/context/FilterContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
@@ -103,22 +104,54 @@ function forceLayout(nodes: GraphNode[], edges: GraphEdge[], width: number, heig
 }
 
 export default function NetworkIntelligencePage() {
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialSearch = searchParams.get('q') || '';
+  const [search, setSearch] = useState(initialSearch);
   const { filters } = useKavachFilters();
   const [graph, setGraph] = useState<GraphData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [search, setSearch] = useState('');
   const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null);
   const [nodeFilter, setNodeFilter] = useState<string[]>([]);
   const [fitScale, setFitScale] = useState(1);
   const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
+    const q = searchParams.get('q') || '';
+    if (q !== search) {
+      setSearch(q);
+    }
+  }, [searchParams]);
+
+  const handleSearchChange = (value: string) => {
+    setSearch(value);
+    if (value) {
+      setSearchParams({ q: value });
+    } else {
+      setSearchParams({});
+    }
+  };
+
+  useEffect(() => {
     let cancelled = false;
     setLoading(true);
     setError(null);
     kavachApi.getNetwork(filters)
-      .then((res) => { if (!cancelled) setGraph(res.data); })
+      .then((res) => {
+        if (!cancelled) {
+          const rawGraph = res.data?.data || res.data;
+          if (rawGraph && Array.isArray(rawGraph.nodes)) {
+            const mappedNodes = rawGraph.nodes.map((n: any) => ({
+              ...n,
+              type: n.type === 'person' ? 'offender' : n.type,
+            }));
+            setGraph({ ...rawGraph, nodes: mappedNodes });
+          } else {
+            setGraph(rawGraph);
+          }
+        }
+      })
       .catch((err) => { if (!cancelled) setError(err?.message || 'Failed to load network'); })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
@@ -185,7 +218,7 @@ export default function NetworkIntelligencePage() {
           <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
           <Input
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => handleSearchChange(e.target.value)}
             placeholder="Search offender or FIR..."
             className="h-9 pl-9 text-sm"
           />
@@ -248,6 +281,13 @@ export default function NetworkIntelligencePage() {
                     <g
                       key={node.id}
                       onClick={() => setSelectedNode(node)}
+                      onDoubleClick={() => {
+                        if (node.type === 'offender') {
+                          navigate(`/offenders/${node.id}`);
+                        } else if (node.type === 'incident') {
+                          handleSearchChange(node.id);
+                        }
+                      }}
                       style={{ cursor: 'pointer' }}
                     >
                       <circle
@@ -318,6 +358,24 @@ export default function NetworkIntelligencePage() {
                       Repeat Offender
                     </div>
                   )}
+                  <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
+                    {selectedNode.type === 'offender' && (
+                      <Button
+                        onClick={() => navigate(`/offenders/${selectedNode.id}`)}
+                        className="w-full bg-[#1D4ED8] hover:bg-[#1D4ED8]/90 text-white text-xs font-semibold h-9"
+                      >
+                        View Offender Profile
+                      </Button>
+                    )}
+                    {selectedNode.type === 'incident' && (
+                      <Button
+                        onClick={() => handleSearchChange(selectedNode.id)}
+                        className="w-full bg-[#1D4ED8] hover:bg-[#1D4ED8]/90 text-white text-xs font-semibold h-9"
+                      >
+                        Filter by this FIR
+                      </Button>
+                    )}
+                  </div>
                 </div>
               </div>
             )}

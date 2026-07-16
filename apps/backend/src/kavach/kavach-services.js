@@ -35,9 +35,12 @@ export class KavachServices {
     const highRiskDistricts = districtIncidentCounts.filter(c => c > mean + std).length;
 
     const categoryCounts = {};
+    const severityCounts = {};
     for (const inc of incidents) {
       const cat = inc.crime_type || 'Unknown';
       categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+      const sev = inc.severity || 'LOW';
+      severityCounts[sev] = (severityCounts[sev] || 0) + 1;
     }
     const mostCommonCategory = Object.entries(categoryCounts)
       .sort((a, b) => b[1] - a[1])[0]?.[0] || 'Unknown';
@@ -88,6 +91,11 @@ export class KavachServices {
       ? roundTo((withLocation / totalIncidents) * 100)
       : 0;
 
+    const monthlyTrend = this.getMonthlyTrends(filters).map(t => ({ month: t.month, incidents: t.total })).slice(-12);
+    const categoryDistribution = Object.entries(categoryCounts).map(([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value).slice(0, 5);
+    const dayOfWeekAnalysis = this.getDayOfWeekAnalysis(filters).map(d => ({ day: d.day, incidents: d.total }));
+    const severityBreakdown = Object.entries(severityCounts).map(([name, value]) => ({ name, value }));
+
     return {
       totalIncidents,
       activeInvestigations,
@@ -104,6 +112,10 @@ export class KavachServices {
       dataQualityScore,
       dataPeriod: this._getDataPeriod(incidents),
       recordCount: totalIncidents,
+      monthlyTrend,
+      categoryDistribution,
+      dayOfWeekAnalysis,
+      severityBreakdown,
     };
   }
 

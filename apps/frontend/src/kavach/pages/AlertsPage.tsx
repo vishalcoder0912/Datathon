@@ -42,20 +42,20 @@ export default function AlertsPage() {
   const [alerts, setAlerts] = useState<Alert[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [typeFilter, setTypeFilter] = useState('');
-  const [severityFilter, setSeverityFilter] = useState('');
-  const [reviewedFilter, setReviewedFilter] = useState('');
+  const [typeFilter, setTypeFilter] = useState('all');
+  const [severityFilter, setSeverityFilter] = useState('all');
+  const [reviewedFilter, setReviewedFilter] = useState('all');
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
 
   const fetchAlerts = () => {
     setLoading(true);
     setError(null);
     const apiFilters: Record<string, unknown> = { ...filters };
-    if (typeFilter) apiFilters.type = typeFilter;
-    if (severityFilter) apiFilters.severity = severityFilter;
-    if (reviewedFilter) apiFilters.reviewed = reviewedFilter;
+    if (typeFilter && typeFilter !== 'all') apiFilters.type = typeFilter;
+    if (severityFilter && severityFilter !== 'all') apiFilters.severity = severityFilter;
+    if (reviewedFilter && reviewedFilter !== 'all') apiFilters.reviewed = reviewedFilter;
     kavachApi.getAlerts(apiFilters)
-      .then((res) => setAlerts(res.data?.alerts || res.data || []))
+      .then((res) => setAlerts(res.data?.data || res.data?.alerts || res.data || []))
       .catch((err) => setError(err?.message || 'Failed to load alerts'))
       .finally(() => setLoading(false));
   };
@@ -109,7 +109,7 @@ export default function AlertsPage() {
         <Select value={typeFilter} onValueChange={setTypeFilter}>
           <SelectTrigger className="h-9 w-[140px] text-xs"><SelectValue placeholder="Type" /></SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Types</SelectItem>
+            <SelectItem value="all">All Types</SelectItem>
             <SelectItem value="Crime Spike">Crime Spike</SelectItem>
             <SelectItem value="Pattern Detection">Pattern Detection</SelectItem>
             <SelectItem value="Repeat Offender">Repeat Offender</SelectItem>
@@ -120,7 +120,7 @@ export default function AlertsPage() {
         <Select value={severityFilter} onValueChange={setSeverityFilter}>
           <SelectTrigger className="h-9 w-[130px] text-xs"><SelectValue placeholder="Severity" /></SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Severities</SelectItem>
+            <SelectItem value="all">All Severities</SelectItem>
             <SelectItem value="critical">Critical</SelectItem>
             <SelectItem value="high">High</SelectItem>
             <SelectItem value="medium">Medium</SelectItem>
@@ -130,7 +130,7 @@ export default function AlertsPage() {
         <Select value={reviewedFilter} onValueChange={setReviewedFilter}>
           <SelectTrigger className="h-9 w-[130px] text-xs"><SelectValue placeholder="Status" /></SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All</SelectItem>
+            <SelectItem value="all">All</SelectItem>
             <SelectItem value="false">Unreviewed</SelectItem>
             <SelectItem value="true">Reviewed</SelectItem>
           </SelectContent>

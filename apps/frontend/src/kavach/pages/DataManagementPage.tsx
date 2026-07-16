@@ -29,7 +29,7 @@ export default function DataManagementPage() {
       const res = await kavachApi.getOverview();
       setDatasetInfo({
         name: 'KAVACH Crime Database',
-        records: res.data?.totalIncidents || 12847,
+        records: res.data?.data?.totalIncidents || res.data?.totalIncidents || 12847,
         size: '24.3 MB',
         lastUpdated: new Date().toISOString().slice(0, 10),
         schema: [
@@ -43,7 +43,7 @@ export default function DataManagementPage() {
           { column: 'Offender ID', type: 'String', quality: 85 },
           { column: 'Victim Details', type: 'String', quality: 75 },
         ],
-        qualityScore: res.data?.dataQualityScore || 86,
+        qualityScore: res.data?.data?.dataQualityScore || res.data?.dataQualityScore || 86,
       });
     } catch {
       // Set sample info if API unavailable
@@ -68,7 +68,7 @@ export default function DataManagementPage() {
     setLoadSuccess(null);
     try {
       const res = await kavachApi.loadDemoData();
-      setLoadSuccess(`Demo data loaded: ${res.data?.records || ''} records imported`);
+      setLoadSuccess(`Demo data loaded: ${res.data?.data?.incidents || res.data?.data?.records || res.data?.incidents || ''} records imported`);
       fetchInfo();
     } catch (err: any) {
       setError(err?.message || 'Failed to load data');
@@ -86,7 +86,7 @@ export default function DataManagementPage() {
       const formData = new FormData();
       formData.append('file', file);
       const res = await kavachApi.loadDemoData();
-      setLoadSuccess(`CSV uploaded: ${res.data?.records || ''} records imported`);
+      setLoadSuccess(`CSV uploaded: ${res.data?.data?.incidents || res.data?.data?.records || res.data?.incidents || ''} records imported`);
       fetchInfo();
     } catch (err: any) {
       setError(err?.message || 'Failed to upload CSV');

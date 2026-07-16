@@ -185,7 +185,7 @@ export default function AICopilotPage() {
 
     try {
       const res = await kavachApi.copilotQuery(query, filters);
-      const data = res.data;
+      const data = res.data?.data || res.data;
       const assistantMsg: Message = {
         id: `assistant-${Date.now()}`,
         role: 'assistant',

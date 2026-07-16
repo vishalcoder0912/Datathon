@@ -343,13 +343,20 @@ export async function handleKavachRoutes(request, response, pathname) {
 
     // POST /api/kavach/reports
     if (pathname === '/api/kavach/reports' && method === 'POST') {
-      const data = services.generateReport(filters, 'html');
-      response.writeHead(200, {
-        'Content-Type': 'text/html; charset=utf-8',
-        'Content-Disposition': `attachment; filename="${data.filename}"`,
-        'Cache-Control': 'no-cache',
-      });
-      response.end(data.html);
+      let activeFilters = { ...filters };
+      let activeFormat = 'html';
+      try {
+        const body = await readBody(request);
+        if (body) {
+          const parsed = JSON.parse(body);
+          if (parsed.filters) activeFilters = { ...activeFilters, ...parsed.filters };
+          if (parsed.format) activeFormat = parsed.format;
+        }
+      } catch (err) {
+        // ignore parsing error
+      }
+      const data = services.generateReport(activeFilters, activeFormat);
+      sendSuccess(response, { html: data.html, filename: data.filename }, 'Report generated');
       return true;
     }
 

@@ -73,7 +73,7 @@ export default function DashboardPage() {
     setLoading(true);
     setError(null);
     kavachApi.getOverview(filters)
-      .then((res) => { if (!cancelled) setOverview(res.data); })
+      .then((res) => { if (!cancelled) setOverview(res.data?.data || res.data); })
       .catch((err) => { if (!cancelled) setError(err?.message || 'Failed to load dashboard'); })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };

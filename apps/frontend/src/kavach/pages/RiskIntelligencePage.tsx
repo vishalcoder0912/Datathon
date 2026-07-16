@@ -36,8 +36,28 @@ export default function RiskIntelligencePage() {
     ])
       .then(([risksRes, distRes]) => {
         if (!cancelled) {
-          setRisks(risksRes.data?.districts || risksRes.data || []);
-          setDistribution(distRes.data?.distribution || distRes.data || []);
+          const rawRisks = risksRes.data?.data || risksRes.data?.districts || risksRes.data || [];
+          const processedRisks = rawRisks.map((r: any) => ({
+            ...r,
+            riskScore: r.riskScore ?? r.score ?? 0,
+            confidence: r.confidence != null ? Math.round(r.confidence * 100) : 0,
+          }));
+          setRisks(processedRisks);
+
+          const rawDist = distRes.data?.data?.distribution || distRes.data?.distribution?.distribution || distRes.data?.distribution || {};
+          const bandLabels: Record<string, string> = {
+            VERY_LOW: 'Very Low',
+            LOW: 'Low',
+            MODERATE: 'Moderate',
+            HIGH: 'High',
+            VERY_HIGH: 'Very High',
+            CRITICAL: 'Critical'
+          };
+          const processedDist = Object.entries(rawDist).map(([band, count]) => ({
+            range: bandLabels[band] || band,
+            count: count as number
+          }));
+          setDistribution(processedDist);
         }
       })
       .catch((err) => { if (!cancelled) setError(err?.message || 'Failed to load risk data'); })

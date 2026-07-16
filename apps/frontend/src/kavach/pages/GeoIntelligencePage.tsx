@@ -76,7 +76,7 @@ export default function GeoIntelligencePage() {
     setLoading(true);
     setError(null);
     kavachApi.getDistricts(filters)
-      .then((res) => { if (!cancelled) setDistricts(res.data?.districts || res.data || []); })
+      .then((res) => { if (!cancelled) setDistricts(res.data?.data || res.data?.districts || res.data || []); })
       .catch((err) => { if (!cancelled) setError(err?.message || 'Failed to load district data'); })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
@@ -86,14 +86,14 @@ export default function GeoIntelligencePage() {
     if (!selectedDistrict) { setDistrictDetail(null); return; }
     let cancelled = false;
     kavachApi.getDistrict(selectedDistrict, filters)
-      .then((res) => { if (!cancelled) setDistrictDetail(res.data); })
+      .then((res) => { if (!cancelled) setDistrictDetail(res.data?.data || res.data); })
       .catch(() => { if (!cancelled) setDistrictDetail(null); });
     return () => { cancelled = true; };
   }, [selectedDistrict, filters]);
 
-  const maxInc = useMemo(() => Math.max(...districts.map((d) => d.incidents || 0), 1), [districts]);
+  const maxInc = useMemo(() => Math.max(...districts.map((d) => d.totalIncidents || 0), 1), [districts]);
 
-  const sortedDistricts = useMemo(() => [...districts].sort((a, b) => b.incidents - a.incidents), [districts]);
+  const sortedDistricts = useMemo(() => [...districts].sort((a, b) => b.totalIncidents - a.totalIncidents), [districts]);
 
   if (error) {
     return (
@@ -130,29 +130,34 @@ export default function GeoIntelligencePage() {
             {loading ? (
               <Skeleton className="h-[500px] w-full" />
             ) : (
-              <div className="relative">
-                <svg viewBox="0 0 500 250" className="w-full" role="img" aria-label="Karnataka district crime map">
+              <div className="relative overflow-x-auto">
+                <svg viewBox="0 0 500 250" className="min-w-[500px] w-full animate-fade-in" role="img" aria-label="Karnataka district crime map">
                   {Object.entries(KARNATAKA_DISTRICTS).map(([name, geo]) => {
                     const d = districts.find((dd) => dd.district === name || dd.district.toLowerCase() === name.toLowerCase());
-                    const inc = d?.incidents || 0;
+                    const inc = d?.totalIncidents || 0;
+                    const mapX = geo.x * 4.2;
+                    const mapY = geo.y * 0.9 + 10;
+                    const mapW = 34;
+                    const mapH = 20;
                     return (
-                      <g key={name} onClick={() => setSelectedDistrict(name)} style={{ cursor: 'pointer' }}>
+                      <g key={name} onClick={() => setSelectedDistrict(name)} className="transition-transform duration-200 hover:scale-105" style={{ cursor: 'pointer' }}>
                         <rect
-                          x={geo.x} y={geo.y} width={geo.w} height={geo.h} rx={3}
+                          x={mapX} y={mapY} width={mapW} height={mapH} rx={4}
                           fill={getDistrictColor(inc, maxInc)}
                           stroke={selectedDistrict === name ? '#0F172A' : '#CBD5E1'}
-                          strokeWidth={selectedDistrict === name ? 2 : 1}
+                          strokeWidth={selectedDistrict === name ? 1.5 : 0.5}
+                          className="transition-colors duration-200"
                         />
                         <text
-                          x={geo.x + geo.w / 2} y={geo.y + geo.h / 2 + 3}
-                          textAnchor="middle" fontSize="7" fill="#fff" fontWeight="bold"
+                          x={mapX + mapW / 2} y={mapY + 8}
+                          textAnchor="middle" fontSize="5.5" fill="#fff" fontWeight="bold"
                           style={{ pointerEvents: 'none' }}
                         >
                           {geo.label}
                         </text>
                         <text
-                          x={geo.x + geo.w / 2} y={geo.y + geo.h / 2 + 12}
-                          textAnchor="middle" fontSize="6" fill="rgba(255,255,255,0.7)"
+                          x={mapX + mapW / 2} y={mapY + 16}
+                          textAnchor="middle" fontSize="6.5" fill="rgba(255,255,255,0.9)" fontWeight="black"
                           style={{ pointerEvents: 'none' }}
                         >
                           {inc}
@@ -197,31 +202,52 @@ export default function GeoIntelligencePage() {
                 {districtDetail ? (
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between border-b pb-1.5">
-                      <span className="text-slate-500">Incidents</span>
-                      <span className="font-bold">{(districtDetail as any).incidents ?? 'N/A'}</span>
+                      <span className="text-slate-500">Total Incidents</span>
+                      <span className="font-bold">{(districtDetail as any).totalIncidents ?? 0}</span>
                     </div>
                     <div className="flex justify-between border-b pb-1.5">
-                      <span className="text-slate-500">Hotspots</span>
-                      <span className="font-bold">{(districtDetail as any).hotspots ?? 'N/A'}</span>
-                    </div>
-                    <div className="flex justify-between border-b pb-1.5">
-                      <span className="text-slate-500">Risk Score</span>
-                      <span className="font-bold">{(districtDetail as any).riskScore ?? 'N/A'}</span>
-                    </div>
-                    <div className="flex justify-between border-b pb-1.5">
-                      <span className="text-slate-500">Growth</span>
-                      <span className="flex items-center gap-1 font-bold">
-                        {(districtDetail as any).growth ?? 0}%
-                        {(districtDetail as any).growth > 0
-                          ? <TrendingUp className="size-3 text-[#DC2626]" />
-                          : <TrendingDown className="size-3 text-[#15803D]" />
-                        }
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
                       <span className="text-slate-500">Active Stations</span>
-                      <span className="font-bold">{(districtDetail as any).policeStations ?? 'N/A'}</span>
+                      <span className="font-bold">{Object.keys((districtDetail as any).stationCounts || {}).length}</span>
                     </div>
+                    <div className="flex justify-between border-b pb-1.5">
+                      <span className="text-slate-500">Average Severity</span>
+                      <span className="font-bold">{(districtDetail as any).avgSeverity ?? 'N/A'}</span>
+                    </div>
+                    <div className="flex justify-between border-b pb-1.5">
+                      <span className="text-slate-500">Active Cases</span>
+                      <span className="font-bold">{(districtDetail as any).activeCases ?? 0}</span>
+                    </div>
+                    <div className="flex justify-between border-b pb-1.5">
+                      <span className="text-slate-500">Closed Cases</span>
+                      <span className="font-bold">{(districtDetail as any).closedCases ?? 0}</span>
+                    </div>
+                    <div className="flex justify-between border-b pb-1.5">
+                      <span className="text-slate-500">Top Crime Category</span>
+                      <span className="font-bold">{(districtDetail as any).topCategory ?? 'N/A'}</span>
+                    </div>
+                    { (districtDetail as any).indicators && (
+                      <div className="mt-4 pt-4 border-t border-slate-100">
+                        <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Socioeconomic Indicators</h4>
+                        <div className="grid grid-cols-2 gap-2 text-xs">
+                          <div className="bg-slate-50 p-2 rounded">
+                            <div className="text-slate-500">Population</div>
+                            <div className="font-bold text-slate-800">{(((districtDetail as any).indicators.population || 0) / 1000000).toFixed(2)}M</div>
+                          </div>
+                          <div className="bg-slate-50 p-2 rounded">
+                            <div className="text-slate-500">Literacy Rate</div>
+                            <div className="font-bold text-slate-800">{((districtDetail as any).indicators.literacyRate || 0).toFixed(1)}%</div>
+                          </div>
+                          <div className="bg-slate-50 p-2 rounded">
+                            <div className="text-slate-500">Unemployment</div>
+                            <div className="font-bold text-slate-800">{((districtDetail as any).indicators.unemploymentRate || 0).toFixed(1)}%</div>
+                          </div>
+                          <div className="bg-slate-50 p-2 rounded">
+                            <div className="text-slate-500">Poverty Rate</div>
+                            <div className="font-bold text-slate-800">{((districtDetail as any).indicators.povertyRate || 0).toFixed(1)}%</div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <p className="text-sm text-slate-400">No detailed data available</p>
@@ -246,7 +272,7 @@ export default function GeoIntelligencePage() {
                 <XAxis type="number" tick={{ fontSize: 11 }} />
                 <YAxis type="category" dataKey="district" width={120} tick={{ fontSize: 11 }} />
                 <Tooltip />
-                <Bar dataKey="incidents" fill="#1D4ED8" radius={[0, 4, 4, 0]} />
+                <Bar dataKey="totalIncidents" name="Total Incidents" fill="#1D4ED8" radius={[0, 4, 4, 0]} />
               </BarChart>
             </ResponsiveContainer>
           ) : (

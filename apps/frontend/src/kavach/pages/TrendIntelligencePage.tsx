@@ -39,7 +39,7 @@ export default function TrendIntelligencePage() {
           case 'district-comparison': res = await kavachApi.getDistrictComparison(filters); break;
           case 'mo-trends': res = await kavachApi.getModusOperandiTrends(filters); break;
         }
-        if (!cancelled) setData(res?.data || {});
+        if (!cancelled) setData(res?.data?.data || res?.data || {});
       } catch (err: any) {
         if (!cancelled) setError(err?.message || 'Failed to load trends');
       } finally {
@@ -112,7 +112,17 @@ export default function TrendIntelligencePage() {
     );
   }
 
-  const chartData = data ? (data as any)[tabConfig.find((t) => t.key === activeTab)?.dataKey || 'trends'] : [];
+  const rawChartData = Array.isArray(data)
+    ? data
+    : data
+      ? (data as any)[tabConfig.find((t) => t.key === activeTab)?.dataKey || 'trends'] || []
+      : [];
+
+  const chartData = rawChartData.map((item: any) => ({
+    ...item,
+    incidents: item.incidents ?? item.total ?? item.count ?? 0,
+    name: item.name ?? item.month ?? item.week ?? item.day ?? (item.hour !== undefined ? `${item.hour}:00` : null) ?? item.daypart ?? item.category ?? item.district ?? '',
+  }));
 
   return (
     <div className="space-y-6">
