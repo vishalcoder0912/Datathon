@@ -14,6 +14,8 @@ def _representative_result(analysis_type: str, result: dict[str, Any]) -> dict[s
         "risk": "predictions",
         "network": "edges",
         "mo_similarity": "similarCases",
+        "socioeconomic": "correlations",
+        "trend_alert": "alerts",
     }.get(analysis_type)
     values = result.get(collection_key, []) if collection_key else []
     return values[0] if isinstance(values, list) and values and isinstance(values[0], dict) else result
@@ -41,6 +43,10 @@ def build_explanation(
         detected = "An aggregate geographic and time-window risk baseline was calculated." if result.get("predictions") else "No aggregate risk score could be calculated from the supplied records."
     elif analysis_type == "network":
         detected = "A case-link network was generated from explicit record relationships." if result.get("edges") else "No relationship edges were available in the supplied records."
+    elif analysis_type == "socioeconomic":
+        detected = "Socioeconomic indicator correlations with crime density were computed."
+    elif analysis_type == "trend_alert":
+        detected = "Emerging crime trend alerts were calculated based on historical rolling baselines."
     else:
         detected = "Cases were compared for modus-operandi pattern similarity." if result.get("similarCases") else "No candidate case met the requested modus-operandi similarity threshold."
 
