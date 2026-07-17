@@ -17,6 +17,7 @@ describe('KAVACH PostgreSQL integration contract', () => {
       '008_views.sql',
       '009_functions.sql',
       '010_seed_reference_data.sql',
+      '011_intelligence_upgrade.sql',
     ]);
     expect(migrations.every((migration) => /^[a-f0-9]{64}$/.test(migration.checksum))).toBe(true);
   });
@@ -51,6 +52,6 @@ describe('KAVACH live PostgreSQL/PostGIS integration', () => {
 
     expect(secondRun.applied).toEqual([]);
     expect(postgis.rows[0].version).toBeTruthy();
-    expect(history.rows[0].count).toBe(10);
+    expect(history.rows[0].count).toBe(11);
   }, 120_000);
 });
