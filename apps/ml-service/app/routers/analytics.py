@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from fastapi import APIRouter
 
-from ..schemas import AnomalyRequest, ExplainRequest, HotspotRequest, MoSimilarityRequest, NetworkRequest, RiskRequest
+from ..schemas import AnomalyRequest, ExplainRequest, HotspotRequest, MoSimilarityRequest, NetworkRequest, RiskRequest, SocioeconomicRequest, AlertsRequest
 from ..services.anomalies import detect_anomalies
 from ..services.common import apply_filters
 from ..services.explanations import build_explanation
@@ -12,6 +12,8 @@ from ..services.hotspots import detect_hotspots
 from ..services.mo_similarity import find_similar_modus_operandi
 from ..services.networks import build_network
 from ..services.risk import calculate_risk
+from ..services.socioeconomic import calculate_correlations
+from ..services.trend_alerts import calculate_trend_alerts
 
 router = APIRouter(prefix="/analytics", tags=["KAVACH analytics"])
 
@@ -115,3 +117,25 @@ def explain(payload: ExplainRequest) -> dict:
             model_version=payload.model_version,
         ),
     }
+
+
+@router.post("/socioeconomic")
+def socioeconomic(payload: SocioeconomicRequest) -> dict:
+    result = calculate_correlations(
+        payload.records(),
+        payload.indicators,
+        filters=payload.filters,
+    )
+    return _with_explanation("socioeconomic", result)
+
+
+@router.post("/alerts")
+def alerts(payload: AlertsRequest) -> dict:
+    result = calculate_trend_alerts(
+        payload.records(),
+        filters=payload.filters,
+        growth_threshold=payload.growth_threshold,
+        z_threshold=payload.z_threshold,
+    )
+    return _with_explanation("trend_alert", result)
+
