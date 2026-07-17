@@ -5,6 +5,7 @@ import { setupRoutes } from '../routes/index.js';
 import { errorHandler } from '../middleware/error-handler.js';
 import { requestLogger } from '../middleware/request-logger.js';
 import { corsMiddleware } from '../middleware/cors.js';
+import { requestContext } from '../middleware/request-context.js';
 import config from '../config/environment.js';
 
 let serverInstance = null;
@@ -30,13 +31,21 @@ export function createHttpServer() {
     try {
       // Apply CORS middleware
       corsMiddleware(request, response);
+      requestContext(request, response);
 
       // Handle preflight OPTIONS requests
       if (request.method === 'OPTIONS') {
+        const configuredOrigins = String(config.cors.origin).split(',').map((origin) => origin.trim()).filter(Boolean);
+        const requestedOrigin = request.headers.origin;
+        const allowAnyOrigin = configuredOrigins.includes('*') && !config.cors.credentials;
+        const preflightOrigin = requestedOrigin && (allowAnyOrigin || configuredOrigins.includes(requestedOrigin))
+          ? requestedOrigin
+          : (allowAnyOrigin ? '*' : configuredOrigins[0]);
         response.writeHead(204, {
-          'Access-Control-Allow-Origin': config.cors.origin,
+          ...(preflightOrigin ? { 'Access-Control-Allow-Origin': preflightOrigin } : {}),
           'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
           'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+          ...(config.cors.credentials ? { 'Access-Control-Allow-Credentials': 'true' } : {}),
           'Access-Control-Max-Age': '86400'
         });
         response.end();
