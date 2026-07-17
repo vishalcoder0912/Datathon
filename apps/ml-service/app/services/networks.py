@@ -283,19 +283,32 @@ def build_network(
         graph.add_edge(source, target, weight=graph.get_edge_data(source, target, {}).get("weight", 0) + edge["weight"])
 
     degree = nx.degree_centrality(graph) if graph.number_of_nodes() > 1 else {node_id: 0.0 for node_id in graph.nodes}
+    weighted_degree = {node_id: float(graph.degree(node_id, weight="weight")) for node_id in graph.nodes}
     betweenness = nx.betweenness_centrality(graph, weight="weight", normalized=True) if graph.number_of_nodes() > 2 else {node_id: 0.0 for node_id in graph.nodes}
     pagerank = nx.pagerank(graph, weight="weight") if graph.number_of_edges() else {node_id: 0.0 for node_id in graph.nodes}
+    try:
+        eigenvector = nx.eigenvector_centrality(graph, weight="weight", max_iter=1000) if graph.number_of_edges() else {node_id: 0.0 for node_id in graph.nodes}
+    except Exception:
+        eigenvector = {node_id: 0.0 for node_id in graph.nodes}
+
     for node_id, node in nodes.items():
         node["metrics"] = {
             "degreeCentrality": round(float(degree.get(node_id, 0.0)), 5),
+            "weightedDegree": round(float(weighted_degree.get(node_id, 0.0)), 5),
             "betweennessCentrality": round(float(betweenness.get(node_id, 0.0)), 5),
             "pageRank": round(float(pagerank.get(node_id, 0.0)), 5),
+            "eigenvectorCentrality": round(float(eigenvector.get(node_id, 0.0)), 5),
         }
 
     communities: list[set[str]]
     if graph.number_of_edges() and graph.number_of_nodes() >= 3:
         try:
-            communities = [set(group) for group in nx.community.greedy_modularity_communities(graph, weight="weight")]
+            communities = [set(group) for group in nx.community.louvain_communities(graph, weight="weight")]
+        except AttributeError:
+            try:
+                communities = [set(group) for group in nx.community.greedy_modularity_communities(graph, weight="weight")]
+            except Exception:
+                communities = [set(group) for group in nx.connected_components(graph)]
         except Exception:
             communities = [set(group) for group in nx.connected_components(graph)]
     else:
