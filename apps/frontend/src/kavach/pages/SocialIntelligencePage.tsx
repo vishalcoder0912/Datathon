@@ -5,6 +5,7 @@ import {
 } from 'recharts';
 import { AlertTriangle, Info, BarChart3 } from 'lucide-react';
 import { kavachApi } from '@/kavach/api/kavachApi';
+import { useImportData } from '@/kavach/context/ImportDataContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { Badge } from '@/shared/components/ui/badge';
 import { Skeleton } from '@/shared/components/ui/skeleton';
@@ -20,6 +21,7 @@ function getCorrelationColor(val: number): string {
 }
 
 export default function SocialIntelligencePage() {
+  const { refreshKey } = useImportData();
   const [correlationMatrix, setCorrelationMatrix] = useState<{ variable: string; correlations: Record<string, number> }[]>([]);
   const [rankedCorrelations, setRankedCorrelations] = useState<{ pair: string; value: number }[]>([]);
   const [loading, setLoading] = useState(true);
@@ -27,6 +29,9 @@ export default function SocialIntelligencePage() {
   const [scatterData, setScatterData] = useState<any[]>([]);
   const [selectedPair, setSelectedPair] = useState<string | null>(null);
   const [districtsData, setDistrictsData] = useState<any[]>([]);
+
+  // Auto-refresh when custom data is imported
+  useEffect(() => { if (refreshKey > 0) { setCorrelationMatrix([]); setLoading(true); } }, [refreshKey]);
 
   useEffect(() => {
     let cancelled = false;
