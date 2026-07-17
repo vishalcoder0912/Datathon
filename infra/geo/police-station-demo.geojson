@@ -1,0 +1,69 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "isSynthetic": true,
+    "disclaimer": "Illustrative demo police-station locations only."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stationId": "demo-cubbon-park",
+        "stationName": "Cubbon Park",
+        "district": "Bengaluru Urban"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.5946,
+          12.9767
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stationId": "demo-krishnaraja",
+        "stationName": "Krishnaraja",
+        "district": "Mysuru"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.655,
+          12.305
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stationId": "demo-maruti",
+        "stationName": "Maruti",
+        "district": "Belagavi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.501,
+          15.857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stationId": "demo-mangaluru-north",
+        "stationName": "Mangaluru North",
+        "district": "Dakshina Kannada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.856,
+          12.915
+        ]
+      }
+    }
+  ]
+}
