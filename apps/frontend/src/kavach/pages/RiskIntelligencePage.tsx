@@ -5,6 +5,7 @@ import {
 import { AlertTriangle, ChevronDown, ChevronRight, Info } from 'lucide-react';
 import { kavachApi } from '@/kavach/api/kavachApi';
 import { useKavachFilters } from '@/kavach/context/FilterContext';
+import { useImportData } from '@/kavach/context/ImportDataContext';
 import GlobalFilters from '@/kavach/components/GlobalFilters';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { Badge } from '@/shared/components/ui/badge';
@@ -24,11 +25,15 @@ function asRecord(value: unknown): Record<string, unknown> {
 
 export default function RiskIntelligencePage() {
   const { filters } = useKavachFilters();
+  const { refreshKey } = useImportData();
   const [risks, setRisks] = useState<DistrictRisk[]>([]);
   const [distribution, setDistribution] = useState<{ range: string; count: number }[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showFormula, setShowFormula] = useState(false);
+
+  // Auto-refresh when custom data is imported
+  useEffect(() => { if (refreshKey > 0) { setRisks([]); setLoading(true); } }, [refreshKey]);
 
   useEffect(() => {
     let cancelled = false;
