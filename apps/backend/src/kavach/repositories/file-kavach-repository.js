@@ -272,4 +272,25 @@ export class FileKavachRepository {
     }
     return map;
   }
+
+  addIncidents(list = []) {
+    const formatted = list.map(item => ({
+      fir_number: item.fir_number || item.crime_no || `FIR-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+      case_no: item.case_no || `CN-${Math.floor(Math.random() * 100000)}`,
+      incident_date: item.incident_date || item.incidentDate || new Date().toISOString().split('T')[0],
+      incident_time: item.incident_time || item.incidentTime || "12:00:00",
+      district: item.district || "BENGALURU_URBAN",
+      police_station: item.police_station || item.policeStation || "COROMANGALA",
+      crime_type: item.crime_type || item.crimeType || "Theft",
+      modus_operandi: item.modus_operandi || item.modusOperandi || "",
+      latitude: item.latitude != null ? Number(item.latitude) : null,
+      longitude: item.longitude != null ? Number(item.longitude) : null,
+      severity: String(item.severity || 'MEDIUM').toUpperCase(),
+      status: String(item.status || 'UNDER_INVESTIGATION').toUpperCase(),
+      brief_facts: item.brief_facts || item.briefFacts || ""
+    }));
+    this.incidents.push(...formatted);
+    console.log(`[KavachRepo] Added ${formatted.length} custom incidents. Total now: ${this.incidents.length}`);
+    return formatted;
+  }
 }
