@@ -14,15 +14,20 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy app
-COPY app.py .
+# Copy the KAVACH FastAPI package. The legacy app.py remains available only
+# when KAVACH_INCLUDE_LEGACY_ML_ROUTES=true is explicitly configured.
+COPY app ./app
+COPY app.py ./app.py
+COPY fast_dashboard_engine.py ./fast_dashboard_engine.py
+COPY pdf_intelligence ./pdf_intelligence
 
 # Set environment
 ENV PORT=5000
 ENV PYTHONUNBUFFERED=1
+ENV KAVACH_INCLUDE_LEGACY_ML_ROUTES=false
 
 # Expose port
 EXPOSE 5000
 
 # Run app
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--timeout", "120", "--workers", "1", "app:app"]
+CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5000"]
