@@ -4,19 +4,21 @@ import config from '../config/environment.js';
 export function corsMiddleware(request, response) {
   const origin = request.headers.origin;
   const allowedOrigin = config.cors.origin;
+  const allowedOrigins = String(allowedOrigin).split(',').map((value) => value.trim()).filter(Boolean);
+  const credentialed = config.cors.credentials;
+  const permitsAnyOrigin = allowedOrigins.includes('*') && !credentialed;
+  const requestedOriginAllowed = origin && (permitsAnyOrigin || allowedOrigins.includes(origin));
 
   // Set CORS headers
-  if (allowedOrigin === '*' || origin === allowedOrigin) {
-    response.setHeader('Access-Control-Allow-Origin', origin || allowedOrigin);
-  } else {
-    response.setHeader('Access-Control-Allow-Origin', allowedOrigin);
-  }
+  if (requestedOriginAllowed) response.setHeader('Access-Control-Allow-Origin', origin);
+  else if (permitsAnyOrigin) response.setHeader('Access-Control-Allow-Origin', '*');
+  else if (!origin && allowedOrigins.length === 1) response.setHeader('Access-Control-Allow-Origin', allowedOrigins[0]);
 
   response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
   response.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, X-Request-ID, Accept, Origin');
   response.setHeader('Access-Control-Expose-Headers', 'X-Request-ID, X-Total-Count, X-Page-Count');
   
-  if (config.cors.credentials) {
+  if (credentialed) {
     response.setHeader('Access-Control-Allow-Credentials', 'true');
   }
 
