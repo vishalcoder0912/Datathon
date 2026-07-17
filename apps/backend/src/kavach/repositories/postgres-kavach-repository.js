@@ -1199,6 +1199,109 @@ export class PostgresKavachRepository {
       WHERE report_id = $1::uuid${accessClause}
     `, values);
   }
+
+  async saveImportProfile(payload = {}, scope = {}) {
+    const profileId = payload.profile_id || payload.profileId || randomUUID();
+    const active = payload.active !== false;
+    const row = await this._one(`
+      INSERT INTO import_profile (profile_id, name, source_organization, version, source_type, column_mappings, transformations, category_mappings, geographic_mappings, validation_rules, created_by, active)
+      VALUES ($1::uuid, $2, $3, $4, $5, $6::jsonb, $7::jsonb, $8::jsonb, $9::jsonb, $10::jsonb, $11::uuid, $12)
+      ON CONFLICT (name) DO UPDATE SET
+        source_organization = EXCLUDED.source_organization,
+        version = EXCLUDED.version,
+        source_type = EXCLUDED.source_type,
+        column_mappings = EXCLUDED.column_mappings,
+        transformations = EXCLUDED.transformations,
+        category_mappings = EXCLUDED.category_mappings,
+        geographic_mappings = EXCLUDED.geographic_mappings,
+        validation_rules = EXCLUDED.validation_rules,
+        active = EXCLUDED.active,
+        updated_at = NOW()
+      RETURNING profile_id AS "profileId", name, active, version
+    `, [
+      profileId,
+      payload.name || 'Default Profile',
+      payload.sourceOrganization || payload.source_organization || null,
+      payload.version || '1.0.0',
+      payload.sourceType || payload.source_type || 'CSV',
+      JSON.stringify(payload.columnMappings || payload.column_mappings || {}),
+      JSON.stringify(payload.transformations || {}),
+      JSON.stringify(payload.categoryMappings || payload.category_mappings || {}),
+      JSON.stringify(payload.geographicMappings || payload.geographic_mappings || {}),
+      JSON.stringify(payload.validationRules || payload.validation_rules || {}),
+      scope.userId || null,
+      active
+    ]);
+    return row;
+  }
+
+  async listImportProfiles(scope = {}) {
+    return this._rows(`
+      SELECT profile_id AS "profileId", name, source_organization AS "sourceOrganization", version, source_type AS "sourceType", column_mappings AS "columnMappings", active
+      FROM import_profile
+      ORDER BY updated_at DESC
+    `);
+  }
+
+  async getSocioeconomicIndicators() {
+    return this._rows(`
+      SELECT id, code, name, description, unit, source_name AS "sourceName", year, allowed_for_risk_model AS "allowedForRiskModel"
+      FROM socioeconomic_indicators
+      ORDER BY name ASC
+    `);
+  }
+
+  async getAreaSocioeconomicValues() {
+    return this._rows(`
+      SELECT val.id, val.value, val.year, val.geometry_scope AS "geometryScope",
+             ind.code AS "indicator_code", ind.name AS "indicator_name", ind.unit,
+             dist.district_name AS "district", ps.unit_name AS "police_station"
+      FROM area_socioeconomic_values val
+      JOIN socioeconomic_indicators ind ON ind.id = val.indicator_id
+      LEFT JOIN district dist ON dist.district_id = val.district_id
+      LEFT JOIN police_unit ps ON ps.unit_id = val.police_station_id
+      ORDER BY val.year DESC, dist.district_name ASC
+    `);
+  }
+
+  async addIncidents(list = [], scope = {}) {
+    const inserted = [];
+    for (const item of list) {
+      try {
+        const stationRow = await this._one(`SELECT unit_id FROM police_unit WHERE LOWER(unit_name) = LOWER($1) LIMIT 1`, [item.police_station || item.policeStation || '']);
+        const stationId = stationRow?.unit_id || 1;
+        const categoryRow = await this._one(`SELECT case_category_id FROM case_category WHERE LOWER(category_name) = LOWER($1) LIMIT 1`, [item.crime_type || item.crimeType || '']);
+        const categoryId = categoryRow?.case_category_id || 1;
+        
+        const crimeNo = String(item.fir_number || item.crime_no || '').match(/^[0-9]{18}$/) 
+          ? item.fir_number || item.crime_no 
+          : `${Math.floor(Math.random() * 900000000000000000) + 100000000000000000}`;
+          
+        const caseNo = `${Math.floor(Math.random() * 900000000) + 100000000}`;
+        const year = Number(String(item.incident_date || '2026').split('-')[0]);
+        const serial = Math.floor(Math.random() * 90000) + 1;
+        
+        const row = await this._one(`
+          INSERT INTO case_master (
+            crime_no, case_no, case_year, running_serial, crime_registered_at, 
+            police_station_id, case_category_id, incident_from_at, incident_to_at, 
+            latitude, longitude, brief_facts
+          ) VALUES ($1, $2, $3, $4, NOW(), $5, $6, $7, $8, $9, $10, $11)
+          RETURNING case_master_id AS id, crime_no AS "crimeNo"
+        `, [
+          crimeNo, caseNo, year, serial, stationId, categoryId,
+          item.incident_date || new Date(), item.incident_date || new Date(),
+          item.latitude != null ? Number(item.latitude) : null,
+          item.longitude != null ? Number(item.longitude) : null,
+          item.brief_facts || ''
+        ]);
+        if (row) inserted.push(row);
+      } catch (err) {
+        console.error('Error inserting case in postgres:', err.message);
+      }
+    }
+    return inserted;
+  }
 }
 
 export default PostgresKavachRepository;
