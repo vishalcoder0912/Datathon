@@ -8,6 +8,7 @@ import { DataProvider } from "@/features/data/context/DataContext";
 import { LocalDataProvider } from "@/features/data/context/localDataContext";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {AuthProvider} from "@/auth/AuthProvider";
+import { ImportDataProvider } from "@/kavach/context/ImportDataContext";
 
 interface AppProvidersProps {
   children: ReactNode;
@@ -38,9 +39,11 @@ const AppProviders = ({children}: AppProvidersProps) => (
           <Toaster />
           <Sonner />
           <AppErrorBoundary>
-            <DataProvider>
-              <LocalDataProvider>{children}</LocalDataProvider>
-            </DataProvider>
+            <ImportDataProvider>
+              <DataProvider>
+                <LocalDataProvider>{children}</LocalDataProvider>
+              </DataProvider>
+            </ImportDataProvider>
           </AppErrorBoundary>
         </TooltipProvider>
       </AuthProvider>
