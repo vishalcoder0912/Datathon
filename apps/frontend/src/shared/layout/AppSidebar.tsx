@@ -16,21 +16,31 @@ import {
   Table2,
   Upload,
   BrainCircuit,
+  type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
+import {useAuth} from "@/auth/AuthProvider";
+import type {KavachRole} from "@/kavach/api/types";
 
-const kavachNavItems = [
-  { label: "Dashboard", to: "/dashboard", icon: Shield },
-  { label: "Geo Intelligence", to: "/geo-intelligence", icon: Map },
-  { label: "Trend Intelligence", to: "/trend-intelligence", icon: TrendingUp },
-  { label: "Network Intelligence", to: "/network-intelligence", icon: GitBranch },
-  { label: "Offenders", to: "/offenders", icon: Users },
-  { label: "Risk Intelligence", to: "/risk-intelligence", icon: AlertTriangle },
-  { label: "Social Intelligence", to: "/social-intelligence", icon: BarChart3 },
-  { label: "AI Copilot", to: "/ai-copilot", icon: Bot },
-  { label: "Alerts", to: "/alerts", icon: Bell },
-  { label: "Reports", to: "/reports", icon: FileText },
-  { label: "Data Management", to: "/data-management", icon: Database },
+interface NavigationItem {
+  label: string;
+  to: string;
+  icon: LucideIcon;
+  roles?: KavachRole[];
+}
+
+const kavachNavItems: NavigationItem[] = [
+  {label: "Dashboard", to: "/dashboard", icon: Shield},
+  {label: "Geo Intelligence", to: "/geo-intelligence", icon: Map},
+  {label: "Trend Intelligence", to: "/trend-intelligence", icon: TrendingUp},
+  {label: "Network Intelligence", to: "/network-intelligence", icon: GitBranch},
+  {label: "Person Links", to: "/offenders", icon: Users, roles: ["STATE_ADMIN", "DISTRICT_OFFICER", "STATION_OFFICER", "INVESTIGATOR", "SCRB_ANALYST", "EVALUATOR"] as KavachRole[]},
+  {label: "Risk Intelligence", to: "/risk-intelligence", icon: AlertTriangle},
+  {label: "Social Intelligence", to: "/social-intelligence", icon: BarChart3},
+  {label: "AI Copilot", to: "/ai-copilot", icon: Bot},
+  {label: "Alerts", to: "/alerts", icon: Bell},
+  {label: "Reports", to: "/reports", icon: FileText},
+  {label: "Data Management", to: "/data-management", icon: Database, roles: ["STATE_ADMIN", "DATA_ENGINEER", "AUDITOR"] as KavachRole[]},
 ];
 
 const legacyNavItems = [
@@ -52,6 +62,8 @@ function isActivePath(currentPath: string, itemPath: string) {
 
 export default function AppSidebar() {
   const location = useLocation();
+  const {isDemoSession, logout, user} = useAuth();
+  const visibleKavachItems = kavachNavItems.filter((item) => !item.roles || (user && item.roles.includes(user.roleCode)));
 
   return (
     <aside className="sticky top-0 flex h-screen flex-col overflow-hidden border-r border-white/10 bg-[#0F172A] text-white">
@@ -70,7 +82,7 @@ export default function AppSidebar() {
           Command Centre
         </p>
 
-        {kavachNavItems.map((item) => {
+        {visibleKavachItems.map((item) => {
           const Icon = item.icon;
           const active = isActivePath(location.pathname, item.to);
 
@@ -117,6 +129,17 @@ export default function AppSidebar() {
           );
         })}
       </nav>
+
+      <div className="border-t border-white/10 p-3">
+        {isDemoSession && <div className="mb-2 rounded-md bg-amber-400/15 px-2 py-1 text-[11px] font-semibold text-amber-200">DEMO DATA MODE</div>}
+        <p className="truncate px-2 text-xs font-semibold text-slate-200">{user?.displayName}</p>
+        <p className="truncate px-2 text-[11px] text-slate-400">{user?.roleCode.replaceAll("_", " ")}</p>
+        {!isDemoSession && (
+          <button type="button" onClick={() => void logout()} className="mt-2 w-full rounded-md px-2 py-1.5 text-left text-xs font-medium text-slate-300 hover:bg-white/10 hover:text-white">
+            Sign out
+          </button>
+        )}
+      </div>
     </aside>
   );
 }
