@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const ML_SERVICE_URL = process.env.ML_SERVICE_URL || "http://127.0.0.1:8000";
+const ML_SERVICE_URL = process.env.ML_SERVICE_URL || "http://127.0.0.1:5000";
 const PDF_INTELLIGENCE_TIMEOUT_MS = Number(process.env.PDF_INTELLIGENCE_TIMEOUT_MS || 60000);
 
 function timeoutSignal(ms) {
