@@ -21,6 +21,7 @@ import {
 } from './dashboard-chart-handler.js';
 import { handleAgenticModelRoutes } from './agentic-models.js';
 import { handleKavachRoutes } from './kavach.js';
+import { handleAuthRoutes } from './auth.js';
 import { handleAgenticRoutes } from './agentic.js';
 import {
   handleE2ECompatRoutes,
@@ -49,6 +50,11 @@ export async function setupRoutes(request, response) {
 
     // Model-aware agentic routes before older AI/dashboard handlers
     if (await handleAgenticModelRoutes(request, response, pathname)) {
+      return;
+    }
+
+    // KAVACH AI crime analysis routes
+    if (await handleAuthRoutes(request, response, pathname)) {
       return;
     }
 
