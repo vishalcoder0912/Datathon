@@ -9,6 +9,19 @@ vi.mock("@/features/data/context/useData", () => ({
   }),
 }));
 
+vi.mock("@/auth/AuthProvider", () => ({
+  useAuth: () => ({
+    user: {
+      userId: "test-evaluator",
+      email: "evaluator@kavach.local",
+      displayName: "Synthetic Data Evaluator",
+      roleCode: "EVALUATOR",
+    },
+    isDemoSession: true,
+    logout: vi.fn(),
+  }),
+}));
+
 describe("AppLayout", () => {
   it("renders the app shell with routed content", () => {
     render(
