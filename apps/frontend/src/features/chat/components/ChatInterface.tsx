@@ -90,12 +90,25 @@ export default function ChatInterface() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
-  
-  const stored = dataset?.id ? loadDashboardState(dataset.id) : { filters: {}, manualCharts: [], manualKpis: [] };
+
+  // `loadDashboardState` creates a fresh object. Memoizing it by dataset avoids
+  // retriggering history hydration after every message state update.
+  const stored = useMemo(
+    () => (dataset?.id ? loadDashboardState(dataset.id) : { filters: {}, manualCharts: [], manualKpis: [] }),
+    [dataset?.id],
+  );
   const model = useMemo(
     () => buildCommandCenterModel(dataset, stored.filters, stored.manualCharts, stored.manualKpis),
     [dataset, stored.filters, stored.manualCharts, stored.manualKpis],
   );
+  // History hydration is scoped to the dataset ID. Keep its asynchronous
+  // mapping aligned with the latest derived rows without re-fetching history
+  // whenever the command-centre model is recalculated.
+  const historyContextRef = useRef({model, datasetName: dataset?.name});
+
+  useEffect(() => {
+    historyContextRef.current = {model, datasetName: dataset?.name};
+  }, [model, dataset?.name]);
 
   const rows = useMemo(() => cleanDatasetRows((dataset?.rows || []) as Row[]), [dataset?.rows]);
   const profile = useMemo(() => buildDatasetProfile(rows), [rows]);
@@ -127,30 +140,38 @@ export default function ChatInterface() {
         if (!response.ok) throw new Error("Failed to load history");
         const data = await response.json();
         if (active && data.success && Array.isArray(data.data?.messages)) {
+          const {model: historyModel, datasetName} = historyContextRef.current;
+          const historyRows = historyModel.filteredRows.length ? historyModel.filteredRows : historyModel.rows;
           const mapped = data.data.messages.map((msg: any) => {
-            const localResult = msg.role === "assistant" ? interpretCommand(msg.content, model.filteredRows.length ? model.filteredRows : model.rows) : null;
+            const localResult = msg.role === "assistant" ? interpretCommand(msg.content, historyRows) : null;
             return {
               id: msg.id || makeId(),
               role: msg.role,
               content: msg.content,
               chart: msg.chart || localResult?.chart || undefined,
               kpi: msg.kpi || localResult?.kpi || undefined,
-              table: msg.table || (msg.role === "assistant" && /table|top|anomal/i.test(msg.content) ? model.filteredRows.slice(0, 6) : undefined),
+              table: msg.table || (msg.role === "assistant" && /table|top|anomal/i.test(msg.content) ? historyModel.filteredRows.slice(0, 6) : undefined),
               timestamp: new Date(msg.timestamp)
             };
           });
 
-          // Prepend history messages safely to any newly added messages in the state
+          // Prepend history without discarding a request that was started while
+          // hydration was in flight. Dropping a loading message here meant the
+          // eventual analytics response no longer had a message to replace.
           setMessages((prev) => {
-            const newMessages = prev.filter((m) => m.id !== "welcome" && !m.loading);
-            if (newMessages.length > 0) {
-              return [...mapped, ...newMessages];
+            const currentMessages = prev.filter((m) => m.id !== "welcome");
+            if (currentMessages.length > 0) {
+              const currentIds = new Set(currentMessages.map((message) => message.id));
+              return [
+                ...mapped.filter((message) => !currentIds.has(message.id)),
+                ...currentMessages,
+              ];
             }
             return mapped.length > 0 ? mapped : [
               {
                 id: "welcome",
                 role: "assistant",
-                content: `I am ready. Ask questions about the ${dataset.name} dataset, or give commands to create charts or KPIs.`,
+                content: `I am ready. Ask questions about the ${datasetName ?? "current"} dataset, or give commands to create charts or KPIs.`,
                 timestamp: new Date()
               }
             ];
@@ -162,7 +183,9 @@ export default function ChatInterface() {
     };
     void loadHistory();
     return () => { active = false; };
-  }, [dataset?.id, model.filteredRows, model.rows]);
+  // History is scoped to a dataset, not to every derived model array. Including
+  // freshly derived arrays here creates a hydration/render loop.
+  }, [dataset?.id]);
 
   function persistAction(result: InterpretedCommand) {
     if (!dataset?.id) return;

@@ -260,6 +260,10 @@ describe('Kavach Routes', () => {
     expect(json.success).toBe(true);
     expect(json.data.type).toBe('overview');
     expect(json.data.message).toContain('Total incidents');
+    expect(json.data.answer).toContain('Total incidents');
+    expect(json.data.explanationAuthoritative).toBe(false);
+    expect(json.data.modelStatus).toBe('unavailable');
+    expect(json.data.fallbackMessage).toContain('approved analytical tool router');
   });
 
   it('GET /api/kavach/data/load returns load status', async () => {

@@ -1,160 +1,124 @@
 # KAVACH AI
 
-**Karnataka AI Visualization & Analytics for Crime Hotspots**
+KAVACH AI — Karnataka AI Visualization & Analytics for Crime Hotspots — is a local Datathon 2026 prototype for explainable, aggregated crime-intelligence analysis. It preserves the existing React command-centre experience while adding a PostgreSQL 16 + PostGIS implementation alongside the `file-demo` fallback.
 
-A Datathon 2026 prototype for Challenge 02: AI-Driven Crime Analytics & Visualization Platform. Transforms InsightFlow into the **Karnataka Crime Intelligence Command Centre**.
+> Prototype using synthetic data. All intelligence outputs require human verification and must not be used as the sole basis for law-enforcement action.
 
-## Product Overview
+No paid API, hosted vector database, map token, or cloud authentication provider is required. The only optional model service is local Ollama.
 
-KAVACH AI (Karnataka AI Visualization & Analytics for Crime Hotspots) is a crime intelligence platform for Karnataka law enforcement. It provides:
+## Implemented
 
-- **Command Dashboard** with real-time KPIs
-- **Geo-Intelligence** with district-level crime mapping
-- **Trend Intelligence** with multi-dimensional pattern analysis
-- **Hotspot Detection** with multi-factor scoring
-- **Anomaly Detection** using IQR and Z-score methods
-- **Network Intelligence** with criminal network visualization
-- **Offender Intelligence** with risk scoring and classification
-- **Risk Intelligence** with district-level risk assessment
-- **Social Correlations** with socioeconomic indicator analysis
-- **AI Copilot** with natural language query processing
-- **Automated Alerts** for spikes, delays, and anomalies
-- **Report Generation** with HTML crime intelligence reports
+The list below describes code and configuration present in this repository. It
+does not represent completed production or live local-stack verification.
 
-## Architecture Summary
+- PostgreSQL/PostGIS migrations, reference data, spatial indexes, database views, and transaction-safe crime-number generation are included as repository artifacts. Live Docker/PostGIS execution is not yet verified in this workspace.
+- A synthetic FIR-shaped KAVACH demo migration script with idempotency safeguards is included; its complete run against a live PostgreSQL/PostGIS container remains to be verified.
+- PostgreSQL repository mode is implemented, with the existing `file-demo` repository retained as a documented fallback. Live repository queries still require local-stack verification.
+- Local JWT authentication, rotating refresh tokens, roles, geographic scope, masking, audit records, and request IDs.
+- District/station drill-down, PostGIS spatial filters, MapLibre overlays, explainable hotspots, alerts, risks, anomalies, MO similarity, and NetworkX-compatible graph payloads.
+- FastAPI analytics service with deterministic degraded behavior when PostgreSQL or optional embedding models are unavailable.
+- Local-Ollama Copilot tool router with deterministic fallback.
+- Data-quality monitoring UI and import validation/preview support.
 
-```
-kavach-ai/
-├── apps/
-│   ├── frontend/          # React 18 + TypeScript + Vite + Tailwind CSS
-│   └── backend/           # Node.js custom HTTP server
-├── packages/
-│   ├── kavach-domain/     # Shared domain logic (enums, schemas, utils)
-│   └── shared-analytics/  # Shared analytics utilities
-├── data/demo/             # Synthetic Karnataka crime dataset
-├── scripts/               # Seed and utility scripts
-└── docs/                  # Documentation
-```
+## Partially implemented
 
-## Requirements
+- The committed district overlays are illustrative synthetic map boundaries; they are not operational jurisdiction boundaries.
+- PDF/HTML report rendering is locally implemented; live PostgreSQL persistence, download authorization, production signing, retention policy, and controlled document storage remain to be verified or completed.
+- CSV/XLS/XLSX uploads can be parsed and validated, but source-type mapping review, duplicate/reference validation against the database, and committing rows into KAVACH domain tables are not implemented. The current import commit action records the import status only.
+- Kannada labels and routing cover basic UI/query handling, not full multilingual intelligence interpretation.
 
-- Node.js 18+
-- npm 9+
+## Optional
 
-## Installation
+- `ollama pull qwen3:4b` enables narrative Copilot explanations. Supported analytical tool results still work if Ollama is offline.
+- `sentence-transformers` can improve MO similarity locally; weighted structured/trigram similarity remains the deterministic baseline.
+
+## Future production work
+
+- Government-controlled deployment, independent security assessment, legal/privacy review, formal model validation, verified KSP source mapping, monitoring, backup/DR, and explicit human-review operations.
+
+## Local quick start
+
+Prerequisites: Docker Desktop/Engine, Node.js 20+ (Node 22+ recommended), Python 3.10+.
+
+The commands below are the intended local setup. Docker/PostgreSQL/PostGIS startup,
+migrations, and the demo migration have not been successfully verified in this
+workspace, so treat any failure as a setup issue to resolve rather than evidence
+that the full stack is ready.
 
 ```bash
 npm install
+
+# PowerShell
+Copy-Item .env.example .env
+# Set SEED_ADMIN_PASSWORD in .env before continuing.
+
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r apps/ml-service/requirements.txt
+
+npm run db:up
+npm run db:migrate
+npm run db:seed
+npm run db:migrate-demo
+
+# Optional — local model only
+ollama pull qwen3:4b
+
+npm run dev:full
 ```
 
-## Development Commands
+After all services start successfully, open `http://localhost:5173`, then sign in with `SEED_ADMIN_EMAIL` and the password set in `SEED_ADMIN_PASSWORD`. The backend is at `http://localhost:3001`; FastAPI health is at `http://localhost:5000/health`.
+
+On macOS/Linux, use `cp .env.example .env`, `python3 -m venv .venv`, and `source .venv/bin/activate`.
+
+## Useful commands
 
 ```bash
-# Generate demo data (required before first run)
-npm run seed:kavach
-
-# Start all development servers
-npm run dev
-
-# Frontend only (port 5173)
-npm run dev:frontend
-
-# Backend only (port 3001)
-npm run dev:backend
-
-# Build for production
-npm run build
-
-# Run tests
-npm test
-
-# Lint
+npm run db:down
+npm run db:reset
 npm run lint
-```
-
-## Seed Command
-
-```bash
-npm run seed:kavach
-```
-
-Generates synthetic Karnataka crime data:
-- 1100 crime incidents across 30 districts
-- 80 persons (20 repeat offenders, 2 criminal networks)
-- 450+ relationships
-- 30 district socioeconomic indicators
-
-## Test Commands
-
-```bash
-# Run all frontend tests
-npm test
-
-# Run backend tests
 npm run test:backend
-
-# Run E2E tests
-npm run test:e2e
+npm run test:frontend
+npm run test:integration
+npm run build
+npm run test:e2e:kavach
 ```
 
-## Environment Variables
+`npm run test:integration` performs its live Postgres/PostGIS assertion only when
+`DATABASE_URL` is configured; otherwise that test is skipped. The current
+Playwright KAVACH investigation test uses mocked API responses, so it does not
+verify a running Docker/PostgreSQL deployment.
 
-See `.env.example` for all available environment variables. Key variables:
+## Architecture
 
-| Variable | Default | Description |
-|---|---|---|
-| `PORT` | 3001 | Backend server port |
-| `HOST` | localhost | Backend host |
-| `NODE_ENV` | development | Environment mode |
-| `DATA_DIR` | ./data | Data directory |
-| `KAVACH_DATA_DIR` | ./data/demo | KAVACH demo data directory |
-| `KAVACH_AI_TITLE` | KAVACH AI | Application title |
-| `KAVACH_PLATFORM_TITLE` | Karnataka Crime Intelligence Command Centre | Platform title |
+```text
+React + TypeScript + TanStack Query + MapLibre/Cytoscape
+                    |
+                  REST/SSE
+                    v
+Existing Node.js HTTP backend — auth, RBAC, audit, approved tools
+                    |
+             parameterized SQL
+                    v
+          PostgreSQL 16 + PostGIS
+             |                  |
+             v                  v
+ FastAPI analytics service   local Ollama (optional)
+```
 
-## Demo Credentials
+The frontend never calls FastAPI or Ollama directly. PostgreSQL is the source of truth in `KAVACH_DATA_SOURCE=postgres` mode.
 
-No authentication is required. All features are accessible without login.
+## Documentation
 
-## Deployment
+- [Local demo guide](docs/LOCAL_DEMO_GUIDE.md)
+- [PostgreSQL architecture](docs/POSTGRES_ARCHITECTURE.md)
+- [Database schema](docs/DATABASE_SCHEMA.md)
+- [Data migration](docs/DATA_MIGRATION.md)
+- [Security and RBAC](docs/SECURITY_AND_RBAC.md)
+- [Analytics methods](docs/ANALYTICS_METHODS.md)
+- [Copilot architecture](docs/COPILOT_ARCHITECTURE.md)
+- [Implementation status](docs/IMPLEMENTATION_STATUS.md)
 
-See [DEPLOY.md](./DEPLOY.md) for detailed deployment instructions.
+## Safety boundary
 
-### Quick Deploy
-
-1. Push to GitHub
-2. Connect to Vercel
-3. Deploy `apps/frontend` and `apps/backend` separately
-
-## Known Limitations
-
-- **In-memory data only**: No persistent database; data reloads on server restart
-- **No authentication**: All endpoints are unauthenticated
-- **Pattern-matched AI Copilot**: Not a real LLM; uses keyword pattern matching
-- **Static demo data**: 1100 synthetic incidents; not connected to live feeds
-- **Single-process Node.js**: No clustering or load balancing
-- **No WebSocket**: Real-time updates not supported
-- **No HTTPS**: Development-only HTTP
-
-## Decision-Support Disclaimer
-
-KAVACH AI is a prototype developed for Datathon 2026. It is intended for demonstration and evaluation purposes only. The analytics, risk scores, hotspot detection, and offender classifications are based on synthetic data and simplified statistical models. They should NOT be used as the sole basis for real-world law enforcement decisions, resource allocation, or investigative actions. All outputs require human review and validation before operational use.
-
-## Tech Stack
-
-### Frontend
-- **React 18** - UI framework
-- **Vite** - Build tool
-- **TypeScript** - Type safety
-- **TailwindCSS** - Styling
-- **Radix UI** - Component library
-- **Recharts** - Charts
-- **Axios** - HTTP client
-- **TanStack Query** - Data fetching
-
-### Backend
-- **Node.js** - Runtime
-- **node:sqlite** - SQLite-backed dataset and chat persistence
-
-## License
-
-Private project — Datathon 2026
+KAVACH AI does not predict individual guilt, recommend arrest/enforcement, use biometric matching, or use caste, religion, or gender as a predictive feature. Person labels describe case roles and links only; evaluator and aggregate roles receive masked identities.

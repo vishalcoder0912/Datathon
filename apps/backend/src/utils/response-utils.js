@@ -145,8 +145,7 @@ export function sendSSE(response) {
   response.writeHead(200, {
     'Content-Type': 'text/event-stream',
     'Cache-Control': 'no-cache',
-    'Connection': 'keep-alive',
-    'Access-Control-Allow-Origin': '*'
+    'Connection': 'keep-alive'
   });
   
   return {
@@ -191,7 +190,6 @@ export function sendNoContent(response, statusCode = 204) {
  */
 export function sendPreflight(response) {
   response.writeHead(204, {
-    'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS, PATCH',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
     'Access-Control-Max-Age': '86400'

@@ -1,85 +1,38 @@
-# Vercel Deployment Guide
+# KAVACH AI local deployment
 
-## Quick Deploy
+This prototype is designed for a local, government-controlled or evaluation environment. Do not deploy the synthetic demo as an internet-facing investigative system.
 
-### Option 1: Deploy from GitHub (Recommended)
+## Required services
 
-1. Push code to GitHub
-2. Go to [vercel.com/dashboard](https://vercel.com/dashboard)
-3. Click **"Add New" → "Project"**
-4. Import your GitHub repository
-5. **Vercel will auto-detect the projects**
+- PostgreSQL 16 + PostGIS through `infra/docker-compose.yml`
+- Node backend on port 3001
+- React/Vite frontend on port 5173
+- Optional FastAPI analytics service on port 5000
+- Optional local Ollama on port 11434
 
-#### Setup Frontend:
-- Framework: `Vite`
-- Root Directory: `apps/frontend`
-- Click **Deploy**
+## Configuration
 
-#### Setup Backend:
-- Create new project
-- Framework: `Other`
-- Root Directory: `apps/backend`
-- Click **Deploy**
+Copy `.env.example` to `.env`. For a local authenticated demo, set unique `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET`, and `SEED_ADMIN_PASSWORD` values. Keep `.env`, database volumes, report outputs, and model files out of source control.
 
-### Option 2: Deploy via CLI
+Set `CORS_ALLOWED_ORIGINS` to an explicit frontend origin. Do not use `*` while credentials are enabled.
+
+## Start and validate
 
 ```bash
-# Login to Vercel
-vercel login
-
-# Deploy Backend first
-cd apps/backend
-vercel --yes
-
-# Deploy Frontend
-cd ../frontend
-vercel --yes
+npm run db:up
+npm run db:migrate
+npm run db:seed
+npm run db:migrate-demo
+npm run dev:full
 ```
 
-## Project Structure
-
-```
-├── apps/
-│   ├── frontend/              # React + Vite
-│   │   ├── vercel.json       # Vercel config
-│   │   ├── dist/             # Built files
-│   │   └── src/
-│   │       └── features/data/api/dataApi.ts  # Axios API client
-│   └── backend/              # Serverless API
-│       ├── vercel.json       # Vercel config
-│       └── api/
-│           └── index.js      # API routes
-├── package.json
-└── DEPLOY.md
-```
-
-## Environment Variables
-
-| Variable | Frontend Value | Description |
-|----------|----------------|-------------|
-| `VITE_API_URL` | (leave empty) | Frontend uses relative URLs |
-
-> **Note:** When deployed on Vercel, frontend uses relative URLs (`/api/*`) which route to the backend API automatically.
-
-## For Local Development
+Validation endpoints:
 
 ```bash
-# Terminal 1 - Backend
-cd apps/backend
-npm run dev
-
-# Terminal 2 - Frontend
-cd apps/frontend
-npm run dev
+curl http://localhost:3001/api/health
+curl http://localhost:5000/health
 ```
 
-Frontend: http://localhost:5173
-Backend: http://localhost:3001
+## Production boundary
 
-## Tech Stack
-- **Frontend**: React 18 + Vite + TailwindCSS + Axios
-- **Backend**: Node.js HTTP server
-
-## Notes
-- Backend stores datasets and chat history in SQLite via `node:sqlite`.
-- The archived serverless adapter is preserved under `apps/backend/legacy/` and is not the canonical local runtime.
+Production deployment requires an approved network design, TLS termination, secret manager, least-privilege database role, security review, legal approval, monitoring, backups, disaster recovery, and a formal process for model validation and human review. Managed public demo hosting is out of scope.

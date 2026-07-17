@@ -6,12 +6,24 @@ import { TooltipProvider } from "@/shared/components/ui/tooltip";
 import AppErrorBoundary from "@/app/providers/AppErrorBoundary";
 import { DataProvider } from "@/features/data/context/DataContext";
 import { LocalDataProvider } from "@/features/data/context/localDataContext";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {AuthProvider} from "@/auth/AuthProvider";
 
 interface AppProvidersProps {
   children: ReactNode;
 }
 
-const AppProviders = ({ children }: AppProvidersProps) => (
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 30_000,
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
+const AppProviders = ({children}: AppProvidersProps) => (
   <ThemeProvider
     attribute="class"
     defaultTheme="light"
@@ -20,15 +32,19 @@ const AppProviders = ({ children }: AppProvidersProps) => (
     storageKey="insightflow-theme"
     disableTransitionOnChange
   >
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <AppErrorBoundary>
-        <DataProvider>
-          <LocalDataProvider>{children}</LocalDataProvider>
-        </DataProvider>
-      </AppErrorBoundary>
-    </TooltipProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <AppErrorBoundary>
+            <DataProvider>
+              <LocalDataProvider>{children}</LocalDataProvider>
+            </DataProvider>
+          </AppErrorBoundary>
+        </TooltipProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   </ThemeProvider>
 );
 

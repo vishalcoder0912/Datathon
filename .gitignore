@@ -28,6 +28,7 @@ bun.lockb
 *.sln
 *.sw?
 apps/backend/data/
+reports/demo-data-migration-report.json
 
 # Environment variables - NEVER commit these
 .env

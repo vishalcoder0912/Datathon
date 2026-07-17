@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { AxiosError } from 'axios';
 import { FileText, Download, AlertTriangle, Printer } from 'lucide-react';
 import { kavachApi } from '@/kavach/api/kavachApi';
 import { useKavachFilters } from '@/kavach/context/FilterContext';
@@ -18,7 +19,7 @@ const REPORT_SECTIONS = [
   'Crime Trends',
   'Hotspots',
   'Alerts',
-  'Repeat Offenders',
+  'Multiple Case Links',
   'Network Findings',
   'District Risk Scores',
   'Socioeconomic Findings',
@@ -32,6 +33,8 @@ export default function ReportsPage() {
   const [error, setError] = useState<string | null>(null);
   const [reportGenerated, setReportGenerated] = useState(false);
   const [reportHtml, setReportHtml] = useState<string | null>(null);
+  const reportPdfBase64Ref = useRef<string | null>(null);
+  const reportFilenameRef = useRef<string | null>(null);
   const [format, setFormat] = useState('html');
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
@@ -41,16 +44,22 @@ export default function ReportsPage() {
     setError(null);
     setReportGenerated(false);
     setReportHtml(null);
+    reportPdfBase64Ref.current = null;
+    reportFilenameRef.current = null;
     try {
       const reportFilters = { ...filters, dateFrom: dateFrom || filters.dateFrom, dateTo: dateTo || filters.dateTo };
       const res = await kavachApi.generateReport(reportFilters, format);
       setReportGenerated(true);
-      const htmlContent = typeof res.data === 'string'
-        ? res.data
-        : res.data?.data?.html || res.data?.html || '';
+      const payload = typeof res.data === 'string'
+        ? {html: res.data}
+        : res.data?.data ?? res.data ?? {};
+      const htmlContent = typeof payload.html === 'string' ? payload.html : '';
       setReportHtml(htmlContent || null);
-    } catch (err: any) {
-      setError(err?.message || 'Failed to generate report');
+      reportPdfBase64Ref.current = typeof payload.pdfBase64 === 'string' ? payload.pdfBase64 : null;
+      reportFilenameRef.current = typeof payload.filename === 'string' ? payload.filename : null;
+    } catch (err: unknown) {
+      const message = err instanceof AxiosError ? err.message : 'Failed to generate report';
+      setError(message);
       setReportGenerated(true);
       setReportHtml(null);
     } finally {
@@ -59,17 +68,29 @@ export default function ReportsPage() {
   };
 
   const handleDownload = () => {
-    if (!reportHtml) return;
-    const blob = new Blob([reportHtml], { type: 'text/html;charset=utf-8' });
+    const reportPdfBase64 = reportPdfBase64Ref.current;
+    if (!reportHtml && !reportPdfBase64) return;
+    const bytes = reportPdfBase64 ? Uint8Array.from(atob(reportPdfBase64), (character) => character.charCodeAt(0)) : null;
+    const blob = bytes
+      ? new Blob([bytes], {type: 'application/pdf'})
+      : new Blob([reportHtml ?? ''], {type: 'text/html;charset=utf-8'});
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `KAVACH_Report_${new Date().toISOString().slice(0, 10)}.${format}`;
+    a.download = reportFilenameRef.current ?? `KAVACH_Report_${new Date().toISOString().slice(0, 10)}.${bytes ? 'pdf' : 'html'}`;
     a.click();
     URL.revokeObjectURL(url);
   };
 
   const handlePrint = () => {
+    const reportPdfBase64 = reportPdfBase64Ref.current;
+    if (reportPdfBase64) {
+      const bytes = Uint8Array.from(atob(reportPdfBase64), (character) => character.charCodeAt(0));
+      const url = URL.createObjectURL(new Blob([bytes], {type: 'application/pdf'}));
+      window.open(url, '_blank', 'noopener,noreferrer');
+      window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
+      return;
+    }
     if (!reportHtml) return;
     const win = window.open('', '_blank');
     if (win) {

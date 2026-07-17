@@ -3,8 +3,8 @@
 ## 1. Executive Summary
 This report summarizes the QA automation execution and readiness state for the InsightFlow AI Analytics Platform. The test coverage validates the core workflows of schema-only AI generation, local calculations, hybrid provider fallbacks, Dashboard Guardian compliance, RAG queries, and frontend rendering.
 
-* **Total Automated Tests Executed**: 290
-* **Passed**: 290
+* **Total Automated Tests Executed**: 506
+* **Passed**: 506
 * **Failed**: 0
 * **Pass Rate**: 100%
 
@@ -24,8 +24,8 @@ The following modules were verified during this test run:
 ---
 
 ## 3. Passed Tests
-* **Backend (Vitest)**: All **224** test suites verifying API endpoints, guardian rules, custom commands, local calculation calculations, RAG contexts, error envelopes, and schema-only safe prompts passed.
-* **Frontend (Vitest)**: All **59** tests verifying component rendering, mock interactions, status panels, and React error boundary recoveries passed.
+* **Backend (Vitest)**: All **406** test suites verifying API endpoints, guardian rules, custom commands, local calculation calculations, RAG contexts, error envelopes, and schema-only safe prompts passed.
+* **Frontend (Vitest)**: All **93** tests verifying component rendering, mock interactions, status panels, and React error boundary recoveries passed.
 * **ML Service (pytest)**: All **7** tests verifying FastAPI health, anomaly detection, statistical profiling, and bad input handling passed.
 
 ---

@@ -14,7 +14,7 @@ const starterMessages: AgentMessage[] = [
 ];
 
 const randomId = () => (typeof crypto !== "undefined" && crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`);
-const useBackendAgent = () => import.meta.env.VITE_USE_BACKEND_AGENTIC_AI !== "false";
+const isBackendAgentEnabled = () => import.meta.env.VITE_USE_BACKEND_AGENTIC_AI !== "false";
 const agentSampleSize = () => Number(import.meta.env.VITE_AGENTIC_SCHEMA_SAMPLE_SIZE || 7000);
 
 const asNumber = (value: unknown): number | null => {
@@ -121,7 +121,7 @@ export function usePremiumAgenticDashboard(dataset: Dataset | null) {
 
       try {
         let answer = "";
-        if (useBackendAgent()) {
+        if (isBackendAgentEnabled()) {
           try {
             const result = await api.runSchemaOnlyAnalysis(dataset.id, prompt, buildDashboardState(dataset), { sampleSize: agentSampleSize() });
             answer = result.natural_response || result.storyMode?.recommendedAction || "Schema-safe agentic analysis completed.";

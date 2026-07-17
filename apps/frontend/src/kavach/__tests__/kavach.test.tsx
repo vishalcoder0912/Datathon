@@ -1,15 +1,28 @@
 import { render, screen, waitFor, fireEvent, act } from '@testing-library/react';
+import type {ReactNode} from 'react';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import DashboardPage from '@/kavach/pages/DashboardPage';
 import GlobalFilters from '@/kavach/components/GlobalFilters';
 import { FilterProvider, useKavachFilters } from '@/kavach/context/FilterContext';
 
+interface MockChildrenProps {
+  children?: ReactNode;
+}
+
+interface MockSelectItemProps extends MockChildrenProps {
+  value?: string;
+}
+
+interface MockSelectValueProps {
+  placeholder?: string;
+}
+
 vi.mock('@/shared/components/ui/select', () => ({
-  Select: ({ children }: any) => <div data-testid="mock-select">{children}</div>,
-  SelectTrigger: ({ children }: any) => <button data-testid="mock-select-trigger">{children}</button>,
-  SelectContent: ({ children }: any) => <div data-testid="mock-select-content">{children}</div>,
-  SelectItem: ({ children, value }: any) => <option data-testid="mock-select-item" value={value}>{children}</option>,
-  SelectValue: ({ placeholder }: any) => <span data-testid="mock-select-value">{placeholder || 'All'}</span>,
+  Select: ({ children }: MockChildrenProps) => <div data-testid="mock-select">{children}</div>,
+  SelectTrigger: ({ children }: MockChildrenProps) => <button data-testid="mock-select-trigger">{children}</button>,
+  SelectContent: ({ children }: MockChildrenProps) => <div data-testid="mock-select-content">{children}</div>,
+  SelectItem: ({ children, value }: MockSelectItemProps) => <option data-testid="mock-select-item" value={value}>{children}</option>,
+  SelectValue: ({ placeholder }: MockSelectValueProps) => <span data-testid="mock-select-value">{placeholder || 'All'}</span>,
 }));
 
 const mockOverviewData = {
@@ -101,7 +114,7 @@ describe('Kavach Frontend Components', () => {
       expect(screen.getByText('8')).toBeInTheDocument();
       expect(screen.getByText('Active Hotspots')).toBeInTheDocument();
       expect(screen.getByText('12')).toBeInTheDocument();
-      expect(screen.getByText('Repeat Offenders')).toBeInTheDocument();
+      expect(screen.getByText('Multiple Case Links')).toBeInTheDocument();
       expect(screen.getByText('45')).toBeInTheDocument();
       expect(screen.getByText('Current Alerts')).toBeInTheDocument();
       expect(screen.getByText('62')).toBeInTheDocument();

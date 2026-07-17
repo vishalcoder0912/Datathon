@@ -46,7 +46,7 @@ beforeEach(() => {
     
     if (urlStr.includes("/chat") && options?.method === "POST") {
       const body = JSON.parse(options.body as string);
-      const query = body.query || "";
+      const query = body.message || body.query || "";
       const isSalary = query.toLowerCase().includes("salary");
       
       return {
@@ -54,14 +54,10 @@ beforeEach(() => {
         json: async () => ({
           success: true,
           data: {
-            assistantMessage: {
-              id: "reply-id",
-              role: "assistant",
-              content: isSalary
-                ? "I cannot create salary analysis because a salary or salary_usd field was not found. Available numeric fields are: revenue."
-                : "Created Revenue by Region.",
-              timestamp: new Date().toISOString()
-            }
+            answer: isSalary
+              ? "I cannot create salary analysis because a salary or salary_usd field was not found. Available numeric fields are: revenue."
+              : "Created Revenue by Region.",
+            messageId: "reply-id"
           }
         })
       };
@@ -85,7 +81,7 @@ describe("ChatInterface AI commands validation in UI", () => {
     expect(screen.getByText("Create revenue chart by region")).toBeInTheDocument();
 
     // Expect the assistant's response to mention creating the chart
-    expect(await screen.findByText(/Created Revenue by Region/i)).toBeInTheDocument();
+    expect(await screen.findByText("Created Revenue by Region.", { selector: "p" })).toBeInTheDocument();
   });
 
   it("shows validation message when an invalid command is sent", async () => {
