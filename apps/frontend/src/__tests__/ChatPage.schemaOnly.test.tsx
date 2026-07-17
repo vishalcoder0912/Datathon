@@ -82,8 +82,8 @@ describe("ChatPage Schema-Only", () => {
             Promise.resolve({
               success: true,
               data: {
-                userMessage: { id: "u-1", role: "user", content: "Show average salary_usd by country", timestamp: new Date().toISOString() },
-                assistantMessage: { id: "a-1", role: "assistant", content: "The average salary is computed safely.\n\nSchema-only mode: raw rows were not sent to AI.", timestamp: new Date().toISOString() },
+                messageId: "a-1",
+                answer: "The average salary is computed safely.\n\nSchema-only mode: raw rows were not sent to AI.",
               },
             }),
         } as any);
