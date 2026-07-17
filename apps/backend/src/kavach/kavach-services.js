@@ -5,6 +5,23 @@ import {
   normalizeArray, roundTo, isSufficientData, getPeriodDates,
   zScore, iqr, normalizeDistrictName, PIIMask
 } from '@kavach/domain';
+import { legacyCopilotTypeForTool, requiresCaseReference, resolveApprovedCopilotIntent } from './services/copilot-intent-router.js';
+
+const DELAY_REVIEW_THRESHOLD_DAYS = 7;
+const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
+
+function copilotRecordCount(data) {
+  if (Array.isArray(data)) return data.length;
+  if (!data || typeof data !== 'object') return 0;
+  for (const key of ['recordCount', 'total', 'totalIncidents', 'available']) {
+    if (Number.isFinite(Number(data[key]))) return Number(data[key]);
+  }
+  if (Array.isArray(data.alerts)) return data.alerts.length;
+  if (Array.isArray(data.data)) return data.data.length;
+  return data.caseMasterId || data.fir_number ? 1 : 0;
+}
+import { createHash, randomUUID } from 'node:crypto';
+import { createKavachPdfReport } from './report-pdf.js';
 
 export class KavachServices {
   constructor(repo) {
@@ -748,6 +765,110 @@ export class KavachServices {
     })).sort((a, b) => b.daysSince - a.daysSince);
   }
 
+  summarizeTimestampDelay(metric, records) {
+    if (!records.length) {
+      return {
+        status: 'insufficient_data',
+        metric,
+        recordCount: 0,
+        minimumRequired: 1,
+        available: 0,
+        humanReviewRequired: true,
+        limitations: ['No valid timestamp pairs were available for this delay calculation.'],
+      };
+    }
+    const delays = records.map((record) => record.delayDays).sort((left, right) => left - right);
+    const midpoint = Math.floor(delays.length / 2);
+    const medianDelayDays = delays.length % 2 === 0 ? (delays[midpoint - 1] + delays[midpoint]) / 2 : delays[midpoint];
+    return {
+      status: 'ok',
+      metric,
+      recordCount: records.length,
+      averageDelayDays: roundTo(delays.reduce((sum, delay) => sum + delay, 0) / delays.length),
+      medianDelayDays: roundTo(medianDelayDays),
+      delayedCaseCount: records.filter((record) => record.delayDays > DELAY_REVIEW_THRESHOLD_DAYS).length,
+      reviewThresholdDays: DELAY_REVIEW_THRESHOLD_DAYS,
+      cases: records.sort((left, right) => right.delayDays - left.delayDays).slice(0, 25),
+      humanReviewRequired: true,
+      limitations: ['Delay metrics describe recorded timestamps only and require human verification.'],
+    };
+  }
+
+  getRegistrationDelay(filters = {}) {
+    const records = this.repo.getIncidents(filters).map((incident) => {
+      const incidentAt = parseDateSafe(incident.incident_date);
+      const registeredAt = parseDateSafe(incident.registered_date);
+      if (!incidentAt || !registeredAt) return null;
+      const delayDays = (registeredAt.getTime() - incidentAt.getTime()) / MILLISECONDS_PER_DAY;
+      if (delayDays < 0) return null;
+      return {
+        crimeNo: incident.fir_number,
+        district: incident.district,
+        policeStation: incident.police_station,
+        delayDays: roundTo(delayDays),
+      };
+    }).filter(Boolean);
+    return this.summarizeTimestampDelay('registration_delay', records);
+  }
+
+  getChargesheetDelay(filters = {}) {
+    const records = this.repo.getIncidents(filters).map((incident) => {
+      const registeredAt = parseDateSafe(incident.registered_date);
+      const chargesheetAt = parseDateSafe(incident.chargesheet_at || incident.chargesheet_date || incident.chargesheetDate);
+      if (!registeredAt || !chargesheetAt) return null;
+      const delayDays = (chargesheetAt.getTime() - registeredAt.getTime()) / MILLISECONDS_PER_DAY;
+      if (delayDays < 0) return null;
+      return {
+        crimeNo: incident.fir_number,
+        district: incident.district,
+        policeStation: incident.police_station,
+        delayDays: roundTo(delayDays),
+      };
+    }).filter(Boolean);
+    return this.summarizeTimestampDelay('chargesheet_delay', records);
+  }
+
+  getPoliceStationSummary(filters = {}) {
+    const summaries = new Map();
+    for (const incident of this.repo.getIncidents(filters)) {
+      const district = incident.district || 'Unknown';
+      const policeStation = incident.police_station || 'Unknown';
+      const key = `${district}::${policeStation}`;
+      const summary = summaries.get(key) || { district, policeStation, totalIncidents: 0, activeCases: 0, categories: {} };
+      summary.totalIncidents += 1;
+      if (['PENDING', 'UNDER_INVESTIGATION'].includes(incident.status)) summary.activeCases += 1;
+      const category = incident.crime_type || 'Unknown';
+      summary.categories[category] = (summary.categories[category] || 0) + 1;
+      summaries.set(key, summary);
+    }
+    return [...summaries.values()].map((summary) => ({
+      ...summary,
+      topCategory: Object.entries(summary.categories).sort((left, right) => right[1] - left[1])[0]?.[0] || 'Unknown',
+    })).sort((left, right) => right.totalIncidents - left.totalIncidents || left.policeStation.localeCompare(right.policeStation));
+  }
+
+  getSimilarModusOperandiForCase(crimeNo, filters = {}) {
+    const current = this.repo.getIncidentById(crimeNo);
+    if (!current) return null;
+    const target = String(current.modus_operandi || '').trim().toLowerCase();
+    if (!target) return [];
+    return this.repo.getIncidents(filters)
+      .filter((incident) => incident.fir_number !== crimeNo && String(incident.modus_operandi || '').trim().toLowerCase() === target)
+      .map((incident) => ({
+        crimeNo: incident.fir_number,
+        district: incident.district,
+        policeStation: incident.police_station,
+        incidentDate: incident.incident_date,
+        crimeType: incident.crime_type,
+        modusOperandi: incident.modus_operandi,
+        similarityScore: 1,
+        matchedFeatures: ['modus_operandi'],
+        evidence: ['The synthetic records use the same recorded modus-operandi label.'],
+        algorithm: 'deterministic exact modus-operandi match',
+        humanReviewRequired: true,
+      }));
+  }
+
   getNetworkGraph(filters = {}) {
     const incidents = this.repo.getIncidents(filters);
     const incidentIds = new Set(incidents.map(i => i.fir_number));
@@ -916,18 +1037,18 @@ export class KavachServices {
     return Object.values(offenderMap)
       .map(o => ({
         ...o,
-        classification: o.incidentCount >= 3 ? 'Repeat Offender' : o.incidentCount >= 2 ? 'Frequent Offender' : 'First-time Offender',
-        riskScore: this._calculateRiskScoreForOffender(o),
+        classification: o.incidentCount >= 2 ? 'MULTIPLE_CASE_LINKS' : 'SINGLE_CASE_LINK',
+        linkComplexityScore: this._calculateLinkComplexityScore(o),
+        labels: o.incidentCount >= 2 ? ['MULTIPLE_CASE_LINKS'] : ['SINGLE_CASE_LINK'],
+        limitation: 'Historical case links are not a prediction of guilt or future conduct.',
       }))
       .sort((a, b) => b.incidentCount - a.incidentCount);
   }
 
-  _calculateRiskScoreForOffender(offender) {
-    const base = Math.min(offender.incidentCount * 15, 60);
-    const recency = offender.lastSeen ? Math.max(0, 30 - Math.floor((Date.now() - new Date(offender.lastSeen).getTime()) / (1000 * 60 * 60 * 24 * 30))) : 0;
-    const recencyScore = Math.min(recency, 20);
-    const ageScore = offender.age && offender.age < 30 ? 10 : offender.age && offender.age < 45 ? 5 : 0;
-    return clamp(base + recencyScore + ageScore);
+  _calculateLinkComplexityScore(offender) {
+    const caseLinkScore = Math.min((offender.incidentCount || 0) * 25, 75);
+    const associationScore = Math.min((offender.incidents?.length || 0) * 5, 25);
+    return clamp(caseLinkScore + associationScore);
   }
 
   getOffenderDetail(personId) {
@@ -939,8 +1060,8 @@ export class KavachServices {
       .filter(ip => ip.person_id === personId && ip.role === 'OFFENDER');
 
     const incidentCount = offenderLinks.length;
-    const classification = incidentCount >= 3 ? 'Repeat Offender' : incidentCount >= 2 ? 'Frequent Offender' : 'First-time Offender';
-    const riskScore = this._calculateRiskScoreForOffender({ incidentCount, lastSeen: incidents[incidents.length - 1]?.incident_date, age: person.age });
+    const classification = incidentCount >= 2 ? 'MULTIPLE_CASE_LINKS' : 'SINGLE_CASE_LINK';
+    const linkComplexityScore = this._calculateLinkComplexityScore({ incidentCount, incidents: incidents.map(i => i.fir_number) });
 
     const categoryCounts = {};
     for (const inc of incidents) {
@@ -957,7 +1078,9 @@ export class KavachServices {
       person,
       incidentCount,
       classification,
-      riskScore,
+      linkComplexityScore,
+      labels: incidentCount >= 2 ? ['MULTIPLE_CASE_LINKS'] : ['SINGLE_CASE_LINK'],
+      limitation: 'Historical case links are not a prediction of guilt or future conduct.',
       categoryCounts,
       timeline,
       associates,
@@ -981,9 +1104,6 @@ export class KavachServices {
 
     const categoryCounts = {};
     const districtCounts = {};
-    let violentOffences = 0;
-    let sameCategoryRepeats = 0;
-
     for (const link of offenderLinks) {
       const inc = this.repo.getIncidentById(link.incident_id);
       if (!inc) continue;
@@ -991,53 +1111,43 @@ export class KavachServices {
       categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
       districtCounts[inc.district] = (districtCounts[inc.district] || 0) + 1;
 
-      const violent = ['Murder', 'Assault', 'Robbery', 'Kidnapping', 'Sexual Offence', 'Arson'];
-      if (violent.includes(cat)) violentOffences++;
-
-      if (categoryCounts[cat] >= 2) sameCategoryRepeats++;
     }
 
-    const recidivismScore = totalOffences >= 3 ? 3 : totalOffences >= 2 ? 2 : 1;
-    const violentScore = violentOffences >= 2 ? 3 : violentOffences >= 1 ? 2 : 1;
-    const versatilityScore = Object.keys(categoryCounts).length >= 3 ? 3 : Object.keys(categoryCounts).length >= 2 ? 2 : 1;
-    const totalScore = recidivismScore + violentScore + versatilityScore;
-
-    let classification;
-    if (totalScore >= 8) classification = 'HIGH_RISK_REPEAT';
-    else if (totalScore >= 6) classification = 'MODERATE_RISK_REPEAT';
-    else if (totalScore >= 4) classification = 'LOW_RISK_REPEAT';
-    else classification = 'FIRST_TIME';
+    const labels = [];
+    if (totalOffences >= 2) labels.push('MULTIPLE_CASE_LINKS');
+    if (Object.keys(districtCounts).length >= 2) labels.push('CROSS_DISTRICT_LINKS');
+    if (Object.values(categoryCounts).some(count => count >= 2)) labels.push('RECURRING_MO');
+    const classification = labels[0] || 'SINGLE_CASE_LINK';
+    const linkComplexityScore = clamp((totalOffences * 25) + (Object.keys(districtCounts).length > 1 ? 15 : 0) + (Object.keys(categoryCounts).length > 1 ? 10 : 0));
 
     return {
       personId,
       totalOffences,
       classification,
-      score: totalScore,
+      linkComplexityScore,
+      labels,
       factors: {
-        recidivismScore,
-        violentScore,
-        versatilityScore,
+        caseCount: totalOffences,
+        districtCount: Object.keys(districtCounts).length,
+        categoryCount: Object.keys(categoryCounts).length,
       },
       categoryCounts,
       districtCounts,
-      violentOffenceCount: violentOffences,
+      limitation: 'This is an explainable historical-link summary, not a prediction of guilt or future conduct.',
     };
   }
 
-  calculateOffenderRiskScore(personId) {
+  calculateOffenderLinkComplexity(personId) {
     const classification = this.classifyRepeatOffender(personId);
     if (!classification) return null;
 
-    const riskScoreMap = { 'HIGH_RISK_REPEAT': 85, 'MODERATE_RISK_REPEAT': 65, 'LOW_RISK_REPEAT': 40, 'FIRST_TIME': 15 };
-    const baseScore = riskScoreMap[classification.classification] || 15;
-    const score = clamp(baseScore + classification.totalOffences * 2);
-
     return {
-      score,
-      band: this._getRiskBand(score),
+      linkComplexityScore: classification.linkComplexityScore,
       factors: classification.factors,
       classification: classification.classification,
       totalOffences: classification.totalOffences,
+      labels: classification.labels,
+      limitation: classification.limitation,
     };
   }
 
@@ -1303,50 +1413,76 @@ export class KavachServices {
   }
 
   processQuery(query, filters = {}) {
-    const q = query.toLowerCase();
-    const overview = this.getOverview(filters);
+    const intent = resolveApprovedCopilotIntent(query, filters);
+    const { toolUsed } = intent;
+    let data;
 
-    if (q.includes('overview') || q.includes('summary') || q.includes('dashboard')) {
-      return { type: 'overview', data: overview, message: `Total incidents: ${overview.totalIncidents}, Active: ${overview.activeInvestigations}, Closed: ${overview.closedInvestigations}` };
-    }
-    if (q.includes('total') && q.includes('incident')) {
-      return { type: 'simple', data: { totalIncidents: overview.totalIncidents }, message: `There are ${overview.totalIncidents} total incidents.` };
-    }
-    if (q.includes('active') || q.includes('pending')) {
-      return { type: 'simple', data: { activeCases: overview.activeInvestigations }, message: `There are ${overview.activeInvestigations} active investigations.` };
-    }
-    if (q.includes('hotspot') || q.includes('hot spot')) {
-      const hotspots = this.getHotspots(filters);
-      const top = hotspots.slice(0, 5);
-      return { type: 'hotspots', data: top, message: `Top ${top.length} hotspots identified.` };
-    }
-    if (q.includes('trend') || q.includes('trending')) {
-      const trends = this.getMonthlyTrends(filters);
-      return { type: 'trends', data: trends.slice(-6), message: `Showing ${Math.min(6, trends.length)} month trend.` };
-    }
-    if (q.includes('offender') || q.includes('repeat')) {
+    if (requiresCaseReference(toolUsed) && !intent.caseNo) {
+      data = {
+        status: 'requires_case_reference',
+        message: 'Provide a valid crime number in filters.crimeNo or explicitly in the question to use this approved case tool.',
+        humanReviewRequired: true,
+      };
+    } else if (toolUsed === 'findHotspots') data = this.getHotspots(filters).slice(0, 5);
+    else if (toolUsed === 'getCrimeTrend') data = this.getMonthlyTrends(filters).slice(-6);
+    else if (toolUsed === 'findRepeatOffenders') {
       const offenders = this.getOffenders(filters);
-      const repeat = offenders.filter(o => o.classification === 'Repeat Offender');
-      return { type: 'offenders', data: { total: offenders.length, repeat: repeat.length, top: repeat.slice(0, 5) }, message: `${repeat.length} repeat offenders found.` };
-    }
-    if (q.includes('district')) {
-      const summaries = this.getAllDistrictSummaries(filters);
-      return { type: 'districts', data: summaries, message: `Analysis for ${summaries.length} districts.` };
-    }
-    if (q.includes('anomaly') || q.includes('spike')) {
-      const anomalies = this.detectAnomalies(filters);
-      return { type: 'anomalies', data: anomalies, message: `${anomalies.length} anomalies detected.` };
-    }
-    if (q.includes('risk')) {
-      const risks = this.calculateAllDistrictRisks(filters);
-      return { type: 'risk', data: risks.slice(0, 5), message: `Risk scores calculated for ${risks.length} districts.` };
-    }
-    if (q.includes('network') || q.includes('graph')) {
-      const graph = this.getNetworkGraph(filters);
-      return { type: 'network', data: { nodeCount: graph.nodes.length, edgeCount: graph.edges.length }, message: `Network has ${graph.nodes.length} nodes and ${graph.edges.length} edges.` };
-    }
+      const linked = offenders.filter((offender) => offender.classification === 'MULTIPLE_CASE_LINKS');
+      data = { total: offenders.length, linked: linked.length, top: linked.slice(0, 5) };
+    } else if (toolUsed === 'getHighRiskAreas') data = this.calculateAllDistrictRisks(filters).slice(0, 5);
+    else if (toolUsed === 'getDataQualitySummary') data = { overallQualityScore: this.getOverview(filters).dataQualityScore, unresolvedIssueCount: 0, limitations: ['File-demo mode does not persist import or data-quality issue records.'] };
+    else if (toolUsed === 'compareDistricts') data = this.getDistrictComparison(filters);
+    else if (toolUsed === 'getDistrictSummary') data = filters.district ? this.getDistrictAnalysis(filters.district, filters) : this.getAllDistrictSummaries(filters);
+    else if (toolUsed === 'getPoliceStationSummary') data = this.getPoliceStationSummary(filters);
+    else if (toolUsed === 'detectCrimeSpike') {
+      data = {
+        status: 'ok',
+        algorithm: 'stored deterministic baseline alerts',
+        alerts: this.getAlerts(filters).filter((alert) => /SPIKE/i.test(String(alert.type || ''))),
+        humanReviewRequired: true,
+        limitations: ['Only generated demo alerts are returned; an alert is not proof of criminal activity.'],
+      };
+    } else if (toolUsed === 'getCaseSummary') data = this.repo.getIncidentById(intent.caseNo);
+    else if (toolUsed === 'getCaseNetwork' || toolUsed === 'findRelatedCases') data = this.getNetworkForIncident(intent.caseNo);
+    else if (toolUsed === 'findSimilarModusOperandi') data = this.getSimilarModusOperandiForCase(intent.caseNo, filters);
+    else if (toolUsed === 'getRegistrationDelay') data = this.getRegistrationDelay(filters);
+    else if (toolUsed === 'getChargesheetDelay') data = this.getChargesheetDelay(filters);
+    else if (toolUsed === 'getOffenderProfile') {
+      data = {
+        status: 'requires_authorized_profile_route',
+        message: 'Use the authorized offender profile route with a scoped person identifier. The Copilot does not infer or search identities.',
+        humanReviewRequired: true,
+      };
+    } else if (toolUsed === 'generateIntelligenceBrief') {
+      const overview = this.getOverview(filters);
+      data = {
+        status: 'preview_only',
+        overview,
+        recordCount: overview.recordCount,
+        message: 'A deterministic brief preview is available. Generate a persisted report through the authorized reports endpoint.',
+        humanReviewRequired: true,
+      };
+    } else data = this.getOverview(filters);
 
-    return { type: 'unknown', data: null, message: `I understand general queries about crime data. Try asking about overview, hotspots, trends, offenders, districts, anomalies, risk, or network. Your query: "${query}"` };
+    const message = !intent.matched
+      ? 'The approved analytical tool router does not support that query. Try overview, hotspots, trends, district or station summaries, spike alerts, case tools, delay metrics, or intelligence briefs.'
+      : toolUsed === 'getOverview'
+        ? `Total incidents: ${data.totalIncidents}, Active: ${data.activeInvestigations}, Closed: ${data.closedInvestigations}`
+        : 'Approved analytical tool result generated.';
+
+    return {
+      type: legacyCopilotTypeForTool(toolUsed, intent.matched),
+      toolUsed,
+      data,
+      message,
+      filters,
+      dataPeriod: data?.dataPeriod || { start: filters.dateFrom || null, end: filters.dateTo || null },
+      recordCount: copilotRecordCount(data),
+      dataSources: ['Synthetic file-demo data'],
+      confidence: 0.8,
+      limitations: ['Synthetic prototype data', 'Human review is required for all intelligence outputs'],
+      followUpSuggestions: this.getSuggestions(),
+    };
   }
 
   getSuggestions() {
@@ -1354,13 +1490,16 @@ export class KavachServices {
       'Show me the overview of all incidents',
       'What are the current hotspots?',
       'Show monthly crime trends',
-      'List repeat offenders',
-      'Which districts have the highest risk?',
-      'Detect anomalies in recent data',
-      'Compare crime across districts',
-      'Show the network graph',
-      'What is the clearance rate?',
-      'Show alerts for review',
+      'Show district summary',
+      'Show police station summary',
+      'Detect a crime spike alert',
+      'List repeat offender links',
+      'Show case summary for FIR...',
+      'Find related cases for FIR...',
+      'Find similar modus operandi for FIR...',
+      'Show registration delay',
+      'Show chargesheet delay',
+      'Generate an intelligence brief',
     ];
   }
 
@@ -1413,7 +1552,7 @@ export class KavachServices {
     }
     function offenderRows(list) {
       return list.slice(0, 10).map(function(o) {
-        return tr([td(o.personId), td(o.incidentCount), td(o.classification), td(o.riskScore)]);
+        return tr([td(o.personId), td(o.incidentCount), td(o.classification), td(o.linkComplexityScore)]);
       }).join('');
     }
 
@@ -1440,7 +1579,7 @@ export class KavachServices {
     html += '<div class="card"><h3>Total Incidents</h3><div class="value">' + overview.totalIncidents + '</div></div>';
     html += '<div class="card"><h3>Active Investigations</h3><div class="value">' + overview.activeInvestigations + '</div></div>';
     html += '<div class="card"><h3>Closed Cases</h3><div class="value">' + overview.closedInvestigations + '</div></div>';
-    html += '<div class="card"><h3>Repeat Offenders</h3><div class="value">' + overview.repeatOffenders + '</div></div>';
+    html += '<div class="card"><h3>Multiple Case Links</h3><div class="value">' + overview.repeatOffenders + '</div></div>';
     html += '<div class="card"><h3>Data Quality</h3><div class="value">' + overview.dataQualityScore + '%</div></div>';
     html += '<h2>Hotspots (Top 5)</h2>';
     html += '<table><tr>' + th('District') + th('Score') + th('Incidents') + th('Severity') + th('Confidence') + '</tr>';
@@ -1461,8 +1600,8 @@ export class KavachServices {
     html += '<h2>Anomalies Detected</h2>';
     html += anomalyList(anomalies);
     html += '<h2>Offender Analysis</h2>';
-    html += '<p>Total offenders: ' + offenders.length + ' | Repeat offenders: ' + offenders.filter(function(o) { return o.classification === 'Repeat Offender'; }).length + '</p>';
-    html += '<table><tr>' + th('ID') + th('Incidents') + th('Classification') + th('Risk Score') + '</tr>';
+    html += '<p>Total linked people: ' + offenders.length + ' | Multiple case links: ' + offenders.filter(function(o) { return o.classification === 'MULTIPLE_CASE_LINKS'; }).length + '</p>';
+    html += '<table><tr>' + th('ID') + th('Cases') + th('Link label') + th('Link complexity') + '</tr>';
     html += offenderRows(offenders);
     html += '</table>';
     html += '<div class="footer">';
@@ -1470,7 +1609,28 @@ export class KavachServices {
     html += '</div>';
     html += '</body></html>';
 
-    return { html: html, contentType: 'text/html', filename: 'kavach-report-' + dateStr + '.html' };
+    const reportId = randomUUID();
+    const verificationHash = createHash('sha256').update(`${reportId}:${JSON.stringify(filters)}:${overview.totalIncidents}`).digest('hex');
+    if (format === 'pdf') {
+      return createKavachPdfReport({
+        title: 'KAVACH Crime Analysis Report',
+        reportId,
+        filters,
+        overview,
+        verificationHash,
+      }).then((pdfBuffer) => ({
+        html,
+        reportId,
+        format: 'pdf',
+        contentType: 'application/pdf',
+        filename: `kavach-report-${reportId}.pdf`,
+        pdfBase64: pdfBuffer.toString('base64'),
+        verificationHash,
+        overview,
+      }));
+    }
+
+    return { html, reportId, format: 'html', contentType: 'text/html', filename: 'kavach-report-' + dateStr + '.html', verificationHash, overview };
   }
 
   _getDataPeriod(incidents) {
