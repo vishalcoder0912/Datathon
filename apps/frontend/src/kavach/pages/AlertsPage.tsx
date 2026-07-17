@@ -22,6 +22,38 @@ interface Alert {
   evidence: string[];
 }
 
+function formatType(value: string) {
+  return value.replaceAll("_", " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+function normalizeEvidence(value: unknown): string[] {
+  if (Array.isArray(value)) return value.map(String);
+  if (value && typeof value === "object") {
+    return Object.entries(value as Record<string, unknown>).map(([key, item]) => `${formatType(key)}: ${typeof item === "string" ? item : JSON.stringify(item)}`);
+  }
+  return [];
+}
+
+function normalizeAlerts(payload: unknown): Alert[] {
+  const unwrapped = (payload as {data?: unknown})?.data ?? payload;
+  const rows = Array.isArray(unwrapped) ? unwrapped : (unwrapped as {data?: unknown[]})?.data ?? [];
+  return rows.map((row) => {
+    const source = row as Record<string, unknown>;
+    const detectedAt = String(source.detectedAt ?? source.detectionTime ?? "");
+    return {
+      id: String(source.id ?? source.alertId ?? ""),
+      type: String(source.type ?? "INTELLIGENCE_ALERT"),
+      title: String(source.title ?? "KAVACH intelligence alert"),
+      message: String(source.message ?? source.description ?? "Evidence requires human review."),
+      severity: String(source.severity ?? "medium"),
+      district: String(source.district ?? (source.districtId ? `District ${source.districtId}` : "Scoped area")),
+      detectionTime: detectedAt ? new Date(detectedAt).toLocaleString() : "Not recorded",
+      reviewed: Boolean(source.reviewed ?? source.reviewedAt),
+      evidence: normalizeEvidence(source.evidence),
+    };
+  });
+}
+
 const severityColors: Record<string, string> = {
   critical: 'bg-[#DC2626] text-white',
   high: 'bg-[#D97706] text-white',
@@ -30,11 +62,10 @@ const severityColors: Record<string, string> = {
 };
 
 const typeColors: Record<string, string> = {
-  'Crime Spike': 'bg-[#DC2626]/10 text-[#DC2626] border-[#DC2626]/20',
-  'Pattern Detection': 'bg-[#1D4ED8]/10 text-[#1D4ED8] border-[#1D4ED8]/20',
-  'Repeat Offender': 'bg-[#7C3AED]/10 text-[#7C3AED] border-[#7C3AED]/20',
-  'Anomaly': 'bg-[#D97706]/10 text-[#D97706] border-[#D97706]/20',
-  'Network Alert': 'bg-[#0891B2]/10 text-[#0891B2] border-[#0891B2]/20',
+  CRIME_SPIKE: 'bg-[#DC2626]/10 text-[#DC2626] border-[#DC2626]/20',
+  ANOMALY: 'bg-[#D97706]/10 text-[#D97706] border-[#D97706]/20',
+  INVESTIGATION_DELAY: 'bg-[#1D4ED8]/10 text-[#1D4ED8] border-[#1D4ED8]/20',
+  NETWORK_ASSOCIATION: 'bg-[#0891B2]/10 text-[#0891B2] border-[#0891B2]/20',
 };
 
 export default function AlertsPage() {
@@ -55,7 +86,7 @@ export default function AlertsPage() {
     if (severityFilter && severityFilter !== 'all') apiFilters.severity = severityFilter;
     if (reviewedFilter && reviewedFilter !== 'all') apiFilters.reviewed = reviewedFilter;
     kavachApi.getAlerts(apiFilters)
-      .then((res) => setAlerts(res.data?.data || res.data?.alerts || res.data || []))
+      .then((res) => setAlerts(normalizeAlerts(res.data)))
       .catch((err) => setError(err?.message || 'Failed to load alerts'))
       .finally(() => setLoading(false));
   };
@@ -110,11 +141,10 @@ export default function AlertsPage() {
           <SelectTrigger className="h-9 w-[140px] text-xs"><SelectValue placeholder="Type" /></SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Types</SelectItem>
-            <SelectItem value="Crime Spike">Crime Spike</SelectItem>
-            <SelectItem value="Pattern Detection">Pattern Detection</SelectItem>
-            <SelectItem value="Repeat Offender">Repeat Offender</SelectItem>
-            <SelectItem value="Anomaly">Anomaly</SelectItem>
-            <SelectItem value="Network Alert">Network Alert</SelectItem>
+            <SelectItem value="CRIME_SPIKE">Crime spike</SelectItem>
+            <SelectItem value="ANOMALY">Anomaly</SelectItem>
+            <SelectItem value="INVESTIGATION_DELAY">Investigation delay</SelectItem>
+            <SelectItem value="NETWORK_ASSOCIATION">Network association</SelectItem>
           </SelectContent>
         </Select>
         <Select value={severityFilter} onValueChange={setSeverityFilter}>
@@ -154,7 +184,7 @@ export default function AlertsPage() {
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
                       <Badge className={`border ${typeColors[alert.type] || 'bg-slate-100 text-slate-600'}`}>
-                        {alert.type}
+                        {formatType(alert.type)}
                       </Badge>
                       <Badge className={severityColors[alert.severity?.toLowerCase()] || ''}>
                         {alert.severity}
