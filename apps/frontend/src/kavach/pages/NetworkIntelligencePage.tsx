@@ -1,386 +1,164 @@
-import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
-import { Search, Users, GitBranch, AlertTriangle, X, ZoomIn, Expand, Shrink, UserCheck } from 'lucide-react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
-import { kavachApi } from '@/kavach/api/kavachApi';
-import { useKavachFilters } from '@/kavach/context/FilterContext';
-import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Skeleton } from '@/shared/components/ui/skeleton';
-
-interface GraphNode {
-  id: string;
-  label: string;
-  type: 'offender' | 'incident' | 'victim' | 'location' | 'phone' | 'vehicle';
-  risk?: string;
-  isRepeat?: boolean;
-}
-
-interface GraphEdge {
-  source: string;
-  target: string;
-  label: string;
-  type: 'involved_in' | 'connected_to' | 'uses' | 'located_at' | 'associate';
-}
+import {useEffect, useMemo, useState} from "react";
+import {Search, GitBranch, AlertTriangle, X, Shrink, UserCheck, Link2, Info} from "lucide-react";
+import {useNavigate, useSearchParams} from "react-router-dom";
+import {kavachApi} from "@/kavach/api/kavachApi";
+import {useKavachFilters} from "@/kavach/context/FilterContext";
+import CytoscapeNetworkGraph, {type NetworkGraphEdge, type NetworkGraphNode} from "@/kavach/components/CytoscapeNetworkGraph";
+import GlobalFilters from "@/kavach/components/GlobalFilters";
+import {Card, CardContent, CardHeader, CardTitle} from "@/shared/components/ui/card";
+import {Badge} from "@/shared/components/ui/badge";
+import {Button} from "@/shared/components/ui/button";
+import {Input} from "@/shared/components/ui/input";
+import {Skeleton} from "@/shared/components/ui/skeleton";
 
 interface GraphData {
-  nodes: GraphNode[];
-  edges: GraphEdge[];
+  nodes: NetworkGraphNode[];
+  edges: NetworkGraphEdge[];
 }
 
-const NODE_COLORS: Record<string, string> = {
-  offender: '#DC2626',
-  incident: '#1D4ED8',
-  victim: '#15803D',
-  location: '#D97706',
-  phone: '#7C3AED',
-  vehicle: '#0891B2',
+const nodeColors: Record<string, string> = {
+  PERSON: "#DC2626",
+  OFFENDER: "#DC2626",
+  ACCUSED: "#DC2626",
+  CASE: "#1D4ED8",
+  INCIDENT: "#1D4ED8",
+  VICTIM: "#15803D",
+  COMPLAINANT: "#0F766E",
+  LOCATION: "#D97706",
+  POLICE_STATION: "#7C3AED",
+  DISTRICT: "#0891B2",
+  VEHICLE: "#475569",
+  MODUS_OPERANDI: "#A16207",
+  ACT_SECTION: "#64748B",
 };
+const personNodeTypes = new Set(["PERSON", "OFFENDER", "ACCUSED"]);
 
-const NODE_TYPES: { key: string; label: string }[] = [
-  { key: 'offender', label: 'Offender' },
-  { key: 'incident', label: 'Incident' },
-  { key: 'victim', label: 'Victim' },
-  { key: 'location', label: 'Location' },
-  { key: 'phone', label: 'Phone' },
-  { key: 'vehicle', label: 'Vehicle' },
-];
+function normalizeType(value?: string) {
+  return (value ?? "ASSOCIATION").replaceAll(" ", "_").toUpperCase();
+}
 
-const MAX_NODES = 100;
-
-function forceLayout(nodes: GraphNode[], edges: GraphEdge[], width: number, height: number) {
-  const positions: Record<string, { x: number; y: number; vx: number; vy: number }> = {};
-  const centerX = width / 2;
-  const centerY = height / 2;
-
-  nodes.forEach((n, i) => {
-    const angle = (2 * Math.PI * i) / nodes.length;
-    const radius = Math.min(width, height) * 0.35;
-    positions[n.id] = {
-      x: centerX + radius * Math.cos(angle),
-      y: centerY + radius * Math.sin(angle),
-      vx: 0, vy: 0,
-    };
-  });
-
-  for (let iter = 0; iter < 100; iter++) {
-    for (const edge of edges) {
-      const s = positions[edge.source];
-      const t = positions[edge.target];
-      if (!s || !t) continue;
-      const dx = t.x - s.x;
-      const dy = t.y - s.y;
-      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-      const force = (dist - 80) * 0.01;
-      const fx = (dx / dist) * force;
-      const fy = (dy / dist) * force;
-      s.vx += fx; s.vy += fy;
-      t.vx -= fx; t.vy -= fy;
-    }
-
-    for (const node of nodes) {
-      const p = positions[node.id];
-      if (!p) continue;
-      const dx = centerX - p.x;
-      const dy = centerY - p.y;
-      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-      const centerForce = 0.01;
-      p.vx += dx * centerForce;
-      p.vy += dy * centerForce;
-    }
-
-    for (const node of nodes) {
-      const p = positions[node.id];
-      if (!p) continue;
-      p.x += p.vx; p.y += p.vy;
-      p.vx *= 0.9; p.vy *= 0.9;
-      p.x = Math.max(20, Math.min(width - 20, p.x));
-      p.y = Math.max(20, Math.min(height - 20, p.y));
-    }
-  }
-
-  return positions;
+function parseGraph(payload: unknown): GraphData {
+  const root = (payload as {data?: unknown})?.data ?? payload;
+  const graph = root as {nodes?: Array<Record<string, unknown>>; edges?: Array<Record<string, unknown>>};
+  return {
+    nodes: (graph?.nodes ?? []).map((node) => ({
+      id: String(node.id ?? node.personId ?? node.caseMasterId),
+      label: String(node.label ?? node.displayLabel ?? node.name ?? node.id ?? "Unknown node"),
+      type: normalizeType(String(node.type ?? node.nodeType ?? "ASSOCIATION")),
+      risk: typeof node.risk === "string" ? node.risk : undefined,
+      isRepeat: Boolean(node.isRepeat ?? node.repeat),
+    })),
+    edges: (graph?.edges ?? []).map((edge, index) => ({
+      id: String(edge.id ?? `edge-${index}`),
+      source: String(edge.source ?? edge.sourceId),
+      target: String(edge.target ?? edge.targetId),
+      label: typeof edge.label === "string" ? edge.label : undefined,
+      type: typeof edge.type === "string" ? edge.type : undefined,
+      relationshipType: typeof edge.relationshipType === "string" ? edge.relationshipType : undefined,
+      weight: Number(edge.weight ?? 1),
+      evidence: Array.isArray(edge.evidence) ? edge.evidence as NetworkGraphEdge["evidence"] : [],
+    })),
+  };
 }
 
 export default function NetworkIntelligencePage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const initialSearch = searchParams.get('q') || '';
-  const [search, setSearch] = useState(initialSearch);
-  const { filters } = useKavachFilters();
+  const {filters} = useKavachFilters();
+  const search = searchParams.get("q") ?? "";
   const [graph, setGraph] = useState<GraphData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null);
-  const [nodeFilter, setNodeFilter] = useState<string[]>([]);
-  const [fitScale, setFitScale] = useState(1);
-  const svgRef = useRef<SVGSVGElement>(null);
-
-  useEffect(() => {
-    const q = searchParams.get('q') || '';
-    if (q !== search) {
-      setSearch(q);
-    }
-  }, [searchParams]);
-
-  const handleSearchChange = (value: string) => {
-    setSearch(value);
-    if (value) {
-      setSearchParams({ q: value });
-    } else {
-      setSearchParams({});
-    }
-  };
+  const [selectedNode, setSelectedNode] = useState<NetworkGraphNode | null>(null);
+  const [selectedEdge, setSelectedEdge] = useState<NetworkGraphEdge | null>(null);
+  const [nodeTypes, setNodeTypes] = useState<string[]>([]);
+  const [edgeTypes, setEdgeTypes] = useState<string[]>([]);
+  const [minimumWeight, setMinimumWeight] = useState(1);
+  const [layoutRevision, setLayoutRevision] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
     setError(null);
     kavachApi.getNetwork(filters)
-      .then((res) => {
-        if (!cancelled) {
-          const rawGraph = res.data?.data || res.data;
-          if (rawGraph && Array.isArray(rawGraph.nodes)) {
-            const mappedNodes = rawGraph.nodes.map((n: any) => ({
-              ...n,
-              type: n.type === 'person' ? 'offender' : n.type,
-            }));
-            setGraph({ ...rawGraph, nodes: mappedNodes });
-          } else {
-            setGraph(rawGraph);
-          }
-        }
+      .then((response) => {
+        if (!cancelled) setGraph(parseGraph(response.data));
       })
-      .catch((err) => { if (!cancelled) setError(err?.message || 'Failed to load network'); })
-      .finally(() => { if (!cancelled) setLoading(false); });
+      .catch(() => {
+        if (!cancelled) setError("Unable to load the scoped association graph.");
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
     return () => { cancelled = true; };
   }, [filters]);
 
+  const availableNodeTypes = useMemo(() => [...new Set(graph?.nodes.map((node) => node.type) ?? [])].sort(), [graph]);
+  const availableEdgeTypes = useMemo(() => [...new Set(graph?.edges.map((edge) => normalizeType(edge.relationshipType ?? edge.type ?? edge.label)) ?? [])].sort(), [graph]);
+  const selectedNodeTypeSet = useMemo(() => new Set(nodeTypes), [nodeTypes]);
+  const selectedEdgeTypeSet = useMemo(() => new Set(edgeTypes), [edgeTypes]);
   const filteredGraph = useMemo(() => {
     if (!graph) return null;
-    let nodes = graph.nodes;
-    if (nodeFilter.length > 0) {
-      nodes = nodes.filter((n) => nodeFilter.includes(n.type));
-    }
-    if (search.trim()) {
-      const q = search.toLowerCase();
-      nodes = nodes.filter((n) => n.label.toLowerCase().includes(q));
-    }
-    const nodeIds = new Set(nodes.map((n) => n.id));
-    const edges = graph.edges.filter((e) => nodeIds.has(e.source) && nodeIds.has(e.target));
-    return { nodes, edges };
-  }, [graph, nodeFilter, search]);
+    const searchTerm = search.trim().toLowerCase();
+    const visibleNodes = graph.nodes.filter((node) => {
+      const nodeMatches = selectedNodeTypeSet.size === 0 || selectedNodeTypeSet.has(node.type);
+      const searchMatches = !searchTerm || node.label.toLowerCase().includes(searchTerm) || node.id.toLowerCase().includes(searchTerm);
+      return nodeMatches && searchMatches;
+    }).slice(0, 150);
+    const nodeIds = new Set(visibleNodes.map((node) => node.id));
+    const visibleEdges = graph.edges.filter((edge) => {
+      const relationship = normalizeType(edge.relationshipType ?? edge.type ?? edge.label);
+      return nodeIds.has(edge.source) && nodeIds.has(edge.target) && (selectedEdgeTypeSet.size === 0 || selectedEdgeTypeSet.has(relationship)) && Number(edge.weight ?? 1) >= minimumWeight;
+    });
+    return {nodes: visibleNodes, edges: visibleEdges};
+  }, [graph, minimumWeight, search, selectedEdgeTypeSet, selectedNodeTypeSet]);
 
-  const showLimitWarning = (filteredGraph?.nodes.length ?? 0) > MAX_NODES;
+  function toggleNodeType(type: string) {
+    setNodeTypes((current) => current.includes(type) ? current.filter((item) => item !== type) : [...current, type]);
+  }
 
-  const displayGraph = useMemo(() => {
-    if (!filteredGraph) return null;
-    const nodes = filteredGraph.nodes.slice(0, MAX_NODES);
-    const nodeIds = new Set(nodes.map((n) => n.id));
-    const edges = filteredGraph.edges.filter((e) => nodeIds.has(e.source) && nodeIds.has(e.target));
-    return { nodes, edges };
-  }, [filteredGraph]);
+  function toggleEdgeType(type: string) {
+    setEdgeTypes((current) => current.includes(type) ? current.filter((item) => item !== type) : [...current, type]);
+  }
 
-  const dimensions = useMemo(() => ({ w: 800, h: 500 }), []);
-  const positions = useMemo(() => {
-    if (!displayGraph) return {};
-    return forceLayout(displayGraph.nodes, displayGraph.edges, dimensions.w * fitScale, dimensions.h * fitScale);
-  }, [displayGraph, fitScale, dimensions]);
+  function handleSearchChange(value: string) {
+    setSearchParams(value ? {q: value} : {});
+  }
 
-  const toggleNodeFilter = (type: string) => {
-    setNodeFilter((prev) => prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]);
-  };
+  function selectNode(node: NetworkGraphNode) {
+    setSelectedNode(node);
+    setSelectedEdge(null);
+  }
+
+  function selectEdge(edge: NetworkGraphEdge) {
+    setSelectedEdge(edge);
+    setSelectedNode(null);
+  }
 
   if (error) {
-    return (
-      <div className="space-y-6">
-        <div><h1 className="text-xl font-bold text-[#0F172A]">Network Intelligence</h1><p className="text-sm text-slate-500">Criminal association graph</p></div>
-        <Card className="border-red-200 bg-red-50">
-          <CardContent className="flex flex-col items-center gap-3 p-10">
-            <AlertTriangle className="size-8 text-[#DC2626]" />
-            <p className="text-sm font-medium text-[#DC2626]">{error}</p>
-          </CardContent>
-        </Card>
-      </div>
-    );
+    return <div className="space-y-6"><div><h1 className="text-xl font-bold text-[#0F172A]">Network Intelligence</h1><p className="text-sm text-slate-500">Case-backed association graph</p></div><GlobalFilters /><Card className="border-red-200 bg-red-50"><CardContent className="flex items-center gap-3 p-8 text-sm text-[#DC2626]"><AlertTriangle className="size-5" />{error}</CardContent></Card></div>;
   }
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-xl font-bold text-[#0F172A]">Network Intelligence</h1>
-        <p className="text-sm text-slate-500">Criminal association and connection graph</p>
+      <div><h1 className="text-xl font-bold text-[#0F172A]">Network Intelligence</h1><p className="text-sm text-slate-500">Explore case, person, location, station, and modus-operandi links with source evidence.</p></div>
+      <GlobalFilters />
+
+      <div className="space-y-3 rounded-xl border border-slate-200 bg-white p-3">
+        <div className="flex flex-wrap items-center gap-3"><div className="relative min-w-[220px] flex-1"><Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" /><Input value={search} onChange={(event) => handleSearchChange(event.target.value)} placeholder="Search a masked person, case, or location…" className="h-9 pl-9 text-sm" /></div><label className="flex items-center gap-2 text-xs font-medium text-slate-600">Minimum edge weight <select value={minimumWeight} onChange={(event) => setMinimumWeight(Number(event.target.value))} className="h-9 rounded-md border border-slate-200 bg-white px-2"><option value={1}>1</option><option value={2}>2</option><option value={3}>3</option></select></label><Button variant="outline" size="sm" onClick={() => setLayoutRevision((value) => value + 1)} className="h-9 gap-1 text-xs"><Shrink className="size-3" /> Fit graph</Button></div>
+        <div className="flex flex-wrap gap-1.5"><span className="mr-1 self-center text-xs font-semibold text-slate-500">Nodes</span>{availableNodeTypes.map((type) => <button key={type} type="button" onClick={() => toggleNodeType(type)} className={`rounded-md px-2 py-1 text-[11px] font-semibold ${nodeTypes.includes(type) ? "bg-slate-200 text-slate-500" : "bg-slate-50 text-slate-700 ring-1 ring-slate-200"}`}>{type.replaceAll("_", " ")}</button>)}</div>
+        <div className="flex flex-wrap gap-1.5"><span className="mr-1 self-center text-xs font-semibold text-slate-500">Edges</span>{availableEdgeTypes.map((type) => <button key={type} type="button" onClick={() => toggleEdgeType(type)} className={`rounded-md px-2 py-1 text-[11px] font-semibold ${edgeTypes.includes(type) ? "bg-slate-200 text-slate-500" : "bg-slate-50 text-slate-700 ring-1 ring-slate-200"}`}>{type.replaceAll("_", " ")}</button>)}</div>
       </div>
 
-      <div className="flex flex-wrap items-center gap-3">
-        <div className="relative min-w-[240px] flex-1">
-          <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
-          <Input
-            value={search}
-            onChange={(e) => handleSearchChange(e.target.value)}
-            placeholder="Search offender or FIR..."
-            className="h-9 pl-9 text-sm"
-          />
-        </div>
-        <div className="flex flex-wrap items-center gap-1">
-          {NODE_TYPES.map((nt) => (
-            <button
-              key={nt.key}
-              onClick={() => toggleNodeFilter(nt.key)}
-              className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
-                nodeFilter.includes(nt.key)
-                  ? 'bg-slate-200 text-slate-500'
-                  : 'bg-white text-slate-700 ring-1 ring-slate-200'
-              }`}
-            >
-              {nt.label}
-            </button>
-          ))}
-        </div>
-        <Button variant="outline" size="sm" onClick={() => setFitScale((s) => Math.min(s + 0.2, 2))} className="h-9 gap-1 text-xs">
-          <ZoomIn className="size-3" /> In
-        </Button>
-        <Button variant="outline" size="sm" onClick={() => setFitScale(1)} className="h-9 gap-1 text-xs">
-          <Shrink className="size-3" /> Fit
-        </Button>
-      </div>
-
-      {showLimitWarning && (
-        <div className="flex items-center gap-2 rounded-lg border border-amber-200 bg-amber-50 px-4 py-2 text-xs text-amber-700">
-          <AlertTriangle className="size-4" />
-          Network has {(filteredGraph?.nodes.length ?? 0)} nodes. Showing first {MAX_NODES}. Refine filters.
-        </div>
-      )}
+      {(graph?.nodes.length ?? 0) > 150 && <div className="flex items-center gap-2 rounded-lg border border-amber-200 bg-amber-50 px-4 py-2 text-xs text-amber-800"><AlertTriangle className="size-4" />The graph is limited to 150 matching nodes. Refine filters or search to expand an investigation safely.</div>}
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
-        <Card className="border-slate-200 lg:col-span-3">
-          <CardContent className="p-0">
-            {loading ? (
-              <Skeleton className="h-[500px] w-full rounded-lg" />
-            ) : displayGraph && displayGraph.nodes.length > 0 ? (
-              <svg ref={svgRef} viewBox={`0 0 ${dimensions.w * fitScale} ${dimensions.h * fitScale}`} className="w-full" style={{ minHeight: 500 }}>
-                {displayGraph.edges.map((edge) => {
-                  const s = positions[edge.source];
-                  const t = positions[edge.target];
-                  if (!s || !t) return null;
-                  return (
-                    <line
-                      key={`${edge.source}-${edge.target}`}
-                      x1={s.x} y1={s.y} x2={t.x} y2={t.y}
-                      stroke="#CBD5E1" strokeWidth={1}
-                    />
-                  );
-                })}
-                {displayGraph.nodes.map((node) => {
-                  const pos = positions[node.id];
-                  if (!pos) return null;
-                  const color = NODE_COLORS[node.type] || '#94A3B8';
-                  const isSelected = selectedNode?.id === node.id;
-                  return (
-                    <g
-                      key={node.id}
-                      onClick={() => setSelectedNode(node)}
-                      onDoubleClick={() => {
-                        if (node.type === 'offender') {
-                          navigate(`/offenders/${node.id}`);
-                        } else if (node.type === 'incident') {
-                          handleSearchChange(node.id);
-                        }
-                      }}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      <circle
-                        cx={pos.x} cy={pos.y} r={isSelected ? 10 : 7}
-                        fill={color} fillOpacity={0.8}
-                        stroke={isSelected ? '#0F172A' : 'white'}
-                        strokeWidth={isSelected ? 2 : 1}
-                      />
-                      {node.isRepeat && (
-                        <circle cx={pos.x} cy={pos.y} r={14} fill="none" stroke="#D97706" strokeWidth={1.5} strokeDasharray="3 2" />
-                      )}
-                      <text x={pos.x} y={pos.y + 18} textAnchor="middle" fontSize="8" fill="#475569" style={{ pointerEvents: 'none' }}>
-                        {node.label.length > 15 ? node.label.slice(0, 15) + '…' : node.label}
-                      </text>
-                    </g>
-                  );
-                })}
-              </svg>
-            ) : (
-              <div className="flex flex-col items-center gap-3 py-16 text-slate-400">
-                <GitBranch className="size-10" />
-                <p className="text-sm">No network data available</p>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+        <Card className="border-slate-200 lg:col-span-3"><CardContent className="p-0">{loading ? <Skeleton className="h-[520px] w-full" /> : filteredGraph && filteredGraph.nodes.length > 0 ? <><CytoscapeNetworkGraph nodes={filteredGraph.nodes} edges={filteredGraph.edges} layoutRevision={layoutRevision} onNodeSelect={selectNode} onEdgeSelect={selectEdge} /><div className="border-t border-slate-100 p-3"><p className="mb-2 text-xs font-semibold text-slate-500">Evidence-ready relationships</p><div className="flex flex-wrap gap-2">{filteredGraph.edges.slice(0, 8).map((edge, index) => <button key={edge.id ?? `${edge.source}-${edge.target}-${index}`} type="button" onClick={() => selectEdge(edge)} className="rounded-md border border-slate-200 bg-white px-2 py-1 text-xs text-slate-600 hover:border-[#1D4ED8] hover:text-[#1D4ED8]" aria-label={`Inspect evidence for ${normalizeType(edge.relationshipType ?? edge.type ?? edge.label)}`}>{normalizeType(edge.relationshipType ?? edge.type ?? edge.label).replaceAll("_", " ")}</button>)}</div></div></> : <div className="flex h-[520px] flex-col items-center justify-center gap-3 text-slate-400"><GitBranch className="size-10" /><p className="text-sm">No network links match the active scope.</p></div>}</CardContent></Card>
 
-        <Card className="border-slate-200">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-slate-700">
-              {selectedNode ? 'Node Details' : 'Node Details'}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {!selectedNode ? (
-              <div className="flex flex-col items-center gap-3 py-10 text-slate-400">
-                <GitBranch className="size-8" />
-                <p className="text-sm">Click a node</p>
-              </div>
-            ) : (
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-bold text-[#0F172A]">{selectedNode.label}</h3>
-                  <button onClick={() => setSelectedNode(null)} className="text-slate-400 hover:text-slate-600">
-                    <X className="size-4" />
-                  </button>
-                </div>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between border-b pb-1">
-                    <span className="text-slate-500">Type</span>
-                    <Badge style={{ backgroundColor: NODE_COLORS[selectedNode.type] }} className="text-white">
-                      {selectedNode.type}
-                    </Badge>
-                  </div>
-                  <div className="flex justify-between border-b pb-1">
-                    <span className="text-slate-500">ID</span>
-                    <span className="font-mono text-xs">{selectedNode.id}</span>
-                  </div>
-                  {selectedNode.risk && (
-                    <div className="flex justify-between border-b pb-1">
-                      <span className="text-slate-500">Risk</span>
-                      <Badge variant={selectedNode.risk === 'high' ? 'destructive' : 'secondary'}>{selectedNode.risk}</Badge>
-                    </div>
-                  )}
-                  {selectedNode.isRepeat && (
-                    <div className="flex items-center gap-1 text-amber-600">
-                      <UserCheck className="size-4" />
-                      Repeat Offender
-                    </div>
-                  )}
-                  <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
-                    {selectedNode.type === 'offender' && (
-                      <Button
-                        onClick={() => navigate(`/offenders/${selectedNode.id}`)}
-                        className="w-full bg-[#1D4ED8] hover:bg-[#1D4ED8]/90 text-white text-xs font-semibold h-9"
-                      >
-                        View Offender Profile
-                      </Button>
-                    )}
-                    {selectedNode.type === 'incident' && (
-                      <Button
-                        onClick={() => handleSearchChange(selectedNode.id)}
-                        className="w-full bg-[#1D4ED8] hover:bg-[#1D4ED8]/90 text-white text-xs font-semibold h-9"
-                      >
-                        Filter by this FIR
-                      </Button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+        <div className="space-y-4">
+          <Card className="border-slate-200"><CardHeader className="pb-2"><CardTitle className="text-sm font-semibold text-slate-700">{selectedEdge ? "Edge evidence" : "Node details"}</CardTitle></CardHeader><CardContent>{selectedEdge ? <div className="space-y-3"><div className="flex items-center justify-between"><Badge className="bg-[#1D4ED8]">{normalizeType(selectedEdge.relationshipType ?? selectedEdge.type ?? selectedEdge.label).replaceAll("_", " ")}</Badge><button type="button" onClick={() => setSelectedEdge(null)} className="text-slate-400 hover:text-slate-600"><X className="size-4" /></button></div><p className="text-xs text-slate-600">Weight: <strong>{selectedEdge.weight ?? 1}</strong></p>{selectedEdge.evidence?.length ? <ul className="space-y-2 text-xs text-slate-600">{selectedEdge.evidence.map((evidence, index) => <li key={`${evidence.crimeNo ?? "evidence"}-${index}`} className="rounded-md bg-slate-50 p-2"><strong className="text-slate-700">{evidence.crimeNo ?? "Case evidence"}</strong><br />{evidence.reason ?? "Association recorded in the scoped case network."}</li>)}</ul> : <p className="text-xs leading-5 text-slate-600">This association is derived from the normalized case relationship tables. No unsupported inference is shown.</p>}</div> : selectedNode ? <div className="space-y-3"><div className="flex items-start justify-between gap-2"><h3 className="font-semibold text-[#0F172A]">{selectedNode.label}</h3><button type="button" onClick={() => setSelectedNode(null)} className="text-slate-400 hover:text-slate-600"><X className="size-4" /></button></div><Badge style={{backgroundColor: nodeColors[selectedNode.type] ?? "#64748B"}}>{selectedNode.type.replaceAll("_", " ")}</Badge><p className="break-all font-mono text-xs text-slate-500">{selectedNode.id}</p>{selectedNode.isRepeat && <p className="flex items-center gap-1 text-xs text-amber-700"><UserCheck className="size-4" />Multiple case links</p>}{selectedNode.risk && <p className="text-xs text-slate-600">Historical link label: <strong>{selectedNode.risk}</strong></p>}{["PERSON", "OFFENDER", "ACCUSED"].includes(selectedNode.type) && <Button size="sm" className="w-full bg-[#1D4ED8]" onClick={() => navigate(`/offenders/${selectedNode.id}`)}>View masked profile</Button>}</div> : <div className="py-6 text-center text-sm text-slate-500"><Link2 className="mx-auto mb-2 size-6" />Select a node or edge.</div>}</CardContent></Card>
+          <Card className="border-slate-200 bg-slate-50"><CardContent className="flex gap-2 p-3 text-xs leading-5 text-slate-600"><Info className="mt-0.5 size-4 shrink-0 text-[#0891B2]" /><span>Each edge is an explainable, case-backed relationship. It is not evidence of guilt or a recommendation for enforcement.</span></CardContent></Card>
+        </div>
       </div>
     </div>
   );
