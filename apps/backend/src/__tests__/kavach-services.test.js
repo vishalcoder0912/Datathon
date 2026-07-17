@@ -199,7 +199,7 @@ describe('KavachServices', () => {
       const result = services.classifyRepeatOffender('P001');
       expect(result).not.toBeNull();
       expect(result.totalOffences).toBe(2);
-      expect(result.classification).toMatch(/(LOW_RISK_REPEAT|MODERATE_RISK_REPEAT|HIGH_RISK_REPEAT|FIRST_TIME)/);
+      expect(result.classification).toMatch(/(MULTIPLE_CASE_LINKS|SINGLE_CASE_LINK)/);
     });
 
     it('classifies P002 with higher score (3 offences)', () => {
@@ -209,11 +209,11 @@ describe('KavachServices', () => {
       expect(result.personId).toBe('P002');
     });
 
-    it('includes factor scores', () => {
+    it('includes explainable historical-link factors', () => {
       const result = services.classifyRepeatOffender('P001');
-      expect(result.factors).toHaveProperty('recidivismScore');
-      expect(result.factors).toHaveProperty('violentScore');
-      expect(result.factors).toHaveProperty('versatilityScore');
+      expect(result.factors).toHaveProperty('caseCount');
+      expect(result.factors).toHaveProperty('districtCount');
+      expect(result.factors).toHaveProperty('categoryCount');
     });
   });
 
@@ -310,7 +310,7 @@ describe('KavachServices', () => {
       for (const o of offenders) {
         expect(o).toHaveProperty('incidentCount');
         expect(o).toHaveProperty('classification');
-        expect(o).toHaveProperty('riskScore');
+        expect(o).toHaveProperty('linkComplexityScore');
       }
     });
 
@@ -350,6 +350,23 @@ describe('KavachServices', () => {
     it('returns unknown for unrecognized query', () => {
       const result = services.processQuery('xyz789');
       expect(result.type).toBe('unknown');
+    });
+
+    it.each([
+      ['Show district summary', 'getDistrictSummary'],
+      ['Show police station summary', 'getPoliceStationSummary'],
+      ['Detect a crime spike alert', 'detectCrimeSpike'],
+      ['Show case summary for FIR001', 'getCaseSummary'],
+      ['Find related cases for FIR001', 'findRelatedCases'],
+      ['Find similar MO for FIR001', 'findSimilarModusOperandi'],
+      ['Show registration delay', 'getRegistrationDelay'],
+      ['Show chargesheet delay', 'getChargesheetDelay'],
+      ['Generate an intelligence brief', 'generateIntelligenceBrief'],
+    ])('routes %s through the approved deterministic tool %s', (question, toolUsed) => {
+      const result = services.processQuery(question);
+      expect(result.toolUsed).toBe(toolUsed);
+      expect(result.data).toBeDefined();
+      expect(result.message).not.toContain(question);
     });
   });
 
