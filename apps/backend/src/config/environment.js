@@ -155,7 +155,7 @@ export const config = {
   },
 
   cors: {
-    origin: process.env.CORS_ORIGIN || '*',
+    origin: process.env.CORS_ALLOWED_ORIGINS || process.env.CORS_ORIGIN || '*',
     credentials: process.env.CORS_CREDENTIALS === 'true',
   },
 
