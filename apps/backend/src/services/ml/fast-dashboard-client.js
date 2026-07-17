@@ -1,4 +1,4 @@
-const ML_SERVICE_URL = process.env.ML_SERVICE_URL || "http://127.0.0.1:8000";
+const ML_SERVICE_URL = process.env.ML_SERVICE_URL || "http://127.0.0.1:5000";
 const ML_SERVICE_TIMEOUT_MS = Number(process.env.ML_SERVICE_TIMEOUT_MS || 10000);
 
 export async function requestFastDashboard({
