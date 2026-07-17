@@ -1,38 +1,111 @@
-import { useEffect, useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, AlertTriangle, Phone, Car, FileText, ShieldAlert, GitBranch } from 'lucide-react';
-import { kavachApi } from '@/kavach/api/kavachApi';
-import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Skeleton } from '@/shared/components/ui/skeleton';
+import {useEffect, useState} from "react";
+import {useParams, Link, useNavigate} from "react-router-dom";
+import {ArrowLeft, AlertTriangle, FileText, GitBranch, ShieldAlert, Info, Search} from "lucide-react";
+import {kavachApi} from "@/kavach/api/kavachApi";
+import {Card, CardContent, CardHeader, CardTitle} from "@/shared/components/ui/card";
+import {Badge} from "@/shared/components/ui/badge";
+import {Button} from "@/shared/components/ui/button";
+import {Skeleton} from "@/shared/components/ui/skeleton";
 
-interface OffenderDetail {
-  offenderId: string;
-  name: string;
-  age: number;
-  gender: string;
-  incidentCount: number;
+interface LinkedCase {
+  crimeNo: string;
+  date: string;
+  category: string;
+  district: string;
+}
+
+interface SimilarCase extends LinkedCase {
+  similarityScore: number;
+  matchedFeatures: string[];
+  evidence: string[];
+}
+
+interface PersonLinkDetail {
+  personId: string;
+  maskedName: string;
+  caseCount: number;
   districtCount: number;
-  associateCount: number;
-  firstIncidentDate: string;
-  latestIncidentDate: string;
+  stationCount: number;
+  coAccusedCount: number;
+  linkComplexityScore: number;
+  firstKnownCase: string;
+  latestKnownCase: string;
   crimeCategories: string[];
-  commonModusOperandi: string[];
-  phoneNumbers: string[];
-  vehicles: string[];
-  linkedFIRs: { firNumber: string; date: string; category: string; district: string }[];
-  riskScore: number;
-  riskFactors: { factor: string; score: number; evidence: string }[];
-  network?: { nodes: { id: string; label: string; type: string }[]; edges: { source: string; target: string }[] };
+  modusOperandi: string[];
+  linkLabels: string[];
+  linkedCases: LinkedCase[];
+  network?: {nodes: Array<{id: string; label: string; type: string}>; edges: Array<{source: string; target: string}>};
+}
+
+function unwrap<T>(payload: unknown): T {
+  const candidate = payload as {data?: T};
+  return candidate.data ?? (payload as T);
+}
+
+function maskName(name: string) {
+  return name.split(" ").filter(Boolean).map((part) => `${part.slice(0, 1)}${"*".repeat(Math.max(1, part.length - 1))}`).join(" ") || "Restricted";
+}
+
+function mapDetail(raw: Record<string, unknown>): PersonLinkDetail {
+  const person = (raw.person ?? raw) as Record<string, unknown>;
+  const incidents = Array.isArray(raw.incidents) ? raw.incidents as Array<Record<string, unknown>> : Array.isArray(raw.linkedCases) ? raw.linkedCases as Array<Record<string, unknown>> : [];
+  const timeline = Array.isArray(raw.timeline) ? raw.timeline as Array<Record<string, unknown>> : [];
+  const associates = Array.isArray(raw.associates) ? raw.associates as Array<Record<string, unknown>> : [];
+  const linkedCases = incidents.flatMap((incident) => {
+    const linkedCase = {
+      crimeNo: String(incident.crimeNo ?? incident.firNumber ?? incident.fir_number ?? ""),
+      date: String(incident.date ?? incident.incidentDate ?? incident.incident_date ?? "Not available"),
+      category: String(incident.crimeType ?? incident.crime_type ?? incident.category ?? "Unspecified"),
+      district: String(incident.district ?? "Restricted"),
+    };
+    return linkedCase.crimeNo ? [linkedCase] : [];
+  });
+  const labels = Array.isArray(raw.linkLabels) ? raw.linkLabels.map(String) : Array.isArray(raw.labels) ? raw.labels.map(String) : [String(raw.linkLabel ?? raw.classification ?? "SINGLE_CASE_LINK")];
+  return {
+    personId: String(raw.personId ?? raw.offenderId ?? person.person_id ?? person.personId ?? ""),
+    maskedName: String(raw.maskedName ?? person.maskedName ?? person.name ?? "Restricted"),
+    caseCount: Number(raw.caseCount ?? raw.incidentCount ?? linkedCases.length),
+    districtCount: Number(raw.districtCount ?? new Set(linkedCases.map((incident) => incident.district)).size),
+    stationCount: Number(raw.stationCount ?? 0),
+    coAccusedCount: Number(raw.coAccusedCount ?? raw.associateCount ?? associates.length),
+    linkComplexityScore: Number(raw.linkComplexityScore ?? 0),
+    firstKnownCase: String(raw.firstKnownCaseDate ?? timeline.at(0)?.date ?? linkedCases.at(-1)?.date ?? "Not available"),
+    latestKnownCase: String(raw.latestKnownCaseDate ?? timeline.at(-1)?.date ?? linkedCases.at(0)?.date ?? "Not available"),
+    crimeCategories: [...new Set(linkedCases.map((incident) => incident.category))],
+    modusOperandi: Array.isArray(raw.commonModusOperandi) ? raw.commonModusOperandi.map(String) : Array.isArray(raw.modusOperandi) ? raw.modusOperandi.map(String) : [],
+    linkLabels: labels,
+    linkedCases,
+    network: raw.network as PersonLinkDetail["network"] | undefined,
+  };
+}
+
+function mapSimilarCases(payload: unknown): SimilarCase[] {
+  const rows = unwrap<unknown>(payload);
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const source = row as Record<string, unknown>;
+    const similarCase: SimilarCase = {
+      crimeNo: String(source.crimeNo ?? source.firNumber ?? ""),
+      date: String(source.incidentDate ?? source.date ?? "Not available"),
+      category: String(source.crimeType ?? source.category ?? "Unspecified"),
+      district: String(source.district ?? "Restricted"),
+      similarityScore: Math.round(Number(source.similarityScore ?? 0) * 100),
+      matchedFeatures: Array.isArray(source.matchedFeatures) ? source.matchedFeatures.map(String) : [],
+      evidence: Array.isArray(source.evidence) ? source.evidence.map(String) : [],
+    };
+    return similarCase.crimeNo ? [similarCase] : [];
+  });
 }
 
 export default function OffenderDetailPage() {
   const navigate = useNavigate();
-  const { offenderId } = useParams<{ offenderId: string }>();
-  const [detail, setDetail] = useState<OffenderDetail | null>(null);
+  const {offenderId} = useParams<{offenderId: string}>();
+  const [detail, setDetail] = useState<PersonLinkDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [similarCases, setSimilarCases] = useState<SimilarCase[] | null>(null);
+  const [similarMoLoading, setSimilarMoLoading] = useState(false);
+  const [similarMoError, setSimilarMoError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!offenderId) return;
@@ -40,328 +113,51 @@ export default function OffenderDetailPage() {
     setLoading(true);
     setError(null);
     kavachApi.getOffenderDetail(offenderId)
-      .then((res) => {
-        if (!cancelled) {
-          const raw = res.data?.data || res.data;
-          if (raw && raw.person) {
-            const p = raw.person;
-            const incs = raw.incidents || [];
-            const associates = raw.associates || [];
-            const timeline = raw.timeline || [];
-            const firstDate = timeline[0]?.date || 'N/A';
-            const latestDate = timeline[timeline.length - 1]?.date || 'N/A';
-            const categories = [...new Set(incs.map((i: any) => i.crimeType || i.crime_type).filter(Boolean))];
-            
-            const score = raw.riskScore ?? 0;
-            const riskFactors = [
-              { factor: 'Recency of Offence', score: Math.min(10, Math.round(score * 0.08) + 2), evidence: latestDate !== 'N/A' ? `Last offence on ${latestDate}` : 'N/A' },
-              { factor: 'Socioeconomic Risk', score: Math.min(10, Math.round(score * 0.06) + 1), evidence: 'Resides in high-density urbanization pocket' },
-              { factor: 'Network Association', score: Math.min(10, associates.length * 2 + 2), evidence: `Linked to ${associates.length} active suspects` }
-            ];
-
-            const phoneNumbers = [
-              `919${Math.floor(100000000 + Math.random() * 900000000)}`,
-              `918${Math.floor(100000000 + Math.random() * 900000000)}`
-            ].slice(0, Math.min(2, Math.max(1, incs.length)));
-            const vehicles = [
-              `KA03M${Math.floor(1000 + Math.random() * 9000)}`,
-              `KA51H${Math.floor(1000 + Math.random() * 9000)}`
-            ].slice(0, Math.min(2, Math.max(0, incs.length - 1)));
-
-            const netNodes = [
-              { id: p.person_id, label: p.name, type: 'offender' },
-              ...incs.map((i: any) => ({ id: i.firNumber || i.fir_number, label: i.firNumber || i.fir_number, type: 'incident' })),
-              ...associates.map((a: any) => ({ id: a.person_id, label: a.name, type: 'associate' }))
-            ];
-            const netEdges = [
-              ...incs.map((i: any) => ({ source: p.person_id, target: i.firNumber || i.fir_number })),
-              ...associates.map((a: any) => ({ source: p.person_id, target: a.person_id }))
-            ];
-
-            const detailMapped: OffenderDetail = {
-              offenderId: p.person_id,
-              name: p.name || 'Unknown',
-              age: p.age ?? 0,
-              gender: p.gender || 'Unknown',
-              incidentCount: raw.incidentCount ?? incs.length,
-              districtCount: 1,
-              associateCount: associates.length,
-              firstIncidentDate: firstDate,
-              latestIncidentDate: latestDate,
-              crimeCategories: categories as string[],
-              commonModusOperandi: categories.map((c: any) => `${c} Modus Operandi Pattern`),
-              phoneNumbers,
-              vehicles,
-              linkedFIRs: incs.map((i: any) => ({
-                firNumber: i.firNumber || i.fir_number || '',
-                date: i.date || i.incident_date || 'N/A',
-                category: i.crimeType || i.crime_type || 'Unknown',
-                district: i.district || 'Bengaluru Urban'
-              })),
-              riskScore: score,
-              riskFactors,
-              network: { nodes: netNodes, edges: netEdges }
-            };
-            setDetail(detailMapped);
-          } else {
-            setDetail(raw);
-          }
-        }
-      })
-      .catch((err) => { if (!cancelled) setError(err?.message || 'Failed to load offender details'); })
+      .then((response) => { if (!cancelled) setDetail(mapDetail(unwrap<Record<string, unknown>>(response.data))); })
+      .catch(() => { if (!cancelled) setError("Unable to load this masked person-link profile."); })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
   }, [offenderId]);
 
-  function maskName(name: string): string {
-    if (!name) return '';
-    const parts = name.split(' ');
-    return parts.map((p) => p[0] + '*'.repeat(p.length - 1)).join(' ');
+  async function inspectSimilarMo(crimeNo: string) {
+    setSimilarMoLoading(true);
+    setSimilarMoError(null);
+    try {
+      const response = await kavachApi.getSimilarModusOperandi(crimeNo);
+      setSimilarCases(mapSimilarCases(response.data));
+    } catch {
+      setSimilarCases(null);
+      setSimilarMoError("Similar-modus-operandi evidence is unavailable for the current scope.");
+    } finally {
+      setSimilarMoLoading(false);
+    }
   }
 
-  function maskValue(val: string): string {
-    if (!val) return '';
-    if (val.length <= 4) return '****';
-    return val.slice(0, 2) + '****' + val.slice(-2);
-  }
+  if (error) return <div className="space-y-6"><Link to="/offenders" className="inline-flex items-center gap-1 text-sm text-[#1D4ED8]"><ArrowLeft className="size-4" />Back to Person Links</Link><Card className="border-red-200 bg-red-50"><CardContent className="flex items-center gap-3 p-8 text-sm text-[#DC2626]"><AlertTriangle className="size-5" />{error}</CardContent></Card></div>;
 
-  if (error) {
-    return (
-      <div className="space-y-6">
-        <Link to="/offenders" className="inline-flex items-center gap-1 text-sm text-[#1D4ED8] hover:underline">
-          <ArrowLeft className="size-4" /> Back to Offenders
-        </Link>
-        <Card className="border-red-200 bg-red-50">
-          <CardContent className="flex flex-col items-center gap-3 p-10">
-            <AlertTriangle className="size-8 text-[#DC2626]" />
-            <p className="text-sm font-medium text-[#DC2626]">{error}</p>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
+  if (loading) return <div className="space-y-6"><Link to="/offenders" className="inline-flex items-center gap-1 text-sm text-[#1D4ED8]"><ArrowLeft className="size-4" />Back to Person Links</Link><Skeleton className="h-8 w-64" /><div className="grid grid-cols-2 gap-4 md:grid-cols-4"><Skeleton className="h-24" /><Skeleton className="h-24" /><Skeleton className="h-24" /><Skeleton className="h-24" /></div><Skeleton className="h-64 w-full" /></div>;
 
-  return (
-    <div className="space-y-6">
-      <Link to="/offenders" className="inline-flex items-center gap-1 text-sm text-[#1D4ED8] hover:underline">
-        <ArrowLeft className="size-4" /> Back to Offenders
-      </Link>
+  if (!detail) return null;
 
-      {loading ? (
-        <div className="space-y-6">
-          <Skeleton className="h-8 w-64" />
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-7">
-            {Array.from({ length: 7 }).map((_, i) => <Skeleton key={i} className="h-24" />)}
-          </div>
-          <Skeleton className="h-64 w-full" />
-        </div>
-      ) : detail ? (
-        <>
-          <div className="flex items-center gap-4">
-            <div className="flex size-14 items-center justify-center rounded-xl bg-[#DC2626]/10 text-[#DC2626]">
-              <ShieldAlert className="size-7" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-[#0F172A]">{maskName(detail.name)}</h1>
-              <p className="text-sm text-slate-500">Offender ID: {detail.offenderId}</p>
-            </div>
-            <div className="ml-auto">
-              <Badge className={`text-sm ${detail.riskScore > 75 ? 'bg-[#DC2626]' : detail.riskScore > 50 ? 'bg-[#D97706]' : detail.riskScore > 25 ? 'bg-[#0891B2]' : 'bg-[#15803D]'}`}>
-                Risk: {detail.riskScore}/100
-              </Badge>
-            </div>
-          </div>
+  const stats = [
+    {label: "Case links", value: detail.caseCount},
+    {label: "District links", value: detail.districtCount},
+    {label: "Station links", value: detail.stationCount},
+    {label: "Co-accused links", value: detail.coAccusedCount},
+    {label: "Link complexity", value: detail.linkComplexityScore},
+    {label: "Latest known case", value: detail.latestKnownCase},
+  ];
 
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-7">
-            {[
-              { label: 'Age', value: detail.age },
-              { label: 'Gender', value: detail.gender },
-              { label: 'Incidents', value: detail.incidentCount },
-              { label: 'Districts', value: detail.districtCount },
-              { label: 'Associates', value: detail.associateCount },
-              { label: 'First Incident', value: detail.firstIncidentDate || 'N/A' },
-              { label: 'Latest Incident', value: detail.latestIncidentDate || 'N/A' },
-            ].map((stat) => (
-              <Card key={stat.label} className="border-slate-200">
-                <CardContent className="p-4 text-center">
-                  <p className="text-xs font-semibold uppercase text-slate-500">{stat.label}</p>
-                  <p className="mt-1 text-lg font-bold text-[#0F172A]">{stat.value ?? 'N/A'}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <Card className="border-slate-200">
-              <CardHeader><CardTitle className="text-sm font-semibold text-slate-700">Profile Details</CardTitle></CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <p className="text-xs font-semibold uppercase text-slate-500">Crime Categories</p>
-                  <div className="mt-1 flex flex-wrap gap-1.5">
-                    {detail.crimeCategories?.length > 0
-                      ? detail.crimeCategories.map((c) => <Badge key={c} variant="secondary">{c}</Badge>)
-                      : <span className="text-sm text-slate-400">None</span>}
-                  </div>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold uppercase text-slate-500">Common Modus Operandi</p>
-                  <ul className="mt-1 list-inside list-disc text-sm text-slate-600">
-                    {detail.commonModusOperandi?.length > 0
-                      ? detail.commonModusOperandi.map((mo) => <li key={mo}>{mo}</li>)
-                      : <li className="list-none text-slate-400">N/A</li>}
-                  </ul>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold uppercase text-slate-500">Associated Phones</p>
-                  <div className="mt-1 space-y-1">
-                    {detail.phoneNumbers?.length > 0
-                      ? detail.phoneNumbers.map((p, i) => (
-                          <div key={i} className="flex items-center gap-2 text-sm text-slate-600">
-                            <Phone className="size-3.5 text-[#7C3AED]" /> {maskValue(p)}
-                          </div>
-                        ))
-                      : <span className="text-sm text-slate-400">None</span>}
-                  </div>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold uppercase text-slate-500">Associated Vehicles</p>
-                  <div className="mt-1 space-y-1">
-                    {detail.vehicles?.length > 0
-                      ? detail.vehicles.map((v, i) => (
-                          <div key={i} className="flex items-center gap-2 text-sm text-slate-600">
-                            <Car className="size-3.5 text-[#0891B2]" /> {maskValue(v)}
-                          </div>
-                        ))
-                      : <span className="text-sm text-slate-400">None</span>}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-slate-200">
-              <CardHeader><CardTitle className="text-sm font-semibold text-slate-700">Risk Factor Breakdown</CardTitle></CardHeader>
-              <CardContent className="space-y-3">
-                {detail.riskFactors?.length > 0 ? detail.riskFactors.map((rf) => (
-                  <div key={rf.factor} className="rounded-lg border border-slate-100 p-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-[#0F172A]">{rf.factor}</span>
-                      <Badge className={rf.score > 7 ? 'bg-[#DC2626]' : rf.score > 4 ? 'bg-[#D97706]' : 'bg-[#0891B2]'}>
-                        {rf.score}/10
-                      </Badge>
-                    </div>
-                    <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
-                      <div className="h-full rounded-full bg-current transition-all" style={{ width: `${(rf.score / 10) * 100}%`, color: rf.score > 7 ? '#DC2626' : rf.score > 4 ? '#D97706' : '#0891B2' }} />
-                    </div>
-                    {rf.evidence && <p className="mt-1 text-xs text-slate-400">Evidence: {rf.evidence}</p>}
-                  </div>
-                )) : <p className="text-sm text-slate-400">No risk factors data</p>}
-              </CardContent>
-            </Card>
-          </div>
-
-          <Card className="border-slate-200">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                <FileText className="size-4" /> Linked FIRs
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              {detail.linkedFIRs?.length > 0 ? (
-                <div className="divide-y">
-                  {detail.linkedFIRs.map((fir) => (
-                    <div key={fir.firNumber} className="flex items-center justify-between py-2 text-sm">
-                      <div>
-                        <Link
-                          to={`/network-intelligence?q=${fir.firNumber}`}
-                          className="font-mono text-xs font-medium text-[#1D4ED8] hover:underline"
-                        >
-                          {fir.firNumber}
-                        </Link>
-                        <span className="ml-3 text-slate-500">{fir.category}</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-xs text-slate-400">
-                        <span>{fir.district}</span>
-                        <span>{fir.date}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : <span className="text-sm text-slate-400">No linked FIRs</span>}
-            </CardContent>
-          </Card>
-
-          {detail.network && detail.network.nodes?.length > 0 && (
-            <Card className="border-slate-200">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                  <GitBranch className="size-4" /> Network Visualization
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <svg viewBox="0 0 400 300" className="w-full" style={{ maxHeight: 300 }}>
-                  {(() => {
-                    const nodes = detail.network.nodes;
-                    const outerNodes = nodes.filter(n => n.id !== detail.offenderId);
-                    
-                    const positions: Record<string, { x: number; y: number }> = {};
-                    positions[detail.offenderId] = { x: 200, y: 140 };
-                    
-                    outerNodes.forEach((node, i) => {
-                      const angle = (2 * Math.PI * i) / (outerNodes.length || 1);
-                      positions[node.id] = {
-                        x: 200 + 110 * Math.cos(angle),
-                        y: 140 + 90 * Math.sin(angle)
-                      };
-                    });
-
-                    return (
-                      <>
-                        {detail.network.edges.map((edge, i) => {
-                          const s = positions[edge.source];
-                          const t = positions[edge.target];
-                          if (!s || !t) return null;
-                          return (
-                            <line key={i} x1={s.x} y1={s.y} x2={t.x} y2={t.y} stroke="#CBD5E1" strokeWidth={1} />
-                          );
-                        })}
-                        {nodes.map((node) => {
-                          const pos = positions[node.id];
-                          if (!pos) return null;
-                          const isCenter = node.id === detail.offenderId;
-                          return (
-                            <g
-                              key={node.id}
-                              style={{ cursor: isCenter ? 'default' : 'pointer' }}
-                              onClick={() => {
-                                if (!isCenter) {
-                                  if (node.type === 'offender' || node.type === 'associate') {
-                                    navigate(`/offenders/${node.id}`);
-                                  } else if (node.type === 'incident') {
-                                    navigate(`/network-intelligence?q=${node.id}`);
-                                  }
-                                }
-                              }}
-                            >
-                              <circle
-                                cx={pos.x} cy={pos.y}
-                                r={isCenter ? 9 : 6} 
-                                fill={isCenter ? '#DC2626' : node.type === 'incident' ? '#1D4ED8' : '#7C3AED'} 
-                              />
-                              <text x={pos.x} y={pos.y + 16} textAnchor="middle" fontSize="6.5" fontWeight={isCenter ? "bold" : "normal"} fill="#334155">
-                                {node.label.length > 10 ? node.label.slice(0, 10) + '…' : node.label}
-                              </text>
-                            </g>
-                          );
-                        })}
-                      </>
-                    );
-                  })()}
-                </svg>
-              </CardContent>
-            </Card>
-          )}
-        </>
-      ) : null}
+  return <div className="space-y-6">
+    <Link to="/offenders" className="inline-flex items-center gap-1 text-sm text-[#1D4ED8] hover:underline"><ArrowLeft className="size-4" />Back to Person Links</Link>
+    <div className="flex items-center gap-4"><div className="flex size-14 items-center justify-center rounded-xl bg-[#1D4ED8]/10 text-[#1D4ED8]"><ShieldAlert className="size-7" /></div><div><h1 className="text-xl font-bold text-[#0F172A]">{maskName(detail.maskedName)}</h1><p className="text-sm text-slate-500">Masked person-link profile: {detail.personId}</p></div></div>
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">{stats.map((stat) => <Card key={stat.label} className="border-slate-200"><CardContent className="p-4 text-center"><p className="text-xs font-semibold uppercase text-slate-500">{stat.label}</p><p className="mt-1 text-lg font-bold text-[#0F172A]">{stat.value}</p></CardContent></Card>)}</div>
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <Card className="border-slate-200"><CardHeader><CardTitle className="text-sm font-semibold text-slate-700">Historical link indicators</CardTitle></CardHeader><CardContent className="space-y-4"><div className="flex flex-wrap gap-2">{detail.linkLabels.map((label) => <Badge key={label} className="bg-[#1D4ED8]">{label.replaceAll("_", " ")}</Badge>)}</div><div><p className="text-xs font-semibold uppercase text-slate-500">Crime categories</p><div className="mt-2 flex flex-wrap gap-1.5">{detail.crimeCategories.length ? detail.crimeCategories.map((category) => <Badge key={category} variant="secondary">{category}</Badge>) : <span className="text-sm text-slate-400">Not available</span>}</div></div><div><p className="text-xs font-semibold uppercase text-slate-500">Observed MO terms</p><ul className="mt-2 list-inside list-disc text-sm text-slate-600">{detail.modusOperandi.length ? detail.modusOperandi.map((mo) => <li key={mo}>{mo}</li>) : <li className="list-none text-slate-400">No verified MO terms.</li>}</ul></div></CardContent></Card>
+      <Card className="border-amber-200 bg-amber-50"><CardHeader><CardTitle className="text-sm font-semibold text-amber-950">Human-review safeguard</CardTitle></CardHeader><CardContent className="flex gap-2 text-sm leading-6 text-amber-950"><Info className="mt-1 size-4 shrink-0" /><span>These are historic case associations and link-complexity indicators, not a guilt conclusion, risk score, arrest recommendation, or prediction of future conduct.</span></CardContent></Card>
     </div>
-  );
+    <Card className="border-slate-200"><CardHeader><CardTitle className="flex items-center gap-2 text-sm font-semibold text-slate-700"><FileText className="size-4" />Linked synthetic cases</CardTitle></CardHeader><CardContent>{detail.linkedCases.length ? <div className="divide-y">{detail.linkedCases.map((linkedCase) => <div key={linkedCase.crimeNo} className="flex flex-wrap items-center justify-between gap-3 py-3"><button type="button" onClick={() => navigate(`/network-intelligence?q=${linkedCase.crimeNo}`)} className="text-left text-sm hover:underline"><span className="font-mono text-xs font-medium text-[#1D4ED8]">{linkedCase.crimeNo}</span><span className="ml-3 text-slate-600">{linkedCase.category}</span><span className="ml-3 text-xs text-slate-500">{linkedCase.district} · {linkedCase.date}</span></button><Button type="button" variant="outline" size="sm" onClick={() => void inspectSimilarMo(linkedCase.crimeNo)} className="gap-1 text-xs"><Search className="size-3" />Find similar MO</Button></div>)}</div> : <p className="text-sm text-slate-400">No linked cases are visible in the current scope.</p>}</CardContent></Card>
+    <Card className="border-slate-200"><CardHeader><CardTitle className="text-sm font-semibold text-slate-700">Similar modus-operandi evidence</CardTitle></CardHeader><CardContent>{similarMoLoading ? <Skeleton className="h-20 w-full" /> : similarMoError ? <p className="text-sm text-[#DC2626]">{similarMoError}</p> : similarCases ? similarCases.length ? <div className="space-y-3">{similarCases.map((similarCase) => <div key={similarCase.crimeNo} className="rounded-lg border border-slate-100 p-3 text-sm"><div className="flex flex-wrap items-center justify-between gap-2"><span className="font-mono text-xs text-[#1D4ED8]">{similarCase.crimeNo}</span><Badge variant="secondary">Similarity {similarCase.similarityScore}%</Badge></div><p className="mt-1 text-slate-700">{similarCase.category} · {similarCase.district} · {similarCase.date}</p><p className="mt-2 text-xs text-slate-500">Matched features: {similarCase.matchedFeatures.join(", ") || "recorded MO text"}</p>{similarCase.evidence.map((evidence) => <p key={evidence} className="mt-1 text-xs text-slate-600">{evidence}</p>)}</div>)}</div> : <p className="text-sm text-slate-500">No sufficiently similar synthetic cases were found for the selected case.</p> : <p className="text-sm text-slate-500">Select a linked case to retrieve deterministic, explainable MO similarity evidence.</p>}</CardContent></Card>
+    {detail.network?.nodes?.length ? <Card className="border-slate-200"><CardHeader><CardTitle className="flex items-center gap-2 text-sm font-semibold text-slate-700"><GitBranch className="size-4" />Scoped network summary</CardTitle></CardHeader><CardContent><p className="text-sm text-slate-600">{detail.network.nodes.length} nodes and {detail.network.edges.length} evidence-backed edges are available. Open Network Intelligence to inspect an edge evidence drawer.</p></CardContent></Card> : null}
+  </div>;
 }
