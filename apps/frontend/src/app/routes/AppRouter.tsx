@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AppLayout from "@/shared/layout/AppLayout";
 import StatusPanel from "@/shared/layout/StatusPanel";
 import { FilterProvider } from "@/kavach/context/FilterContext";
+import ProtectedRoute from "@/auth/ProtectedRoute";
 
 const AnalyticsPage = lazy(() => import("@/features/analytics/pages/AnalyticsPage"));
 const AgenticPage = lazy(() => import("@/features/analytics/pages/AgenticPage"));
@@ -28,6 +29,8 @@ const AICopilot = lazy(() => import("@/kavach/pages/AICopilotPage"));
 const AlertsPage = lazy(() => import("@/kavach/pages/AlertsPage"));
 const ReportsPage = lazy(() => import("@/kavach/pages/ReportsPage"));
 const DataManagement = lazy(() => import("@/kavach/pages/DataManagementPage"));
+const LoginPage = lazy(() => import("@/auth/LoginPage"));
+const UnauthorizedPage = lazy(() => import("@/auth/UnauthorizedPage"));
 
 export default function AppRouter() {
   return (
@@ -40,7 +43,11 @@ export default function AppRouter() {
       <Suspense fallback={<StatusPanel title="Loading" message="Preparing KAVACH AI workspace." />}>
         <FilterProvider>
           <Routes>
-            <Route element={<AppLayout />}>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/unauthorized" element={<UnauthorizedPage />} />
+
+            <Route element={<ProtectedRoute />}>
+              <Route element={<AppLayout />}>
               <Route index element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<KavachDashboard />} />
               <Route path="/geo-intelligence" element={<GeoIntelligence />} />
@@ -53,7 +60,12 @@ export default function AppRouter() {
               <Route path="/ai-copilot" element={<AICopilot />} />
               <Route path="/alerts" element={<AlertsPage />} />
               <Route path="/reports" element={<ReportsPage />} />
-              <Route path="/data-management" element={<DataManagement />} />
+                <Route
+                  path="/data-management"
+                  element={<ProtectedRoute roles={["STATE_ADMIN", "DATA_ENGINEER", "AUDITOR"]} />}
+                >
+                  <Route index element={<DataManagement />} />
+                </Route>
 
               <Route path="/data" element={<DataTablePage />} />
               <Route path="/upload" element={<UploadPage />} />
@@ -68,9 +80,12 @@ export default function AppRouter() {
               <Route path="/elite-dashboard" element={<Navigate to="/dashboard" replace />} />
               <Route path="/local-chat" element={<Navigate to="/chat" replace />} />
               <Route path="/insightflow-dashboard" element={<PremiumAgenticDashboardPage />} />
+              </Route>
             </Route>
 
-            <Route path="/mobile-upload/:sessionId" element={<MobileUploadPortal />} />
+            <Route path="/mobile-upload/:sessionId" element={<ProtectedRoute />}>
+              <Route index element={<MobileUploadPortal />} />
+            </Route>
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </FilterProvider>
