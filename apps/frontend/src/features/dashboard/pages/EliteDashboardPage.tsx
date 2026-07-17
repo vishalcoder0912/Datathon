@@ -366,7 +366,7 @@ export default function EliteDashboardPage() {
       let nextFilters = filters;
       let nextCharts = manualCharts;
       let nextKpis = manualKpis;
-      let geoRequested = false;
+      const geoRequested = false;
       
       if (cmd.action === "CLEAR_FILTERS") {
         nextFilters = {};
