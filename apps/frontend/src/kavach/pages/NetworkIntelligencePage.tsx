@@ -3,6 +3,7 @@ import {Search, GitBranch, AlertTriangle, X, Shrink, UserCheck, Link2, Info} fro
 import {useNavigate, useSearchParams} from "react-router-dom";
 import {kavachApi} from "@/kavach/api/kavachApi";
 import {useKavachFilters} from "@/kavach/context/FilterContext";
+import {useImportData} from "@/kavach/context/ImportDataContext";
 import CytoscapeNetworkGraph, {type NetworkGraphEdge, type NetworkGraphNode} from "@/kavach/components/CytoscapeNetworkGraph";
 import GlobalFilters from "@/kavach/components/GlobalFilters";
 import {Card, CardContent, CardHeader, CardTitle} from "@/shared/components/ui/card";
@@ -65,6 +66,7 @@ export default function NetworkIntelligencePage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const {filters} = useKavachFilters();
+  const { refreshKey } = useImportData();
   const search = searchParams.get("q") ?? "";
   const [graph, setGraph] = useState<GraphData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -72,6 +74,11 @@ export default function NetworkIntelligencePage() {
   const [selectedNode, setSelectedNode] = useState<NetworkGraphNode | null>(null);
   const [selectedEdge, setSelectedEdge] = useState<NetworkGraphEdge | null>(null);
   const [nodeTypes, setNodeTypes] = useState<string[]>([]);
+
+  // Auto-refresh when custom data is imported
+  useEffect(() => {
+    if (refreshKey > 0) { setGraph(null); setLoading(true); }
+  }, [refreshKey]);
   const [edgeTypes, setEdgeTypes] = useState<string[]>([]);
   const [minimumWeight, setMinimumWeight] = useState(1);
   const [layoutRevision, setLayoutRevision] = useState(0);
