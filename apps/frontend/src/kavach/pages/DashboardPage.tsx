@@ -118,7 +118,7 @@ export default function DashboardPage() {
             <StatCard title="Closed Investigations" value={overview.closedInvestigations ?? 0} icon={Shield} change={overview.periodChanges?.closedInvestigations} color="#15803D" />
             <StatCard title="High-Risk Districts" value={overview.highRiskDistricts ?? 0} icon={AlertTriangle} change={overview.periodChanges?.highRiskDistricts} color="#DC2626" />
             <StatCard title="Active Hotspots" value={overview.activeHotspots ?? 0} icon={MapPin} change={overview.periodChanges?.activeHotspots} color="#D97706" />
-            <StatCard title="Repeat Offenders" value={overview.repeatOffenders ?? 0} icon={Repeat} change={overview.periodChanges?.repeatOffenders} color="#7C3AED" />
+            <StatCard title="Multiple Case Links" value={overview.repeatOffenders ?? 0} icon={Repeat} change={overview.periodChanges?.repeatOffenders} color="#7C3AED" />
             <StatCard title="Current Alerts" value={overview.currentAlerts ?? 0} icon={Bell} change={overview.periodChanges?.currentAlerts} color="#DC2626" />
           </>
         ) : null}
