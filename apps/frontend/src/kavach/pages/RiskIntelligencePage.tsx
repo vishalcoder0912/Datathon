@@ -13,9 +13,13 @@ import { Skeleton } from '@/shared/components/ui/skeleton';
 interface DistrictRisk {
   district: string;
   riskScore: number;
-  factors: { name: string; value: number }[];
+  factors: { name: string; value: number; explanation?: string }[];
   confidence: number;
   incidents: number;
+}
+
+function asRecord(value: unknown): Record<string, unknown> {
+  return value !== null && typeof value === 'object' ? value as Record<string, unknown> : {};
 }
 
 export default function RiskIntelligencePage() {
@@ -37,11 +41,24 @@ export default function RiskIntelligencePage() {
       .then(([risksRes, distRes]) => {
         if (!cancelled) {
           const rawRisks = risksRes.data?.data || risksRes.data?.districts || risksRes.data || [];
-          const processedRisks = rawRisks.map((r: any) => ({
-            ...r,
-            riskScore: r.riskScore ?? r.score ?? 0,
-            confidence: r.confidence != null ? Math.round(r.confidence * 100) : 0,
-          }));
+          const processedRisks = (Array.isArray(rawRisks) ? rawRisks : []).map((item): DistrictRisk => {
+            const risk = asRecord(item);
+            const factors = Array.isArray(risk.factors) ? risk.factors.map((factor) => {
+              const value = asRecord(factor);
+              return {
+                name: String(value.name ?? value.factorName ?? 'Unspecified factor'),
+                value: Number(value.value ?? value.contribution ?? 0),
+                explanation: typeof value.explanation === 'string' ? value.explanation : undefined,
+              };
+            }) : [];
+            return {
+              district: String(risk.district ?? risk.districtName ?? 'Unknown district'),
+              riskScore: Number(risk.riskScore ?? risk.score ?? 0),
+              confidence: risk.confidence !== undefined && risk.confidence !== null ? Math.round(Number(risk.confidence) * 100) : 0,
+              incidents: Number(risk.incidents ?? risk.totalIncidents ?? 0),
+              factors,
+            };
+          });
           setRisks(processedRisks);
 
           const rawDist = distRes.data?.data?.distribution || distRes.data?.distribution?.distribution || distRes.data?.distribution || {};
@@ -60,7 +77,7 @@ export default function RiskIntelligencePage() {
           setDistribution(processedDist);
         }
       })
-      .catch((err) => { if (!cancelled) setError(err?.message || 'Failed to load risk data'); })
+      .catch((err: unknown) => { if (!cancelled) setError(err instanceof Error ? err.message : 'Failed to load risk data'); })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
   }, [filters]);
@@ -194,18 +211,19 @@ export default function RiskIntelligencePage() {
             <div className="space-y-2 rounded-lg bg-slate-50 p-4 text-sm text-slate-600">
               <p><strong>Risk Score</strong> = weighted combination of:</p>
               <ul className="ml-4 list-disc space-y-1">
-                <li>Incident frequency (30%)</li>
-                <li>Severity distribution (25%)</li>
-                <li>Repeat offender presence (20%)</li>
-                <li>Geographic spread (15%)</li>
-                <li>Temporal recency (10%)</li>
+                <li>Recent incident-trend increase (25%)</li>
+                <li>Historical incident frequency (20%)</li>
+                <li>Serious-offence concentration (15%)</li>
+                <li>Night-time concentration and hotspot persistence (20%)</li>
+                <li>Cross-district activity and historical multiple-case links (15%)</li>
+                <li>Data-quality penalty (5%)</li>
               </ul>
               <p className="mt-2 text-xs text-slate-400">
-                Confidence is reduced when less than 6 months of data is available or when the district has fewer than 50 recorded incidents.
+                Confidence is reduced when the scoped record count is low or when dates, locations, or legal sections are incomplete. The score applies only to an aggregate geography and time window.
               </p>
               <div className="mt-3 flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs text-amber-700">
                 <Info className="mt-0.5 size-4 shrink-0" />
-                <p>This risk scoring model is a decision-support tool. It does not replace professional law enforcement judgment. Scores should be reviewed alongside qualitative intelligence and field assessments.</p>
+                <p>This is geographic decision support, not a person score, guilt assessment, arrest recommendation, or prediction of future conduct. Human review is required.</p>
               </div>
             </div>
           </CardContent>
