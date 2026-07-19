@@ -64,9 +64,13 @@ export async function handleAgenticModelRoutes(request, response, pathname) {
   }
 
   if (pathname === '/api/agentic-models/health' && method === 'GET') {
-    const models = [...new Set(Object.values(OLLAMA_AGENT_MODELS))];
-    const checks = await pingOllamaModels(models);
-    sendSuccess(response, { checks }, 'Agentic model health checked');
+    try {
+      const models = [...new Set(Object.values(OLLAMA_AGENT_MODELS))];
+      const checks = await pingOllamaModels(models);
+      sendSuccess(response, { checks, ollamaAvailable: checks.some((c) => c.available) }, 'Agentic model health checked');
+    } catch (err) {
+      sendSuccess(response, { checks: [], ollamaAvailable: false, error: 'Ollama unreachable' }, 'Ollama not available');
+    }
     return true;
   }
 
