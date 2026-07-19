@@ -21,6 +21,7 @@ import {
 } from './dashboard-chart-handler.js';
 import { handleAgenticModelRoutes } from './agentic-models.js';
 import { handleKavachRoutes } from './kavach.js';
+import { handleDataGatewayRoutes } from './data-gateway.js';
 import { handleAuthRoutes } from './auth.js';
 import { handleAgenticRoutes } from './agentic.js';
 import {
@@ -59,6 +60,11 @@ export async function setupRoutes(request, response) {
 
     // Auth routes
     if (await handleAuthRoutes(request, response, pathname)) {
+      return;
+    }
+
+    // Secure multi-source ingestion and connector orchestration
+    if (await handleDataGatewayRoutes(request, response, pathname)) {
       return;
     }
 
@@ -162,7 +168,8 @@ export async function setupRoutes(request, response) {
           datasets: '/api/datasets/*',
           chat: '/api/datasets/:id/chat',
           analytics: '/api/datasets/:id/analyze',
-          export: '/api/datasets/:id/export'
+          export: '/api/datasets/:id/export',
+          dataGateway: '/api/kavach/data-sources/*'
         },
         documentation: '/api/docs',
         timestamp: new Date().toISOString()
