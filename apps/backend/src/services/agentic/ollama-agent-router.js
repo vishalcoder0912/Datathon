@@ -110,7 +110,7 @@ export async function embedWithAgent(input, options = {}) {
 }
 
 export async function pingOllamaModels(models) {
-  const timer = withTimeout(30000);
+  const timer = withTimeout(5000); // shorter timeout — Ollama is optional
   try {
     const res = await fetch(`${OLLAMA_HOST}/api/tags`, { signal: timer.signal });
     if (!res.ok) throw new Error(`Ollama tags failed: ${res.status}`);
@@ -119,6 +119,15 @@ export async function pingOllamaModels(models) {
     return models.map((model) => ({
       model,
       installed: installed.has(model),
+      available: true,
+    }));
+  } catch (err) {
+    // Ollama is not running — return graceful fallback so the server keeps running
+    return models.map((model) => ({
+      model,
+      installed: false,
+      available: false,
+      error: err?.message || 'Ollama unreachable',
     }));
   } finally {
     timer.done();
