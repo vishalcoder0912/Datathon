@@ -45,6 +45,12 @@ async function requireDataManager(request, response) {
   return {user, scope: scopeFromUser(user)};
 }
 
+function publicSource(source) {
+  if (!source) return source;
+  const {secretRef, ...safeSource} = source;
+  return {...safeSource, hasSecretRef: Boolean(secretRef)};
+}
+
 function invalidBody(response, parsed) {
   sendError(response, 400, parsed.error.issues.map((issue) => issue.message).join('; '), 'INVALID_DATA_GATEWAY_REQUEST');
   return true;
@@ -65,7 +71,7 @@ export async function handleDataGatewayRoutes(request, response, pathname) {
 
     if (pathname === '/api/kavach/data-sources' && request.method === 'GET') {
       const sources = await gateway.listSources(access.scope);
-      sendSuccess(response, sources, 'Data sources retrieved');
+      sendSuccess(response, sources.map(publicSource), 'Data sources retrieved');
       return true;
     }
 
@@ -77,9 +83,9 @@ export async function handleDataGatewayRoutes(request, response, pathname) {
         action: 'DATA_SOURCE_REGISTERED',
         entityType: 'DATA_SOURCE',
         entityId: source.id,
-        afterData: {...source, secretRef: source.secretRef ? '[secret-reference]' : null},
+        afterData: publicSource(source),
       });
-      sendCreated(response, source, 'Data source registered');
+      sendCreated(response, publicSource(source), 'Data source registered');
       return true;
     }
 
