@@ -13,6 +13,7 @@ POST /api/kavach/data-sources
 POST /api/kavach/data-sources/:id/test
 POST /api/kavach/data-sources/:id/discover
 POST /api/kavach/data-sources/:id/preview
+POST /api/kavach/data-sources/:id/mappings
 POST /api/kavach/data-sources/:id/sync
 GET  /api/kavach/ingestion-jobs/:id
 ```
@@ -59,7 +60,7 @@ RUNNING
 COMPLETED | PARTIAL | FAILED
 ```
 
-The first API slice currently creates `MAPPING_REQUIRED` or `READY_TO_IMPORT` jobs. Domain-table commit workers and Airbyte callbacks should update later states.
+A sync can enter `READY_TO_IMPORT` only when it references an approved mapping belonging to the same data source. Domain-table commit workers and Airbyte callbacks should update later states; `records_committed` remains zero until that controlled transaction actually succeeds.
 
 ## PostgreSQL migration
 

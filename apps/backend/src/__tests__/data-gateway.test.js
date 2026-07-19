@@ -1,3 +1,4 @@
+import {randomUUID} from 'node:crypto';
 import {describe, expect, it} from 'vitest';
 import {
   getConnectorProvider,
@@ -23,7 +24,8 @@ describe('Universal Data Gateway connector catalog', () => {
       bucket: 'ksp-imports',
       accessKey: 'should-not-survive',
       password: 'also-remove',
-    })).toEqual({bucket: 'ksp-imports'});
+      nested: {apiToken: 'remove-this-too', prefix: 'district/'},
+    })).toEqual({bucket: 'ksp-imports', nested: {prefix: 'district/'}});
   });
 
   it('describes native file upload capabilities', () => {
@@ -50,5 +52,33 @@ describe('Universal Data Gateway schema safety', () => {
     expect(preview).toHaveLength(1);
     expect(preview[0].suspect_name).not.toBe('Ramesh Kumar');
     expect(preview[0].district).toBe('Mysuru');
+  });
+});
+
+describe('Universal Data Gateway mapping workflow', () => {
+  it('requires an approved mapping before marking a job ready to import', async () => {
+    const {UniversalDataGateway} = await import('../kavach/connectors/universal-data-gateway.js');
+    const gateway = new UniversalDataGateway();
+    const scope = {userId: randomUUID(), roleCode: 'DATA_ENGINEER'};
+    const source = await gateway.registerSource({
+      name: `Test upload ${randomUUID()}`,
+      sourceType: 'FILE_UPLOAD',
+      config: {fileName: 'cases.csv'},
+    }, scope);
+    const mapping = await gateway.saveMapping(source, {
+      fieldMappings: {fir_no: 'Incident.firNumber', district: 'District.name'},
+      piiFields: [],
+      approved: true,
+    }, scope);
+    const job = await gateway.startSync(source, {
+      rows: [{fir_no: 'FIR-100', district: 'Mysuru'}],
+      mappingId: mapping.id,
+      mappingApproved: true,
+      mode: 'manual',
+    }, scope);
+
+    expect(job.status).toBe('READY_TO_IMPORT');
+    expect(job.mappingId).toBe(mapping.id);
+    expect(job.recordsCommitted).toBe(0);
   });
 });
