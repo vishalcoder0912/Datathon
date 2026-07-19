@@ -30,6 +30,7 @@
     "export:codebase": "node scripts/generate-codebase-export.mjs",
     "export:watch": "node scripts/watch-and-export-codebase.mjs",
     "lint": "npm run lint -w apps/frontend",
+    "typecheck": "npm run typecheck -w apps/frontend",
     "test": "npm run test -w apps/frontend",
     "test:backend": "npm run test:run -w apps/backend",
     "test:frontend": "npm run test -w apps/frontend",
