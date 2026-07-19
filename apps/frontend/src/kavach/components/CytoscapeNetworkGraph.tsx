@@ -1,12 +1,13 @@
-import {useEffect, useRef} from "react";
-import cytoscape, {type Core, type ElementDefinition} from "cytoscape";
+import {useEffect, useMemo, useRef, useState} from "react";
+import ForceGraph2D, {type ForceGraphMethods, type LinkObject, type NodeObject} from "react-force-graph-2d";
 
-export interface NetworkGraphNode {
+export interface NetworkGraphNode extends NodeObject {
   id: string;
   label: string;
   type: string;
   risk?: string;
   isRepeat?: boolean;
+  modusOperandi?: string[];
 }
 
 export interface NetworkEvidence {
@@ -15,18 +16,19 @@ export interface NetworkEvidence {
   [key: string]: string | number | boolean | undefined;
 }
 
-export interface NetworkGraphEdge {
+export interface NetworkGraphEdge extends LinkObject<NetworkGraphNode> {
   id?: string;
-  source: string;
-  target: string;
+  source: string | NetworkGraphNode;
+  target: string | NetworkGraphNode;
   label?: string;
   type?: string;
   relationshipType?: string;
   weight?: number;
+  explanation?: string;
   evidence?: NetworkEvidence[];
 }
 
-interface CytoscapeNetworkGraphProps {
+interface NetworkGraphProps {
   nodes: NetworkGraphNode[];
   edges: NetworkGraphEdge[];
   layoutRevision: number;
@@ -36,6 +38,7 @@ interface CytoscapeNetworkGraphProps {
 
 const nodeColors: Record<string, string> = {
   PERSON: "#dc2626",
+  SUSPECT: "#dc2626",
   OFFENDER: "#dc2626",
   ACCUSED: "#dc2626",
   CASE: "#1d4ed8",
@@ -54,89 +57,54 @@ function normalizeNodeType(type: string) {
   return type.replaceAll(" ", "_").toUpperCase();
 }
 
-function toElements(nodes: NetworkGraphNode[], edges: NetworkGraphEdge[]): ElementDefinition[] {
-  const nodeElements = nodes.map((node) => ({
-    group: "nodes" as const,
-    data: {
-      id: node.id,
-      label: node.label,
-      nodeType: normalizeNodeType(node.type),
-      color: nodeColors[normalizeNodeType(node.type)] ?? "#64748b",
-      isRepeat: String(Boolean(node.isRepeat)),
-    },
-  }));
-  const edgeElements = edges.map((edge, index) => ({
-    group: "edges" as const,
-    data: {
-      id: edge.id ?? `${edge.source}-${edge.target}-${edge.relationshipType ?? edge.type ?? index}`,
-      source: edge.source,
-      target: edge.target,
-      label: edge.relationshipType ?? edge.type ?? edge.label ?? "ASSOCIATED_WITH",
-      weight: Number(edge.weight ?? 1),
-    },
-  }));
-  return [...nodeElements, ...edgeElements];
+function endpointId(endpoint: string | NetworkGraphNode) {
+  return typeof endpoint === "string" ? endpoint : endpoint.id;
 }
 
-export default function CytoscapeNetworkGraph({nodes, edges, layoutRevision, onNodeSelect, onEdgeSelect}: CytoscapeNetworkGraphProps) {
-  const container = useRef<HTMLDivElement | null>(null);
-  const cyRef = useRef<Core | null>(null);
-  const nodeSelectRef = useRef(onNodeSelect);
-  const edgeSelectRef = useRef(onEdgeSelect);
-  const graphRef = useRef({nodes, edges});
-
-  nodeSelectRef.current = onNodeSelect;
-  edgeSelectRef.current = onEdgeSelect;
-  graphRef.current = {nodes, edges};
+export default function NetworkForceGraph({nodes, edges, layoutRevision, onNodeSelect, onEdgeSelect}: NetworkGraphProps) {
+  const graphRef = useRef<ForceGraphMethods<NetworkGraphNode, NetworkGraphEdge> | undefined>(undefined);
+  const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+  const graphData = useMemo(() => ({nodes: nodes.map((node) => ({...node})), links: edges.map((edge) => ({...edge}))}), [edges, nodes]);
 
   useEffect(() => {
-    if (!container.current) return;
-    const cy = cytoscape({
-      container: container.current,
-      elements: toElements(nodes, edges),
-      style: [
-        {selector: "node", style: {"background-color": "data(color)", label: "data(label)", color: "#334155", "font-size": 10, "text-valign": "bottom", "text-margin-y": 6, width: 22, height: 22, "border-width": 2, "border-color": "#ffffff"}},
-        {selector: "node[isRepeat = 'true']", style: {"border-color": "#f59e0b", "border-width": 4}},
-        {selector: "edge", style: {width: "mapData(weight, 1, 5, 1, 4)", "line-color": "#94a3b8", "target-arrow-color": "#94a3b8", "target-arrow-shape": "triangle", "curve-style": "bezier", label: "data(label)", "font-size": 8, color: "#64748b", "text-background-color": "#ffffff", "text-background-opacity": 0.85, "text-background-padding": 2}},
-        {selector: ":selected", style: {"border-color": "#0f172a", "border-width": 4, "line-color": "#1d4ed8", "target-arrow-color": "#1d4ed8"}},
-      ],
-      layout: {name: "cose", animate: false, padding: 40, nodeRepulsion: () => 12_000, idealEdgeLength: () => 110},
-      minZoom: 0.25,
-      maxZoom: 2.5,
-    });
-    cy.on("tap", "node", (event) => {
-      const node = graphRef.current.nodes.find((item) => item.id === event.target.id());
-      if (node) nodeSelectRef.current(node);
-    });
-    cy.on("tap", "edge", (event) => {
-      const edge = graphRef.current.edges.find((item, index) => (item.id ?? `${item.source}-${item.target}-${item.relationshipType ?? item.type ?? index}`) === event.target.id());
-      if (edge) edgeSelectRef.current(edge);
-    });
-    cyRef.current = cy;
-
-    return () => {
-      cy.destroy();
-      cyRef.current = null;
-    };
-  // Cytoscape owns mutations after initial construction; updates are handled below.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    const cy = cyRef.current;
-    if (!cy) return;
-    cy.elements().remove();
-    cy.add(toElements(nodes, edges));
-    cy.layout({name: "cose", animate: false, padding: 40, nodeRepulsion: () => 12_000, idealEdgeLength: () => 110}).run();
-    cy.fit(undefined, 35);
-  }, [edges, nodes]);
-
-  useEffect(() => {
-    const cy = cyRef.current;
-    if (!cy || layoutRevision === 0) return;
-    cy.layout({name: "cose", animate: false, padding: 40, nodeRepulsion: () => 12_000, idealEdgeLength: () => 110}).run();
-    cy.fit(undefined, 35);
+    if (layoutRevision === 0) return;
+    graphRef.current?.d3ReheatSimulation();
+    graphRef.current?.zoomToFit(450, 50);
   }, [layoutRevision]);
 
-  return <div ref={container} className="h-[520px] w-full rounded-lg bg-slate-50" aria-label="Interactive relationship network graph" />;
+  return (
+    <div className="relative h-[520px] w-full overflow-hidden rounded-lg bg-slate-50" aria-label="Interactive relationship force graph">
+      <ForceGraph2D
+        ref={graphRef}
+        graphData={graphData}
+        width={900}
+        height={520}
+        backgroundColor="#f8fafc"
+        nodeRelSize={5}
+        nodeVal={(node) => node.isRepeat ? 2.2 : 1}
+        nodeColor={(node) => selectedNodeId === node.id ? "#0f172a" : nodeColors[normalizeNodeType(node.type)] ?? "#64748b"}
+        nodeLabel={(node) => `${node.label}\n${normalizeNodeType(node.type)}${node.isRepeat ? "\nRepeat case link" : ""}${node.modusOperandi?.length ? `\nMO: ${node.modusOperandi.join(", ")}` : ""}`}
+        linkWidth={(link) => Math.min(5, Math.max(1, Number(link.weight ?? 1)))}
+        linkColor={() => "#94a3b8"}
+        linkDirectionalArrowLength={4}
+        linkDirectionalArrowRelPos={1}
+        linkLabel={(link) => link.explanation ?? link.evidence?.[0]?.reason ?? link.relationshipType ?? link.type ?? "Evidence-backed relationship"}
+        cooldownTicks={80}
+        onEngineStop={() => graphRef.current?.zoomToFit(350, 45)}
+        onNodeClick={(node) => {
+          setSelectedNodeId(node.id);
+          onNodeSelect(node);
+        }}
+        onLinkClick={(link) => {
+          const selected = edges.find((edge) => edge.id === link.id || (endpointId(edge.source) === endpointId(link.source) && endpointId(edge.target) === endpointId(link.target)));
+          if (selected) onEdgeSelect(selected);
+        }}
+      />
+      <div className="pointer-events-none absolute bottom-3 left-3 flex max-w-[calc(100%-1.5rem)] flex-wrap gap-2 rounded-md border border-slate-200 bg-white/95 px-3 py-2 text-[10px] font-medium text-slate-600 shadow-sm">
+        {Object.entries(nodeColors).filter(([type]) => ["SUSPECT", "INCIDENT", "VICTIM", "LOCATION", "POLICE_STATION", "MODUS_OPERANDI"].includes(type)).map(([type, color]) => (
+          <span key={type} className="flex items-center gap-1"><span className="size-2 rounded-full" style={{backgroundColor: color}} />{type.replaceAll("_", " ")}</span>
+        ))}
+      </div>
+    </div>
+  );
 }
