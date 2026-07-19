@@ -1,0 +1,6 @@
+incident_id,occurred_at,latitude,longitude,district,police_station,crime_category,modus_operandi,person_id,person_role,location_id,source_system
+INC-001,2026-07-01T20:00:00Z,12.9716,77.5946,Bengaluru,Central PS,BURGLARY,forced entry,MASKED-001,suspect,LOC-001,synthetic
+INC-002,2026-07-02T21:00:00Z,12.9717,77.5947,Bengaluru,Central PS,BURGLARY,forced entry,MASKED-001,suspect,LOC-001,synthetic
+INC-003,2026-07-03T22:00:00Z,12.9718,77.5948,Bengaluru,Central PS,BURGLARY,forced entry,MASKED-002,suspect,LOC-001,synthetic
+INC-004,2026-07-04T23:00:00Z,12.9719,77.5949,Bengaluru,Central PS,BURGLARY,forced entry,MASKED-003,suspect,LOC-001,synthetic
+INC-005,2026-07-05T19:00:00Z,12.9720,77.5950,Bengaluru,Central PS,BURGLARY,forced entry,MASKED-004,suspect,LOC-001,synthetic
