@@ -93,7 +93,13 @@ export function getConnectorProvider(sourceType) {
 }
 
 export function scrubConnectorConfig(config = {}) {
-  return Object.fromEntries(Object.entries(config).filter(([key]) => !secretKeyPattern.test(key)));
+  if (Array.isArray(config)) return config.map((item) => scrubConnectorConfig(item));
+  if (!config || typeof config !== 'object') return config;
+  return Object.fromEntries(
+    Object.entries(config)
+      .filter(([key]) => !secretKeyPattern.test(key))
+      .map(([key, value]) => [key, scrubConnectorConfig(value)]),
+  );
 }
 
 export function validateConnectorConfiguration(sourceType, config = {}, secretRef = null) {
