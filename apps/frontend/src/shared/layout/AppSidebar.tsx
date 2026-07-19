@@ -34,6 +34,7 @@ interface NavigationItem {
 
 const kavachNavItems: NavigationItem[] = [
   { label: "Dashboard", to: "/dashboard", icon: Shield },
+  { label: "Intelligence OS", to: "/intelligence-os", icon: BrainCircuit },
   { label: "Geo Intelligence", to: "/geo-intelligence", icon: Map },
   { label: "Trend Intelligence", to: "/trend-intelligence", icon: TrendingUp },
   { label: "Network Intelligence", to: "/network-intelligence", icon: GitBranch },
