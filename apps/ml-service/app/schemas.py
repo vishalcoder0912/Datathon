@@ -103,3 +103,13 @@ class ExplainRequest(ApiModel):
     record_count: int | None = Field(default=None, ge=0, alias="recordCount")
     data_period: dict[str, Any] | None = Field(default=None, alias="dataPeriod")
     model_version: str | None = Field(default=None, alias="modelVersion")
+
+
+class SocioeconomicRequest(AnalyticsRequest):
+    indicators: list[dict[str, Any]] = Field(default_factory=list)
+
+
+class AlertsRequest(AnalyticsRequest):
+    growth_threshold: float = Field(default=30.0, alias="growthThreshold")
+    z_threshold: float = Field(default=1.5, alias="zThreshold")
+

@@ -29,6 +29,7 @@ const AICopilot = lazy(() => import("@/kavach/pages/AICopilotPage"));
 const AlertsPage = lazy(() => import("@/kavach/pages/AlertsPage"));
 const ReportsPage = lazy(() => import("@/kavach/pages/ReportsPage"));
 const DataManagement = lazy(() => import("@/kavach/pages/DataManagementPage"));
+const ImportDataPage = lazy(() => import("@/kavach/pages/ImportDataPage"));
 const LoginPage = lazy(() => import("@/auth/LoginPage"));
 const UnauthorizedPage = lazy(() => import("@/auth/UnauthorizedPage"));
 
@@ -48,18 +49,23 @@ export default function AppRouter() {
 
             <Route element={<ProtectedRoute />}>
               <Route element={<AppLayout />}>
-              <Route index element={<Navigate to="/dashboard" replace />} />
-              <Route path="/dashboard" element={<KavachDashboard />} />
-              <Route path="/geo-intelligence" element={<GeoIntelligence />} />
-              <Route path="/trend-intelligence" element={<TrendIntelligence />} />
-              <Route path="/network-intelligence" element={<NetworkIntelligence />} />
-              <Route path="/offenders" element={<OffendersPage />} />
-              <Route path="/offenders/:offenderId" element={<OffenderDetailPage />} />
-              <Route path="/risk-intelligence" element={<RiskIntelligence />} />
-              <Route path="/social-intelligence" element={<SocialIntelligence />} />
-              <Route path="/ai-copilot" element={<AICopilot />} />
-              <Route path="/alerts" element={<AlertsPage />} />
-              <Route path="/reports" element={<ReportsPage />} />
+                <Route index element={<Navigate to="/dashboard" replace />} />
+
+                {/* ── Command Centre ── */}
+                <Route path="/dashboard" element={<KavachDashboard />} />
+                <Route path="/geo-intelligence" element={<GeoIntelligence />} />
+                <Route path="/trend-intelligence" element={<TrendIntelligence />} />
+                <Route path="/network-intelligence" element={<NetworkIntelligence />} />
+                <Route path="/offenders" element={<OffendersPage />} />
+                <Route path="/offenders/:offenderId" element={<OffenderDetailPage />} />
+                <Route path="/risk-intelligence" element={<RiskIntelligence />} />
+                <Route path="/social-intelligence" element={<SocialIntelligence />} />
+                <Route path="/ai-copilot" element={<AICopilot />} />
+                <Route path="/alerts" element={<AlertsPage />} />
+                <Route path="/reports" element={<ReportsPage />} />
+                <Route path="/import-data" element={<ImportDataPage />} />
+
+                {/* ── Admin-only ── */}
                 <Route
                   path="/data-management"
                   element={<ProtectedRoute roles={["STATE_ADMIN", "DATA_ENGINEER", "AUDITOR"]} />}
@@ -67,19 +73,21 @@ export default function AppRouter() {
                   <Route index element={<DataManagement />} />
                 </Route>
 
-              <Route path="/data" element={<DataTablePage />} />
-              <Route path="/upload" element={<UploadPage />} />
-              <Route path="/pdf" element={<PdfUploadPage />} />
-              <Route path="/pdf-upload" element={<PdfUploadPage />} />
-              <Route path="/analytics" element={<AnalyticsPage />} />
-              <Route path="/chat" element={<ChatPage />} />
-              <Route path="/agentic" element={<AgenticPage />} />
-              <Route path="/agentic-data-science" element={<AgenticDataSciencePage />} />
-              <Route path="/ml" element={<MLPage />} />
+                {/* ── Legacy / InsightFlow ── */}
+                <Route path="/data" element={<DataTablePage />} />
+                <Route path="/upload" element={<UploadPage />} />
+                <Route path="/pdf" element={<PdfUploadPage />} />
+                <Route path="/pdf-upload" element={<PdfUploadPage />} />
+                <Route path="/analytics" element={<AnalyticsPage />} />
+                <Route path="/chat" element={<ChatPage />} />
+                <Route path="/agentic" element={<AgenticPage />} />
+                <Route path="/agentic-data-science" element={<AgenticDataSciencePage />} />
+                <Route path="/ml" element={<MLPage />} />
+                <Route path="/insightflow-dashboard" element={<PremiumAgenticDashboardPage />} />
 
-              <Route path="/elite-dashboard" element={<Navigate to="/dashboard" replace />} />
-              <Route path="/local-chat" element={<Navigate to="/chat" replace />} />
-              <Route path="/insightflow-dashboard" element={<PremiumAgenticDashboardPage />} />
+                {/* ── Redirects ── */}
+                <Route path="/elite-dashboard" element={<Navigate to="/dashboard" replace />} />
+                <Route path="/local-chat" element={<Navigate to="/chat" replace />} />
               </Route>
             </Route>
 

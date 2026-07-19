@@ -6,6 +6,7 @@ import {
 import { TrendingUp, TrendingDown, AlertTriangle } from 'lucide-react';
 import { kavachApi } from '@/kavach/api/kavachApi';
 import { useKavachFilters } from '@/kavach/context/FilterContext';
+import { useImportData } from '@/kavach/context/ImportDataContext';
 import GlobalFilters from '@/kavach/components/GlobalFilters';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/shared/components/ui/tabs';
@@ -16,10 +17,16 @@ type TrendTab = 'monthly' | 'weekly' | 'day-of-week' | 'hour' | 'daypart' | 'cat
 
 export default function TrendIntelligencePage() {
   const { filters } = useKavachFilters();
+  const { refreshKey } = useImportData();
   const [activeTab, setActiveTab] = useState<TrendTab>('monthly');
   const [data, setData] = useState<Record<string, unknown>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Auto-refresh when custom data is imported
+  useEffect(() => {
+    if (refreshKey > 0) setData({});
+  }, [refreshKey]);
 
   useEffect(() => {
     let cancelled = false;

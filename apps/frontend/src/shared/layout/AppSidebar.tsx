@@ -16,31 +16,45 @@ import {
   Table2,
   Upload,
   BrainCircuit,
+  FileUp,
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
-import {useAuth} from "@/auth/AuthProvider";
-import type {KavachRole} from "@/kavach/api/types";
+import { useAuth } from "@/auth/AuthProvider";
+import type { KavachRole } from "@/kavach/api/types";
+import { useImportData } from "@/kavach/context/ImportDataContext";
 
 interface NavigationItem {
   label: string;
   to: string;
   icon: LucideIcon;
   roles?: KavachRole[];
+  badge?: boolean;
 }
 
 const kavachNavItems: NavigationItem[] = [
-  {label: "Dashboard", to: "/dashboard", icon: Shield},
-  {label: "Geo Intelligence", to: "/geo-intelligence", icon: Map},
-  {label: "Trend Intelligence", to: "/trend-intelligence", icon: TrendingUp},
-  {label: "Network Intelligence", to: "/network-intelligence", icon: GitBranch},
-  {label: "Person Links", to: "/offenders", icon: Users, roles: ["STATE_ADMIN", "DISTRICT_OFFICER", "STATION_OFFICER", "INVESTIGATOR", "SCRB_ANALYST", "EVALUATOR"] as KavachRole[]},
-  {label: "Risk Intelligence", to: "/risk-intelligence", icon: AlertTriangle},
-  {label: "Social Intelligence", to: "/social-intelligence", icon: BarChart3},
-  {label: "AI Copilot", to: "/ai-copilot", icon: Bot},
-  {label: "Alerts", to: "/alerts", icon: Bell},
-  {label: "Reports", to: "/reports", icon: FileText},
-  {label: "Data Management", to: "/data-management", icon: Database, roles: ["STATE_ADMIN", "DATA_ENGINEER", "AUDITOR"] as KavachRole[]},
+  { label: "Dashboard", to: "/dashboard", icon: Shield },
+  { label: "Geo Intelligence", to: "/geo-intelligence", icon: Map },
+  { label: "Trend Intelligence", to: "/trend-intelligence", icon: TrendingUp },
+  { label: "Network Intelligence", to: "/network-intelligence", icon: GitBranch },
+  {
+    label: "Person Links",
+    to: "/offenders",
+    icon: Users,
+    roles: ["STATE_ADMIN", "DISTRICT_OFFICER", "STATION_OFFICER", "INVESTIGATOR", "SCRB_ANALYST", "EVALUATOR"] as KavachRole[],
+  },
+  { label: "Risk Intelligence", to: "/risk-intelligence", icon: AlertTriangle },
+  { label: "Social Intelligence", to: "/social-intelligence", icon: BarChart3 },
+  { label: "AI Copilot", to: "/ai-copilot", icon: Bot },
+  { label: "Alerts", to: "/alerts", icon: Bell },
+  { label: "Reports", to: "/reports", icon: FileText },
+  { label: "Import Data", to: "/import-data", icon: FileUp, badge: true },
+  {
+    label: "Data Management",
+    to: "/data-management",
+    icon: Database,
+    roles: ["STATE_ADMIN", "DATA_ENGINEER", "AUDITOR"] as KavachRole[],
+  },
 ];
 
 const legacyNavItems = [
@@ -62,11 +76,15 @@ function isActivePath(currentPath: string, itemPath: string) {
 
 export default function AppSidebar() {
   const location = useLocation();
-  const {isDemoSession, logout, user} = useAuth();
-  const visibleKavachItems = kavachNavItems.filter((item) => !item.roles || (user && item.roles.includes(user.roleCode)));
+  const { isDemoSession, logout, user } = useAuth();
+  const { hasCustomData, importedCount, lastImportAt } = useImportData();
+  const visibleKavachItems = kavachNavItems.filter(
+    (item) => !item.roles || (user && item.roles.includes(user.roleCode))
+  );
 
   return (
     <aside className="sticky top-0 flex h-screen flex-col overflow-hidden border-r border-white/10 bg-[#0F172A] text-white">
+      {/* Logo */}
       <div className="flex h-[76px] items-center gap-3 border-b border-white/10 px-5">
         <div className="flex size-11 items-center justify-center rounded-2xl bg-gradient-to-br from-[#1D4ED8] to-[#0891B2] shadow-lg shadow-blue-500/30">
           <Shield className="size-5" />
@@ -77,34 +95,45 @@ export default function AppSidebar() {
         </div>
       </div>
 
-      <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-6">
-        <p className="mb-4 px-3 text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+      <nav className="flex-1 space-y-0.5 overflow-y-auto px-3 py-5">
+        {/* ── Command Centre ── */}
+        <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
           Command Centre
         </p>
 
         {visibleKavachItems.map((item) => {
           const Icon = item.icon;
           const active = isActivePath(location.pathname, item.to);
+          const showBadge = item.badge && hasCustomData;
 
           return (
             <NavLink
               key={item.to}
               to={item.to}
               className={cn(
-                "flex h-11 items-center gap-3 rounded-xl px-3 text-sm font-semibold transition-all",
+                "relative flex h-11 items-center gap-3 rounded-xl px-3 text-sm font-semibold transition-all",
                 active
                   ? "bg-gradient-to-r from-[#1D4ED8] to-[#0891B2] text-white shadow-lg shadow-blue-950/30"
-                  : "text-slate-300 hover:bg-white/10 hover:text-white",
+                  : "text-slate-300 hover:bg-white/10 hover:text-white"
               )}
             >
               <Icon className="size-4 shrink-0" />
-              <span className="truncate">{item.label}</span>
+              <span className="flex-1 truncate">{item.label}</span>
+              {showBadge && (
+                <span className="flex h-5 min-w-[20px] items-center justify-center rounded-full bg-[#15803D] px-1.5 text-[10px] font-bold text-white animate-pulse">
+                  {importedCount > 999 ? "999+" : importedCount}
+                </span>
+              )}
+              {item.to === "/import-data" && !hasCustomData && (
+                <span className="flex size-2 rounded-full bg-[#0891B2]" />
+              )}
             </NavLink>
           );
         })}
 
+        {/* ── Legacy ── */}
         <div className="my-4 border-t border-white/10" />
-        <p className="mb-4 px-3 text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+        <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
           Legacy
         </p>
 
@@ -120,7 +149,7 @@ export default function AppSidebar() {
                 "flex h-10 items-center gap-3 rounded-xl px-3 text-xs font-medium transition-all",
                 active
                   ? "bg-white/10 text-white"
-                  : "text-slate-400 hover:bg-white/5 hover:text-slate-300",
+                  : "text-slate-400 hover:bg-white/5 hover:text-slate-300"
               )}
             >
               <Icon className="size-4 shrink-0" />
@@ -130,12 +159,34 @@ export default function AppSidebar() {
         })}
       </nav>
 
-      <div className="border-t border-white/10 p-3">
-        {isDemoSession && <div className="mb-2 rounded-md bg-amber-400/15 px-2 py-1 text-[11px] font-semibold text-amber-200">DEMO DATA MODE</div>}
+      {/* ── Footer ── */}
+      <div className="border-t border-white/10 p-3 space-y-2">
+        {/* Custom data indicator */}
+        {hasCustomData && (
+          <div className="flex items-center gap-2 rounded-lg bg-[#15803D]/20 border border-[#15803D]/30 px-3 py-2">
+            <span className="flex size-2 shrink-0 rounded-full bg-[#15803D] animate-pulse" />
+            <div className="min-w-0 flex-1">
+              <p className="text-[11px] font-bold text-[#4ade80]">CUSTOM DATA ACTIVE</p>
+              <p className="text-[10px] text-slate-400 truncate">
+                {importedCount.toLocaleString()} records · {lastImportAt ? new Date(lastImportAt).toLocaleTimeString() : ""}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {isDemoSession && (
+          <div className="rounded-md bg-amber-400/15 px-2 py-1 text-[11px] font-semibold text-amber-200">
+            DEMO DATA MODE
+          </div>
+        )}
         <p className="truncate px-2 text-xs font-semibold text-slate-200">{user?.displayName}</p>
         <p className="truncate px-2 text-[11px] text-slate-400">{user?.roleCode.replaceAll("_", " ")}</p>
         {!isDemoSession && (
-          <button type="button" onClick={() => void logout()} className="mt-2 w-full rounded-md px-2 py-1.5 text-left text-xs font-medium text-slate-300 hover:bg-white/10 hover:text-white">
+          <button
+            type="button"
+            onClick={() => void logout()}
+            className="mt-1 w-full rounded-md px-2 py-1.5 text-left text-xs font-medium text-slate-300 hover:bg-white/10 hover:text-white"
+          >
             Sign out
           </button>
         )}

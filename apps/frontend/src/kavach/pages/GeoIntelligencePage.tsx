@@ -1,10 +1,11 @@
-import {useCallback, useMemo, useState} from "react";
-import {useQuery} from "@tanstack/react-query";
+import {useCallback, useEffect, useMemo, useState} from "react";
+import {useQuery, useQueryClient} from "@tanstack/react-query";
 import {AlertTriangle, Info, MapPin, Radar, ShieldCheck} from "lucide-react";
 import {kavachApi} from "@/kavach/api/kavachApi";
 import {kavachQueryKeys, unwrapData} from "@/kavach/api/queries";
 import {usePoliceStations} from "@/kavach/hooks/useKavachQueries";
 import {useKavachFilters} from "@/kavach/context/FilterContext";
+import {useImportData} from "@/kavach/context/ImportDataContext";
 import MapLibreDistrictMap from "@/kavach/maps/MapLibreDistrictMap";
 import GlobalFilters from "@/kavach/components/GlobalFilters";
 import {Card, CardContent, CardHeader, CardTitle} from "@/shared/components/ui/card";
@@ -48,11 +49,20 @@ function toDistrictList(payload: unknown): DistrictSummary[] {
 
 export default function GeoIntelligencePage() {
   const {filters, setDistricts, setPoliceStations} = useKavachFilters();
+  const { refreshKey } = useImportData();
+  const queryClient = useQueryClient();
   const [selectedDistrict, setSelectedDistrict] = useState<string | null>(filters.districts[0] ?? null);
   const [selectedStationId, setSelectedStationId] = useState<string | null>(null);
   const [showStations, setShowStations] = useState(true);
   const [showRisk, setShowRisk] = useState(true);
   const apiFilters = useMemo(() => filtersForApi(filters), [filters]);
+
+  // Auto-refresh when custom data is imported
+  useEffect(() => {
+    if (refreshKey > 0) {
+      queryClient.invalidateQueries({ queryKey: ["kavach"] });
+    }
+  }, [refreshKey, queryClient]);
 
   const districtsQuery = useQuery({
     queryKey: kavachQueryKeys.districts(apiFilters),
