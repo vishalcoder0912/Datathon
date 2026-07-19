@@ -1,5 +1,6 @@
 import {z} from 'zod';
 import {readJsonBody} from '../auth/http.js';
+import {KavachRepository} from '../kavach/kavach-repository.js';
 import {
   analyzeCrimeDataQuality,
   buildInvestigationPlan,
@@ -16,6 +17,9 @@ import {authorize, scopeFromUser} from '../middleware/authorize.js';
 import {writeAuditEvent} from '../middleware/audit.js';
 import {ensureRequestContext} from '../middleware/request-context.js';
 import {sendError, sendSuccess} from '../utils/response-utils.js';
+
+const investigationRepository = new KavachRepository();
+let investigationRepositoryLoaded = false;
 
 const rowsSchema = z.object({
   rows: z.array(z.record(z.unknown())).max(10_000),
@@ -83,6 +87,82 @@ async function audit(request, action, entityType, result) {
   });
 }
 
+function dateFromMonths(months) {
+  const date = new Date();
+  date.setUTCMonth(date.getUTCMonth() - Math.max(1, Number(months || 6)));
+  return date.toISOString().slice(0, 10);
+}
+
+async function loadInvestigationRepository() {
+  if (investigationRepositoryLoaded) return true;
+  if (investigationRepository.isPostgres) {
+    investigationRepositoryLoaded = await investigationRepository.initialize();
+    return investigationRepositoryLoaded;
+  }
+  await Promise.resolve(investigationRepository.loadAll());
+  investigationRepositoryLoaded = true;
+  return true;
+}
+
+function safeIncidentPreview(row) {
+  return {
+    crimeNo: row.crimeNo || row.crime_no || row.fir_number || null,
+    incidentDate: row.incidentDate || row.incident_date || null,
+    district: row.district || null,
+    policeStation: row.policeStation || row.police_station || null,
+    crimeType: row.crimeType || row.crime_type || null,
+    severity: row.severity || null,
+    status: row.status || null,
+    latitude: row.latitude ?? null,
+    longitude: row.longitude ?? null,
+  };
+}
+
+async function executeApprovedInvestigation(plan, scope) {
+  try {
+    const available = await loadInvestigationRepository();
+    if (!available) {
+      return {
+        status: 'planned_only',
+        recordCount: 0,
+        incidents: [],
+        reason: investigationRepository.loadError || 'Authoritative KAVACH repository is unavailable.',
+      };
+    }
+
+    const filters = {
+      district: plan.parsedIntent.district || undefined,
+      crimeType: plan.parsedIntent.crimeType || undefined,
+      dateFrom: dateFromMonths(plan.parsedIntent.months),
+      pageSize: 100,
+    };
+    const rows = await investigationRepository.getIncidents(filters, scope);
+    const incidents = (Array.isArray(rows) ? rows : []).slice(0, 100).map(safeIncidentPreview);
+    const categories = incidents.reduce((summary, incident) => {
+      const key = incident.crimeType || 'Unknown';
+      summary[key] = (summary[key] || 0) + 1;
+      return summary;
+    }, {});
+
+    return {
+      status: 'completed',
+      dataSource: investigationRepository.mode || (investigationRepository.isPostgres ? 'postgres' : 'file-demo'),
+      recordCount: incidents.length,
+      incidents,
+      categorySummary: categories,
+      resultLimit: 100,
+      note: 'The authoritative preview applies approved repository filters. Vehicle and graph-specific evidence remains in the graph stage and requires human verification.',
+    };
+  } catch (error) {
+    return {
+      status: 'degraded',
+      recordCount: 0,
+      incidents: [],
+      reason: 'The approved query plan was created, but the authoritative repository preview could not be completed.',
+    };
+  }
+}
+
 export async function handleIntelligenceOSRoutes(request, response, pathname) {
   if (!pathname.startsWith('/api/kavach/intelligence-os')) return false;
   ensureRequestContext(request);
@@ -129,9 +209,11 @@ export async function handleIntelligenceOSRoutes(request, response, pathname) {
       if (!access) return true;
       const parsed = investigationSchema.safeParse(await readJsonBody(request, 256_000));
       if (!parsed.success) return invalidBody(response, parsed);
-      const result = buildInvestigationPlan(parsed.data.query, {...parsed.data.filters, districtId: access.scope.districtId, stationId: access.scope.unitId});
-      await audit(request, 'INVESTIGATION_QUERY_PLANNED', 'INVESTIGATION_QUERY', result);
-      sendSuccess(response, result, 'Investigation query safely planned');
+      const plan = buildInvestigationPlan(parsed.data.query, {...parsed.data.filters, districtId: access.scope.districtId, stationId: access.scope.unitId});
+      const authoritativeResult = await executeApprovedInvestigation(plan, access.scope);
+      const result = {...plan, authoritativeResult};
+      await audit(request, 'INVESTIGATION_QUERY_EXECUTED', 'INVESTIGATION_QUERY', result);
+      sendSuccess(response, result, 'Investigation query planned and approved preview executed');
       return true;
     }
 
