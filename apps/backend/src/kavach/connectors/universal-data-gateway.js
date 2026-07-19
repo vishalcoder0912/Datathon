@@ -4,6 +4,7 @@ import {getConnectorProvider, scrubConnectorConfig, validateConnectorConfigurati
 const memory = {
   sources: new Map(),
   jobs: new Map(),
+  mappings: new Map(),
 };
 
 const piiKeyPattern = /(name|phone|mobile|email|address|aadhaar|pan|account|device|imei|ip|passport)/i;
@@ -85,6 +86,25 @@ function serializeSource(row) {
     status: row.status,
     districtId: row.district_id ?? row.districtId ?? null,
     unitId: row.unit_id ?? row.unitId ?? null,
+    createdAt: row.created_at ?? row.createdAt,
+    updatedAt: row.updated_at ?? row.updatedAt,
+    persistence: row.persistence || 'postgres',
+  };
+}
+
+function serializeMapping(row) {
+  return {
+    id: row.id,
+    sourceId: row.data_source_id ?? row.sourceId,
+    resource: row.resource ?? null,
+    version: Number(row.version || 1),
+    fieldMappings: row.field_mappings ?? row.fieldMappings ?? {},
+    transformations: row.transformations || [],
+    validationRules: row.validation_rules ?? row.validationRules ?? [],
+    piiFields: row.pii_fields ?? row.piiFields ?? [],
+    approved: Boolean(row.approved),
+    approvedBy: row.approved_by ?? row.approvedBy ?? null,
+    approvedAt: row.approved_at ?? row.approvedAt ?? null,
     createdAt: row.created_at ?? row.createdAt,
     updatedAt: row.updated_at ?? row.updatedAt,
     persistence: row.persistence || 'postgres',
@@ -218,10 +238,83 @@ export class UniversalDataGateway {
     };
   }
 
+  async saveMapping(source, payload = {}, scope = {}) {
+    const approved = Boolean(payload.approved);
+    if (approved && !scope.userId) {
+      const error = new Error('An authenticated user is required to approve a schema mapping.');
+      error.code = 'INVALID_SCHEMA_MAPPING';
+      throw error;
+    }
+    const mapping = {
+      id: randomUUID(),
+      sourceId: source.id,
+      resource: payload.resource || null,
+      version: Number(payload.version || 1),
+      fieldMappings: payload.fieldMappings || {},
+      transformations: payload.transformations || [],
+      validationRules: payload.validationRules || [],
+      piiFields: payload.piiFields || [],
+      approved,
+      approvedBy: approved ? scope.userId || null : null,
+      approvedAt: approved ? now() : null,
+      createdAt: now(),
+      updatedAt: now(),
+    };
+
+    return dbOrFallback(async (db) => {
+      const result = await db.query(`
+        INSERT INTO kavach_schema_mapping (
+          id, data_source_id, resource, version, field_mappings, transformations,
+          validation_rules, pii_fields, approved, approved_by, approved_at, created_at, updated_at
+        ) VALUES ($1::uuid, $2::uuid, $3, $4, $5::jsonb, $6::jsonb, $7::jsonb, $8::jsonb, $9, $10::uuid, $11::timestamptz, NOW(), NOW())
+        RETURNING *
+      `, [
+        mapping.id,
+        mapping.sourceId,
+        mapping.resource,
+        mapping.version,
+        JSON.stringify(mapping.fieldMappings),
+        JSON.stringify(mapping.transformations),
+        JSON.stringify(mapping.validationRules),
+        JSON.stringify(mapping.piiFields),
+        mapping.approved,
+        mapping.approvedBy,
+        mapping.approvedAt,
+      ]);
+      return serializeMapping(result.rows[0]);
+    }, () => {
+      const value = {...mapping, persistence: 'ephemeral'};
+      memory.mappings.set(mapping.id, value);
+      return value;
+    });
+  }
+
+  async getMapping(id, sourceId) {
+    return dbOrFallback(async (db) => {
+      const result = await db.query(
+        'SELECT * FROM kavach_schema_mapping WHERE id = $1::uuid AND data_source_id = $2::uuid',
+        [id, sourceId],
+      );
+      return result.rows[0] ? serializeMapping(result.rows[0]) : null;
+    }, () => {
+      const mapping = memory.mappings.get(id) || null;
+      return mapping?.sourceId === sourceId ? mapping : null;
+    });
+  }
+
   async startSync(source, payload = {}, scope = {}) {
+    let mapping = null;
+    if (payload.mappingId) mapping = await this.getMapping(payload.mappingId, source.id);
+    if (payload.mappingApproved && (!mapping || !mapping.approved)) {
+      const error = new Error('An approved schema mapping belonging to this data source is required.');
+      error.code = 'INVALID_SCHEMA_MAPPING';
+      throw error;
+    }
+
     const job = {
       id: randomUUID(),
       sourceId: source.id,
+      mappingId: mapping?.id || null,
       resource: payload.resource || null,
       mode: payload.mode || 'incremental',
       status: payload.mappingApproved ? 'READY_TO_IMPORT' : 'MAPPING_REQUIRED',
@@ -237,11 +330,11 @@ export class UniversalDataGateway {
     return dbOrFallback(async (db) => {
       const result = await db.query(`
         INSERT INTO kavach_ingestion_job (
-          id, data_source_id, resource, sync_mode, status, records_discovered,
+          id, data_source_id, schema_mapping_id, resource, sync_mode, status, records_discovered,
           records_committed, mapping_approved, requested_by, created_at, updated_at
-        ) VALUES ($1::uuid, $2::uuid, $3, $4, $5, $6, $7, $8, $9::uuid, NOW(), NOW())
+        ) VALUES ($1::uuid, $2::uuid, $3::uuid, $4, $5, $6, $7, $8, $9, $10::uuid, NOW(), NOW())
         RETURNING *
-      `, [job.id, job.sourceId, job.resource, job.mode, job.status, job.recordsDiscovered, 0, job.mappingApproved, job.requestedBy]);
+      `, [job.id, job.sourceId, job.mappingId, job.resource, job.mode, job.status, job.recordsDiscovered, 0, job.mappingApproved, job.requestedBy]);
       return this.serializeJob(result.rows[0]);
     }, () => {
       const value = {...job, persistence: 'ephemeral'};
@@ -261,6 +354,7 @@ export class UniversalDataGateway {
     return {
       id: row.id,
       sourceId: row.data_source_id ?? row.sourceId,
+      mappingId: row.schema_mapping_id ?? row.mappingId ?? null,
       resource: row.resource,
       mode: row.sync_mode ?? row.mode,
       status: row.status,
