@@ -27,7 +27,7 @@ import {
   handleE2ECompatRoutes,
   handleE2ENotFound,
 } from './e2e-compat.routes.js';
-import { sendError, sendSuccess, sendJson } from '../utils/response-utils.js';
+import { sendError, sendJson } from '../utils/response-utils.js';
 import { HTTP_STATUS } from '../config/constants.js';
 
 export async function setupRoutes(request, response) {
@@ -48,12 +48,16 @@ export async function setupRoutes(request, response) {
       return;
     }
 
-    // Model-aware agentic routes before older AI/dashboard handlers
-    if (await handleAgenticModelRoutes(request, response, pathname)) {
-      return;
+    // Model-aware agentic routes — guarded so Ollama failures never crash the pipeline
+    try {
+      if (await handleAgenticModelRoutes(request, response, pathname)) {
+        return;
+      }
+    } catch (agenticErr) {
+      console.warn('[routes] Agentic route error (non-fatal):', agenticErr?.message);
     }
 
-    // KAVACH AI crime analysis routes
+    // Auth routes
     if (await handleAuthRoutes(request, response, pathname)) {
       return;
     }
@@ -148,7 +152,6 @@ export async function setupRoutes(request, response) {
 
     // Route not found
     if (method === 'GET' && pathname === '/') {
-      // Root endpoint
       const rootData = {
         name: 'InsightFlow API',
         version: '2.0.0',
