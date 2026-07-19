@@ -1,0 +1,4 @@
+[
+  {"incident_id":"INC-001","occurred_at":"2026-07-01T20:00:00Z","latitude":12.9716,"longitude":77.5946,"district":"Bengaluru","police_station":"Central PS","crime_category":"BURGLARY","modus_operandi":"forced entry","person_id":"MASKED-001","person_role":"suspect","location_id":"LOC-001","source_system":"synthetic"},
+  {"incident_id":"INC-002","occurred_at":"2026-07-02T21:00:00Z","latitude":12.9717,"longitude":77.5947,"district":"Bengaluru","police_station":"Central PS","crime_category":"BURGLARY","modus_operandi":"forced entry","person_id":"MASKED-001","person_role":"suspect","location_id":"LOC-001","source_system":"synthetic"}
+]
