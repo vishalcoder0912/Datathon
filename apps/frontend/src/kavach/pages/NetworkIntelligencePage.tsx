@@ -32,24 +32,27 @@ const nodeColors: Record<string, string> = {
   MODUS_OPERANDI: "#A16207",
   ACT_SECTION: "#64748B",
 };
-const personNodeTypes = new Set(["PERSON", "OFFENDER", "ACCUSED"]);
-
 function normalizeType(value?: string) {
   return (value ?? "ASSOCIATION").replaceAll(" ", "_").toUpperCase();
 }
 
+function edgeEndpointId(endpoint: NetworkGraphEdge["source"]) {
+  return typeof endpoint === "string" ? endpoint : endpoint.id;
+}
+
 function parseGraph(payload: unknown): GraphData {
   const root = (payload as {data?: unknown})?.data ?? payload;
-  const graph = root as {nodes?: Array<Record<string, unknown>>; edges?: Array<Record<string, unknown>>};
+  const graph = root as {nodes?: Array<Record<string, unknown>>; edges?: Array<Record<string, unknown>>; links?: Array<Record<string, unknown>>};
   return {
     nodes: (graph?.nodes ?? []).map((node) => ({
       id: String(node.id ?? node.personId ?? node.caseMasterId),
       label: String(node.label ?? node.displayLabel ?? node.name ?? node.id ?? "Unknown node"),
       type: normalizeType(String(node.type ?? node.nodeType ?? "ASSOCIATION")),
       risk: typeof node.risk === "string" ? node.risk : undefined,
-      isRepeat: Boolean(node.isRepeat ?? node.repeat),
+      isRepeat: Boolean(node.isRepeat ?? node.repeat ?? node.repeatOffender),
+      modusOperandi: Array.isArray(node.modusOperandi) ? node.modusOperandi.map(String) : [],
     })),
-    edges: (graph?.edges ?? []).map((edge, index) => ({
+    edges: (graph?.edges ?? graph?.links ?? []).map((edge, index) => ({
       id: String(edge.id ?? `edge-${index}`),
       source: String(edge.source ?? edge.sourceId),
       target: String(edge.target ?? edge.targetId),
@@ -57,6 +60,7 @@ function parseGraph(payload: unknown): GraphData {
       type: typeof edge.type === "string" ? edge.type : undefined,
       relationshipType: typeof edge.relationshipType === "string" ? edge.relationshipType : undefined,
       weight: Number(edge.weight ?? 1),
+      explanation: typeof edge.explanation === "string" ? edge.explanation : undefined,
       evidence: Array.isArray(edge.evidence) ? edge.evidence as NetworkGraphEdge["evidence"] : [],
     })),
   };
@@ -115,7 +119,7 @@ export default function NetworkIntelligencePage() {
     const nodeIds = new Set(visibleNodes.map((node) => node.id));
     const visibleEdges = graph.edges.filter((edge) => {
       const relationship = normalizeType(edge.relationshipType ?? edge.type ?? edge.label);
-      return nodeIds.has(edge.source) && nodeIds.has(edge.target) && (selectedEdgeTypeSet.size === 0 || selectedEdgeTypeSet.has(relationship)) && Number(edge.weight ?? 1) >= minimumWeight;
+      return nodeIds.has(edgeEndpointId(edge.source)) && nodeIds.has(edgeEndpointId(edge.target)) && (selectedEdgeTypeSet.size === 0 || selectedEdgeTypeSet.has(relationship)) && Number(edge.weight ?? 1) >= minimumWeight;
     });
     return {nodes: visibleNodes, edges: visibleEdges};
   }, [graph, minimumWeight, search, selectedEdgeTypeSet, selectedNodeTypeSet]);
@@ -163,7 +167,7 @@ export default function NetworkIntelligencePage() {
         <Card className="border-slate-200 lg:col-span-3"><CardContent className="p-0">{loading ? <Skeleton className="h-[520px] w-full" /> : filteredGraph && filteredGraph.nodes.length > 0 ? <><CytoscapeNetworkGraph nodes={filteredGraph.nodes} edges={filteredGraph.edges} layoutRevision={layoutRevision} onNodeSelect={selectNode} onEdgeSelect={selectEdge} /><div className="border-t border-slate-100 p-3"><p className="mb-2 text-xs font-semibold text-slate-500">Evidence-ready relationships</p><div className="flex flex-wrap gap-2">{filteredGraph.edges.slice(0, 8).map((edge, index) => <button key={edge.id ?? `${edge.source}-${edge.target}-${index}`} type="button" onClick={() => selectEdge(edge)} className="rounded-md border border-slate-200 bg-white px-2 py-1 text-xs text-slate-600 hover:border-[#1D4ED8] hover:text-[#1D4ED8]" aria-label={`Inspect evidence for ${normalizeType(edge.relationshipType ?? edge.type ?? edge.label)}`}>{normalizeType(edge.relationshipType ?? edge.type ?? edge.label).replaceAll("_", " ")}</button>)}</div></div></> : <div className="flex h-[520px] flex-col items-center justify-center gap-3 text-slate-400"><GitBranch className="size-10" /><p className="text-sm">No network links match the active scope.</p></div>}</CardContent></Card>
 
         <div className="space-y-4">
-          <Card className="border-slate-200"><CardHeader className="pb-2"><CardTitle className="text-sm font-semibold text-slate-700">{selectedEdge ? "Edge evidence" : "Node details"}</CardTitle></CardHeader><CardContent>{selectedEdge ? <div className="space-y-3"><div className="flex items-center justify-between"><Badge className="bg-[#1D4ED8]">{normalizeType(selectedEdge.relationshipType ?? selectedEdge.type ?? selectedEdge.label).replaceAll("_", " ")}</Badge><button type="button" onClick={() => setSelectedEdge(null)} className="text-slate-400 hover:text-slate-600"><X className="size-4" /></button></div><p className="text-xs text-slate-600">Weight: <strong>{selectedEdge.weight ?? 1}</strong></p>{selectedEdge.evidence?.length ? <ul className="space-y-2 text-xs text-slate-600">{selectedEdge.evidence.map((evidence, index) => <li key={`${evidence.crimeNo ?? "evidence"}-${index}`} className="rounded-md bg-slate-50 p-2"><strong className="text-slate-700">{evidence.crimeNo ?? "Case evidence"}</strong><br />{evidence.reason ?? "Association recorded in the scoped case network."}</li>)}</ul> : <p className="text-xs leading-5 text-slate-600">This association is derived from the normalized case relationship tables. No unsupported inference is shown.</p>}</div> : selectedNode ? <div className="space-y-3"><div className="flex items-start justify-between gap-2"><h3 className="font-semibold text-[#0F172A]">{selectedNode.label}</h3><button type="button" onClick={() => setSelectedNode(null)} className="text-slate-400 hover:text-slate-600"><X className="size-4" /></button></div><Badge style={{backgroundColor: nodeColors[selectedNode.type] ?? "#64748B"}}>{selectedNode.type.replaceAll("_", " ")}</Badge><p className="break-all font-mono text-xs text-slate-500">{selectedNode.id}</p>{selectedNode.isRepeat && <p className="flex items-center gap-1 text-xs text-amber-700"><UserCheck className="size-4" />Multiple case links</p>}{selectedNode.risk && <p className="text-xs text-slate-600">Historical link label: <strong>{selectedNode.risk}</strong></p>}{["PERSON", "OFFENDER", "ACCUSED"].includes(selectedNode.type) && <Button size="sm" className="w-full bg-[#1D4ED8]" onClick={() => navigate(`/offenders/${selectedNode.id}`)}>View masked profile</Button>}</div> : <div className="py-6 text-center text-sm text-slate-500"><Link2 className="mx-auto mb-2 size-6" />Select a node or edge.</div>}</CardContent></Card>
+          <Card className="border-slate-200"><CardHeader className="pb-2"><CardTitle className="text-sm font-semibold text-slate-700">{selectedEdge ? "Edge evidence" : "Node details"}</CardTitle></CardHeader><CardContent>{selectedEdge ? <div className="space-y-3"><div className="flex items-center justify-between"><Badge className="bg-[#1D4ED8]">{normalizeType(selectedEdge.relationshipType ?? selectedEdge.type ?? selectedEdge.label).replaceAll("_", " ")}</Badge><button type="button" onClick={() => setSelectedEdge(null)} className="text-slate-400 hover:text-slate-600"><X className="size-4" /></button></div><p className="text-xs text-slate-600">Weight: <strong>{selectedEdge.weight ?? 1}</strong></p>{selectedEdge.evidence?.length ? <ul className="space-y-2 text-xs text-slate-600">{selectedEdge.evidence.map((evidence, index) => <li key={`${evidence.crimeNo ?? "evidence"}-${index}`} className="rounded-md bg-slate-50 p-2"><strong className="text-slate-700">{evidence.crimeNo ?? "Case evidence"}</strong><br />{evidence.reason ?? "Association recorded in the scoped case network."}</li>)}</ul> : <p className="text-xs leading-5 text-slate-600">{selectedEdge.explanation ?? "This association is derived from normalized case relationships. No unsupported inference is shown."}</p>}</div> : selectedNode ? <div className="space-y-3"><div className="flex items-start justify-between gap-2"><h3 className="font-semibold text-[#0F172A]">{selectedNode.label}</h3><button type="button" onClick={() => setSelectedNode(null)} className="text-slate-400 hover:text-slate-600"><X className="size-4" /></button></div><Badge style={{backgroundColor: nodeColors[selectedNode.type] ?? "#64748B"}}>{selectedNode.type.replaceAll("_", " ")}</Badge><p className="break-all font-mono text-xs text-slate-500">{selectedNode.id}</p>{selectedNode.isRepeat && <p className="flex items-center gap-1 text-xs text-amber-700"><UserCheck className="size-4" />Multiple case links</p>}{selectedNode.modusOperandi?.length ? <p className="text-xs text-slate-600">Modus operandi: <strong>{selectedNode.modusOperandi.join(", ")}</strong></p> : null}{selectedNode.risk && <p className="text-xs text-slate-600">Historical link label: <strong>{selectedNode.risk}</strong></p>}{["PERSON", "OFFENDER", "ACCUSED"].includes(selectedNode.type) && <Button size="sm" className="w-full bg-[#1D4ED8]" onClick={() => navigate(`/offenders/${selectedNode.id}`)}>View masked profile</Button>}</div> : <div className="py-6 text-center text-sm text-slate-500"><Link2 className="mx-auto mb-2 size-6" />Select a node or edge.</div>}</CardContent></Card>
           <Card className="border-slate-200 bg-slate-50"><CardContent className="flex gap-2 p-3 text-xs leading-5 text-slate-600"><Info className="mt-0.5 size-4 shrink-0 text-[#0891B2]" /><span>Each edge is an explainable, case-backed relationship. It is not evidence of guilt or a recommendation for enforcement.</span></CardContent></Card>
         </div>
       </div>
