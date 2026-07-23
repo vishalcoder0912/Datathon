@@ -1,0 +1,22 @@
+{
+  "salary": ["compensation", "income", "pay", "package", "earnings", "wage", "remuneration", "stipend"],
+  "revenue": ["sales", "turnover", "income", "gross", "receipts", "takings", "arr", "mrr", "billings"],
+  "profit": ["margin", "net", "ebitda", "bottom_line", "surplus", "gain", "return"],
+  "cost": ["expense", "expenditure", "spend", "budget", "overhead", "outlay", "cogs"],
+  "churn": ["attrition", "cancellation", "dropout", "turnover_rate", "left", "quit"],
+  "customer": ["client", "user", "buyer", "shopper", "account", "subscriber", "member", "consumer"],
+  "order": ["purchase", "transaction", "invoice", "booking", "cart", "basket", "sale"],
+  "product": ["item", "sku", "good", "merchandise", "commodity", "service", "offering", "article"],
+  "region": ["country", "state", "city", "location", "territory", "zone", "area", "geo", "continent"],
+  "date": ["time", "timestamp", "month", "year", "quarter", "day", "period", "created_at", "updated_at"],
+  "campaign": ["promotion", "ad", "advertisement", "initiative", "drive", "effort", "marketing"],
+  "spend": ["investment", "allocation", "disbursement", "payment", "fee", "charge", "cost_amount"],
+  "conversion": ["signup", "registration", "purchase_event", "activation", "lead", "opt_in"],
+  "risk": ["threat", "hazard", "peril", "vulnerability", "exposure", "danger", "liability"],
+  "fraud": ["scam", "deception", "fake", "counterfeit", "abuse", "violation", "suspicious"],
+  "claim": ["request", "application", "petition", "demand", "filing", "submission", "case"],
+  "stock": ["inventory", "supply", "reserve", "stash", "hoard", "goods", "materials", "quantity"],
+  "delivery": ["shipment", "dispatch", "transport", "freight", "carriage", "distribution", "routing"],
+  "rating": ["score", "grade", "review", "evaluation", "assessment", "mark", "ranking", "feedback"],
+  "performance": ["metric", "kpi", "indicator", "measure", "stat", "benchmark", "result", "outcome"]
+}

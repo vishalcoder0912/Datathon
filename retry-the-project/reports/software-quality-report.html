@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsightFlow AI Data Analytics Platform Software Quality Report</title>
+    <style>
+      :root { color-scheme: dark; --bg:#07111f; --panel:#0d1b2e; --panel2:#10243d; --text:#e5edf7; --muted:#94a3b8; --ok:#22c55e; --bad:#ef4444; --warn:#f59e0b; --line:#1e3a5f; }
+      body { margin:0; background:linear-gradient(180deg,#050b15,#081827); color:var(--text); font-family:Inter,Segoe UI,Arial,sans-serif; }
+      main { max-width:1180px; margin:0 auto; padding:32px 20px 56px; }
+      header { display:flex; justify-content:space-between; gap:24px; align-items:flex-start; border-bottom:1px solid var(--line); padding-bottom:24px; }
+      h1 { margin:0; font-size:30px; letter-spacing:0; }
+      h2 { margin:32px 0 14px; font-size:18px; }
+      p { color:var(--muted); }
+      .score { font-size:42px; font-weight:800; }
+      .grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin-top:24px; }
+      .card { background:linear-gradient(180deg,var(--panel2),var(--panel)); border:1px solid var(--line); border-radius:8px; padding:18px; box-shadow:0 20px 40px rgba(0,0,0,.22); }
+      .metric { font-size:28px; font-weight:800; margin-top:6px; }
+      .label { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.08em; }
+      table { width:100%; border-collapse:collapse; overflow:hidden; border-radius:8px; border:1px solid var(--line); }
+      th,td { padding:12px; border-bottom:1px solid var(--line); text-align:left; font-size:14px; }
+      th { background:#0b1a2c; color:#cbd5e1; }
+      tr:last-child td { border-bottom:0; }
+      .badge { display:inline-block; border-radius:999px; padding:4px 9px; font-size:12px; font-weight:800; }
+      .PASS { background:rgba(34,197,94,.15); color:#86efac; }
+      .FAIL { background:rgba(239,68,68,.15); color:#fca5a5; }
+      .WARNING { background:rgba(245,158,11,.15); color:#fcd34d; }
+      .bar { height:8px; background:#172a45; border-radius:999px; overflow:hidden; }
+      .bar span { display:block; height:100%; background:linear-gradient(90deg,#22c55e,#06b6d4); }
+      @media (max-width:850px){ .grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } header{ display:block; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      
+<header>
+  <div>
+    <div class="label">Software Quality Report</div>
+    <h1>InsightFlow AI Data Analytics Platform</h1>
+    <p>Generated 2026-05-20T14:08:37.155Z on Windows_NT 10.0.26200 x64 with v24.1.0.</p>
+  </div>
+  <div class="card">
+    <div class="label">Readiness Score</div>
+    <div class="score">85/100</div>
+    <span class="badge WARNING">WARNING</span>
+  </div>
+</header>
+<section class="grid">
+  <div class="card"><div class="label">Total Tests</div><div class="metric">54</div></div>
+  <div class="card"><div class="label">Passed</div><div class="metric">54</div></div>
+  <div class="card"><div class="label">Failed</div><div class="metric">0</div></div>
+  <div class="card"><div class="label">Skipped</div><div class="metric">0</div></div>
+</section>
+<h2>Coverage</h2>
+<table>
+  <tr><th>Metric</th><th>Percent</th><th>Visual</th></tr>
+  <tr><td>statements</td><td>40.76%</td><td><div class="bar"><span style="width:40.76%"></span></div></td></tr><tr><td>branches</td><td>33.12%</td><td><div class="bar"><span style="width:33.12%"></span></div></td></tr><tr><td>functions</td><td>42.91%</td><td><div class="bar"><span style="width:42.91%"></span></div></td></tr><tr><td>lines</td><td>42.87%</td><td><div class="bar"><span style="width:42.87%"></span></div></td></tr>
+</table>
+<h2>Feature Coverage</h2>
+<table><tr><th>Feature</th><th>Status</th></tr><tr><td>Backend health</td><td><span class="badge PASS">PASS</span></td></tr><tr><td>Dataset upload</td><td><span class="badge PASS">PASS</span></td></tr><tr><td>Schema profiling</td><td><span class="badge PASS">PASS</span></td></tr><tr><td>Schema-trained dashboard</td><td><span class="badge PASS">PASS</span></td></tr><tr><td>Ollama schema-only planner</td><td><span class="badge PASS">PASS</span></td></tr><tr><td>Dashboard command AI</td><td><span class="badge PASS">PASS</span></td></tr><tr><td>Local KPI/chart calculation</td><td><span class="badge PASS">PASS</span></td></tr><tr><td>Frontend dashboard rendering</td><td><span class="badge PASS">PASS</span></td></tr><tr><td>AI chat</td><td><span class="badge PASS">PASS</span></td></tr><tr><td>PDF intelligence</td><td><span class="badge PASS">PASS</span></td></tr></table>
+<h2>Integration And E2E Results</h2>
+<table>
+  <tr><th>Suite</th><th>Total</th><th>Passed</th><th>Failed</th><th>Status</th></tr>
+  <tr><td>Backend Vitest</td><td>24</td><td>24</td><td>0</td><td><span class="badge PASS">PASS</span></td></tr>
+  <tr><td>Frontend Vitest</td><td>26</td><td>26</td><td>0</td><td><span class="badge PASS">PASS</span></td></tr>
+  <tr><td>Playwright E2E</td><td>4</td><td>4</td><td>0</td><td><span class="badge PASS">PASS</span></td></tr>
+</table>
+<h2>Security And Privacy Checks</h2>
+<table><tr><th>Check</th><th>Status</th></tr><tr><td>Raw rows not sent to LLM</td><td><span class="badge PASS">PASS</span></td></tr><tr><td>LLM chart.data removed</td><td><span class="badge PASS">PASS</span></td></tr><tr><td>KPI values calculated locally</td><td><span class="badge PASS">PASS</span></td></tr><tr><td>Invalid chart commands handled safely</td><td><span class="badge PASS">PASS</span></td></tr></table>
+<h2>Known Issues</h2>
+<div class="card"><p>No blocking issues detected from available test artifacts.</p></div>
+<h2>Recommendations</h2>
+<div class="card"><p>Keep Ollama mocked by default and gate real local model tests behind TEST_REAL_OLLAMA=1.</p><p>Add regression tests whenever new dashboard command actions or chart types are introduced.</p><p>Track readiness score changes in project documentation after each major feature update.</p></div>
+
+    </main>
+  </body>
+</html>

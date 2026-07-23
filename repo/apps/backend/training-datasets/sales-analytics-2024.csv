@@ -1,0 +1,6 @@
+month,category,region,revenue,units_sold,profit_margin,channel
+Jan,Electronics,North,1200,12,24,Online
+Feb,Furniture,South,850,8,18,Retail
+Mar,Electronics,West,1500,15,30,Online
+Apr,Office,North,620,7,16,Partner
+May,Furniture,East,930,9,21,Retail

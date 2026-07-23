@@ -1,0 +1,13 @@
+{
+  "fileName": "sample-insightflow.pdf",
+  "text": "Invoice summary. Region North revenue 1200. Region South revenue 1800.",
+  "tables": [
+    {
+      "headers": ["region", "revenue_usd"],
+      "rows": [
+        ["North", "1200"],
+        ["South", "1800"]
+      ]
+    }
+  ]
+}

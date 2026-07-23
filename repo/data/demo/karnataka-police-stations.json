@@ -1,0 +1,170 @@
+{
+  "Bengaluru Urban": [
+    "Cubbon Park",
+    "Yeshwanthpur",
+    "Koramangala",
+    "Whitefield",
+    "Mysore Road",
+    "Jayanagar",
+    "Indiranagar",
+    "Banashankari"
+  ],
+  "Bengaluru Rural": [
+    "Doddaballapura",
+    "Devanahalli",
+    "Hoskote",
+    "Nelamangala",
+    "Magadi"
+  ],
+  "Mysuru": [
+    "Krishnaraja",
+    "Nazarbad",
+    "Kuvempunagar",
+    "Vijayanagar",
+    "Udayagiri"
+  ],
+  "Belagavi": [
+    "Maruti",
+    "Tilakwadi",
+    "Shahapur",
+    "Kadapa",
+    "Camp"
+  ],
+  "Kalaburagi": [
+    "Afzalpur",
+    "Chincholi",
+    "Sedam",
+    "Gulbarga North",
+    "Gulbarga South"
+  ],
+  "Dakshina Kannada": [
+    "Mangaluru North",
+    "Mangaluru South",
+    "Bantwal",
+    "Puttur",
+    "Sullia"
+  ],
+  "Udupi": [
+    "Udupi Town",
+    "Kundapur",
+    "Karkala",
+    "Brahmavar"
+  ],
+  "Shivamogga": [
+    "Shivamogga Town",
+    "Bhadravati",
+    "Sagara",
+    "Tirthahalli"
+  ],
+  "Ballari": [
+    "Ballari Town",
+    "Hospet",
+    "Kampli",
+    "Sandur"
+  ],
+  "Dharwad": [
+    "Hubli North",
+    "Hubli South",
+    "Dharwad Town",
+    "Kalghatgi"
+  ],
+  "Tumakuru": [
+    "Tumakuru Town",
+    "Tiptur",
+    "Kunigal",
+    "Madhugiri"
+  ],
+  "Hassan": [
+    "Hassan Town",
+    "Holenarasipura",
+    "Arsikere",
+    "Sakleshpur"
+  ],
+  "Chitradurga": [
+    "Chitradurga Town",
+    "Hosadurga",
+    "Hiriyur",
+    "Molakalmuru"
+  ],
+  "Raichur": [
+    "Raichur Town",
+    "Sindhnur",
+    "Manvi",
+    "Lingsugur"
+  ],
+  "Bidar": [
+    "Bidar Town",
+    "Bhalki",
+    "Basavakalyan",
+    "Humnabad"
+  ],
+  "Kodagu": [
+    "Madikeri",
+    "Virajpet",
+    "Somwarpet",
+    "Ponnampet"
+  ],
+  "Vijayapura": [
+    "Vijayapura Town",
+    "Indi",
+    "Sindagi",
+    "Muddebihal"
+  ],
+  "Kolar": [
+    "Kolar Town",
+    "Bangarpet",
+    "KGF",
+    "Malur"
+  ],
+  "Chikkamagaluru": [
+    "Chikkamagaluru Town",
+    "Kadur",
+    "Mudigere",
+    "Narasimharajapura"
+  ],
+  "Haveri": [
+    "Haveri Town",
+    "Ranebennur",
+    "Byadgi",
+    "Hangal"
+  ],
+  "Gadag": [
+    "Gadag Town",
+    "Naragund",
+    "Ron",
+    "Mundargi"
+  ],
+  "Mandya": [
+    "Mandya Town",
+    "Maddur",
+    "Nagamangala",
+    "Srirangapatna"
+  ],
+  "Ramanagara": [
+    "Ramanagara Town",
+    "Channapatna",
+    "Kanakapura",
+    "Magadi"
+  ],
+  "Koppal": [
+    "Koppal Town",
+    "Gangavati",
+    "Kushtagi",
+    "Yelburga"
+  ],
+  "Vijayanagara": [
+    "Hospet",
+    "Kampli"
+  ],
+  "Yadgiri": [
+    "Yadgiri Town",
+    "Shahapur",
+    "Shorapur"
+  ],
+  "Davanagere": [
+    "Davanagere Town",
+    "Harihara",
+    "Jagalur",
+    "Honnali"
+  ]
+}

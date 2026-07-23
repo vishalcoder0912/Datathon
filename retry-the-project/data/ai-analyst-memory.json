@@ -1,0 +1,221 @@
+[
+  {
+    "id": "bb32cbcc-5aff-41e8-b421-e427d62f736e",
+    "domain": "generic",
+    "columnSignature": "age|name",
+    "kpiTemplates": [
+      {
+        "title": "Total Records",
+        "metric": "__row_count__",
+        "aggregation": "count"
+      }
+    ],
+    "chartTemplates": [
+      {
+        "title": "Top Categories",
+        "type": "bar",
+        "xKey": "name",
+        "yKey": "count",
+        "aggregation": "count"
+      },
+      {
+        "title": "Metric Distribution",
+        "type": "histogram",
+        "xKey": "range",
+        "yKey": "count",
+        "aggregation": "count"
+      },
+      {
+        "title": "Average Metric by Category",
+        "type": "bar",
+        "xKey": "name",
+        "yKey": "age",
+        "aggregation": "avg"
+      }
+    ],
+    "usageCount": 1,
+    "createdAt": "2026-06-03T14:18:30.236Z",
+    "lastUsedAt": "2026-06-03T14:18:30.236Z"
+  },
+  {
+    "id": "7367c4a8-f115-41a0-ba11-7f3891831163",
+    "domain": "sales",
+    "columnSignature": "category|discount|order_date|order_id|profit|quantity|region|revenue",
+    "kpiTemplates": [
+      {
+        "title": "Total Orders",
+        "metric": "__row_count__",
+        "aggregation": "count"
+      },
+      {
+        "title": "Total Revenue",
+        "metric": "revenue",
+        "aggregation": "sum"
+      },
+      {
+        "title": "Average Order Value",
+        "metric": "revenue",
+        "aggregation": "avg"
+      },
+      {
+        "title": "Highest Sale",
+        "metric": "revenue",
+        "aggregation": "max"
+      }
+    ],
+    "chartTemplates": [
+      {
+        "title": "Revenue by Product",
+        "type": "bar",
+        "xKey": "category",
+        "yKey": "revenue",
+        "aggregation": "sum"
+      },
+      {
+        "title": "Revenue by Region",
+        "type": "bar",
+        "xKey": "region",
+        "yKey": "revenue",
+        "aggregation": "sum"
+      },
+      {
+        "title": "Revenue Trend",
+        "type": "line",
+        "xKey": "order_date",
+        "yKey": "revenue",
+        "aggregation": "sum"
+      }
+    ],
+    "usageCount": 5,
+    "createdAt": "2026-06-05T13:19:06.423Z",
+    "lastUsedAt": "2026-06-05T13:19:36.041Z"
+  },
+  {
+    "id": "6fcb3ee4-7799-4cd6-b16b-c4278d412faa",
+    "domain": "salary_hr_jobs",
+    "columnSignature": "country|experience|salary_usd",
+    "kpiTemplates": [
+      {
+        "title": "Total Records",
+        "metric": "__row_count__",
+        "aggregation": "count"
+      },
+      {
+        "title": "Average Salary",
+        "metric": "salary_usd",
+        "aggregation": "avg"
+      },
+      {
+        "title": "Median Salary",
+        "metric": "salary_usd",
+        "aggregation": "median"
+      },
+      {
+        "title": "Highest Salary",
+        "metric": "salary_usd",
+        "aggregation": "max"
+      },
+      {
+        "title": "Average Experience",
+        "metric": "experience",
+        "aggregation": "avg"
+      },
+      {
+        "title": "Countries",
+        "metric": "country",
+        "aggregation": "count_unique"
+      },
+      {
+        "title": "Top Paying Country",
+        "metric": "country",
+        "aggregation": "top_by_avg"
+      }
+    ],
+    "chartTemplates": [
+      {
+        "title": "Average Salary by Country",
+        "type": "bar",
+        "xKey": "country",
+        "yKey": "salary_usd",
+        "aggregation": "avg"
+      },
+      {
+        "title": "Salary Distribution",
+        "type": "histogram",
+        "xKey": "range",
+        "yKey": "count",
+        "aggregation": "count"
+      },
+      {
+        "title": "Salary vs Experience",
+        "type": "scatter",
+        "xKey": "experience",
+        "yKey": "salary_usd",
+        "aggregation": "avg"
+      },
+      {
+        "title": "Records by Country",
+        "type": "donut",
+        "xKey": "country",
+        "yKey": "count",
+        "aggregation": "count"
+      }
+    ],
+    "usageCount": 1,
+    "createdAt": "2026-06-05T13:19:36.062Z",
+    "lastUsedAt": "2026-06-05T13:19:36.062Z"
+  },
+  {
+    "id": "ce6c7f65-864d-431d-857a-6ea6d70e9d10",
+    "domain": "sales",
+    "columnSignature": "category|order_date|order_id|region|revenue",
+    "kpiTemplates": [
+      {
+        "title": "Total Orders",
+        "metric": "__row_count__",
+        "aggregation": "count"
+      },
+      {
+        "title": "Total Revenue",
+        "metric": "revenue",
+        "aggregation": "sum"
+      },
+      {
+        "title": "Average Order Value",
+        "metric": "revenue",
+        "aggregation": "avg"
+      },
+      {
+        "title": "Highest Sale",
+        "metric": "revenue",
+        "aggregation": "max"
+      }
+    ],
+    "chartTemplates": [
+      {
+        "title": "Revenue by Product",
+        "type": "bar",
+        "xKey": "category",
+        "yKey": "revenue",
+        "aggregation": "sum"
+      },
+      {
+        "title": "Revenue by Region",
+        "type": "bar",
+        "xKey": "region",
+        "yKey": "revenue",
+        "aggregation": "sum"
+      },
+      {
+        "title": "Revenue Trend",
+        "type": "line",
+        "xKey": "order_date",
+        "yKey": "revenue",
+        "aggregation": "sum"
+      }
+    ],
+    "usageCount": 2,
+    "createdAt": "2026-06-05T13:20:12.833Z",
+    "lastUsedAt": "2026-06-05T13:20:19.494Z"
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "name": "@kavach/domain",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./schemas": "./src/schemas.js",
+    "./enums": "./src/enums.js"
+  },
+  "dependencies": {
+    "zod": "^3.25.76"
+  }
+}

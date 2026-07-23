@@ -1,0 +1,130 @@
+[
+  {
+    "id": "seed-workforce-salary",
+    "name": "Developer Salary / Workforce Analytics",
+    "domain": "workforce_salary",
+    "source": "seed",
+    "rating": "good",
+    "notes": "Works for datasets with experience, country, education, languages, frameworks, company_size, salary_usd.",
+    "schemaProfile": {
+      "datasetName": "salary_training_seed",
+      "rowCount": 50000,
+      "columnCount": 7,
+      "domain": "workforce_salary",
+      "signature": "seed_workforce_salary",
+      "columns": [
+        {"name":"experience","normalizedName":"experience","type":"number","role":"continuous_metric","description":"Years of professional coding experience","uniqueCount":36,"missingPct":0,"topValues":[],"stats":{"min":0,"max":35,"mean":17.5,"median":17}},
+        {"name":"country","normalizedName":"country","type":"category","role":"location","description":"Country of residence","uniqueCount":10,"missingPct":0,"topValues":["USA","India","UK","Germany"]},
+        {"name":"education","normalizedName":"education","type":"category","role":"category","description":"Highest education level","uniqueCount":5,"missingPct":0,"topValues":["Bachelors","Masters","PhD"]},
+        {"name":"languages","normalizedName":"languages","type":"string","role":"category","description":"Primary programming languages","uniqueCount":100,"missingPct":0,"topValues":["JavaScript","Python","Java"]},
+        {"name":"frameworks","normalizedName":"frameworks","type":"string","role":"category","description":"Primary frameworks","uniqueCount":100,"missingPct":0,"topValues":["React","Django","Spring"]},
+        {"name":"company_size","normalizedName":"company_size","type":"category","role":"category","description":"Company size bucket","uniqueCount":6,"missingPct":0,"topValues":["201-1000","51-200","1000+"]},
+        {"name":"salary_usd","normalizedName":"salary_usd","type":"number","role":"money_metric","description":"Annual salary in USD","uniqueCount":40000,"missingPct":0,"topValues":[],"stats":{"min":30000,"max":280900,"mean":131690,"median":130396}}
+      ]
+    },
+    "dashboardPlan": {
+      "kpis": [
+        {"title":"Total Records","metric":"__row_count__","aggregation":"count","format":"number"},
+        {"title":"Average Salary","metric":"salary_usd","metricRole":"money_metric","aggregation":"avg","format":"currency"},
+        {"title":"Median Salary","metric":"salary_usd","metricRole":"money_metric","aggregation":"median","format":"currency"},
+        {"title":"Highest Salary","metric":"salary_usd","metricRole":"money_metric","aggregation":"max","format":"currency"},
+        {"title":"Countries","metric":"country","metricRole":"location","aggregation":"count_unique","format":"number"}
+      ],
+      "charts": [
+        {"title":"Average Salary by Country","type":"bar","xKey":"country","xRole":"location","yKey":"salary_usd","yRole":"money_metric","aggregation":"avg","limit":10},
+        {"title":"Salary Distribution","type":"histogram","xKey":"salary_usd","xRole":"money_metric","yKey":"salary_usd","yRole":"money_metric","aggregation":"count","limit":12},
+        {"title":"Salary vs Experience","type":"scatter","xKey":"experience","xRole":"continuous_metric","yKey":"salary_usd","yRole":"money_metric","aggregation":"count","limit":500},
+        {"title":"Education Distribution","type":"donut","xKey":"education","xRole":"category","yKey":"count","aggregation":"count","limit":10},
+        {"title":"Average Salary by Company Size","type":"bar","xKey":"company_size","xRole":"category","yKey":"salary_usd","yRole":"money_metric","aggregation":"avg","limit":10},
+        {"title":"Average Salary by Language","type":"bar","xKey":"languages","xRole":"category","yKey":"salary_usd","yRole":"money_metric","aggregation":"avg","limit":10},
+        {"title":"Average Salary by Framework","type":"bar","xKey":"frameworks","xRole":"category","yKey":"salary_usd","yRole":"money_metric","aggregation":"avg","limit":10}
+      ]
+    },
+    "examplesSeen": 1,
+    "createdAt": "2026-05-19T00:00:00.000Z",
+    "updatedAt": "2026-05-19T00:00:00.000Z"
+  },
+  {
+    "id": "seed-health-wellness",
+    "name": "Teen Mental Health / Wellness Analytics",
+    "domain": "health_wellness",
+    "source": "seed",
+    "rating": "good",
+    "notes": "Works for social media, sleep, stress, anxiety, addiction and depression datasets.",
+    "schemaProfile": {
+      "datasetName": "teen_mental_health_seed",
+      "rowCount": 1200,
+      "columnCount": 13,
+      "domain": "health_wellness",
+      "signature": "seed_health_wellness",
+      "columns": [
+        {"name":"age","normalizedName":"age","type":"number","role":"continuous_metric","uniqueCount":7,"missingPct":0,"topValues":[],"stats":{"min":13,"max":19,"mean":16,"median":16}},
+        {"name":"gender","normalizedName":"gender","type":"category","role":"category","uniqueCount":3,"missingPct":0,"topValues":["male","female"]},
+        {"name":"daily_social_media_hours","normalizedName":"daily_social_media_hours","type":"number","role":"continuous_metric","uniqueCount":100,"missingPct":0,"topValues":[],"stats":{"min":0,"max":10,"mean":5,"median":5}},
+        {"name":"platform_usage","normalizedName":"platform_usage","type":"category","role":"category","uniqueCount":5,"missingPct":0,"topValues":["Instagram","TikTok","YouTube"]},
+        {"name":"sleep_hours","normalizedName":"sleep_hours","type":"number","role":"continuous_metric","uniqueCount":80,"missingPct":0,"topValues":[],"stats":{"min":3,"max":10,"mean":7,"median":7}},
+        {"name":"stress_level","normalizedName":"stress_level","type":"number","role":"score_metric","uniqueCount":10,"missingPct":0,"topValues":[],"stats":{"min":1,"max":10,"mean":5,"median":5}},
+        {"name":"anxiety_level","normalizedName":"anxiety_level","type":"number","role":"score_metric","uniqueCount":10,"missingPct":0,"topValues":[],"stats":{"min":1,"max":10,"mean":5,"median":5}},
+        {"name":"depression_label","normalizedName":"depression_label","type":"number","role":"target","uniqueCount":2,"missingPct":0,"topValues":[0,1]}
+      ]
+    },
+    "dashboardPlan": {
+      "kpis": [
+        {"title":"Total Records","metric":"__row_count__","aggregation":"count","format":"number"},
+        {"title":"Average Stress Level","metric":"stress_level","metricRole":"score_metric","aggregation":"avg","format":"number"},
+        {"title":"Average Anxiety Level","metric":"anxiety_level","metricRole":"score_metric","aggregation":"avg","format":"number"},
+        {"title":"Average Sleep Hours","metric":"sleep_hours","metricRole":"continuous_metric","aggregation":"avg","format":"number"}
+      ],
+      "charts": [
+        {"title":"Stress by Platform","type":"bar","xKey":"platform_usage","xRole":"category","yKey":"stress_level","yRole":"score_metric","aggregation":"avg","limit":10},
+        {"title":"Anxiety by Social Interaction","type":"bar","xKey":"social_interaction_level","xRole":"category","yKey":"anxiety_level","yRole":"score_metric","aggregation":"avg","limit":10},
+        {"title":"Sleep vs Social Media Hours","type":"scatter","xKey":"daily_social_media_hours","xRole":"continuous_metric","yKey":"sleep_hours","yRole":"continuous_metric","aggregation":"count","limit":500},
+        {"title":"Depression Label Distribution","type":"donut","xKey":"depression_label","xRole":"target","yKey":"count","aggregation":"count","limit":10}
+      ]
+    },
+    "examplesSeen": 1,
+    "createdAt": "2026-05-19T00:00:00.000Z",
+    "updatedAt": "2026-05-19T00:00:00.000Z"
+  },
+  {
+    "id": "seed-sales-commerce",
+    "name": "Customer Sales / Commerce Analytics",
+    "domain": "sales_commerce",
+    "source": "seed",
+    "rating": "good",
+    "notes": "Works for customer/product/country/amount/year datasets.",
+    "schemaProfile": {
+      "datasetName": "customer_sales_seed",
+      "rowCount": 100,
+      "columnCount": 7,
+      "domain": "sales_commerce",
+      "signature": "seed_sales_commerce",
+      "columns": [
+        {"name":"CustomerCode","normalizedName":"customercode","type":"string","role":"id","uniqueCount":100,"missingPct":0,"topValues":[]},
+        {"name":"CustomerName","normalizedName":"customername","type":"string","role":"text","uniqueCount":100,"missingPct":0,"topValues":[]},
+        {"name":"Country","normalizedName":"country","type":"category","role":"location","uniqueCount":12,"missingPct":0,"topValues":["USA","India","UK"]},
+        {"name":"Age","normalizedName":"age","type":"number","role":"continuous_metric","uniqueCount":40,"missingPct":0,"topValues":[]},
+        {"name":"Product","normalizedName":"product","type":"category","role":"category","uniqueCount":20,"missingPct":0,"topValues":[]},
+        {"name":"Amount","normalizedName":"amount","type":"number","role":"money_metric","uniqueCount":95,"missingPct":0,"topValues":[]},
+        {"name":"Year","normalizedName":"year","type":"number","role":"date","uniqueCount":5,"missingPct":0,"topValues":[]}
+      ]
+    },
+    "dashboardPlan": {
+      "kpis": [
+        {"title":"Total Records","metric":"__row_count__","aggregation":"count","format":"number"},
+        {"title":"Total Amount","metric":"Amount","metricRole":"money_metric","aggregation":"sum","format":"currency"},
+        {"title":"Average Amount","metric":"Amount","metricRole":"money_metric","aggregation":"avg","format":"currency"},
+        {"title":"Countries","metric":"Country","metricRole":"location","aggregation":"count_unique","format":"number"}
+      ],
+      "charts": [
+        {"title":"Sales Amount by Country","type":"bar","xKey":"Country","xRole":"location","yKey":"Amount","yRole":"money_metric","aggregation":"sum","limit":10},
+        {"title":"Sales Amount by Product","type":"bar","xKey":"Product","xRole":"category","yKey":"Amount","yRole":"money_metric","aggregation":"sum","limit":10},
+        {"title":"Amount Trend by Year","type":"line","xKey":"Year","xRole":"date","yKey":"Amount","yRole":"money_metric","aggregation":"sum","limit":10},
+        {"title":"Product Distribution","type":"donut","xKey":"Product","xRole":"category","yKey":"count","aggregation":"count","limit":10}
+      ]
+    },
+    "examplesSeen": 1,
+    "createdAt": "2026-05-19T00:00:00.000Z",
+    "updatedAt": "2026-05-19T00:00:00.000Z"
+  }
+]

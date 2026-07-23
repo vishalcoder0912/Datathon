@@ -1,0 +1,8 @@
+Installed Ollama Models:
+========================
+
+1. nomic-embed-text:latest   (274 MB)
+2. llama3.2:3b               (2.0 GB)
+3. qwen3:4b                  (2.5 GB)
+4. qwen3:8b                  (5.2 GB)
+5. qwen3:latest              (5.2 GB) -> alias of qwen3:8b

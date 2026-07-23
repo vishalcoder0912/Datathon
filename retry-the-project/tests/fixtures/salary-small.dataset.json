@@ -1,0 +1,10 @@
+{
+  "name": "Salary Small",
+  "columns": ["job_title", "experience_level", "country", "salary_usd", "remote_ratio", "work_year"],
+  "rows": [
+    { "job_title": "Data Scientist", "experience_level": "Mid", "country": "India", "salary_usd": 50000, "remote_ratio": 100, "work_year": 2024 },
+    { "job_title": "ML Engineer", "experience_level": "Senior", "country": "USA", "salary_usd": 90000, "remote_ratio": 50, "work_year": 2024 },
+    { "job_title": "Data Analyst", "experience_level": "Entry", "country": "India", "salary_usd": 35000, "remote_ratio": 0, "work_year": 2023 },
+    { "job_title": "AI Architect", "experience_level": "Senior", "country": "USA", "salary_usd": 150000, "remote_ratio": 100, "work_year": 2024 }
+  ]
+}

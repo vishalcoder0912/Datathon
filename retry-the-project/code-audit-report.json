@@ -1,0 +1,3914 @@
+{
+  "scanned_files": 460,
+  "total_issues": 488,
+  "critical": 0,
+  "high": 0,
+  "medium": 53,
+  "low": 435,
+  "issues": [
+    {
+      "file": ".tmp_schema_trained_patch\\apps\\backend\\scripts\\export-schema-training-jsonl.js",
+      "line": 9,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Wrote ${output}`);"
+    },
+    {
+      "file": ".tmp_schema_trained_patch\\apps\\backend\\scripts\\export-schema-training-jsonl.js",
+      "line": 10,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(getMemoryStats());"
+    },
+    {
+      "file": ".tmp_schema_trained_patch\\apps\\backend\\scripts\\train-schema-dashboard-llm.js",
+      "line": 85,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "if (seeded) console.log(\"✅ Seed memory copied to data/schema-training-memory.json\");"
+    },
+    {
+      "file": ".tmp_schema_trained_patch\\apps\\backend\\scripts\\train-schema-dashboard-llm.js",
+      "line": 90,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"ℹ️ No CSV files found. Put datasets in apps/backend/training-datasets or pass a file/folder path.\");"
+    },
+    {
+      "file": ".tmp_schema_trained_patch\\apps\\backend\\scripts\\train-schema-dashboard-llm.js",
+      "line": 95,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "if (result) console.log(`✅ Trained ${path.basename(file)} → ${result.domain} (${result.signature})`);"
+    },
+    {
+      "file": ".tmp_schema_trained_patch\\apps\\backend\\scripts\\train-schema-dashboard-llm.js",
+      "line": 106,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Exported JSONL: ${output}`);"
+    },
+    {
+      "file": ".tmp_schema_trained_patch\\apps\\backend\\scripts\\train-schema-dashboard-llm.js",
+      "line": 109,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"📊 Memory stats:\", getMemoryStats());"
+    },
+    {
+      "file": ".tmp_schema_trained_patch\\apps\\frontend\\src\\features\\dashboard\\components\\SchemaDashboardChat.tsx",
+      "line": 8,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "onCommand: (command: any) => void;"
+    },
+    {
+      "file": ".tmp_schema_trained_patch\\apps\\frontend\\src\\features\\dashboard\\components\\SchemaDashboardChat.tsx",
+      "line": 32,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "} catch (err: any) {"
+    },
+    {
+      "file": ".tmp_schema_trained_patch\\apps\\frontend\\src\\features\\dashboard\\hooks\\useSchemaTrainedDashboard.ts",
+      "line": 27,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "} catch (err: any) {"
+    },
+    {
+      "file": "api-test.js",
+      "line": 5,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"🧪 Starting Backend Functional Tests...\");"
+    },
+    {
+      "file": "api-test.js",
+      "line": 8,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n[Test 1] Uploading Sample Dataset...\");"
+    },
+    {
+      "file": "api-test.js",
+      "line": 14,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "const res = await fetch('http://localhost:3001/api/health');"
+    },
+    {
+      "file": "api-test.js",
+      "line": 16,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"Health:\", data);"
+    },
+    {
+      "file": "api-test.js",
+      "line": 19,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n✅ End tests\");"
+    },
+    {
+      "file": "apps\\backend\\kill-port.js",
+      "line": 13,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`🔍 Attempting to kill process on port ${port}...\\n`);"
+    },
+    {
+      "file": "apps\\backend\\kill-port.js",
+      "line": 20,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ No process found on port ${port}`);"
+    },
+    {
+      "file": "apps\\backend\\kill-port.js",
+      "line": 29,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`Found PID: ${pid}`);"
+    },
+    {
+      "file": "apps\\backend\\kill-port.js",
+      "line": 34,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Process killed successfully`);"
+    },
+    {
+      "file": "apps\\backend\\kill-port.js",
+      "line": 35,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`💡 You can now start the server: npm run dev\\n`);"
+    },
+    {
+      "file": "apps\\backend\\kill-port.js",
+      "line": 47,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ No process found on port ${port}`);"
+    },
+    {
+      "file": "apps\\backend\\kill-port.js",
+      "line": 53,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`Found PID: ${pid}`);"
+    },
+    {
+      "file": "apps\\backend\\kill-port.js",
+      "line": 58,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Process killed successfully`);"
+    },
+    {
+      "file": "apps\\backend\\kill-port.js",
+      "line": 59,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`💡 You can now start the server: npm run dev\\n`);"
+    },
+    {
+      "file": "apps\\backend\\legacy\\api-index.js",
+      "line": 294,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[DEMO] Columns:', demo.columns.length, 'Rows:', demo.rows.length);"
+    },
+    {
+      "file": "apps\\backend\\legacy\\api-index.js",
+      "line": 298,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[DEMO] Running AI analysis...');"
+    },
+    {
+      "file": "apps\\backend\\legacy\\api-index.js",
+      "line": 300,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[DEMO] AI result:', analysisResult ? 'received' : 'null');"
+    },
+    {
+      "file": "apps\\backend\\legacy\\api-index.js",
+      "line": 302,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[DEMO] AI analysis error:', error.message);"
+    },
+    {
+      "file": "apps\\backend\\legacy\\api-index.js",
+      "line": 305,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[DEMO] Schema result:', schema.dataType);"
+    },
+    {
+      "file": "apps\\backend\\legacy\\api-index.js",
+      "line": 312,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[DEMO] Schema error:', e.message);"
+    },
+    {
+      "file": "apps\\backend\\legacy\\api-index.js",
+      "line": 316,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[DEMO] Final analysisResult:', analysisResult ? 'present' : 'null');"
+    },
+    {
+      "file": "apps\\backend\\legacy\\api-index.js",
+      "line": 326,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[DEMO] Sending response with analysis:', analysisOutput ? 'yes' : 'no');"
+    },
+    {
+      "file": "apps\\backend\\legacy\\api-index.js",
+      "line": 591,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`\\n📝 Llama query request: \"${query}\"`);"
+    },
+    {
+      "file": "apps\\backend\\scripts\\export-agentic-finetune-jsonl.js",
+      "line": 37,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Exported ${examples.length} fine-tuning examples`);"
+    },
+    {
+      "file": "apps\\backend\\scripts\\export-agentic-finetune-jsonl.js",
+      "line": 38,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`📦 Output: ${outputPath}`);"
+    },
+    {
+      "file": "apps\\backend\\scripts\\export-schema-training-jsonl.js",
+      "line": 9,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Wrote ${output}`);"
+    },
+    {
+      "file": "apps\\backend\\scripts\\export-schema-training-jsonl.js",
+      "line": 10,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(getMemoryStats());"
+    },
+    {
+      "file": "apps\\backend\\scripts\\install-strict-salary-training-memory.js",
+      "line": 31,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Installed strict schema dashboard memory: ${strictEntries.map((item) => item.name).join(\", \")}`);"
+    },
+    {
+      "file": "apps\\backend\\scripts\\install-strict-salary-training-memory.js",
+      "line": 32,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Memory file: ${memoryPath}`);"
+    },
+    {
+      "file": "apps\\backend\\scripts\\train-genai-agentic-domains.js",
+      "line": 4,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"🚀 Training GenAI Agentic Analytics Domains...\");"
+    },
+    {
+      "file": "apps\\backend\\scripts\\train-genai-agentic-domains.js",
+      "line": 6,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(JSON.stringify(result, null, 2));"
+    },
+    {
+      "file": "apps\\backend\\scripts\\train-genai-agentic-domains.js",
+      "line": 7,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"✅ GenAI Agentic Domain Training Complete\");"
+    },
+    {
+      "file": "apps\\backend\\scripts\\train-schema-dashboard-llm.js",
+      "line": 85,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "if (seeded) console.log(\"✅ Seed memory copied to data/schema-training-memory.json\");"
+    },
+    {
+      "file": "apps\\backend\\scripts\\train-schema-dashboard-llm.js",
+      "line": 90,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"ℹ️ No CSV files found. Put datasets in apps/backend/training-datasets or pass a file/folder path.\");"
+    },
+    {
+      "file": "apps\\backend\\scripts\\train-schema-dashboard-llm.js",
+      "line": 95,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "if (result) console.log(`✅ Trained ${path.basename(file)} → ${result.domain} (${result.signature})`);"
+    },
+    {
+      "file": "apps\\backend\\scripts\\train-schema-dashboard-llm.js",
+      "line": 106,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Exported JSONL: ${output}`);"
+    },
+    {
+      "file": "apps\\backend\\scripts\\train-schema-dashboard-llm.js",
+      "line": 109,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"📊 Memory stats:\", getMemoryStats());"
+    },
+    {
+      "file": "apps\\backend\\scripts\\train-smart-rag-seeds.js",
+      "line": 386,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"Trained:\", seed.name);"
+    },
+    {
+      "file": "apps\\backend\\scripts\\train-smart-rag-seeds.js",
+      "line": 387,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"   Domain:\", result.entry.domain);"
+    },
+    {
+      "file": "apps\\backend\\scripts\\train-smart-rag-seeds.js",
+      "line": 388,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"   Memory total:\", result.stats.total);"
+    },
+    {
+      "file": "apps\\backend\\src\\config\\environment.js",
+      "line": 54,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "host: process.env.HOST || 'localhost',"
+    },
+    {
+      "file": "apps\\backend\\src\\config\\environment.js",
+      "line": 60,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "baseUrl: process.env.OLLAMA_HOST || process.env.OLLAMA_BASE_URL || 'http://localhost:11434',"
+    },
+    {
+      "file": "apps\\backend\\src\\config\\model-router.js",
+      "line": 4,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "'http://localhost:11434';"
+    },
+    {
+      "file": "apps\\backend\\src\\config\\serviceUrls.js",
+      "line": 2,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "frontend: process.env.FRONTEND_URL || 'http://localhost:5173',"
+    },
+    {
+      "file": "apps\\backend\\src\\config\\serviceUrls.js",
+      "line": 3,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "ollama: process.env.OLLAMA_HOST || process.env.OLLAMA_BASE_URL || 'http://localhost:11434',"
+    },
+    {
+      "file": "apps\\backend\\src\\config\\serviceUrls.js",
+      "line": 4,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "ml: process.env.ML_SERVICE_URL || 'http://localhost:8000',"
+    },
+    {
+      "file": "apps\\backend\\src\\config\\serviceUrls.js",
+      "line": 5,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "api: process.env.BACKEND_URL || process.env.API_BASE_URL || 'http://localhost:3001',"
+    },
+    {
+      "file": "apps\\backend\\src\\core\\server.js",
+      "line": 47,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "const url = new URL(request.url, `http://${request.headers.host || 'localhost'}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\core\\server.js",
+      "line": 82,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "const host = address.address === '::' ? 'localhost' : address.address;"
+    },
+    {
+      "file": "apps\\backend\\src\\database\\dataset-repository.js",
+      "line": 17,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[DB] Creating database at: ${databasePath}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\analyticsEngine.js",
+      "line": 32,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"🔄 Primary AI Provider: OLLAMA (Local)\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\analyticsEngine.js",
+      "line": 40,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"✅ Google Gemini AI initialized (Fallback)\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\analyticsEngine.js",
+      "line": 52,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`🔄 Primary AI Provider: ${this.activeProvider}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\analyticsEngine.js",
+      "line": 137,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Ollama initialized with model: ${this.ollamaModel}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\analyticsEngine.ts",
+      "line": 88,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"🔄 Primary AI Provider: OLLAMA (Local)\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\analyticsEngine.ts",
+      "line": 97,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"✅ Google Gemini AI initialized (Fallback)\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\analyticsEngine.ts",
+      "line": 109,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`🔄 Primary AI Provider: ${this.activeProvider}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\analyticsEngine.ts",
+      "line": 135,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "} catch (e: any) {"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\analyticsEngine.ts",
+      "line": 160,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "const messages: any[] = [];"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\analyticsEngine.ts",
+      "line": 197,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Ollama initialized with model: ${this.ollamaModel}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.js",
+      "line": 9,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"🚀 Initializing Dashboard Generation Pipeline...\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.js",
+      "line": 11,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"📊 Step 1: Analyzing dataset structure...\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.js",
+      "line": 13,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"✅ Schema Generated:\", schema.dataset_domain);"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.js",
+      "line": 15,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"📈 Step 2: Generating KPIs...\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.js",
+      "line": 17,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Generated ${kpis.length} KPIs`);"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.js",
+      "line": 19,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"📊 Step 3: Generating visualizations...\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.js",
+      "line": 24,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Generated ${visualizations.length} charts`);"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.js",
+      "line": 26,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"🎨 Step 4: Building executive dashboard...\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.js",
+      "line": 32,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"✅ Dashboard structure created\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.js",
+      "line": 34,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"🧠 Step 5: Generating AI insights...\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.js",
+      "line": 36,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Generated ${insights.length} insights`);"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.js",
+      "line": 53,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`🤖 Processing query: \"${query}\"`);"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.ts",
+      "line": 22,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"🚀 Initializing Dashboard Generation Pipeline...\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.ts",
+      "line": 25,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"📊 Step 1: Analyzing dataset structure...\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.ts",
+      "line": 27,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"✅ Schema Generated:\", schema.dataset_domain);"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.ts",
+      "line": 30,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"📈 Step 2: Generating KPIs...\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.ts",
+      "line": 32,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Generated ${kpis.length} KPIs`);"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.ts",
+      "line": 35,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"📊 Step 3: Generating visualizations...\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.ts",
+      "line": 40,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Generated ${visualizations.length} charts`);"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.ts",
+      "line": 43,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"🎨 Step 4: Building executive dashboard...\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.ts",
+      "line": 49,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"✅ Dashboard structure created\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.ts",
+      "line": 52,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"🧠 Step 5: Generating AI insights...\");"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.ts",
+      "line": 54,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Generated ${insights.length} insights`);"
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.ts",
+      "line": 75,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`🤖 Processing query: \"${query}\"`);"
+    },
+    {
+      "file": "apps\\backend\\src\\index.js",
+      "line": 15,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('🎉 InsightFlow API started successfully!');"
+    },
+    {
+      "file": "apps\\backend\\src\\legacy\\routes\\chat.routes.js",
+      "line": 68,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('\\n================================================');"
+    },
+    {
+      "file": "apps\\backend\\src\\legacy\\routes\\chat.routes.js",
+      "line": 69,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('📥 API RECEIVED USER QUERY (Privacy-First):');"
+    },
+    {
+      "file": "apps\\backend\\src\\legacy\\routes\\chat.routes.js",
+      "line": 70,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`   Dataset ID: ${datasetId}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\legacy\\routes\\chat.routes.js",
+      "line": 71,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`   Query: \"${query}\"`);"
+    },
+    {
+      "file": "apps\\backend\\src\\legacy\\routes\\chat.routes.js",
+      "line": 72,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`   Preferences: ${JSON.stringify(preferences)}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\legacy\\routes\\chat.routes.js",
+      "line": 73,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('================================================\\n');"
+    },
+    {
+      "file": "apps\\backend\\src\\legacy\\routes\\chat.routes.js",
+      "line": 118,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('\\n================================================');"
+    },
+    {
+      "file": "apps\\backend\\src\\legacy\\routes\\chat.routes.js",
+      "line": 119,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('📤 API SENDING RESPONSE BACK:');"
+    },
+    {
+      "file": "apps\\backend\\src\\legacy\\routes\\chat.routes.js",
+      "line": 120,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`   Privacy Mode: Schema-Only (no raw data)`);"
+    },
+    {
+      "file": "apps\\backend\\src\\legacy\\routes\\chat.routes.js",
+      "line": 121,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`   Used AI: ${analysis.usedAI ? 'Yes 🤖' : 'No (Local)'}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\legacy\\routes\\chat.routes.js",
+      "line": 122,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`   Model: ${analysis.model || 'Local Analysis Engine'}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\legacy\\routes\\chat.routes.js",
+      "line": 123,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`   Confidence: ${(analysis.confidence || 0) * 100}%`);"
+    },
+    {
+      "file": "apps\\backend\\src\\legacy\\routes\\chat.routes.js",
+      "line": 124,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`   Intent: ${analysis.intent || 'N/A'}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\legacy\\routes\\chat.routes.js",
+      "line": 125,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`   Response: ${analysis.content?.substring(0, 200)}...`);"
+    },
+    {
+      "file": "apps\\backend\\src\\legacy\\routes\\chat.routes.js",
+      "line": 126,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('================================================\\n');"
+    },
+    {
+      "file": "apps\\backend\\src\\legacy\\runtime\\server.ts",
+      "line": 25,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`🚀 InsightFlow GenAI Server running on port ${PORT}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\legacy\\runtime\\server.ts",
+      "line": 26,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`📊 API Documentation: ${serviceUrls.frontend}/api/docs`);"
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\logger.middleware.js",
+      "line": 40,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`${color}[${timestamp}] ${level.toUpperCase()}:${colors.reset} ${message}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\logger.middleware.js",
+      "line": 43,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`${color}Meta:${colors.reset}`, JSON.stringify(meta, null, 2));"
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\request-logger.js",
+      "line": 51,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`📝 [${requestId}] ${message}`, logData);"
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\request-logger.js",
+      "line": 101,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('\\n🚀 ===== InsightFlow API Starting =====');"
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\request-logger.js",
+      "line": 102,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`📍 Environment: ${config.server.nodeEnv}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\request-logger.js",
+      "line": 103,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`📍 Host: ${config.server.host}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\request-logger.js",
+      "line": 104,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`📍 Port: ${config.server.port}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\request-logger.js",
+      "line": 105,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`📍 Log Level: ${config.logging.level}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\request-logger.js",
+      "line": 106,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`📍 Verbose Logging: ${config.logging.verbose}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\request-logger.js",
+      "line": 107,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`📍 CORS Origin: ${config.cors.origin}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\request-logger.js",
+      "line": 108,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`📍 AI Providers: ${config.ai.providerPriority.join(', ')}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\request-logger.js",
+      "line": 109,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('=====================================\\n');"
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\request-logger.js",
+      "line": 116,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('\\n🛑 ===== InsightFlow API Shutting Down =====');"
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\request-logger.js",
+      "line": 117,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`📍 Shutdown Time: ${new Date().toISOString()}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\request-logger.js",
+      "line": 118,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('==========================================\\n');"
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\ai.js",
+      "line": 211,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`🧪 Testing AI with prompt: \"${prompt.substring(0, 50)}...\"`);"
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\ai.js",
+      "line": 274,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`🧪 Testing AI chat with ${messages.length} messages`);"
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\ai.js",
+      "line": 320,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`🔄 Switching to AI provider: ${provider}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\datasets.js",
+      "line": 117,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[DATASET] Import request:', {"
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\datasets.js",
+      "line": 142,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[DATASET] ✅ Dataset imported:', datasetId);"
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\export.js",
+      "line": 58,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[EXPORT] ✅ Exported dataset as ${format}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\agentic\\core\\agent-memory.js",
+      "line": 58,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "/** @type {Map<string, { value: any, writtenAt: number }>} */"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\agentic\\core\\agent-memory.js",
+      "line": 142,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "*   async get(key): any"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\agentic\\core\\agent-memory.js",
+      "line": 193,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "/** @type {Map<string, { schema: object, plan: any, hitCount: number }>} */"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\agentic\\core\\agent-memory.js",
+      "line": 231,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "* @returns {{ match: object, plan: any, similarity: number } | null}"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\agentic\\core\\agent-registry.js",
+      "line": 47,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[AgentRegistry] ✅ Registered \"${agent.name}\" (${agent.id}) as ${agent.role}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\agentic\\core\\agent-registry.js",
+      "line": 62,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[AgentRegistry] 🔄 Replaced agent \"${agent.id}\"`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\agentic\\core\\agent-registry.js",
+      "line": 78,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[AgentRegistry] 🗑️  Unregistered \"${agentId}\"`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\agentic-dashboard\\custom-chart-query-parser.js",
+      "line": 383,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[custom-chart-query-parser] Parsed action:', JSON.stringify(action, null, 2));"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ai-manager.js",
+      "line": 27,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('\\n🎯 ===== AI MANAGER INITIALIZATION =====');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ai-manager.js",
+      "line": 28,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`Provider Priority: ${this.priority.join(' → ')}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ai-manager.js",
+      "line": 29,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`Fallback Enabled: ${this.fallbackEnabled}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ai-manager.js",
+      "line": 38,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('\\n✅ AI Manager initialized\\n');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ai-manager.js",
+      "line": 48,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('✅ Ollama provider initialized');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ai-manager.js",
+      "line": 60,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('✅ Gemini provider initialized');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ai-manager.js",
+      "line": 72,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('✅ OpenAI provider initialized');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ai-manager.js",
+      "line": 84,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('✅ Anthropic provider initialized');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ai-manager.js",
+      "line": 96,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`\\n✅ Active Provider: ${this.activeProvider.toUpperCase()}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ai-manager.js",
+      "line": 115,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`\\n📝 Generating with ${this.activeProvider}...`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ai-manager.js",
+      "line": 154,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`\\n💬 Chatting with ${this.activeProvider}...`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ai-manager.js",
+      "line": 205,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`🔄 Trying ${providerName}...`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ai-manager.js",
+      "line": 209,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Fallback to ${providerName} successful`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ai-manager.js",
+      "line": 284,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`🔄 Switched to provider: ${providerName}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\anthropic-provider.js",
+      "line": 33,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('🧠 Initializing Anthropic Provider...');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\anthropic-provider.js",
+      "line": 40,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('✅ Anthropic initialized successfully');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\anthropic-provider.js",
+      "line": 85,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('🧠 Anthropic generating response...');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\anthropic-provider.js",
+      "line": 101,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Anthropic response received in ${duration}s`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\anthropic-provider.js",
+      "line": 135,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('💬 Anthropic chat with messages...');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\anthropic-provider.js",
+      "line": 151,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Anthropic chat response received in ${duration}s`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\gemini-provider.js",
+      "line": 28,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('🤖 Initializing Google Gemini Provider...');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\gemini-provider.js",
+      "line": 32,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('✅ Google Gemini initialized successfully');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\gemini-provider.js",
+      "line": 63,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('🤖 Gemini generating response...');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\gemini-provider.js",
+      "line": 80,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Gemini response received in ${duration}s`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\gemini-provider.js",
+      "line": 112,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('💬 Gemini chat with messages...');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\gemini-provider.js",
+      "line": 150,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Gemini chat response received in ${duration}s`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\ollama-provider.js",
+      "line": 25,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('🦙 Initializing Ollama Provider...');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\ollama-provider.js",
+      "line": 26,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`   Base URL: ${this.baseUrl}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\ollama-provider.js",
+      "line": 27,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`   Primary Model: ${this.primaryModel}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\ollama-provider.js",
+      "line": 28,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`   Chat Model: ${this.chatModel}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\ollama-provider.js",
+      "line": 34,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('✅ Ollama Provider initialized successfully');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\ollama-provider.js",
+      "line": 49,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Ollama is available (${response.status})`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\ollama-provider.js",
+      "line": 65,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`📦 Available Ollama models: ${this.models.map(m => m.name).join(', ')}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\ollama-provider.js",
+      "line": 108,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`🦙 Ollama generating with model: ${model}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\ollama-provider.js",
+      "line": 136,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Ollama response received in ${duration}s`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\ollama-provider.js",
+      "line": 164,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`💬 Ollama chat with model: ${model}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\ollama-provider.js",
+      "line": 191,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Ollama chat response received in ${duration}s`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\ollama-provider.js",
+      "line": 209,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`📥 Pulling model: ${modelName}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\ollama-provider.js",
+      "line": 218,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Model pulled: ${modelName}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\openai-provider.js",
+      "line": 28,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('🧠 Initializing OpenAI Provider...');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\openai-provider.js",
+      "line": 35,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('✅ OpenAI initialized successfully');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\openai-provider.js",
+      "line": 65,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('🧠 OpenAI generating response...');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\openai-provider.js",
+      "line": 82,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ OpenAI response received in ${duration}s`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\openai-provider.js",
+      "line": 117,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('💬 OpenAI chat with messages...');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\openai-provider.js",
+      "line": 134,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ OpenAI chat response received in ${duration}s`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyzer.js",
+      "line": 16,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('AI Analyzer: Using Ollama');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyzer.js",
+      "line": 23,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('AI Analyzer: Using Gemini');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyzer.js",
+      "line": 28,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('AI Analyzer: Using rule-based analysis only');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-cascade-service.js",
+      "line": 18,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n[cascade] ====================================\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-cascade-service.js",
+      "line": 19,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[cascade] Starting AI cascade for: \"${query.substring(0, 30)}...\"`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-cascade-service.js",
+      "line": 20,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[cascade] Priority: Ollama -> Gemini -> Local\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-cascade-service.js",
+      "line": 26,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[cascade] CACHE HIT\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-cascade-service.js",
+      "line": 34,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[cascade] CACHE MISS - Proceeding\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-cascade-service.js",
+      "line": 37,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[cascade] Using local guided response for query type: ${queryType}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-cascade-service.js",
+      "line": 48,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[cascade] LEVEL 1: OLLAMA SUCCESS\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-cascade-service.js",
+      "line": 56,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[cascade] OLLAMA FAILED: ${ollamaResult.error}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-cascade-service.js",
+      "line": 57,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[cascade] -> LEVEL 2: GEMINI\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-cascade-service.js",
+      "line": 61,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[cascade] LEVEL 2: GEMINI SUCCESS\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-cascade-service.js",
+      "line": 69,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[cascade] GEMINI FAILED: ${geminiResult.error}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-cascade-service.js",
+      "line": 70,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[cascade] -> LEVEL 3: LOCAL FALLBACK\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-cascade-service.js",
+      "line": 73,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[cascade] LEVEL 3: LOCAL SUCCESS\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-providers\\ai-router.js",
+      "line": 151,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[aiProviderRouter] Racing Gemini and Ollama for important task: \"${userQuery}\"`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-providers\\ai-router.js",
+      "line": 162,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[aiProviderRouter] Gemini score: ${geminiScore}, Ollama score: ${ollamaScore}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-providers\\ai-router.js",
+      "line": 226,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[aiProviderRouter] Attempting primary provider: ${primaryName}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-providers\\ollama-service.js",
+      "line": 6,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "this.baseUrl = (process.env.OLLAMA_HOST || process.env.OLLAMA_BASE_URL || 'http://localhost:11434').trim();"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-service.js",
+      "line": 62,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[schema-first] Ollama not available, using local analytics\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-service.js",
+      "line": 67,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[schema-first] Calling Ollama with schema-only approach\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-service.js",
+      "line": 71,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[schema-first] Ollama failed, falling back to local\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-service.js",
+      "line": 93,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[schema-first] Error:\", error.message);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-service.js",
+      "line": 147,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[analytics] 🔧 Fixing SQL value: '${value}' -> '${matchingValue}'`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-service.js",
+      "line": 510,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[analytics] Using HR dataset query handler');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-service.js",
+      "line": 544,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[analytics] Calling smart query handler for:', query);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-service.js",
+      "line": 546,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[analytics] Smart response:', JSON.stringify(smartResponse)?.substring(0, 100) || 'null/undefined');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-service.js",
+      "line": 548,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[analytics] Using smart query handler result');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-service.js",
+      "line": 555,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[analytics] Smart response empty, falling through');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-service.js",
+      "line": 567,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[analytics] Using Ollama + Mistral for AI analysis');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-service.js",
+      "line": 579,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[analytics] Ollama analysis successful');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-service.js",
+      "line": 607,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[analytics] Ollama not available, trying AI router fallback');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\gemini-ai-service.js",
+      "line": 25,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[gemini-ai] Config status: ${configured ? \"CONFIGURED\" : \"NOT CONFIGURED\"}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\gemini-ai-service.js",
+      "line": 46,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[gemini-ai] Initializing with model:\", GEMINI_CONFIG.model);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\gemini-ai-service.js",
+      "line": 71,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[gemini-ai] Sending request to Gemini...\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\gemini-ai-service.js",
+      "line": 72,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[gemini-ai] Schema length:\", schemaText.length, \"chars\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\gemini-ai-service.js",
+      "line": 83,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[gemini-ai] Waiting for response...\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\gemini-ai-service.js",
+      "line": 88,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[gemini-ai] Response received, parsing...\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 28,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('\\n🔍 [LAYER 1] Parsing query with Llama 3.2...');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 29,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`Query: \"${userQuery}\"`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 33,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('✅ Using cached result');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 78,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('✅ Query parsed successfully');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 96,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('\\n✅ [LAYER 2] Validating analysis with Llama 3.2...');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 100,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('✅ Using cached validation');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 150,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ Validation passed (score: ${result.score})`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 152,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`⚠️  Validation failed - using corrections`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 153,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`Corrections made: ${result.corrections.join(', ')}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 174,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('\\n╔════════════════════════════════════════════╗');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 175,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('║  🚀 LLAMA 3.2 VALIDATION PIPELINE START  ║');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 176,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('╚════════════════════════════════════════════╝');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 203,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('\\n📊 Generating dashboard...');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 211,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('\\n╔════════════════════════════════════════════╗');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 212,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('║  ✨ PIPELINE COMPLETE - DASHBOARD READY  ║');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 213,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('╚════════════════════════════════════════════╝\\n');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 371,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`📡 Calling Llama 3.2 (max ${maxTokens} tokens)...`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 420,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('Response was:', text.substring(0, 200));"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "line": 502,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('🧹 Cache cleared');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\local-database-service.js",
+      "line": 218,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`Local database marked for deletion: ${dbPath}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ml\\automl-service.js",
+      "line": 85,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[AutoML] Training model for dataset: ${datasetId}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ml\\automl-service.js",
+      "line": 93,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[AutoML] Problem type: ${problemType}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ml\\automl-service.js",
+      "line": 94,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[AutoML] Data shape: ${rows.length} rows, ${analysis.numericColumns.length} features`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ml\\automl-service.js",
+      "line": 174,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[AutoML] AI insights not available');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ml\\automl-service.js",
+      "line": 177,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[AutoML] ✅ Model trained successfully! Accuracy: ${(accuracy * 100).toFixed(2)}%`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ml\\automl-service.js",
+      "line": 224,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[AutoML] ✅ Prediction made: ${prediction}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ollama-ai-service.js",
+      "line": 23,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[ollama] Ollama is running with models:`, data.models?.map(m => m.name));"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ollama-ai-service.js",
+      "line": 85,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[ollama] Analyzing query with ${OLLAMA_MODEL}:`, query);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ollama-service.js",
+      "line": 39,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[ollama-ai] Sending request to local Ollama (${OLLAMA_MODEL}) at ${OLLAMA_URL}...`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\query-cache.js",
+      "line": 38,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[cache] Query cache table initialized OK\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\query-cache.js",
+      "line": 64,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[cache] HIT - Cached result found (hits: ${result.hit_count + 1})`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\query-cache.js",
+      "line": 68,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[cache] MISS - No cached result\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\query-cache.js",
+      "line": 91,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[cache] CACHED - Query response stored\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\query-cache.js",
+      "line": 140,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[cache] Cache cleared for dataset ${datasetId}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\query-cache.js",
+      "line": 162,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[cache] Module loaded successfully\");"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\smart-query-handler.js",
+      "line": 358,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[smart-query] Processing: \"${query}\"`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\smart-query-handler.js",
+      "line": 361,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[smart-query] Invalid dataset - using fallback response');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\smart-query-handler.js",
+      "line": 370,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[smart-query] Step 1: prepareDatasetForAnalytics');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\smart-query-handler.js",
+      "line": 372,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[smart-query] Step 2: analyticsDataset ready');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\smart-query-handler.js",
+      "line": 375,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[smart-query] Failed to prepare analytics dataset - using fallback');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\smart-query-handler.js",
+      "line": 384,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[smart-query] Step 3: buildDatasetSchema');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\smart-query-handler.js",
+      "line": 386,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[smart-query] Step 4: buildEnhancedSchema');"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\smart-query-handler.js",
+      "line": 396,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`[smart-query] Intent: ${intent}`);"
+    },
+    {
+      "file": "apps\\backend\\src\\services\\smart-query-handler.js",
+      "line": 420,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[smart-query] No result, creating fallback');"
+    },
+    {
+      "file": "apps\\backend\\src\\utils\\logger.js",
+      "line": 38,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(formatted);"
+    },
+    {
+      "file": "apps\\backend\\test-gemini.js",
+      "line": 17,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`✅ API Key found: ${apiKey.slice(0, 10)}...`);"
+    },
+    {
+      "file": "apps\\backend\\test-gemini.js",
+      "line": 28,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[test] Calling Gemini API...\");"
+    },
+    {
+      "file": "apps\\backend\\test-gemini.js",
+      "line": 30,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"[test] ✅ Response received:\");"
+    },
+    {
+      "file": "apps\\backend\\test-gemini.js",
+      "line": 31,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(response.response.text());"
+    },
+    {
+      "file": "apps\\frontend\\src\\components\\GenAIDashboard.tsx",
+      "line": 123,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"Query response:\", response.data);"
+    },
+    {
+      "file": "apps\\frontend\\src\\components\\SchemaTrainingStatus.tsx",
+      "line": 4,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "result?: any;"
+    },
+    {
+      "file": "apps\\frontend\\src\\config\\apiConfig.ts",
+      "line": 4,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "\"http://localhost:3001\";"
+    },
+    {
+      "file": "apps\\frontend\\src\\config\\apiConfig.ts",
+      "line": 7,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "(import.meta.env.VITE_ML_SERVICE_URL as string) || \"http://localhost:8000\";"
+    },
+    {
+      "file": "apps\\frontend\\src\\config\\apiConfig.ts",
+      "line": 10,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "(import.meta.env.VITE_FRONTEND_URL as string) || \"http://localhost:5173\";"
+    },
+    {
+      "file": "apps\\frontend\\src\\config\\apiConfig.ts",
+      "line": 15,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "\"http://localhost:11434\";"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\AgenticPage.tsx",
+      "line": 143,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "} catch (err: any) {"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\AgenticPage.tsx",
+      "line": 169,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "} catch (err: any) {"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\AgenticPage.tsx",
+      "line": 193,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "} catch (err: any) {"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\AgenticPage.tsx",
+      "line": 213,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "} catch (err: any) {"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\AgenticPage.tsx",
+      "line": 236,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "const safeArray = (arr: any) => (Array.isArray(arr) ? arr : []);"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\AgenticPage.tsx",
+      "line": 237,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "const safeText = (txt: any, fallback = \"-\") => (typeof txt === \"string\" || typeof txt === \"number\" ? String(txt) : fallback);"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\AgenticPage.tsx",
+      "line": 616,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "{safeArray(dataset.columns).map((col: any, idx: number) => {"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\AgenticPage.tsx",
+      "line": 1018,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "{safeArray(simResult.dashboardPlan?.kpis || simResult.dashboard?.kpis).map((kpi: any, idx: number) => ("
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\AgenticPage.tsx",
+      "line": 1034,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "{safeArray(simResult.dashboardPlan?.charts || simResult.dashboard?.charts).map((chart: any, idx: number) => ("
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\AgenticThinkingPanel.tsx",
+      "line": 7,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "agentPlan?: any;"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\AgenticThinkingPanel.tsx",
+      "line": 20,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "dashboardSpec?: any;"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\DataScienceSummaryCards.tsx",
+      "line": 13,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "export function DataScienceSummaryCards({ profile, anomalies, correlations, model }: any) {"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\api\\dataApi.ts",
+      "line": 147,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "rows: any[];"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\api\\dataApi.ts",
+      "line": 148,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "dataDictionary?: any[];"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\api\\dataApi.ts",
+      "line": 155,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "currentDashboard?: any;"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\api\\dataApi.ts",
+      "line": 159,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "currentDashboard?: any;"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\api\\dataApi.ts",
+      "line": 164,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "schemaProfile?: any;"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\api\\dataApi.ts",
+      "line": 165,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "aiPlan?: any;"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\api\\dataApi.ts",
+      "line": 166,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "dashboard?: any;"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\api\\dataApi.ts",
+      "line": 170,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "correctedDashboard?: any;"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\api\\dataApi.ts",
+      "line": 317,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('Using Vite proxy for API requests');"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\api\\schemaAiClient.ts",
+      "line": 76,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "let payload: any = null;"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\pages\\UploadPage.tsx",
+      "line": 543,
+      "rule": "any-type",
+      "severity": "medium",
+      "message": "Avoid TypeScript any. Use proper types.",
+      "code": "{(activeDataset.columns || []).slice(0, 16).map((column: any) => ("
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\ml\\pages\\MLPage.tsx",
+      "line": 36,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[ML] Starting model training...');"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\ml\\pages\\MLPage.tsx",
+      "line": 61,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[ML] ✅ Model trained successfully');"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\ml\\pages\\MLPage.tsx",
+      "line": 62,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[ML] Model details:', response.data.model);"
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\ml\\pages\\MLPage.tsx",
+      "line": 93,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('[ML] ✅ Predictions made:', response.data.prediction);"
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\lib\\logger.ts",
+      "line": 128,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(formatted);"
+    },
+    {
+      "file": "apps\\frontend\\src\\__tests__\\dataUploadFlow.test.tsx",
+      "line": 30,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "uploadUrl: \"http://localhost/mobile-upload/qr-1\","
+    },
+    {
+      "file": "apps\\frontend\\vite.config.ts",
+      "line": 22,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "target: \"http://localhost:3001\","
+    },
+    {
+      "file": "apps\\frontend\\vite.config.ts",
+      "line": 27,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('proxy error', err);"
+    },
+    {
+      "file": "apps\\frontend\\vite.config.ts",
+      "line": 30,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('Sending Request to the Target:', req.url);"
+    },
+    {
+      "file": "apps\\frontend\\vite.config.ts",
+      "line": 33,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('Received Response from the Target:', proxyRes.statusCode, req.url);"
+    },
+    {
+      "file": "apps\\frontend\\vite.config.ts",
+      "line": 39,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "target: \"http://localhost:5000\","
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 22,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  ✅ Backend reachable at ${API_BASE_URL}`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 61,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`     ⚠️  Request failed: ${method} ${path} — ${err.message} (${elapsed}ms)`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 70,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  ✅ ${name} ${detail ? `(${detail})` : \"\"}`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 74,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(msg);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 83,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 84,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  1. ROOT INDEX & HEALTH CHECK\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 85,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 101,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 102,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  2. APPLICATION STATE\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 103,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 117,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`     → Dataset: \"${state.data.dataset.name}\" (${state.data.dataset.rows.length} rows, ${state.data.dataset.columns.length} cols)`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 125,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 126,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  3. DEMO DATASET LOADING\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 127,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 140,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`     → Created demo dataset: ${datasetId}`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 141,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`     → ${demo.data.dataset.rows.length} rows, ${demo.data.dataset.columns.length} columns`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 149,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 150,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  4. DATASET IMPORT (CSV-like)\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 151,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 189,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`     → Imported dataset: ${datasetId}`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 197,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 198,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  5. DATASET SCHEMA\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 199,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 202,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ⏩ Skipped (no dataset)\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 219,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`     → Columns: ${cols.map(c => `${c.name}(${c.role})`).join(\", \")}`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 231,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 232,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  6. ROW PATCHING (INLINE EDIT)\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 233,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 236,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ⏩ Skipped (no dataset)\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 245,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ⏩ Skipped (no rows with __rowId)\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 282,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 283,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  7. AI CHAT (QUERY ANALYSIS)\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 284,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 287,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ⏩ Skipped (no dataset)\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 308,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`     → AI response: \"${countQuery.data?.assistantMessage?.content?.substring(0, 100)}...\"`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 309,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`     → Used AI: ${countQuery.data?.assistantMessage?.usedAI}`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 317,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`     → Chart type: ${aggQuery.data?.assistantMessage?.chart?.type || \"none\"}`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 337,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 338,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  8. CORRELATION ANALYSIS\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 339,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 342,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ⏩ Skipped (no dataset)\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 358,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`     → Top correlation: ${first.column1} ↔ ${first.column2} = ${first.coefficient} (${first.strength})`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 366,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 367,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  9. AI DATA SERVICES (Profile, Anomalies, etc.)\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 368,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 371,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ⏩ Skipped (no dataset)\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 380,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`     → Profile response time: ${profile.elapsed}ms`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 415,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 416,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  10. QUERY CACHE\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 417,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 424,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`     → Cache stats:`, JSON.stringify(stats.data?.cache || {}).substring(0, 200));"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 443,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 444,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  11. SCHEMA-ONLY AI QUERY\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 445,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 481,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 482,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  12. LOCAL DATABASE OPERATIONS\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 483,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 514,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 515,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  13. ML SERVICE ENDPOINTS\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 516,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 554,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 555,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  14. ERROR HANDLING & EDGE CASES\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 556,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 584,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 585,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  15. CHAT MESSAGE PERSISTENCE\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 586,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"═══════════════════════════════════════════\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 589,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ⏩ Skipped (no dataset)\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 609,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`     → ${messages.length} messages persisted`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 617,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"╔═══════════════════════════════════════════════════════╗\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 618,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"║   INSIGHTFLOW — FULL END-TO-END TEST SUITE           ║\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 619,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`║   Testing against: ${API_BASE_URL.padEnd(35)}║`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 620,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"╚═══════════════════════════════════════════════════════╝\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 621,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`\\n  Started at: ${new Date().toLocaleString()}`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 659,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n╔═══════════════════════════════════════════════════════╗\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 660,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"║   TEST RESULTS SUMMARY                               ║\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 661,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"╠═══════════════════════════════════════════════════════╣\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 662,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`║   Total:  ${String(totalTests).padStart(3)}                                        ║`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 663,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`║   Passed: ${String(passed).padStart(3)} ✅                                      ║`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 664,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`║   Failed: ${String(failed).padStart(3)} ${failed === 0 ? \"🎉\" : \"❌\"}                                      ║`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 665,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`║   Time:   ${totalTime}s                                       ║`);"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 666,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"╚═══════════════════════════════════════════════════════╝\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 669,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n  ❌ FAILED TESTS:\");"
+    },
+    {
+      "file": "e2e-full-test.js",
+      "line": 670,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "failures.forEach((f) => console.log(f));"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 466,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 467,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ╔══════════════════════════════════════════════════════════╗\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 468,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ║        INSIGHTFLOW — FULL QA TEST REPORT               ║\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 469,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ╚══════════════════════════════════════════════════════════╝\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 470,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 471,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  Generated : ${report.timestamp}`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 472,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  Duration  : ${report.duration}ms`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 473,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 477,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ┌─────────────────────────────────────────────────────────┐\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 478,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  │  SUMMARY                                               │\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 479,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ├─────────────────────────────────────────────────────────┤\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 480,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  │  Total Source Files    : ${String(summary.totalFiles).padEnd(10)}    Lines of Code: ${String(summary.totalLines).padEnd(8)} │`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 481,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  │  Test Files            : ${String(summary.totalTestFiles).padEnd(10)}    Functions    : ${String(summary.totalFunctions).padEnd(8)} │`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 482,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  │  Files With Tests      : ${String(summary.filesWithTests).padEnd(10)}    Imports      : ${String(summary.totalImports).padEnd(8)} │`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 483,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  │  Files Without Tests   : ${String(summary.filesWithoutTests).padEnd(10)}                           │`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 484,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  │  ${covColor}  Test Coverage       : ${String(summary.testCoveragePct + \"%\").padEnd(10)}                           │`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 485,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  └─────────────────────────────────────────────────────────┘\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 486,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 489,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ┌─────────────────────────────────────────────────────────┐\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 490,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  │  TEST SUITES                                           │\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 491,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ├─────────────────────────────────────────────────────────┤\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 492,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  │  ${feStatus}  Frontend (vitest)  : ${String(tests.frontend.passed).padStart(4)}/${String(tests.frontend.total).padEnd(4)} passed  ${tests.frontend.failed > 0 ? tests.frontend.failed + \" failed\" : \"\"}  ${tests.frontend.skipped > 0 ? tests.frontend.skipped + \" skipped\" : \"\"} │`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 493,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  │  ${beStatus}  Backend  (vitest)  : ${String(tests.backend.passed).padStart(4)}/${String(tests.backend.total).padEnd(4)} passed  ${tests.backend.failed > 0 ? tests.backend.failed + \" failed\" : \"\"}  ${tests.backend.skipped > 0 ? tests.backend.skipped + \" skipped\" : \"\"} │`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 494,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  │  ${lintStatus}  ESLint            : ${String(quality.lint.errorCount).padStart(4)} errors, ${String(quality.lint.warnCount).padEnd(4)} warnings              │`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 495,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  │  ${tsStatus}  TypeScript        : ${String(quality.typescript.errors).padStart(4)} errors                              │`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 496,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  └─────────────────────────────────────────────────────────┘\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 497,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 501,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ┌─────────────────────────────────────────────────────────┐\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 502,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  │  ⚠️  UNTESTED FILES (${String(untestedFiles.length).padStart(3)})                               │`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 503,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ├─────────────────────────────────────────────────────────┤\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 507,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  │  ❌  ${short.padEnd(55)} ${String(uf.lines).padStart(4)}L │`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 510,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  │  ... and ${untestedFiles.length - 25} more untested files                   │`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 512,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  └─────────────────────────────────────────────────────────┘\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 513,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 519,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ┌─────────────────────────────────────────────────────────┐\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 520,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  │  ✅  TESTED  (${String(testedFiles.length).padStart(3)} files)                                  │`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 521,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ├─────────────────────────────────────────────────────────┤\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 525,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  │  ✅  ${short.padEnd(55)} ${String(tf.lines).padStart(4)}L │`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 528,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  │  ... and ${testedFiles.length - 20} more tested files                   │`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 530,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  └─────────────────────────────────────────────────────────┘\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 531,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 534,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`  📄  Full reports saved to:`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 535,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`      JSON: ${REPORT_FILE}`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 536,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`      HTML: ${HTML_REPORT_FILE}`);"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 537,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 538,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ───────────────────────────────────────────────────────────\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 539,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  Press [Enter] to re-run all tests and update this report.\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 540,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  Press [Ctrl+C] to exit.\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 541,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 545,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 546,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ╔══════════════════════════════════════════════════════════╗\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 547,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ║     INSIGHTFLOW QA TESTER — Initializing...             ║\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 548,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"  ╚══════════════════════════════════════════════════════════╝\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 549,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\");"
+    },
+    {
+      "file": "qa-test-script.js",
+      "line": 563,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"\\n\\n  QA Tester exiting. Reports saved in reports/qa-reports/\\n\");"
+    },
+    {
+      "file": "scratch_test_local_command.js",
+      "line": 25,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"METRIC:\", metric?.name, \"CATEGORY:\", category?.name);"
+    },
+    {
+      "file": "scratch_test_local_command.js",
+      "line": 31,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"PARSED BY CUSTOM PARSER:\", JSON.stringify(parsed, null, 2));"
+    },
+    {
+      "file": "scratch_test_ollama.js",
+      "line": 4,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"Starting fetch...\");"
+    },
+    {
+      "file": "scratch_test_ollama.js",
+      "line": 17,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"Response:\", text);"
+    },
+    {
+      "file": "scratch_test_ollama_real.js",
+      "line": 19,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"Calling Ollama...\");"
+    },
+    {
+      "file": "scratch_test_ollama_real.js",
+      "line": 23,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`Took ${end - start}ms`);"
+    },
+    {
+      "file": "scratch_test_ollama_real.js",
+      "line": 24,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(response);"
+    },
+    {
+      "file": "scratch_test_service.js",
+      "line": 6,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('Testing Ollama API Integration...');"
+    },
+    {
+      "file": "scratch_test_service.js",
+      "line": 7,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('Model configured:', process.env.OLLAMA_MODEL || 'llama3.2:latest');"
+    },
+    {
+      "file": "scratch_test_service.js",
+      "line": 11,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('Ollama is Available:', isAvailable);"
+    },
+    {
+      "file": "scratch_test_service.js",
+      "line": 14,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('Testing Connection/Version...');"
+    },
+    {
+      "file": "scratch_test_service.js",
+      "line": 16,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('Connection Info:', connectionData);"
+    },
+    {
+      "file": "scratch_test_service.js",
+      "line": 18,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('\\nTesting generateResponse...');"
+    },
+    {
+      "file": "scratch_test_service.js",
+      "line": 24,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('Response:', response);"
+    },
+    {
+      "file": "scripts\\audit-codebase.js",
+      "line": 32,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "test: line => line.includes(\"console.log\"),"
+    },
+    {
+      "file": "scripts\\audit-codebase.js",
+      "line": 33,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "message: \"Remove console.log before production.\""
+    },
+    {
+      "file": "scripts\\audit-codebase.js",
+      "line": 36,
+      "rule": "todo-found",
+      "severity": "low",
+      "message": "TODO/FIXME found. Complete or document it.",
+      "code": "id: \"todo-found\","
+    },
+    {
+      "file": "scripts\\audit-codebase.js",
+      "line": 38,
+      "rule": "todo-found",
+      "severity": "low",
+      "message": "TODO/FIXME found. Complete or document it.",
+      "code": "test: line => /TODO|FIXME/i.test(line),"
+    },
+    {
+      "file": "scripts\\audit-codebase.js",
+      "line": 39,
+      "rule": "todo-found",
+      "severity": "low",
+      "message": "TODO/FIXME found. Complete or document it.",
+      "code": "message: \"TODO/FIXME found. Complete or document it.\""
+    },
+    {
+      "file": "scripts\\audit-codebase.js",
+      "line": 42,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "id: \"hardcoded-localhost\","
+    },
+    {
+      "file": "scripts\\audit-codebase.js",
+      "line": 44,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "test: line => line.includes(\"localhost\"),"
+    },
+    {
+      "file": "scripts\\audit-codebase.js",
+      "line": 45,
+      "rule": "hardcoded-localhost",
+      "severity": "medium",
+      "message": "Hardcoded localhost found. Use environment variables.",
+      "code": "message: \"Hardcoded localhost found. Use environment variables.\""
+    },
+    {
+      "file": "scripts\\audit-codebase.js",
+      "line": 145,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`Audit complete. Report saved to ${REPORT_PATH}`);"
+    },
+    {
+      "file": "scripts\\export-ai-safe.js",
+      "line": 181,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('PROJECT_AI_SAFE.md generated');"
+    },
+    {
+      "file": "scripts\\export-ai-safe.js",
+      "line": 182,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log('PROJECT_ARCHITECTURE.md generated');"
+    },
+    {
+      "file": "scripts\\export-ai-safe.js",
+      "line": 185,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`${skipped.length} oversized file(s) skipped; see PROJECT_ARCHITECTURE.md.`);"
+    },
+    {
+      "file": "scripts\\export-codebase-deep.js",
+      "line": 156,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`"
+    },
+    {
+      "file": "scripts\\export-codebase-deep.js",
+      "line": 689,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(\"Deep codebase export complete.\");"
+    },
+    {
+      "file": "scripts\\export-codebase-deep.js",
+      "line": 690,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`Code bundle: ${path.relative(process.cwd(), codePath)}`);"
+    },
+    {
+      "file": "scripts\\export-codebase-deep.js",
+      "line": 691,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`Architecture: ${path.relative(process.cwd(), architecturePath)}`);"
+    },
+    {
+      "file": "scripts\\export-codebase-deep.js",
+      "line": 692,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`Manifest: ${path.relative(process.cwd(), manifestPath)}`);"
+    },
+    {
+      "file": "scripts\\export-codebase-deep.js",
+      "line": 693,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`Files exported: ${manifest.totals.files}`);"
+    },
+    {
+      "file": "scripts\\export-codebase-deep.js",
+      "line": 694,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`Skipped paths: ${manifest.totals.skipped}`);"
+    },
+    {
+      "file": "scripts\\export-full-codebase-one-file.js",
+      "line": 331,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`Generated ${path.relative(PROJECT_ROOT, OUTPUT_FILE)}`);"
+    },
+    {
+      "file": "scripts\\export-full-codebase-one-file.js",
+      "line": 332,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`Included ${sortedFiles.length} file(s).`);"
+    },
+    {
+      "file": "scripts\\export-full-codebase-one-file.js",
+      "line": 333,
+      "rule": "console-log",
+      "severity": "low",
+      "message": "Remove console.log before production.",
+      "code": "console.log(`Skipped ${sortedSkipped.length} file(s)/director(ies).`);"
+    }
+  ]
+}
