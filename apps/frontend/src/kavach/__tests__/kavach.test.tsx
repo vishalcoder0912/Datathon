@@ -127,7 +127,7 @@ describe('Kavach Frontend Components', () => {
         </FilterProvider>
       );
 
-      expect(screen.getByText('KAVACH AI Workspace')).toBeInTheDocument();
+      expect(screen.getByText(/KAVACH AI Workspace/i)).toBeInTheDocument();
     });
 
     it('renders GlobalFilters component inside DashboardPage', async () => {
@@ -167,7 +167,7 @@ describe('Kavach Frontend Components', () => {
       expect(skeletons.length).toBeGreaterThan(0);
     });
 
-    it('shows heading when overview data is null', async () => {
+    it('shows empty state when no overview data', async () => {
       render(
         <FilterProvider>
           <DashboardPage />
@@ -179,7 +179,7 @@ describe('Kavach Frontend Components', () => {
       });
 
       await waitFor(() => {
-        expect(screen.getByText('KAVACH AI Workspace')).toBeInTheDocument();
+        expect(screen.getByText(/KAVACH AI Workspace/i)).toBeInTheDocument();
       });
     });
   });

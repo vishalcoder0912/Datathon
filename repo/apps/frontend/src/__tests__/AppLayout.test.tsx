@@ -22,6 +22,18 @@ vi.mock("@/auth/AuthProvider", () => ({
   }),
 }));
 
+vi.mock("@/kavach/context/ImportDataContext", () => ({
+  useImportData: () => ({
+    hasCustomData: false,
+    importedCount: 0,
+    lastImportAt: null,
+    refreshKey: 0,
+    notifyImported: vi.fn(),
+    reset: vi.fn(),
+  }),
+  ImportDataProvider: ({ children }: { children: React.ReactNode }) => children,
+}));
+
 describe("AppLayout", () => {
   it("renders the app shell with routed content", () => {
     render(

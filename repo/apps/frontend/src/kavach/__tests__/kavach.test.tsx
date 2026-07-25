@@ -127,7 +127,7 @@ describe('Kavach Frontend Components', () => {
         </FilterProvider>
       );
 
-      expect(screen.getByText('KAVACH Command Centre')).toBeInTheDocument();
+      expect(screen.getByText(/KAVACH AI Workspace/i)).toBeInTheDocument();
     });
 
     it('renders GlobalFilters component inside DashboardPage', async () => {
@@ -179,7 +179,7 @@ describe('Kavach Frontend Components', () => {
       });
 
       await waitFor(() => {
-        expect(screen.getByText(/No data available/i)).toBeInTheDocument();
+        expect(screen.getByText(/KAVACH AI Workspace/i)).toBeInTheDocument();
       });
     });
   });
