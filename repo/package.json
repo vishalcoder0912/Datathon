@@ -41,6 +41,7 @@
     "test:rag": "vitest run -w apps/backend apps/backend/src/__tests__/rag-retrieval.test.js",
     "test:guardian": "vitest run -w apps/backend apps/backend/src/__tests__/dashboard-guardian.test.js",
     "test:insightflow-api": "node scripts/verify-insightflow-backend.mjs",
+    "test:pipeline": "node scripts/run-production-test-pipeline.mjs",
     "doctor": "npx react-doctor@latest",
     "audit:code": "node scripts/audit-codebase.js",
     "seed:kavach": "node scripts/seed-kavach.mjs"

@@ -1,0 +1,22 @@
+# Gitleaks configuration file for local security scanning
+title = "gitleaks config"
+
+[[rules]]
+    description = "AWS Manager Access Key"
+    regex = '''(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}'''
+    tags = ["key", "AWS"]
+
+[[rules]]
+    description = "Generic API Key / Secret"
+    regex = '''(?i)(key|api|secret|password|token)[a-z0-9_]*\s*[:=]\s*['"][a-z0-9_-]{16,}['"]'''
+    tags = ["key", "generic"]
+
+[[rules]]
+    description = "JWT Secret Signature"
+    regex = '''(?i)(jwt_secret|jwt-secret|jwtsecret)\s*[:=]\s*['"][a-z0-9_-]{12,}['"]'''
+    tags = ["key", "jwt"]
+
+[[rules]]
+    description = "Private Key"
+    regex = '''-----BEGIN\s+([A-Z\s_]+)\s+PRIVATE\s+KEY-----'''
+    tags = ["key", "private"]
