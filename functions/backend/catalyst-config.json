@@ -1,0 +1,10 @@
+{
+  "name": "backend",
+  "type": "advanced",
+  "runtime": "docker",
+  "port": 3001,
+  "dockerfile": "../../backend.Dockerfile",
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
