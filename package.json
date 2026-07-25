@@ -51,6 +51,7 @@
     "react-doctor": "^0.2.13"
   },
   "dependencies": {
+    "@qdrant/js-client-rest": "^1.15.1",
     "@types/react-simple-maps": "^3.0.6",
     "@types/topojson-client": "^3.1.5",
     "react-simple-maps": "^3.0.0",
