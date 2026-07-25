@@ -217,5 +217,192 @@
     "usageCount": 2,
     "createdAt": "2026-06-05T13:20:12.833Z",
     "lastUsedAt": "2026-06-05T13:20:19.494Z"
+  },
+  {
+    "id": "bb965f2f-4a95-48a3-b6cc-1e7605d2cc96",
+    "domain": "sales_analytics",
+    "columnSignature": "category|discount|order_date|order_id|profit|quantity|region|revenue",
+    "kpiTemplates": [
+      {
+        "title": "Total Revenue",
+        "metric": "revenue",
+        "aggregation": "sum"
+      },
+      {
+        "title": "Total Orders",
+        "metric": "order_id",
+        "aggregation": "count_unique"
+      },
+      {
+        "title": "Units Sold",
+        "metric": "quantity",
+        "aggregation": "sum"
+      },
+      {
+        "title": "Average Order Value",
+        "metric": "revenue",
+        "aggregation": "avg"
+      },
+      {
+        "title": "Total Profit",
+        "metric": "profit",
+        "aggregation": "sum"
+      },
+      {
+        "title": "Profit Margin",
+        "metric": "profit",
+        "aggregation": "avg"
+      }
+    ],
+    "chartTemplates": [
+      {
+        "title": "Revenue Trend",
+        "type": "line",
+        "xKey": "order_date",
+        "yKey": "revenue",
+        "aggregation": "sum"
+      },
+      {
+        "title": "Revenue by Region",
+        "type": "bar",
+        "xKey": "region",
+        "yKey": "revenue",
+        "aggregation": "sum"
+      },
+      {
+        "title": "Revenue by Category",
+        "type": "bar",
+        "xKey": "category",
+        "yKey": "revenue",
+        "aggregation": "sum"
+      }
+    ],
+    "usageCount": 12,
+    "createdAt": "2026-07-25T17:42:15.799Z",
+    "lastUsedAt": "2026-07-25T17:42:20.512Z"
+  },
+  {
+    "id": "68441b73-cb9d-4209-8ad5-c6058e7f8a9b",
+    "domain": "salary",
+    "columnSignature": "country|experience|salary_usd",
+    "kpiTemplates": [
+      {
+        "title": "Total Records",
+        "metric": "__row_count__",
+        "aggregation": "count"
+      },
+      {
+        "title": "Average Salary",
+        "metric": "salary_usd",
+        "aggregation": "avg"
+      },
+      {
+        "title": "Median Salary",
+        "metric": "salary_usd",
+        "aggregation": "median"
+      },
+      {
+        "title": "Highest Salary",
+        "metric": "salary_usd",
+        "aggregation": "max"
+      },
+      {
+        "title": "Average Experience",
+        "metric": "experience",
+        "aggregation": "avg"
+      },
+      {
+        "title": "Countries",
+        "metric": "country",
+        "aggregation": "count_unique"
+      },
+      {
+        "title": "Top Paying Country",
+        "metric": "country",
+        "aggregation": "top_by_avg"
+      }
+    ],
+    "chartTemplates": [
+      {
+        "title": "Average Salary by Country",
+        "type": "bar",
+        "xKey": "country",
+        "yKey": "salary_usd",
+        "aggregation": "avg"
+      },
+      {
+        "title": "Salary Distribution",
+        "type": "histogram",
+        "xKey": "range",
+        "yKey": "count",
+        "aggregation": "count"
+      }
+    ],
+    "usageCount": 3,
+    "createdAt": "2026-07-25T17:42:18.383Z",
+    "lastUsedAt": "2026-07-25T17:42:20.713Z"
+  },
+  {
+    "id": "7b461bca-503e-475f-b1c3-930a00aca58c",
+    "domain": "sales_analytics",
+    "columnSignature": "category|order_date|order_id|region|revenue",
+    "kpiTemplates": [
+      {
+        "title": "Total Revenue",
+        "metric": "revenue",
+        "aggregation": "sum"
+      },
+      {
+        "title": "Total Orders",
+        "metric": "order_id",
+        "aggregation": "count_unique"
+      },
+      {
+        "title": "Units Sold",
+        "metric": "revenue",
+        "aggregation": "sum"
+      },
+      {
+        "title": "Average Order Value",
+        "metric": "revenue",
+        "aggregation": "avg"
+      },
+      {
+        "title": "Total Profit",
+        "metric": "revenue",
+        "aggregation": "sum"
+      },
+      {
+        "title": "Profit Margin",
+        "metric": "revenue",
+        "aggregation": "avg"
+      }
+    ],
+    "chartTemplates": [
+      {
+        "title": "Revenue Trend",
+        "type": "line",
+        "xKey": "order_date",
+        "yKey": "revenue",
+        "aggregation": "sum"
+      },
+      {
+        "title": "Revenue by Region",
+        "type": "bar",
+        "xKey": "region",
+        "yKey": "revenue",
+        "aggregation": "sum"
+      },
+      {
+        "title": "Revenue by Category",
+        "type": "bar",
+        "xKey": "category",
+        "yKey": "revenue",
+        "aggregation": "sum"
+      }
+    ],
+    "usageCount": 3,
+    "createdAt": "2026-07-25T17:43:05.372Z",
+    "lastUsedAt": "2026-07-25T17:43:07.939Z"
   }
 ]
