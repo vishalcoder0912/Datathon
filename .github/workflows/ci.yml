@@ -104,6 +104,28 @@ jobs:
         run: npm audit --audit-level=high
         continue-on-error: true
 
+  ml-service:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+          cache-dependency-path: "apps/ml-service/requirements.txt"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r apps/ml-service/requirements.txt
+
+      - name: Run Python unit tests
+        run: pytest apps/ml-service/test_ml_service.py apps/ml-service/tests/
+
   e2e:
     runs-on: ubuntu-latest
     timeout-minutes: 30
