@@ -58,11 +58,21 @@ export default function ReportsPage() {
   const handlePrint = () => {
     if (!compiledReport) return;
     const win = window.open('', '_blank');
-    if (win) {
-      win.document.write('<html><head><title>KSP AI Briefing Draft</title><style>body { font-family: monospace; padding: 40px; white-space: pre-wrap; font-size: 13px; line-height: 1.6; }</style></head><body>' + compiledReport + '</body></html>');
-      win.document.close();
-      win.print();
-    }
+    if (!win) return;
+
+    const printDocument = win.document;
+    printDocument.title = 'KSP AI Briefing Draft';
+
+    const style = printDocument.createElement('style');
+    style.textContent =
+      'body { font-family: monospace; padding: 40px; } pre { margin: 0; white-space: pre-wrap; font-size: 13px; line-height: 1.6; }';
+    printDocument.head.append(style);
+
+    const report = printDocument.createElement('pre');
+    report.textContent = compiledReport;
+    printDocument.body.replaceChildren(report);
+
+    win.print();
   };
 
   return (
