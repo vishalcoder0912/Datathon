@@ -103,7 +103,7 @@ jobs:
         run: |
           npm run dev:backend &
           echo "Waiting for backend..."
-          timeout 30 bash -c 'until curl -s http://localhost:3001/health > /dev/null 2>&1; do sleep 2; done'
+          timeout 30 bash -c 'until curl -s http://localhost:3001/api/health > /dev/null 2>&1; do sleep 2; done'
         env:
           NODE_ENV: test
           POSTGRES_DB: kavach
