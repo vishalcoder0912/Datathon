@@ -1,4 +1,10 @@
-// Compatibility entrypoint.
-// The canonical server implementation is src/index.js -> src/core/server.js.
-// Keeping this shim prevents accidental startup of the old inline route stack.
+/**
+ * @fileoverview Compatibility entrypoint shim for legacy service invocation.
+ * Redirects execution to canonical application module (src/index.js -> src/core/server.js).
+ * 
+ * @module backend/server
+ */
+
+// Compatibility entrypoint shim
 import "./index.js";
+
