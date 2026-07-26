@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+﻿import { useState, useMemo } from "react";
 import { ChevronRight, BarChart3, LineChart as LineChartIcon, ScatterChart as ScatterIcon } from "lucide-react";
 import type { PremiumChart } from "@/features/dashboard/types/premiumDashboardTypes";
 import type {
@@ -212,7 +212,7 @@ export function CustomChartBuilder({
             <button
               key={type}
               onClick={() => handleChartTypeSelect(type)}
-              className="rounded-lg border border-slate-700 bg-slate-900/70 p-4 text-left transition-all hover:border-violet-400/50 hover:bg-slate-900"
+              className="rounded-lg border border-slate-700 bg-slate-900/70 p-4 text-left transition-colors hover:border-violet-400/50 hover:bg-slate-900"
               type="button"
             >
               <div className="flex items-center gap-3">

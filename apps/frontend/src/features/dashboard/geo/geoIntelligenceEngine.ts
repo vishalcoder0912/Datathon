@@ -1,4 +1,4 @@
-import type { Row } from "@/features/dashboard/utils/dashboardAnalytics";
+﻿import type { Row } from "@/features/dashboard/utils/dashboardAnalytics";
 import { normalizeLocation } from "./geoLocationNormalizer";
 
 const GEO_FIELD_KEYWORDS = [

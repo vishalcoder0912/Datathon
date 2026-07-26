@@ -1,4 +1,4 @@
-import { Circle, AlertTriangle, ShieldCheck } from "lucide-react";
+﻿import { Circle, AlertTriangle, ShieldCheck } from "lucide-react";
 
 interface ProviderStatus {
   available: boolean;

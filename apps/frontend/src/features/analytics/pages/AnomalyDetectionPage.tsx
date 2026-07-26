@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { AlertTriangle } from 'lucide-react';
 import { useData } from '@/features/data/context/useData';
 import { api } from '@/features/data/api/dataApi';

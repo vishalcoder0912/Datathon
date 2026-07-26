@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react";
+﻿import { renderHook } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { useChartManager } from "@/features/dashboard/hooks/useChartManager";
 import type { PremiumChart } from "@/features/dashboard/types/premiumDashboardTypes";

@@ -1,0 +1,27 @@
+name: "InsightFlow CodeQL Configuration"
+
+queries:
+  - uses: security-and-quality
+
+paths-ignore:
+  - 'node_modules'
+  - 'dist'
+  - 'build'
+  - 'coverage'
+  - '*.min.js'
+  - 'tests/fixtures'
+  - 'graphify-out'
+  - 'exports'
+  - 'retry-the-project'
+  - 'repo'
+  - 'data'
+  - 'scratch'
+  - '.github'
+  - '**/*.test.js'
+  - '**/*.spec.js'
+  - '**/*.test.ts'
+  - '**/*.test.tsx'
+
+query-filters:
+  - exclude:
+      id: js/incomplete-sanitization

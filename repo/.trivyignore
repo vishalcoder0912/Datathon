@@ -1,0 +1,30 @@
+# Trivy ignore file - InsightFlow
+# Format: CVE-ID or AV DID
+# Reason: <explanation of false positive / accepted risk>
+
+# --- False Positives ---
+
+# Node.js CVEs that don't apply to our usage (server-side only, non-browser)
+CVE-2024-37890  # ws: false positive, we use ws through a framework that already patches
+CVE-2023-36665  # protobuf: not exploitable in our service mesh topology
+
+# --- Development-only dependencies ---
+CVE-2024-4068  # braces: dev-only, not in production build
+CVE-2024-4067  # micromatch: dev-only, not in production build
+
+# --- Accepted risks (hardened by WAF, network segmentation) ---
+
+# Express/EJS not used - but trivy flags transitive dep
+CVE-2024-33883  # ejs transitive through dev tool
+CVE-2023-29827  # ejs transitive
+
+# --- Python ML service (non-critical, air-gapped) ---
+CVE-2024-1135   # Gunicorn: behind nginx reverse proxy
+CVE-2023-45803  # urllib3: mitigated by HTTP/2 support not being enabled
+
+# --- False positives from OS packages (container) ---
+CVE-2024-3094   # xz utils: mitigated by container base image update
+CVE-2024-21626  # runc: container runtime not exploitable from application layer
+
+# --- PostgreSQL client library ---
+CVE-2024-0985   # libpq: behind network ACLs, no direct exposure

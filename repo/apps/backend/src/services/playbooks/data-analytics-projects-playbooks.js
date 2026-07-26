@@ -1,0 +1,95 @@
+export const DATA_ANALYTICS_PROJECT_PLAYBOOKS = [
+  {
+    domain: "eda",
+    label: "Exploratory Data Analysis",
+    keywords: [
+      "category",
+      "type",
+      "segment",
+      "country",
+      "region",
+      "gender",
+      "age",
+      "score",
+      "amount",
+      "value",
+      "price",
+      "rating",
+    ],
+    kpis: [
+      { title: "Total Records", aggregation: "count" },
+      { title: "Missing Values", aggregation: "missing_count" },
+      { title: "Data Quality", aggregation: "quality_score" },
+      { title: "Unique Categories", aggregation: "unique_count", dimensionRole: "category" },
+    ],
+    charts: [
+      { title: "Top Categories", type: "bar", xRole: "category", aggregation: "count", limit: 10 },
+      { title: "Metric Distribution", type: "histogram", yRole: "metric", aggregation: "count", limit: 10 },
+      { title: "Average Metric by Category", type: "bar", xRole: "category", yRole: "metric", aggregation: "avg", limit: 10 },
+    ],
+  },
+  {
+    domain: "recommendation",
+    label: "Recommendation System",
+    keywords: ["user", "user_id", "customer", "movie", "item", "product", "rating", "score", "recommendation"],
+    kpis: [
+      { title: "Total Interactions", aggregation: "count" },
+      { title: "Unique Users", aggregation: "unique_count", dimensionAliases: ["user", "user_id", "customer"] },
+      { title: "Unique Items", aggregation: "unique_count", dimensionAliases: ["item", "product", "movie"] },
+      { title: "Average Rating", aggregation: "avg", metricAliases: ["rating", "score"] },
+    ],
+    charts: [
+      { title: "Top Rated Items", type: "bar", xAliases: ["item", "product", "movie"], yAliases: ["rating", "score"], aggregation: "avg", limit: 10 },
+      { title: "Interactions by User", type: "bar", xAliases: ["user", "user_id", "customer"], aggregation: "count", limit: 10 },
+      { title: "Rating Distribution", type: "histogram", yAliases: ["rating", "score"], aggregation: "count", limit: 8 },
+    ],
+  },
+  {
+    domain: "market_basket",
+    label: "Market Basket Analysis",
+    keywords: ["transaction", "transaction_id", "invoice", "order", "basket", "item", "product", "support", "confidence", "lift"],
+    kpis: [
+      { title: "Total Transactions", aggregation: "unique_count", dimensionAliases: ["transaction", "transaction_id", "invoice", "order_id"] },
+      { title: "Total Items", aggregation: "count", dimensionAliases: ["item", "product"] },
+      { title: "Average Basket Size", aggregation: "basket_size" },
+      { title: "Strong Rules", aggregation: "rule_count" },
+    ],
+    charts: [
+      { title: "Top Items", type: "bar", xAliases: ["item", "product"], aggregation: "count", limit: 10 },
+      { title: "Support by Item", type: "bar", xAliases: ["item", "product"], yAliases: ["support"], aggregation: "avg", limit: 10 },
+      { title: "Confidence vs Lift", type: "scatter", xAliases: ["confidence"], yAliases: ["lift"], aggregation: "raw", limit: 200 },
+    ],
+  },
+  {
+    domain: "sentiment",
+    label: "Sentiment Analysis",
+    keywords: ["review", "comment", "feedback", "text", "sentiment", "polarity", "rating", "score"],
+    kpis: [
+      { title: "Total Reviews", aggregation: "count" },
+      { title: "Average Rating", aggregation: "avg", metricAliases: ["rating", "score"] },
+      { title: "Positive Reviews", aggregation: "sentiment_count", value: "positive" },
+      { title: "Negative Reviews", aggregation: "sentiment_count", value: "negative" },
+    ],
+    charts: [
+      { title: "Sentiment Distribution", type: "pie", xAliases: ["sentiment", "polarity"], aggregation: "count", limit: 5 },
+      { title: "Rating Distribution", type: "histogram", yAliases: ["rating", "score"], aggregation: "count", limit: 8 },
+      { title: "Reviews by Category", type: "bar", xRole: "category", aggregation: "count", limit: 10 },
+    ],
+  },
+  {
+    domain: "time_series",
+    label: "Time Series Analysis",
+    keywords: ["date", "time", "month", "year", "period", "sales", "revenue", "value", "amount", "forecast"],
+    kpis: [
+      { title: "Total Records", aggregation: "count" },
+      { title: "Total Value", aggregation: "sum", metricAliases: ["revenue", "sales", "amount", "value"] },
+      { title: "Average Value", aggregation: "avg", metricAliases: ["revenue", "sales", "amount", "value"] },
+      { title: "Peak Value", aggregation: "max", metricAliases: ["revenue", "sales", "amount", "value"] },
+    ],
+    charts: [
+      { title: "Trend Over Time", type: "line", xRole: "date", yRole: "metric", aggregation: "sum", limit: 30 },
+      { title: "Value Distribution", type: "histogram", yRole: "metric", aggregation: "count", limit: 10 },
+      { title: "Value by Category", type: "bar", xRole: "category", yRole: "metric", aggregation: "sum", limit: 10 },
+    ],
+  },
+];

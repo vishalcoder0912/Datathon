@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+﻿import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { X, CalendarIcon } from 'lucide-react';
 import { format } from 'date-fns';
@@ -66,7 +66,7 @@ const DashboardFilters = ({ dataset, filters, onChange }: DashboardFiltersProps)
             variant="outline"
             size="sm"
             className={cn(
-              'h-9 gap-2 rounded-lg font-medium text-sm border-border/50 bg-background/80 hover:bg-muted transition-all',
+              'h-9 gap-2 rounded-lg font-medium text-sm border-border/50 bg-background/80 hover:bg-muted transition-colors',
               filters.dateRange.from && 'border-primary/50 text-primary bg-primary/5',
             )}
           >

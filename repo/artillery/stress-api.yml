@@ -1,0 +1,93 @@
+config:
+  target: "{{ $processEnvironment.BASE_URL || 'http://localhost:3001' }}"
+  phases:
+    - name: "Warmup"
+      duration: 60
+      arrivalRate: 10
+      rampTo: 100
+    - name: "Find Breaking Point"
+      duration: 180
+      arrivalRate: 100
+      rampTo: 1000
+    - name: "Max Load"
+      duration: 120
+      arrivalRate: 1000
+    - name: "Recovery Verification"
+      duration: 60
+      arrivalRate: 5
+  defaults:
+    headers:
+      Content-Type: "application/json"
+  processor: "./stress-api-processor.js"
+
+scenarios:
+  - name: "Dataset Operations"
+    weight: 35
+    flow:
+      - post:
+          url: "/api/datasets/import"
+          json:
+            name: "stress-dataset-{{ $randomString }}"
+            fileName: "stress-test.csv"
+            sourceType: "import"
+            columns:
+              - { name: "id", type: "number", inferredType: "numeric" }
+              - { name: "name", type: "string", inferredType: "categorical" }
+              - { name: "value", type: "number", inferredType: "numeric" }
+              - { name: "category", type: "string", inferredType: "categorical" }
+            rows: "{{ $datasetRows }}"
+          capture:
+            - json: "$.data.dataset.id"
+              as: "datasetId"
+            - json: "$.data.id"
+              as: "datasetId"
+            - json: "$.dataset.id"
+              as: "datasetId"
+          expect:
+            - statusCode: [200, 201, 413, 429]
+      - think: 1
+      - get:
+          url: "/api/datasets/{{ datasetId }}"
+          expect:
+            - statusCode: [200, 404]
+      - think: 0.5
+
+  - name: "Schema & Analytics"
+    weight: 30
+    flow:
+      - get:
+          url: "/api/datasets"
+          expect:
+            - statusCode: [200, 429]
+      - think: 1
+      - get:
+          url: "/api/datasets/{{ $randomDatasetId }}/schema"
+          expect:
+            - statusCode: [200, 404, 429]
+      - think: 1
+      - get:
+          url: "/api/datasets/{{ $randomDatasetId }}/ai/profile"
+          expect:
+            - statusCode: [200, 404, 429]
+
+  - name: "Chat & AI"
+    weight: 20
+    flow:
+      - post:
+          url: "/api/chat/analytics"
+          json:
+            datasetId: "{{ $randomDatasetId }}"
+            message: "Analyze the trend in values by category"
+            mode: "analysis"
+          expect:
+            - statusCode: [200, 404, 429, 503]
+      - think: 3
+
+  - name: "Export & Download"
+    weight: 15
+    flow:
+      - get:
+          url: "/api/datasets/{{ $randomDatasetId }}/export?format=csv"
+          expect:
+            - statusCode: [200, 404, 429]
+      - think: 2

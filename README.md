@@ -19,12 +19,20 @@ does not represent completed production or live local-stack verification.
 - FastAPI analytics service with deterministic degraded behavior when PostgreSQL or optional embedding models are unavailable.
 - Local-Ollama Copilot tool router with deterministic fallback.
 - Data-quality monitoring UI and import validation/preview support.
+- Universal Data Gateway control plane for AWS S3, GCS, Azure Blob, PostgreSQL, MySQL, MongoDB, REST, SFTP, and file-upload adapter definitions, with secret references, schema discovery, PII-masked previews, mapping approval, and ingestion-job states.
+- Crime Intelligence Operating System workspace at `/intelligence-os`, with a 15-capability manifest and eight bounded analytical agents.
+- Schema Intelligence Engine for canonical Incident, Person, Location, Police Station, Vehicle, Phone, and Modus Operandi mapping proposals.
+- Data Quality AI for Karnataka district aliases, Indian date formats, duplicate FIRs, missing or invalid coordinates, future incidents, and impossible registration dates.
+- Investigation Copilot planning across parameterized PostgreSQL, PostGIS, authorized graph projection, repeat-offender analysis, and visualization specifications, plus a scoped repository preview.
+- Explainable graph reason codes, spatiotemporal cluster-alert evaluation, multi-format report planning, and a bounded aggregate Prediction Sandbox.
 
 ## Partially implemented
 
 - The committed district overlays are illustrative synthetic map boundaries; they are not operational jurisdiction boundaries.
 - PDF/HTML report rendering is locally implemented; live PostgreSQL persistence, download authorization, production signing, retention policy, and controlled document storage remain to be verified or completed.
-- CSV/XLS/XLSX uploads can be parsed and validated, but source-type mapping review, duplicate/reference validation against the database, and committing rows into KAVACH domain tables are not implemented. The current import commit action records the import status only.
+- CSV/XLS/XLSX uploads can be parsed, profiled, mapped, validated, and approved, but live provider adapters, database duplicate/reference checks, and controlled transaction workers that commit rows into KAVACH domain tables are not implemented.
+- Cloud connector definitions are adapter-ready; Airbyte, provider credentials, private networking, sync callbacks, and live AWS/Azure/GCP connectivity are not deployed by this repository.
+- SMS and WhatsApp are notification-channel plans only. Approved provider accounts, templates, credentials, delivery workers, and audit policy are still required.
 - Kannada labels and routing cover basic UI/query handling, not full multilingual intelligence interpretation.
 
 ## Optional
@@ -92,21 +100,24 @@ verify a running Docker/PostgreSQL deployment.
 ## Architecture
 
 ```text
-React + TypeScript + TanStack Query + MapLibre/Cytoscape
-                    |
-                  REST/SSE
-                    v
-Existing Node.js HTTP backend — auth, RBAC, audit, approved tools
-                    |
-             parameterized SQL
-                    v
-          PostgreSQL 16 + PostGIS
-             |                  |
-             v                  v
- FastAPI analytics service   local Ollama (optional)
+AWS / Azure / GCP / DB / API / Files
+                  |
+         Universal Data Gateway
+                  |
+    Schema Intelligence + Data Quality
+                  |
+       PostgreSQL 16 + PostGIS
+          |                |
+ Crime Knowledge Graph  FastAPI analytics
+          |                |
+          +------ Crime Intelligence OS ------+
+                         |
+               Investigation Copilot API
+                         |
+React + TypeScript + MapLibre + Cytoscape + Timeline + Reports
 ```
 
-The frontend never calls FastAPI or Ollama directly. PostgreSQL is the source of truth in `KAVACH_DATA_SOURCE=postgres` mode.
+The frontend never calls FastAPI or Ollama directly. PostgreSQL is the source of truth in `KAVACH_DATA_SOURCE=postgres` mode. The Crime Intelligence OS uses approved backend tools, RBAC, geographic scope, audit records, and mandatory human-review boundaries.
 
 ## Documentation
 
@@ -117,6 +128,8 @@ The frontend never calls FastAPI or Ollama directly. PostgreSQL is the source of
 - [Security and RBAC](docs/SECURITY_AND_RBAC.md)
 - [Analytics methods](docs/ANALYTICS_METHODS.md)
 - [Copilot architecture](docs/COPILOT_ARCHITECTURE.md)
+- [Universal Data Gateway](docs/UNIVERSAL_DATA_GATEWAY.md)
+- [Crime Intelligence Operating System](docs/CRIME_INTELLIGENCE_OS.md)
 - [Implementation status](docs/IMPLEMENTATION_STATUS.md)
 
 ## Safety boundary

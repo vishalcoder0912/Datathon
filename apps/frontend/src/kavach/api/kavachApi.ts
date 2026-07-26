@@ -1,4 +1,4 @@
-import {apiClient} from '@/kavach/api/client';
+﻿import {apiClient} from '@/kavach/api/client';
 
 const API_BASE = '/api/kavach';
 
@@ -49,7 +49,7 @@ export const kavachApi = {
   getDataQualitySummary: (filters?: Record<string, unknown>) => apiClient.get(`${API_BASE}/data-quality/summary`, {params: filters}),
   getDataQualityIssues: (filters?: Record<string, unknown>) => apiClient.get(`${API_BASE}/data-quality/issues`, {params: filters}),
   resolveDataQualityIssue: (issueId: string, status: string) => apiClient.patch(`${API_BASE}/data-quality/issues/${issueId}`, {status}),
-  createImport: (body: FormData) => apiClient.post(`${API_BASE}/imports`, body, {headers: {"Content-Type": "multipart/form-data"}}),
+  createImport: (body: FormData) => apiClient.post(`${API_BASE}/imports`, body, {headers: {'Content-Type': 'multipart/form-data'}}),
   getImport: (importId: string) => apiClient.get(`${API_BASE}/imports/${importId}`),
   getImportErrors: (importId: string) => apiClient.get(`${API_BASE}/imports/${importId}/errors`),
   commitImport: (importId: string) => apiClient.post(`${API_BASE}/imports/${importId}/commit`),
@@ -67,5 +67,14 @@ export const kavachApi = {
   validateImportData: (rows: Record<string, unknown>[]) => apiClient.post(`${API_BASE}/imports/validate`, {rows}),
   saveImportProfile: (profile: Record<string, unknown>) => apiClient.post(`${API_BASE}/imports/profile`, profile),
   getImportProfiles: () => apiClient.get(`${API_BASE}/imports/profile`),
-  submitImportData: (rows: Record<string, unknown>[]) => apiClient.post(`${API_BASE}/imports/submit`, { rows }),
+  submitImportData: (rows: Record<string, unknown>[]) => apiClient.post(`${API_BASE}/imports/submit`, {rows}),
+  getIntelligenceOSCapabilities: () => apiClient.get(`${API_BASE}/intelligence-os/capabilities`),
+  getIntelligenceOSAgents: () => apiClient.get(`${API_BASE}/intelligence-os/agents`),
+  inferIntelligenceOSSchema: (rows: Record<string, unknown>[]) => apiClient.post(`${API_BASE}/intelligence-os/schema/infer`, {rows}),
+  analyzeIntelligenceOSDataQuality: (rows: Record<string, unknown>[]) => apiClient.post(`${API_BASE}/intelligence-os/data-quality/analyze`, {rows}),
+  planIntelligenceOSInvestigation: (query: string, filters?: Record<string, unknown>) => apiClient.post(`${API_BASE}/intelligence-os/investigate`, {query, filters: filters || {}}),
+  explainIntelligenceOSGraph: (payload: Record<string, unknown>) => apiClient.post(`${API_BASE}/intelligence-os/graph/explain`, payload),
+  evaluateIntelligenceOSAlerts: (events: Record<string, unknown>[], rule?: Record<string, unknown>) => apiClient.post(`${API_BASE}/intelligence-os/alerts/evaluate`, {events, rule: rule || {}}),
+  simulateIntelligenceOSScenario: (payload: Record<string, unknown>) => apiClient.post(`${API_BASE}/intelligence-os/sandbox/simulate`, payload),
+  planIntelligenceOSReport: (payload: Record<string, unknown>) => apiClient.post(`${API_BASE}/intelligence-os/reports/plan`, payload),
 };

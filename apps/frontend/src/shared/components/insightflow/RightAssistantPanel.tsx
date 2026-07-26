@@ -1,4 +1,4 @@
-import { Send, Sparkles } from "lucide-react";
+﻿import { Send, Sparkles } from "lucide-react";
 
 type RightAssistantPanelProps = {
   title?: string;
@@ -50,8 +50,9 @@ export function RightAssistantPanel({
             <input
               className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-slate-400"
               placeholder="Ask InsightFlow AI..."
+              aria-label="Ask InsightFlow AI"
             />
-            <button className="rounded-lg bg-gradient-to-r from-violet-600 to-blue-600 p-2 text-white shadow">
+            <button type="button" aria-label="Send message" className="rounded-lg bg-gradient-to-r from-violet-600 to-blue-600 p-2 text-white shadow">
               <Send className="h-4 w-4" />
             </button>
           </div>
@@ -61,13 +62,14 @@ export function RightAssistantPanel({
       <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
         <div className="mb-3 flex items-center justify-between">
           <h3 className="font-bold text-slate-950">Suggested actions</h3>
-          <button className="text-xs font-semibold text-blue-600">View all</button>
+          <button type="button" className="text-xs font-semibold text-blue-600">View all</button>
         </div>
 
         <div className="flex flex-wrap gap-2">
           {suggestions.map((item) => (
             <button
               key={item}
+              type="button"
               className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 shadow-sm hover:bg-violet-50 hover:text-violet-700"
             >
               {item}

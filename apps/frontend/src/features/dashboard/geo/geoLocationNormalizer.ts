@@ -1,4 +1,4 @@
-const COUNTRY_NAME_MAP: Record<string, string> = {
+﻿const COUNTRY_NAME_MAP: Record<string, string> = {
   "usa": "United States",
   "us": "United States",
   "u.s.": "United States",

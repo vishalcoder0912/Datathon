@@ -1,0 +1,53 @@
+{
+  "name": "@insightflow/backend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node src/index.js",
+    "dev:watch": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "build": "node --check src/index.js",
+    "kill-port": "node kill-port.js",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "rag:seed": "node scripts/train-smart-rag-seeds.js",
+    "rag:migrate:qdrant": "node scripts/migrate-schema-rag-json-to-qdrant.mjs",
+    "rag:demo:qdrant": "node scripts/demo-qdrant-schema-rag-sales.mjs",
+    "train:agentic-domains": "node scripts/train-agentic-analytics-domains.js",
+    "train:deep-agentic": "node scripts/train-deep-agentic-analytics.js",
+    "train:agentic-master": "node scripts/train-agentic-master-pack.js",
+    "train:genai-agentic-domains": "node scripts/train-genai-agentic-domains.js",
+    "export:agentic-finetune": "node scripts/export-agentic-finetune-jsonl.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.24.3",
+    "@google/generative-ai": "^0.24.1",
+    "@insightflow/shared-analytics": "../packages/shared-analytics",
+    "@opendataloader/pdf": "^2.4.4",
+    "@qdrant/js-client-rest": "^1.15.1",
+    "axios": "^1.15.1",
+    "bcryptjs": "^3.0.2",
+    "busboy": "^1.6.0",
+    "cookie": "^1.0.2",
+    "dotenv": "^17.4.2",
+    "exceljs": "^4.4.0",
+    "ml-cart": "^2.1.1",
+    "ml-kmeans": "^7.0.0",
+    "ml-linear-regression": "^1.0.3",
+    "ml-pca": "^4.1.1",
+    "ml-random-forest": "^2.1.0",
+    "node-cron": "^3.0.3",
+    "openai": "^4.28.4",
+    "papaparse": "^5.4.1",
+    "pdfkit": "^0.15.2",
+    "jose": "^6.1.0",
+    "pg": "^8.16.3",
+    "qrcode": "^1.5.4",
+    "xlsx": "^0.18.5",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
+  }
+}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell,
 } from 'recharts';
@@ -204,6 +204,7 @@ export default function RiskIntelligencePage() {
       <Card className="border-slate-200">
         <CardHeader>
           <button
+            type="button"
             onClick={() => setShowFormula(!showFormula)}
             className="flex items-center gap-2 text-sm font-semibold text-slate-700"
           >

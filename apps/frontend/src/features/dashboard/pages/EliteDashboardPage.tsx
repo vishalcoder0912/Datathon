@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useMemo, useState } from "react";
+﻿import { FormEvent, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Bot,
@@ -539,6 +539,7 @@ export default function EliteDashboardPage() {
           {primaryCategory && (
             <select
               value={String(filters[primaryCategory] || "")}
+              aria-label={`Filter by ${primaryCategory}`}
               onChange={(event) => {
                 const next = { ...filters, [primaryCategory]: event.target.value || undefined };
                 setFilters(next);

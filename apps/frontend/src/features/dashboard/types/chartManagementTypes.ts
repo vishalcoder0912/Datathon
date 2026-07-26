@@ -1,4 +1,4 @@
-// Chart Customization Types
+﻿// Chart Customization Types
 export type ChartType = "bar" | "histogram" | "scatter" | "donut" | "line" | "table";
 
 export type ChartColorMode = "gradient" | "single" | "palette";

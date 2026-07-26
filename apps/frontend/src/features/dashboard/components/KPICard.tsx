@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+﻿import { motion } from 'framer-motion';
 import { TrendingUp, TrendingDown, Minus, DollarSign, Package, Percent, Star, Table2, Columns3, BarChart3, ArrowUpRight, ArrowDownRight, Shield, Globe, Code, AlertTriangle, Siren } from 'lucide-react';
 import { KPI } from '@/features/data/model/dataStore';
 import { cn } from '@/shared/lib/utils';
@@ -67,7 +67,7 @@ const KPICard = ({ kpi, index }: KPICardProps) => {
       transition={{ delay: index * 0.05, duration: 0.3 }}
       whileHover={{ y: -2 }}
       className={cn(
-        'group relative overflow-hidden rounded-xl border bg-card p-5 shadow-sm transition-all duration-200 hover:shadow-md',
+        'group relative overflow-hidden rounded-xl border bg-card p-5 shadow-sm transition-shadow duration-200 hover:shadow-md',
         scheme.border
       )}
     >

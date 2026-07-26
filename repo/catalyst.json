@@ -1,0 +1,12 @@
+{
+  "name": "kavach-ai",
+  "version": "1.0.0",
+  "catalyst": {
+    "app": {
+      "name": "KAVACH AI",
+      "description": "Karnataka AI Visualization & Analytics for Crime Hotspots",
+      "platform": "node20",
+      "locale": "en_US"
+    }
+  }
+}

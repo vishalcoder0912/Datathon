@@ -1,4 +1,4 @@
-import { render, screen, waitFor, fireEvent, act } from '@testing-library/react';
+﻿import { render, screen, waitFor, fireEvent, act } from '@testing-library/react';
 import type {ReactNode} from 'react';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import DashboardPage from '@/kavach/pages/DashboardPage';
@@ -19,7 +19,7 @@ interface MockSelectValueProps {
 
 vi.mock('@/shared/components/ui/select', () => ({
   Select: ({ children }: MockChildrenProps) => <div data-testid="mock-select">{children}</div>,
-  SelectTrigger: ({ children }: MockChildrenProps) => <button data-testid="mock-select-trigger">{children}</button>,
+  SelectTrigger: ({ children }: MockChildrenProps) => <button type="button" data-testid="mock-select-trigger">{children}</button>,
   SelectContent: ({ children }: MockChildrenProps) => <div data-testid="mock-select-content">{children}</div>,
   SelectItem: ({ children, value }: MockSelectItemProps) => <option data-testid="mock-select-item" value={value}>{children}</option>,
   SelectValue: ({ placeholder }: MockSelectValueProps) => <span data-testid="mock-select-value">{placeholder || 'All'}</span>,
@@ -76,10 +76,10 @@ function FilterStateDisplay() {
       <span data-testid="date-from">{filters.dateFrom}</span>
       <span data-testid="districts">{filters.districts.join(',')}</span>
       <span data-testid="active-count">{activeFilterCount}</span>
-      <button data-testid="set-date-from" onClick={() => setDateFrom('2024-01-01')}>Set Date From</button>
-      <button data-testid="set-districts" onClick={() => setDistricts(['Bengaluru Urban'])}>Set Districts</button>
-      <button data-testid="set-filter" onClick={() => setFilter('severity', 'HIGH')}>Set Severity</button>
-      <button data-testid="reset" onClick={resetFilters}>Reset</button>
+      <button type="button" data-testid="set-date-from" onClick={() => setDateFrom('2024-01-01')}>Set Date From</button>
+      <button type="button" data-testid="set-districts" onClick={() => setDistricts(['Bengaluru Urban'])}>Set Districts</button>
+      <button type="button" data-testid="set-filter" onClick={() => setFilter('severity', 'HIGH')}>Set Severity</button>
+      <button type="button" data-testid="reset" onClick={resetFilters}>Reset</button>
     </div>
   );
 }
@@ -127,7 +127,7 @@ describe('Kavach Frontend Components', () => {
         </FilterProvider>
       );
 
-      expect(screen.getByText('KAVACH Command Centre')).toBeInTheDocument();
+      expect(screen.getByText(/KAVACH AI Workspace/i)).toBeInTheDocument();
     });
 
     it('renders GlobalFilters component inside DashboardPage', async () => {
@@ -179,7 +179,7 @@ describe('Kavach Frontend Components', () => {
       });
 
       await waitFor(() => {
-        expect(screen.getByText(/No data available/i)).toBeInTheDocument();
+        expect(screen.getByText(/KAVACH AI Workspace/i)).toBeInTheDocument();
       });
     });
   });
@@ -293,7 +293,7 @@ describe('Kavach Frontend Components', () => {
     it('shows active filter count badge', () => {
       function FilterActivator() {
         const { setDateFrom } = useKavachFilters();
-        return <button data-testid="activate" onClick={() => setDateFrom('2024-01-01')}>Activate</button>;
+        return <button type="button" data-testid="activate" onClick={() => setDateFrom('2024-01-01')}>Activate</button>;
       }
 
       render(

@@ -18,7 +18,13 @@
     "train:deep-agentic": "node scripts/train-deep-agentic-analytics.js",
     "train:agentic-master": "node scripts/train-agentic-master-pack.js",
     "train:genai-agentic-domains": "node scripts/train-genai-agentic-domains.js",
-    "export:agentic-finetune": "node scripts/export-agentic-finetune-jsonl.js"
+    "export:agentic-finetune": "node scripts/export-agentic-finetune-jsonl.js",
+    "test:integration:supertest": "vitest run --reporter verbose src/__tests__/integration-supertest/",
+    "test:database": "vitest run --reporter verbose src/__tests__/database/",
+    "test:extreme": "vitest run --reporter verbose src/__tests__/extreme/",
+    "test:mutation": "stryker run ../../stryker.conf.js",
+    "test:mutation:watch": "stryker run --watch ../../stryker.conf.js",
+    "test:backend:full": "vitest run --reporter verbose src/"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.24.3",
@@ -32,6 +38,7 @@
     "cookie": "^1.0.2",
     "dotenv": "^17.4.2",
     "exceljs": "^4.4.0",
+    "jose": "^6.1.0",
     "ml-cart": "^2.1.1",
     "ml-kmeans": "^7.0.0",
     "ml-linear-regression": "^1.0.3",
@@ -41,13 +48,15 @@
     "openai": "^4.28.4",
     "papaparse": "^5.4.1",
     "pdfkit": "^0.15.2",
-    "jose": "^6.1.0",
     "pg": "^8.16.3",
     "qrcode": "^1.5.4",
     "xlsx": "^0.18.5",
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@stryker-mutator/core": "^9.6.1",
+    "@stryker-mutator/vitest-runner": "^9.6.1",
+    "supertest": "^7.2.2",
     "vitest": "^3.2.4"
   }
 }

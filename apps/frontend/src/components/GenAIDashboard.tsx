@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "@/config/apiConfig";
 import { Button } from "@/components/ui/button";
@@ -138,6 +138,7 @@ export default function GenAIDashboard() {
         <input
           type="file"
           accept=".csv"
+          aria-label="Upload CSV dataset"
           onChange={handleFileUpload}
           className="mb-4"
         />

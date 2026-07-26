@@ -1,0 +1,14 @@
+{
+  "resources": {
+    "totalBundleSize": { "maxSize": "2 MB" },
+    "javascript": { "maxSize": "500 kB" },
+    "css": { "maxSize": "100 kB" },
+    "images": { "maxSize": "500 kB" },
+    "fonts": { "maxSize": "100 kB" },
+    "totalRequests": 50,
+    "firstContentfulPaint": 2000,
+    "largestContentfulPaint": 2500,
+    "timeToInteractive": 3500,
+    "cumulativeLayoutShift": 0.1
+  }
+}

@@ -1,4 +1,4 @@
-import type { DashboardChart, DashboardFilters, DashboardKpi } from "@/features/dashboard/utils/dashboardAnalytics";
+﻿import type { DashboardChart, DashboardFilters, DashboardKpi } from "@/features/dashboard/utils/dashboardAnalytics";
 
 export type StoredDashboardState = {
   filters: DashboardFilters;

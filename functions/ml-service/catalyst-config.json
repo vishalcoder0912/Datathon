@@ -1,0 +1,11 @@
+{
+  "name": "ml-service",
+  "type": "advanced",
+  "runtime": "docker",
+  "port": 5000,
+  "dockerfile": "../../apps/ml-service/Dockerfile",
+  "env": {
+    "KAVACH_INCLUDE_LEGACY_ML_ROUTES": "false",
+    "PORT": "5000"
+  }
+}

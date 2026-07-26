@@ -1,0 +1,54 @@
+InsightFlow Agentic Analytics Architecture
+
+Goal
+Build a schema-first analytics system where deterministic calculations stay local and LLMs help with planning, explanation, dashboard critique, and natural-language interaction.
+
+Core rule
+The LLM should not invent metrics. It should receive schema profiles, dashboard state, column roles, sample-safe summaries, and calculated results. Numeric values must come from deterministic analytics code.
+
+Agent pipeline
+1. Schema Profiler
+   Detect metrics, dimensions, date fields, entity fields, geo fields, unique counts, missing values, and sample values.
+
+2. Dashboard Planner
+   Uses schema roles to propose KPIs, charts, filters, and story sections.
+
+3. Analytics Engine
+   Calculates averages, medians, totals, rankings, histograms, correlations, trends, and outliers from real rows.
+
+4. Dashboard Guardian
+   Rejects bad charts, fake date fields, fake geo fields, wrong aggregations, and impossible claims.
+
+5. Insight Writer
+   Converts calculated outputs into plain-language findings.
+
+6. Chat Agent
+   Answers user questions using schema, current dashboard state, and deterministic results. It may call Ollama through the backend.
+
+Local model default
+Ollama should be the default provider.
+Recommended local models:
+- main analyst: qwen3:8b
+- dashboard planner: qwen3:8b
+- chatbot: qwen3:8b
+- validators: qwen3:4b
+- fast chat: llama3.2:3b
+- embeddings: nomic-embed-text
+
+Cloud providers
+Cloud providers are optional fallback providers. Keep their env values blank until needed. Use backend env only. Never expose cloud provider values in frontend files.
+
+Healthcare dataset rules
+- Billing Amount is a numeric metric.
+- Gender, Blood Type, and Medical Condition are dimensions.
+- Date of Admission is the trend field.
+- Age is a numeric relationship field, not a date field.
+- Hospital is an entity field, not a multi-value field.
+- Geo maps need City, State, Country, Latitude, or Longitude.
+
+Quality checks
+- Trend chart must not use Age.
+- Hospital ranking must say Entity ranking.
+- Map must not fake hospital coordinates.
+- Insight copy must match the dataset domain.
+- Data preview must work on mobile and desktop.

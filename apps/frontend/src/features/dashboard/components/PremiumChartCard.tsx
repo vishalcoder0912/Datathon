@@ -1,4 +1,4 @@
-import { BarChart3, Copy, Download, Edit3, Eye, EyeOff, RefreshCw, Trash2 } from "lucide-react";
+﻿import { BarChart3, Copy, Download, Edit3, Eye, EyeOff, RefreshCw, Trash2 } from "lucide-react";
 import { motion } from "framer-motion";
 import {
   Bar,

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+﻿import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Download, SlidersHorizontal } from 'lucide-react';
 import { toPng } from 'html-to-image';
@@ -216,7 +216,7 @@ const AnalyticsChart = ({ config, index }: AnalyticsChartProps) => {
         animate={{ opacity: 1, y: 0 }}
         whileHover={{ y: -2 }}
         transition={{ delay: index * 0.05, duration: 0.3 }}
-        className="group relative overflow-hidden rounded-xl border border-border/50 bg-card p-5 shadow-sm transition-all duration-200 hover:shadow-md"
+        className="group relative overflow-hidden rounded-xl border border-border/50 bg-card p-5 shadow-sm transition-shadow duration-200 hover:shadow-md"
         ref={chartRef}
       >
         <div className="mb-4 flex items-center justify-between">
@@ -239,7 +239,7 @@ const AnalyticsChart = ({ config, index }: AnalyticsChartProps) => {
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ y: -2 }}
       transition={{ delay: index * 0.05, duration: 0.3 }}
-      className="group relative overflow-hidden rounded-xl border border-border/50 bg-card p-5 shadow-sm transition-all duration-200 hover:shadow-md"
+      className="group relative overflow-hidden rounded-xl border border-border/50 bg-card p-5 shadow-sm transition-shadow duration-200 hover:shadow-md"
       ref={chartRef}
     >
       <div className="mb-4 flex items-center justify-between">

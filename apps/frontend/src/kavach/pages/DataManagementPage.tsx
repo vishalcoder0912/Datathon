@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useState} from "react";
+﻿import {useCallback, useEffect, useMemo, useState} from "react";
 import {Database, RefreshCw, Upload, CheckCircle, AlertTriangle, FileSpreadsheet, ShieldCheck} from "lucide-react";
 import {kavachApi} from "@/kavach/api/kavachApi";
 import {useDataQualitySummary} from "@/kavach/hooks/useKavachQueries";
@@ -64,7 +64,7 @@ export default function DataManagementPage() {
   const [issueSeverity, setIssueSeverity] = useState("");
   const {data: dataQuality, error: dataQualityError, isLoading: loadingQuality, refetch: refetchQuality} = useDataQualitySummary();
 
-  const fetchDatasetInfo = async () => {
+  const fetchDatasetInfo = useCallback(async () => {
     setLoadingDataset(true);
     try {
       const response = await kavachApi.getOverview();
@@ -91,9 +91,9 @@ export default function DataManagementPage() {
     } finally {
       setLoadingDataset(false);
     }
-  };
+  }, [dataQuality?.overallQualityScore]);
 
-  const fetchIssues = async () => {
+  const fetchIssues = useCallback(async () => {
     try {
       const response = await kavachApi.getDataQualityIssues({page: 1, pageSize: 25, status: issueStatus, severity: issueSeverity || undefined});
       const payload = unwrap<{data?: DataQualityIssue[]} | DataQualityIssue[]>(response.data);
@@ -101,19 +101,15 @@ export default function DataManagementPage() {
     } catch {
       setIssues([]);
     }
-  };
+  }, [issueSeverity, issueStatus]);
 
   useEffect(() => {
     void fetchDatasetInfo();
-  // Dataset metadata only needs refresh after a user action.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataQuality?.overallQualityScore]);
+  }, [fetchDatasetInfo]);
 
   useEffect(() => {
     void fetchIssues();
-  // API filters define the result set.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [issueSeverity, issueStatus]);
+  }, [fetchIssues]);
 
   const visibleIssueCount = useMemo(() => issues.length, [issues]);
 
@@ -212,7 +208,7 @@ export default function DataManagementPage() {
                 </div>
                 <div>
                   <div className="flex items-center justify-between"><p className="text-xs font-semibold uppercase text-slate-500">Data quality</p><Badge className={qualityClass(datasetInfo.qualityScore)}>{datasetInfo.qualityScore}%</Badge></div>
-                  <div className="mt-1 h-2 w-full overflow-hidden rounded-full bg-slate-100"><div className={`h-full rounded-full transition-all ${qualityClass(datasetInfo.qualityScore)}`} style={{width: `${datasetInfo.qualityScore}%`}} /></div>
+                  <div className="mt-1 h-2 w-full overflow-hidden rounded-full bg-slate-100"><div className={`h-full rounded-full transition-[width] ${qualityClass(datasetInfo.qualityScore)}`} style={{width: `${datasetInfo.qualityScore}%`}} /></div>
                 </div>
                 <div className="overflow-x-auto rounded-lg border border-slate-200">
                   <table className="w-full text-xs"><thead><tr className="bg-slate-50"><th className="p-2 text-left font-medium text-slate-500">Column</th><th className="p-2 text-left font-medium text-slate-500">Type</th><th className="p-2 text-left font-medium text-slate-500">Quality</th></tr></thead>
@@ -235,7 +231,7 @@ export default function DataManagementPage() {
             </label>
             <div className="relative">
               <Button variant="outline" disabled={loadingAction} className="w-full gap-2" onClick={() => document.getElementById("kavach-file-upload")?.click()}><Upload className="size-4" /> Validate CSV or Excel</Button>
-              <input id="kavach-file-upload" type="file" accept=".csv,.xlsx,.xls" onChange={handleFileSelect} className="hidden" />
+              <input id="kavach-file-upload" type="file" aria-label="Upload CSV or Excel file for validation" accept=".csv,.xlsx,.xls" onChange={handleFileSelect} className="hidden" />
             </div>
             {success && <div className="flex items-start gap-2 rounded-lg bg-green-50 p-3 text-xs text-[#15803D]"><CheckCircle className="mt-0.5 size-4 shrink-0" />{success}</div>}
             {error && <div role="alert" className="flex items-start gap-2 rounded-lg bg-red-50 p-3 text-xs text-[#DC2626]"><AlertTriangle className="mt-0.5 size-4 shrink-0" />{error}</div>}

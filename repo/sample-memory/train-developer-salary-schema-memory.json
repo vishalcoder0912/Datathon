@@ -1,0 +1,110 @@
+{
+  "schemaSignature": "experience:number|country:category|education:category|languages:category|frameworks:category|company_size:category|salary_usd:number",
+  "domain": "developer_salary_analytics",
+  "profile": {
+    "datasetName": "train",
+    "rowCount": 40000,
+    "columnCount": 7,
+    "columns": [
+      {
+        "name": "experience",
+        "detectedType": "number",
+        "missingCount": 0,
+        "uniqueCount": 41,
+        "role": "measure"
+      },
+      {
+        "name": "country",
+        "detectedType": "category",
+        "missingCount": 0,
+        "uniqueCount": 10,
+        "role": "dimension"
+      },
+      {
+        "name": "education",
+        "detectedType": "category",
+        "missingCount": 0,
+        "uniqueCount": 5,
+        "role": "dimension"
+      },
+      {
+        "name": "languages",
+        "detectedType": "category",
+        "missingCount": 0,
+        "uniqueCount": 100,
+        "role": "dimension"
+      },
+      {
+        "name": "frameworks",
+        "detectedType": "category",
+        "missingCount": 0,
+        "uniqueCount": 100,
+        "role": "dimension"
+      },
+      {
+        "name": "company_size",
+        "detectedType": "category",
+        "missingCount": 0,
+        "uniqueCount": 6,
+        "role": "dimension"
+      },
+      {
+        "name": "salary_usd",
+        "detectedType": "number",
+        "missingCount": 0,
+        "uniqueCount": 35646,
+        "role": "target"
+      }
+    ],
+    "measures": [
+      "experience",
+      "salary_usd"
+    ],
+    "dimensions": [
+      "country",
+      "education",
+      "languages",
+      "frameworks",
+      "company_size"
+    ],
+    "targets": [
+      "salary_usd"
+    ],
+    "multiValueColumns": [
+      "languages",
+      "frameworks"
+    ],
+    "quality": {
+      "missingValues": 0,
+      "duplicateRows": 0,
+      "qualityScore": 100
+    },
+    "recommendedDashboard": {
+      "kpis": [
+        "Total Rows",
+        "Average Salary USD",
+        "Median Salary USD",
+        "Maximum Salary USD",
+        "Average Experience",
+        "Data Quality Score"
+      ],
+      "charts": [
+        "Average salary_usd by country",
+        "Salary_usd distribution",
+        "Salary_usd vs experience",
+        "Average salary_usd by education",
+        "Average salary_usd by company_size",
+        "Top languages by records",
+        "Top frameworks by records"
+      ]
+    }
+  },
+  "rules": [
+    "Use salary_usd as the primary target metric.",
+    "Use experience as a numeric explanatory feature.",
+    "Use country, education, and company_size as segment dimensions.",
+    "Split languages and frameworks by comma before ranking.",
+    "Never let the LLM invent KPI values. Calculate KPI values from rows.",
+    "On every new upload, regenerate schema profile, dashboard spec, KPIs, charts, filters, and memory."
+  ]
+}

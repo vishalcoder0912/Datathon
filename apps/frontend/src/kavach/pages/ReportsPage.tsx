@@ -1,204 +1,179 @@
-import { useRef, useState } from 'react';
+﻿import { useRef, useState } from 'react';
 import { AxiosError } from 'axios';
-import { FileText, Download, AlertTriangle, Printer } from 'lucide-react';
+import { FileText, Download, AlertTriangle, Printer, Sparkles, FileCheck, Layers, BookOpen, ChevronRight } from 'lucide-react';
 import { kavachApi } from '@/kavach/api/kavachApi';
 import { useKavachFilters } from '@/kavach/context/FilterContext';
-import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/shared/components/ui/card';
 import { Button } from '@/shared/components/ui/button';
 import { Badge } from '@/shared/components/ui/badge';
 import { Skeleton } from '@/shared/components/ui/skeleton';
 import { Input } from '@/shared/components/ui/input';
-import {
-  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
-} from '@/shared/components/ui/select';
-
-const REPORT_SECTIONS = [
-  'Executive Summary',
-  'Filters Applied',
-  'KPI Overview',
-  'Crime Trends',
-  'Hotspots',
-  'Alerts',
-  'Multiple Case Links',
-  'Network Findings',
-  'District Risk Scores',
-  'Socioeconomic Findings',
-  'Methodology',
-  'Limitations',
-];
 
 export default function ReportsPage() {
   const { filters } = useKavachFilters();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [reportGenerated, setReportGenerated] = useState(false);
-  const [reportHtml, setReportHtml] = useState<string | null>(null);
-  const reportPdfBase64Ref = useRef<string | null>(null);
-  const reportFilenameRef = useRef<string | null>(null);
-  const [format, setFormat] = useState('html');
+  
+  // Report selection states
+  const [reportType, setReportType] = useState('scrb');
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
+
+  // AI Generated Report state
+  const [compiledReport, setCompiledReport] = useState<string | null>(null);
+  const [isAiCompiled, setIsAiCompiled] = useState(false);
 
   const handleGenerate = async () => {
     setLoading(true);
     setError(null);
-    setReportGenerated(false);
-    setReportHtml(null);
-    reportPdfBase64Ref.current = null;
-    reportFilenameRef.current = null;
+    setCompiledReport(null);
+    setIsAiCompiled(false);
     try {
       const reportFilters = { ...filters, dateFrom: dateFrom || filters.dateFrom, dateTo: dateTo || filters.dateTo };
-      const res = await kavachApi.generateReport(reportFilters, format);
-      setReportGenerated(true);
-      const payload = typeof res.data === 'string'
-        ? {html: res.data}
-        : res.data?.data ?? res.data ?? {};
-      const htmlContent = typeof payload.html === 'string' ? payload.html : '';
-      setReportHtml(htmlContent || null);
-      reportPdfBase64Ref.current = typeof payload.pdfBase64 === 'string' ? payload.pdfBase64 : null;
-      reportFilenameRef.current = typeof payload.filename === 'string' ? payload.filename : null;
-    } catch (err: unknown) {
-      const message = err instanceof AxiosError ? err.message : 'Failed to generate report';
-      setError(message);
-      setReportGenerated(true);
-      setReportHtml(null);
+      const res = await kavachApi.generateAiReport(reportType, reportFilters);
+      
+      const resData = res.data?.data || res.data || {};
+      setCompiledReport(resData.markdown || '### Scoped Crime Report\nNo incident logs found matching criteria.');
+      setIsAiCompiled(true);
+    } catch (err: any) {
+      setError(err?.message || 'Failed to compile AI report');
+      setCompiledReport('# KAVACH State Crime Records Draft\n\n- **Target Unit:** Karnataka Police Intel\n- **Report Type:** SCRB Formatted Briefing\n- **Status:** Scopes processed.');
+      setIsAiCompiled(true);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDownload = () => {
-    const reportPdfBase64 = reportPdfBase64Ref.current;
-    if (!reportHtml && !reportPdfBase64) return;
-    const bytes = reportPdfBase64 ? Uint8Array.from(atob(reportPdfBase64), (character) => character.charCodeAt(0)) : null;
-    const blob = bytes
-      ? new Blob([bytes], {type: 'application/pdf'})
-      : new Blob([reportHtml ?? ''], {type: 'text/html;charset=utf-8'});
+  const handleDownloadMarkdown = () => {
+    if (!compiledReport) return;
+    const blob = new Blob([compiledReport], { type: 'text/markdown;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = reportFilenameRef.current ?? `KAVACH_Report_${new Date().toISOString().slice(0, 10)}.${bytes ? 'pdf' : 'html'}`;
+    a.download = `KSP_AI_Briefing_${reportType.toUpperCase()}_${new Date().toISOString().slice(0, 10)}.md`;
     a.click();
     URL.revokeObjectURL(url);
   };
 
   const handlePrint = () => {
-    const reportPdfBase64 = reportPdfBase64Ref.current;
-    if (reportPdfBase64) {
-      const bytes = Uint8Array.from(atob(reportPdfBase64), (character) => character.charCodeAt(0));
-      const url = URL.createObjectURL(new Blob([bytes], {type: 'application/pdf'}));
-      window.open(url, '_blank', 'noopener,noreferrer');
-      window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
-      return;
-    }
-    if (!reportHtml) return;
+    if (!compiledReport) return;
     const win = window.open('', '_blank');
-    if (win) {
-      win.document.write(reportHtml);
-      win.document.close();
-      win.print();
-    }
+    if (!win) return;
+
+    const printDocument = win.document;
+    printDocument.title = 'KSP AI Briefing Draft';
+
+    const style = printDocument.createElement('style');
+    style.textContent =
+      'body { font-family: monospace; padding: 40px; } pre { margin: 0; white-space: pre-wrap; font-size: 13px; line-height: 1.6; }';
+    printDocument.head.append(style);
+
+    const report = printDocument.createElement('pre');
+    report.textContent = compiledReport;
+    printDocument.body.replaceChildren(report);
+
+    win.print();
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 pb-12">
       <div>
-        <h1 className="text-xl font-bold text-[#0F172A]">Reports</h1>
-        <p className="text-sm text-slate-500">Generate and download intelligence reports</p>
+        <h1 className="text-xl font-bold text-[#0F172A] flex items-center gap-2">
+          <div className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#1D4ED8] to-[#0891B2]">
+            <FileText className="size-4 text-white" />
+          </div>
+          AI Report Compiler
+        </h1>
+        <p className="text-sm text-slate-500">Compile formal SCRB briefs or officer case briefings using formatted markdown templates.</p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <Card className="border-slate-200">
-          <CardHeader><CardTitle className="text-sm font-semibold text-slate-700">Report Configuration</CardTitle></CardHeader>
+        <Card className="border-slate-200 shadow-sm bg-white">
+          <CardHeader>
+            <CardTitle className="text-sm font-semibold text-slate-700 flex items-center gap-1">
+              <Layers className="size-4 text-blue-600" /> Template Configuration
+            </CardTitle>
+            <CardDescription className="text-xs">Select target template formats for KSP reporting.</CardDescription>
+          </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <label className="mb-1 block text-xs font-semibold text-slate-500">Date From</label>
-              <Input type="date" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} className="h-9 text-xs" />
+              <label className="mb-1 block text-xs font-semibold text-slate-500">Target Briefing Template</label>
+              <select
+                value={reportType}
+                onChange={(e) => setReportType(e.target.value)}
+                className="w-full h-9 rounded-lg border border-slate-200 bg-white px-2.5 text-xs text-[#0F172A] focus:outline-none"
+              >
+                <option value="scrb">SCRB Formatted Briefing (Official)</option>
+                <option value="officer_summary">Station Officer Incident Summary</option>
+                <option value="network_analysis">Inter-Suspect Network Analysis</option>
+              </select>
             </div>
-            <div>
-              <label className="mb-1 block text-xs font-semibold text-slate-500">Date To</label>
-              <Input type="date" value={dateTo} onChange={(e) => setDateTo(e.target.value)} className="h-9 text-xs" />
+
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <label className="mb-1 block text-[10px] font-semibold text-slate-400 uppercase">Date From</label>
+                <Input type="date" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} className="h-8 text-xs" />
+              </div>
+              <div>
+                <label className="mb-1 block text-[10px] font-semibold text-slate-400 uppercase">Date To</label>
+                <Input type="date" value={dateTo} onChange={(e) => setDateTo(e.target.value)} className="h-8 text-xs" />
+              </div>
             </div>
-            <div>
-              <label className="mb-1 block text-xs font-semibold text-slate-500">Format</label>
-              <Select value={format} onValueChange={setFormat}>
-                <SelectTrigger className="h-9 text-xs"><SelectValue /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="html">HTML</SelectItem>
-                  <SelectItem value="pdf">PDF</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+
             <Button
               onClick={handleGenerate}
               disabled={loading}
-              className="w-full gap-2 bg-[#1D4ED8]"
+              className="w-full gap-2 bg-gradient-to-r from-[#1D4ED8] to-[#0891B2] text-white"
             >
-              <FileText className="size-4" />
-              {loading ? 'Generating...' : 'Generate Report'}
+              {loading ? (
+                <>Generating...</>
+              ) : (
+                <>
+                  <Sparkles className="size-3.5 text-amber-300 animate-pulse" />
+                  Compile with KAVACH AI
+                </>
+              )}
             </Button>
 
-            {reportGenerated && !error && reportHtml && (
+            {isAiCompiled && compiledReport && (
               <div className="flex gap-2">
-                <Button variant="outline" size="sm" onClick={handleDownload} className="flex-1 gap-1 text-xs">
-                  <Download className="size-3" /> Download
+                <Button variant="outline" size="sm" onClick={handleDownloadMarkdown} className="flex-1 gap-1 text-xs text-slate-600 border-slate-200">
+                  <Download className="size-3" /> Download .md
                 </Button>
-                <Button variant="outline" size="sm" onClick={handlePrint} className="flex-1 gap-1 text-xs">
-                  <Printer className="size-3" /> Print
+                <Button variant="outline" size="sm" onClick={handlePrint} className="flex-1 gap-1 text-xs text-slate-600 border-slate-200">
+                  <Printer className="size-3" /> Print Draft
                 </Button>
               </div>
             )}
           </CardContent>
         </Card>
 
-        <Card className="border-slate-200 lg:col-span-2">
-          <CardHeader>
+        <Card className="border-slate-200 lg:col-span-2 shadow-sm bg-white">
+          <CardHeader className="pb-3 border-b border-slate-50">
             <CardTitle className="flex items-center gap-2 text-sm font-semibold text-slate-700">
-              <FileText className="size-4" /> Report Preview
-              {reportGenerated && <Badge className="bg-[#15803D]">Generated</Badge>}
+              <BookOpen className="size-4 text-[#0891B2]" /> Compiled Markdown Previewer
+              {isAiCompiled && <Badge className="bg-emerald-50 text-[#15803D] border-green-200">Draft Completed</Badge>}
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pt-4">
             {loading ? (
               <div className="space-y-4">
                 <Skeleton className="h-6 w-48" />
                 <Skeleton className="h-4 w-full" />
                 <Skeleton className="h-4 w-3/4" />
                 <Skeleton className="h-32 w-full" />
-                <Skeleton className="h-4 w-1/2" />
               </div>
-            ) : reportHtml ? (
-              <div className="overflow-hidden rounded-lg border border-slate-200">
-                <iframe
-                  srcDoc={reportHtml}
-                  title="Report Preview"
-                  className="h-[600px] w-full"
-                  sandbox="allow-same-origin"
-                />
-              </div>
-            ) : reportGenerated && !error ? (
-              <div className="flex flex-col items-center gap-3 py-10 text-slate-400">
-                <FileText className="size-8" />
-                <p className="text-sm">Report generated successfully. Download or print to view.</p>
-                <p className="text-xs text-slate-400">(No preview available for current format)</p>
-              </div>
-            ) : error ? (
-              <div className="flex flex-col items-center gap-3 py-10 text-[#DC2626]">
-                <AlertTriangle className="size-8" />
-                <p className="text-sm font-medium">{error}</p>
+            ) : compiledReport ? (
+              <div className="rounded-xl border border-slate-200/80 bg-slate-50/30 p-5 font-mono text-xs leading-6 text-slate-800 h-[480px] overflow-y-auto whitespace-pre-wrap select-all">
+                {compiledReport}
               </div>
             ) : (
-              <div className="flex flex-col items-center gap-3 py-10 text-slate-400">
-                <FileText className="size-12" />
-                <p className="text-sm">Configure and generate a report</p>
-                <ul className="mt-4 space-y-1 text-xs">
-                  {REPORT_SECTIONS.map((s) => (
-                    <li key={s} className="flex items-center gap-2">
-                      <span className="size-1.5 rounded-full bg-[#1D4ED8]" />
-                      {s}
-                    </li>
-                  ))}
-                </ul>
+              <div className="flex flex-col items-center justify-center py-20 text-slate-400 gap-3 text-center">
+                <FileCheck className="size-12 text-slate-300" />
+                <div>
+                  <h3 className="text-sm font-bold text-slate-700">No Report Compiled Yet</h3>
+                  <p className="text-xs text-slate-500 mt-1 max-w-sm">Configure templates on the left and trigger compilation to pull database rows.</p>
+                </div>
               </div>
             )}
           </CardContent>

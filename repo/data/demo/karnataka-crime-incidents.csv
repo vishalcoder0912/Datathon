@@ -1,0 +1,1101 @@
+fir_number,crime_type,incident_date,incident_time,district,police_station,severity,status,latitude,longitude,description,modus_operandi
+FIR000001,Assault,2025-01-01,20:33,Ramanagara,Channapatna,HIGH,PENDING,12.7305,77.3232,Assault reported at Basavanagudi. Confrontation.,Confrontation
+FIR000002,Burglary,2025-01-02,17:08,Bidar,Basavakalyan,MEDIUM,UNDER_INVESTIGATION,17.9235,77.5464,Burglary reported at Banashankari 2nd Stage. Forceful entry.,Forceful entry
+FIR000003,Cybercrime,2025-01-03,11:32,Dakshina Kannada,Sullia,MEDIUM,CLOSED,12.9182,74.857,Cybercrime reported at Mahalakshmi Layout. Credential theft.,Credential theft
+FIR000004,Drug Offence,2025-01-04,06:32,Kodagu,Madikeri,HIGH,UNDER_INVESTIGATION,12.4019,75.7146,Drug Offence reported at Kengeri Satellite Town. Online sale.,Online sale
+FIR000005,Chain Snatching,2025-01-05,19:31,Dakshina Kannada,Puttur,MEDIUM,COLD,12.824,74.8541,Chain Snatching reported at Kumaraswamy Layout. Pillion snatch.,Pillion snatch
+FIR000006,Criminal Trespass,2025-01-06,01:19,Dharwad,Kalghatgi,CRITICAL,CLOSED,15.4586,74.9693,Criminal Trespass reported at HSR Layout Sector 3. Boundary violation.,Boundary violation
+FIR000007,Burglary,2025-01-07,01:00,Vijayapura,Muddebihal,LOW,PENDING,16.8656,75.685,Burglary reported at MG Road. Disguised entry.,Disguised entry
+FIR000008,Kidnapping,2025-01-08,13:49,Belagavi,Kadapa,MEDIUM,CLOSED,15.8433,74.4715,Kidnapping reported at Vijayanagar Town. Custodial.,Custodial
+FIR000009,Burglary,2025-01-09,05:50,Dakshina Kannada,Sullia,LOW,COLD,12.8862,74.8662,Burglary reported at Hebbal Ring Road. Lock picking.,Lock picking
+FIR000010,Fraud,2025-01-10,06:26,Mysuru,Krishnaraja,HIGH,UNDER_INVESTIGATION,12.2594,76.5952,Fraud reported at Whitefield Main Road. Insurance fraud.,Insurance fraud
+FIR000011,Criminal Trespass,2025-01-11,15:13,Chikkamagaluru,Chikkamagaluru Town,CRITICAL,UNDER_INVESTIGATION,13.3156,75.7355,Criminal Trespass reported at Kengeri Satellite Town. Boundary violation.,Boundary violation
+FIR000012,Sexual Offence,2025-01-12,08:10,Chitradurga,Hosadurga,LOW,PENDING,14.2409,76.3898,Sexual Offence reported at Subramanyapura. Assault.,Assault
+FIR000013,Arson,2025-01-13,21:04,Mysuru,Udayagiri,CRITICAL,PENDING,12.2797,76.6173,Arson reported at Malleshwaram 8th Cross. Industrial arson.,Industrial arson
+FIR000014,Fraud,2025-01-14,13:33,Uttara Kannada,Main Police Station,MEDIUM,PENDING,14.8092,74.0879,Fraud reported at Peenya Industrial Area. Online scam.,Online scam
+FIR000015,Cybercrime,2025-01-15,15:33,Shivamogga,Shivamogga Town,CRITICAL,COLD,13.9014,75.5802,Cybercrime reported at Sadashivanagar. Credential theft.,Credential theft
+FIR000016,Vehicle Theft,2025-01-16,13:45,Mandya,Nagamangala,LOW,CLOSED,12.5228,76.9423,Vehicle Theft reported at Subramanyapura. Towing.,Towing
+FIR000017,Arson,2025-01-17,23:08,Haveri,Hangal,MEDIUM,CLOSED,14.7459,75.357,"Arson reported at 12th Main, Indiranagar. Forest fire.",Forest fire
+FIR000018,Fraud,2025-01-18,00:41,Tumakuru,Madhugiri,HIGH,UNDER_INVESTIGATION,13.3044,77.1323,Fraud reported at RT Nagar. Credit card fraud.,Credit card fraud
+FIR000019,Robbery,2025-01-19,21:10,Kodagu,Virajpet,CRITICAL,CLOSED,12.4262,75.7514,Robbery reported at Vijayanagar 2nd Stage. Highway robbery.,Highway robbery
+FIR000020,Pickpocketing,2025-01-20,09:11,Vijayanagara,Kampli,LOW,COLD,15.315,76.5703,Pickpocketing reported at Rajajinagar. Distraction theft.,Distraction theft
+FIR000021,Domestic Violence,2025-01-21,11:50,Mysuru,Kuvempunagar,MEDIUM,PENDING,12.3173,76.6442,Domestic Violence reported at Subramanyapura. Dowry harassment.,Dowry harassment
+FIR000022,Drug Offence,2025-01-22,20:38,Mysuru,Vijayanagar,MEDIUM,PENDING,12.265,76.6873,Drug Offence reported at MG Road. Manufacturing.,Manufacturing
+FIR000023,Pickpocketing,2025-01-23,14:09,Bengaluru Rural,Doddaballapura,MEDIUM,UNDER_INVESTIGATION,13.0606,77.6132,Pickpocketing reported at Jayanagar 4th Block. Crowd pick.,Crowd pick
+FIR000024,Kidnapping,2025-01-24,10:28,Bengaluru Urban,Yeshwanthpur,CRITICAL,PENDING,13.0106,77.5676,Kidnapping reported at MG Road. Political.,Political
+FIR000025,Sexual Offence,2025-01-25,00:48,Bengaluru Rural,Hoskote,HIGH,COLD,13.1443,77.6061,Sexual Offence reported at Whitefield Main Road. Eve teasing.,Eve teasing
+FIR000026,Robbery,2025-01-26,03:28,Chikkaballapur,Main Police Station,MEDIUM,COLD,13.4582,77.761,Robbery reported at Nagarbhavi. Bank robbery.,Bank robbery
+FIR000027,Criminal Trespass,2025-01-27,00:32,Yadgiri,Yadgiri Town,CRITICAL,COLD,16.7985,77.1278,Criminal Trespass reported at Yelahanka New Town. Encroachment.,Encroachment
+FIR000028,Chain Snatching,2025-01-28,06:51,Tumakuru,Kunigal,CRITICAL,UNDER_INVESTIGATION,13.3274,77.1221,Chain Snatching reported at Kumaraswamy Layout. Pedestrian snatch.,Pedestrian snatch
+FIR000029,Murder,2025-01-29,16:06,Mandya,Nagamangala,CRITICAL,PENDING,12.5734,76.8773,Murder reported at Jayanagar 4th Block. Firearm.,Firearm
+FIR000030,Sexual Offence,2025-01-30,16:22,Yadgiri,Shahapur,LOW,CLOSED,16.7581,77.0941,Sexual Offence reported at Kengeri Satellite Town. Workplace harassment.,Workplace harassment
+FIR000031,Pickpocketing,2025-01-01,17:50,Bengaluru Urban,Mysore Road,HIGH,CLOSED,12.9469,77.5773,Pickpocketing reported at Whitefield Main Road. Distraction theft.,Distraction theft
+FIR000032,Cybercrime,2025-01-02,10:01,Bidar,Bhalki,CRITICAL,PENDING,17.9522,77.5371,Cybercrime reported at Brigade Road. Malware attack.,Malware attack
+FIR000033,Robbery,2025-01-03,23:36,Mysuru,Udayagiri,HIGH,COLD,12.3454,76.5987,"Robbery reported at 12th Main, Indiranagar. Highway robbery.",Highway robbery
+FIR000034,Fraud,2025-01-04,22:40,Udupi,Udupi Town,LOW,UNDER_INVESTIGATION,13.3703,74.7425,Fraud reported at Vijayanagar Town. Credit card fraud.,Credit card fraud
+FIR000035,Fraud,2025-01-05,01:32,Chamarajanagar,Main Police Station,CRITICAL,CLOSED,11.9018,76.8985,Fraud reported at Dasarahalli. Property fraud.,Property fraud
+FIR000036,Burglary,2025-01-06,12:45,Kolar,Kolar Town,LOW,PENDING,13.1166,78.0975,Burglary reported at HSR Layout Sector 3. Lock picking.,Lock picking
+FIR000037,Kidnapping,2025-01-07,10:42,Chitradurga,Hiriyur,CRITICAL,CLOSED,14.1716,76.3835,Kidnapping reported at Kengeri Satellite Town. Political.,Political
+FIR000038,Cybercrime,2025-01-08,07:27,Kalaburagi,Sedam,CRITICAL,PENDING,17.3397,76.8796,Cybercrime reported at HSR Layout Sector 3. Social engineering. [DELAYED INVESTIGATION],Social engineering
+FIR000039,Domestic Violence,2025-01-09,03:28,Yadgiri,Yadgiri Town,LOW,COLD,16.7881,77.0945,Domestic Violence reported at HSR Layout Sector 3. Verbal abuse.,Verbal abuse
+FIR000040,Fraud,2025-01-10,05:48,Belagavi,Maruti,CRITICAL,CLOSED,15.8764,74.4865,Fraud reported at Electronic City Phase 1. Online scam.,Online scam
+FIR000041,Assault,2025-01-11,07:10,Ballari,Sandur,LOW,CLOSED,15.1598,76.9163,Assault reported at RT Nagar. Road rage.,Road rage
+FIR000042,Vehicle Theft,2025-01-12,10:09,Chamarajanagar,Main Police Station,CRITICAL,CLOSED,11.8863,76.9813,Vehicle Theft reported at Peenya Industrial Area. Valet theft.,Valet theft
+FIR000043,Sexual Offence,2025-01-13,07:04,Mysuru,Kuvempunagar,MEDIUM,CLOSED,12.3368,76.6171,Sexual Offence reported at HSR Layout Sector 3. Harassment.,Harassment
+FIR000044,Sexual Offence,2025-01-14,21:03,Kolar,Malur,CRITICAL,PENDING,13.1736,78.1145,Sexual Offence reported at BTM Layout Stage 2. Assault.,Assault
+FIR000045,Domestic Violence,2025-01-15,20:49,Mandya,Srirangapatna,HIGH,COLD,12.5573,76.8971,Domestic Violence reported at Sadashivanagar. Physical abuse.,Physical abuse
+FIR000046,Sexual Offence,2025-01-16,09:31,Haveri,Hangal,MEDIUM,CLOSED,14.8265,75.3557,Sexual Offence reported at Brigade Road. Assault.,Assault
+FIR000047,Burglary,2025-01-17,05:06,Chitradurga,Hosadurga,HIGH,COLD,14.2188,76.4367,Burglary reported at MG Road. Disguised entry.,Disguised entry
+FIR000048,Burglary,2025-01-18,18:09,Chamarajanagar,Main Police Station,MEDIUM,UNDER_INVESTIGATION,11.8774,76.9172,Burglary reported at Padmanabhanagar. Disguised entry.,Disguised entry
+FIR000049,Robbery,2025-01-19,18:10,Ballari,Sandur,LOW,UNDER_INVESTIGATION,15.1378,76.8941,Robbery reported at JP Nagar 6th Phase. Armed robbery.,Armed robbery
+FIR000050,Burglary,2025-01-20,15:12,Bidar,Humnabad,MEDIUM,COLD,17.8874,77.513,Burglary reported at Nagarbhavi. Disguised entry.,Disguised entry
+FIR000051,Vehicle Theft,2025-01-21,23:06,Bengaluru Rural,Nelamangala,LOW,UNDER_INVESTIGATION,13.1282,77.6422,Vehicle Theft reported at RT Nagar. Valet theft.,Valet theft
+FIR000052,Criminal Trespass,2025-01-22,09:05,Dakshina Kannada,Mangaluru North,LOW,COLD,12.9166,74.8046,Criminal Trespass reported at Vijayanagar 2nd Stage. Illegal occupation.,Illegal occupation
+FIR000053,Burglary,2025-01-23,01:12,Shivamogga,Sagara,LOW,CLOSED,13.9745,75.6153,Burglary reported at BTM Layout Stage 2. Disguised entry.,Disguised entry
+FIR000054,Murder,2025-01-24,02:12,Yadgiri,Yadgiri Town,CRITICAL,PENDING,16.7375,77.0902,Murder reported at Padmanabhanagar. Sharp weapon.,Sharp weapon
+FIR000055,Kidnapping,2025-01-25,08:55,Ramanagara,Channapatna,HIGH,CLOSED,12.7543,77.2631,Kidnapping reported at Banashankari 2nd Stage. For ransom.,For ransom
+FIR000056,Criminal Trespass,2025-01-26,07:22,Udupi,Kundapur,CRITICAL,CLOSED,13.3512,74.7468,"Criminal Trespass reported at 12th Main, Indiranagar. Encroachment.",Encroachment
+FIR000057,Assault,2025-01-27,05:26,Uttara Kannada,Main Police Station,CRITICAL,UNDER_INVESTIGATION,14.7877,74.1773,Assault reported at Subramanyapura. Weapon attack.,Weapon attack
+FIR000058,Domestic Violence,2025-01-28,07:52,Gadag,Gadag Town,MEDIUM,COLD,15.3867,75.6011,Domestic Violence reported at Hebbal Ring Road. Physical abuse.,Physical abuse
+FIR000059,Robbery,2025-01-29,01:53,Uttara Kannada,Main Police Station,MEDIUM,COLD,14.8454,74.1033,Robbery reported at Marathahalli Bridge. Chain snatching.,Chain snatching
+FIR000060,Chain Snatching,2025-01-30,08:22,Kalaburagi,Afzalpur,CRITICAL,PENDING,17.3405,76.7928,Chain Snatching reported at Rajajinagar. Roadside snatch. [DELAYED INVESTIGATION],Roadside snatch
+FIR000061,Chain Snatching,2025-01-01,17:45,Shivamogga,Tirthahalli,HIGH,CLOSED,13.9599,75.5922,Chain Snatching reported at Hebbal Ring Road. Pillion snatch.,Pillion snatch
+FIR000062,Drug Offence,2025-01-02,17:06,Koppal,Koppal Town,MEDIUM,UNDER_INVESTIGATION,15.3146,76.1467,Drug Offence reported at Marathahalli Bridge. Smuggling.,Smuggling
+FIR000063,Domestic Violence,2025-01-03,20:29,Vijayapura,Muddebihal,HIGH,UNDER_INVESTIGATION,16.812,75.6891,Domestic Violence reported at Electronic City Phase 1. Dowry harassment.,Dowry harassment
+FIR000064,Drug Offence,2025-01-04,21:25,Mysuru,Kuvempunagar,MEDIUM,COLD,12.3118,76.6359,Drug Offence reported at Hebbal Ring Road. Street peddling.,Street peddling
+FIR000065,Drug Offence,2025-01-05,09:08,Chamarajanagar,Main Police Station,LOW,PENDING,11.9472,76.9764,Drug Offence reported at Subramanyapura. Street peddling.,Street peddling
+FIR000066,Arson,2025-01-06,08:51,Kolar,Kolar Town,CRITICAL,CLOSED,13.1157,78.1414,Arson reported at Kumaraswamy Layout. Property arson.,Property arson
+FIR000067,Criminal Trespass,2025-01-07,23:35,Chitradurga,Hiriyur,HIGH,UNDER_INVESTIGATION,14.2027,76.3703,Criminal Trespass reported at Vijayanagar 2nd Stage. Boundary violation.,Boundary violation
+FIR000068,Burglary,2025-01-08,05:21,Vijayanagara,Hospet,MEDIUM,COLD,15.2711,76.598,Burglary reported at Marathahalli Bridge. Window break.,Window break
+FIR000069,Robbery,2025-01-09,19:59,Bidar,Basavakalyan,HIGH,COLD,17.9056,77.5254,Robbery reported at Vijayanagar Town. Home invasion.,Home invasion
+FIR000070,Chain Snatching,2025-01-10,02:57,Chitradurga,Molakalmuru,MEDIUM,PENDING,14.1712,76.4497,Chain Snatching reported at Sadashivanagar. Roadside snatch.,Roadside snatch
+FIR000071,Cybercrime,2025-01-11,03:37,Tumakuru,Tiptur,MEDIUM,UNDER_INVESTIGATION,13.3842,77.1153,Cybercrime reported at Hebbal Ring Road. Fake call centre.,Fake call centre
+FIR000072,Arson,2025-01-12,05:39,Hassan,Sakleshpur,CRITICAL,COLD,13.0187,76.1519,Arson reported at Brigade Road. Property arson.,Property arson
+FIR000073,Sexual Offence,2025-01-13,08:25,Bengaluru Urban,Whitefield,MEDIUM,UNDER_INVESTIGATION,12.9516,77.6216,Sexual Offence reported at Sadashivanagar. Eve teasing.,Eve teasing
+FIR000074,Criminal Trespass,2025-01-14,19:15,Ballari,Ballari Town,HIGH,UNDER_INVESTIGATION,15.1645,76.8884,Criminal Trespass reported at Yelahanka New Town. Temple trespass.,Temple trespass
+FIR000075,Pickpocketing,2025-01-15,05:40,Vijayanagara,Kampli,CRITICAL,UNDER_INVESTIGATION,15.3054,76.5897,Pickpocketing reported at Marathahalli Bridge. Crowd pick.,Crowd pick
+FIR000076,Domestic Violence,2025-01-16,14:04,Dharwad,Dharwad Town,MEDIUM,UNDER_INVESTIGATION,15.5038,75.0092,Domestic Violence reported at Hebbal Ring Road. Dowry harassment.,Dowry harassment
+FIR000077,Sexual Offence,2025-01-17,22:23,Belagavi,Shahapur,MEDIUM,COLD,15.8085,74.4722,Sexual Offence reported at Whitefield Main Road. Assault.,Assault
+FIR000078,Cybercrime,2025-01-18,16:23,Chitradurga,Chitradurga Town,CRITICAL,CLOSED,14.2481,76.4234,Cybercrime reported at Vijayanagar 2nd Stage. Malware attack.,Malware attack
+FIR000079,Assault,2025-01-19,12:39,Kolar,Bangarpet,CRITICAL,UNDER_INVESTIGATION,13.1861,78.1529,Assault reported at Vijayanagar Town. Confrontation.,Confrontation
+FIR000080,Criminal Trespass,2025-01-20,22:10,Udupi,Karkala,CRITICAL,PENDING,13.3329,74.7141,Criminal Trespass reported at Subramanyapura. Boundary violation.,Boundary violation
+FIR000081,Vehicle Theft,2025-01-21,11:16,Haveri,Ranebennur,MEDIUM,PENDING,14.7986,75.4122,Vehicle Theft reported at Padmanabhanagar. Carjacking.,Carjacking
+FIR000082,Kidnapping,2025-01-22,13:20,Mandya,Srirangapatna,HIGH,CLOSED,12.5708,76.8652,Kidnapping reported at Whitefield Main Road. For ransom.,For ransom
+FIR000083,Assault,2025-01-23,04:01,Davanagere,Jagalur,HIGH,CLOSED,14.4589,75.9138,Assault reported at RT Nagar. Group assault.,Group assault
+FIR000084,Criminal Trespass,2025-01-24,01:22,Kalaburagi,Gulbarga North,MEDIUM,PENDING,17.3284,76.879,Criminal Trespass reported at Uttarahalli. Temple trespass. [DELAYED INVESTIGATION],Temple trespass
+FIR000085,Cybercrime,2025-01-25,08:27,Raichur,Raichur Town,HIGH,PENDING,16.186,77.3767,Cybercrime reported at Whitefield Main Road. Credential theft.,Credential theft
+FIR000086,Robbery,2025-01-26,13:57,Chitradurga,Hosadurga,MEDIUM,PENDING,14.1981,76.4117,Robbery reported at Kengeri Satellite Town. Highway robbery.,Highway robbery
+FIR000087,Domestic Violence,2025-01-27,02:09,Vijayanagara,Kampli,HIGH,COLD,15.3117,76.6149,Domestic Violence reported at Sadashivanagar. Verbal abuse.,Verbal abuse
+FIR000088,Murder,2025-01-28,04:49,Dakshina Kannada,Mangaluru South,MEDIUM,CLOSED,12.8439,74.8504,Murder reported at Nagarbhavi. Firearm.,Firearm
+FIR000089,Domestic Violence,2025-01-29,13:10,Tumakuru,Kunigal,CRITICAL,PENDING,13.3788,77.0751,Domestic Violence reported at Hebbal Ring Road. Dowry harassment.,Dowry harassment
+FIR000090,Chain Snatching,2025-01-30,17:40,Davanagere,Jagalur,HIGH,COLD,14.4651,75.8887,Chain Snatching reported at BTM Layout Stage 2. Market snatch.,Market snatch
+FIR000091,Sexual Offence,2025-01-01,23:55,Chikkaballapur,Main Police Station,HIGH,COLD,13.3974,77.6875,Sexual Offence reported at Padmanabhanagar. Assault.,Assault
+FIR000092,Drug Offence,2025-01-02,22:05,Dharwad,Dharwad Town,MEDIUM,COLD,15.4422,74.9867,Drug Offence reported at MG Road. Street peddling.,Street peddling
+FIR000093,Arson,2025-01-31,14:33,Dakshina Kannada,Puttur,HIGH,UNDER_INVESTIGATION,12.9081,74.8249,Arson reported at Nagarbhavi. Forest fire.,Forest fire
+FIR000094,Burglary,2025-02-01,15:40,Bengaluru Urban,Yeshwanthpur,HIGH,UNDER_INVESTIGATION,12.9457,77.5783,Burglary reported at JP Nagar 6th Phase. Lock picking.,Lock picking
+FIR000095,Assault,2025-02-02,06:28,Ballari,Kampli,HIGH,UNDER_INVESTIGATION,15.1569,76.9607,Assault reported at JP Nagar 6th Phase. Strangulation.,Strangulation
+FIR000096,Chain Snatching,2025-02-03,09:38,Bidar,Bhalki,LOW,PENDING,17.9553,77.4891,Chain Snatching reported at Electronic City Phase 1. Pillion snatch.,Pillion snatch
+FIR000097,Robbery,2025-02-04,04:56,Ballari,Hospet,HIGH,UNDER_INVESTIGATION,15.123,76.896,Robbery reported at Rajajinagar. Home invasion.,Home invasion
+FIR000098,Assault,2025-02-05,16:16,Tumakuru,Tiptur,LOW,CLOSED,13.3262,77.0838,Assault reported at Dasarahalli. Group assault.,Group assault
+FIR000099,Pickpocketing,2025-02-06,05:21,Udupi,Udupi Town,HIGH,COLD,13.3881,74.7154,Pickpocketing reported at HSR Layout Sector 3. Cut pocket.,Cut pocket
+FIR000100,Robbery,2025-02-07,02:47,Kodagu,Madikeri,LOW,CLOSED,12.4464,75.783,Robbery reported at Uttarahalli. Chain snatching.,Chain snatching
+FIR000101,Kidnapping,2025-02-08,21:08,Mysuru,Kuvempunagar,CRITICAL,CLOSED,12.3263,76.6694,Kidnapping reported at Basavanagudi. For ransom.,For ransom
+FIR000102,Arson,2025-02-09,01:48,Belagavi,Shahapur,CRITICAL,UNDER_INVESTIGATION,15.8305,74.5401,Arson reported at Whitefield Main Road. Property arson.,Property arson
+FIR000103,Criminal Trespass,2025-02-10,05:24,Mysuru,Krishnaraja,MEDIUM,CLOSED,12.343,76.6736,Criminal Trespass reported at Basavanagudi. Boundary violation.,Boundary violation
+FIR000104,Fraud,2025-02-11,14:59,Dharwad,Hubli South,CRITICAL,COLD,15.4901,75.025,Fraud reported at Hebbal Ring Road. Credit card fraud.,Credit card fraud
+FIR000105,Sexual Offence,2025-02-12,17:49,Kodagu,Somwarpet,LOW,PENDING,12.42,75.7313,Sexual Offence reported at Hebbal Ring Road. Harassment.,Harassment
+FIR000106,Criminal Trespass,2025-02-13,23:44,Belagavi,Camp,HIGH,COLD,15.8134,74.5086,Criminal Trespass reported at Koramangala 1st Cross. Encroachment.,Encroachment
+FIR000107,Burglary,2025-02-14,06:36,Mandya,Mandya Town,MEDIUM,UNDER_INVESTIGATION,12.573,76.9034,Burglary reported at Whitefield Main Road. Lock picking.,Lock picking
+FIR000108,Drug Offence,2025-02-15,04:00,Kolar,Malur,HIGH,UNDER_INVESTIGATION,13.1759,78.0994,Drug Offence reported at Yelahanka New Town. Street peddling.,Street peddling
+FIR000109,Vehicle Theft,2025-02-16,13:43,Haveri,Hangal,MEDIUM,PENDING,14.8452,75.4475,Vehicle Theft reported at Brigade Road. Valet theft.,Valet theft
+FIR000110,Domestic Violence,2025-02-17,05:11,Davanagere,Harihara,CRITICAL,COLD,14.5068,75.9099,Domestic Violence reported at Hebbal Ring Road. Verbal abuse.,Verbal abuse
+FIR000111,Chain Snatching,2025-02-18,06:23,Raichur,Raichur Town,HIGH,COLD,16.2508,77.3469,Chain Snatching reported at Mahalakshmi Layout. Pillion snatch.,Pillion snatch
+FIR000112,Drug Offence,2025-02-19,02:09,Kolar,KGF,CRITICAL,COLD,13.1474,78.1069,Drug Offence reported at Koramangala 1st Cross. Street peddling.,Street peddling
+FIR000113,Robbery,2025-02-20,09:47,Dakshina Kannada,Bantwal,MEDIUM,UNDER_INVESTIGATION,12.8832,74.8519,Robbery reported at HSR Layout Sector 3. Chain snatching.,Chain snatching
+FIR000114,Cybercrime,2025-02-21,14:59,Tumakuru,Madhugiri,CRITICAL,CLOSED,13.3338,77.0554,Cybercrime reported at Jayanagar 4th Block. Social engineering.,Social engineering
+FIR000115,Fraud,2025-02-22,08:35,Haveri,Byadgi,MEDIUM,UNDER_INVESTIGATION,14.7835,75.3865,Fraud reported at MG Road. Online scam.,Online scam
+FIR000116,Arson,2025-02-23,06:16,Chikkaballapur,Main Police Station,LOW,PENDING,13.41,77.7711,Arson reported at Rajajinagar. Vehicle arson.,Vehicle arson
+FIR000117,Robbery,2025-02-24,16:46,Ballari,Kampli,HIGH,PENDING,15.1042,76.9377,Robbery reported at Marathahalli Bridge. Chain snatching.,Chain snatching
+FIR000118,Fraud,2025-02-25,03:26,Dharwad,Dharwad Town,HIGH,COLD,15.4902,74.9927,Fraud reported at Marathahalli Bridge. Identity theft.,Identity theft
+FIR000119,Criminal Trespass,2025-02-26,05:41,Udupi,Kundapur,LOW,PENDING,13.3626,74.7808,Criminal Trespass reported at Uttarahalli. Boundary violation.,Boundary violation
+FIR000120,Criminal Trespass,2025-02-27,15:45,Kolar,Malur,HIGH,UNDER_INVESTIGATION,13.0957,78.1224,Criminal Trespass reported at Sadashivanagar. Illegal occupation.,Illegal occupation
+FIR000121,Pickpocketing,2025-02-28,14:32,Yadgiri,Shahapur,LOW,PENDING,16.7715,77.0973,Pickpocketing reported at Marathahalli Bridge. Bus pick.,Bus pick
+FIR000122,Sexual Offence,2025-03-01,13:57,Udupi,Brahmavar,HIGH,UNDER_INVESTIGATION,13.3132,74.7316,Sexual Offence reported at Koramangala 1st Cross. Assault.,Assault
+FIR000123,Cybercrime,2025-01-31,03:49,Mysuru,Kuvempunagar,HIGH,PENDING,12.2571,76.5955,Cybercrime reported at Peenya Industrial Area. Credential theft.,Credential theft
+FIR000124,Murder,2025-02-01,04:59,Udupi,Karkala,CRITICAL,CLOSED,13.3577,74.7371,"Murder reported at 12th Main, Indiranagar. Poisoning.",Poisoning
+FIR000125,Sexual Offence,2025-02-02,16:42,Mandya,Nagamangala,CRITICAL,CLOSED,12.5596,76.8943,Sexual Offence reported at RT Nagar. Assault.,Assault
+FIR000126,Murder,2025-02-03,20:17,Raichur,Manvi,CRITICAL,UNDER_INVESTIGATION,16.2145,77.3581,Murder reported at Peenya Industrial Area. Sharp weapon.,Sharp weapon
+FIR000127,Chain Snatching,2025-02-04,17:05,Tumakuru,Tumakuru Town,MEDIUM,UNDER_INVESTIGATION,13.3672,77.1131,Chain Snatching reported at BTM Layout Stage 2. Pedestrian snatch.,Pedestrian snatch
+FIR000128,Sexual Offence,2025-02-05,01:31,Chikkaballapur,Main Police Station,LOW,UNDER_INVESTIGATION,13.4153,77.7733,Sexual Offence reported at Padmanabhanagar. Workplace harassment.,Workplace harassment
+FIR000129,Fraud,2025-02-06,09:42,Udupi,Karkala,LOW,CLOSED,13.2921,74.7809,Fraud reported at Jayanagar 4th Block. Insurance fraud.,Insurance fraud
+FIR000130,Chain Snatching,2025-02-07,18:27,Bengaluru Rural,Doddaballapura,CRITICAL,CLOSED,13.1118,77.5623,Chain Snatching reported at Basavanagudi. Roadside snatch.,Roadside snatch
+FIR000131,Criminal Trespass,2025-02-08,20:13,Kolar,KGF,HIGH,PENDING,13.1761,78.1784,Criminal Trespass reported at RT Nagar. Temple trespass.,Temple trespass
+FIR000132,Vehicle Theft,2025-02-09,19:11,Koppal,Yelburga,LOW,PENDING,15.3106,76.1349,Vehicle Theft reported at Kengeri Satellite Town. Key duplication.,Key duplication
+FIR000133,Murder,2025-02-10,04:47,Vijayapura,Muddebihal,HIGH,UNDER_INVESTIGATION,16.8793,75.7168,Murder reported at Dasarahalli. Firearm.,Firearm
+FIR000134,Murder,2025-02-11,12:15,Dakshina Kannada,Sullia,HIGH,UNDER_INVESTIGATION,12.8863,74.8767,Murder reported at RT Nagar. Poisoning.,Poisoning
+FIR000135,Assault,2025-02-12,03:13,Dharwad,Dharwad Town,CRITICAL,PENDING,15.5067,74.9821,Assault reported at Whitefield Main Road. Confrontation.,Confrontation
+FIR000136,Arson,2025-02-13,19:06,Gadag,Ron,LOW,UNDER_INVESTIGATION,15.4539,75.6128,Arson reported at Rajajinagar. Forest fire.,Forest fire
+FIR000137,Vehicle Theft,2025-02-14,05:36,Udupi,Udupi Town,LOW,COLD,13.3583,74.7722,Vehicle Theft reported at BTM Layout Stage 2. Valet theft.,Valet theft
+FIR000138,Pickpocketing,2025-02-15,22:26,Hassan,Holenarasipura,CRITICAL,CLOSED,12.9645,76.0939,Pickpocketing reported at Koramangala 1st Cross. Distraction theft.,Distraction theft
+FIR000139,Sexual Offence,2025-02-16,23:41,Chikkamagaluru,Chikkamagaluru Town,HIGH,PENDING,13.3634,75.7685,Sexual Offence reported at Uttarahalli. Assault.,Assault
+FIR000140,Arson,2025-02-17,23:43,Kalaburagi,Chincholi,MEDIUM,PENDING,17.3716,76.8174,Arson reported at Sadashivanagar. Forest fire. [DELAYED INVESTIGATION],Forest fire
+FIR000141,Kidnapping,2025-02-18,08:22,Kodagu,Virajpet,HIGH,COLD,12.4108,75.7845,Kidnapping reported at BTM Layout Stage 2. Political.,Political
+FIR000142,Chain Snatching,2025-02-19,16:16,Dakshina Kannada,Puttur,LOW,COLD,12.8645,74.8654,Chain Snatching reported at HSR Layout Sector 3. Roadside snatch.,Roadside snatch
+FIR000143,Criminal Trespass,2025-02-20,02:43,Bidar,Bhalki,HIGH,UNDER_INVESTIGATION,17.9187,77.509,Criminal Trespass reported at Marathahalli Bridge. Illegal occupation.,Illegal occupation
+FIR000144,Criminal Trespass,2025-02-21,16:05,Uttara Kannada,Main Police Station,MEDIUM,COLD,14.7999,74.1624,Criminal Trespass reported at Whitefield Main Road. Illegal occupation.,Illegal occupation
+FIR000145,Cybercrime,2025-02-22,05:53,Uttara Kannada,Main Police Station,MEDIUM,COLD,14.849,74.1258,Cybercrime reported at Marathahalli Bridge. Phishing link.,Phishing link
+FIR000146,Chain Snatching,2025-02-23,00:43,Belagavi,Camp,HIGH,COLD,15.8568,74.5392,Chain Snatching reported at BTM Layout Stage 2. Pedestrian snatch.,Pedestrian snatch
+FIR000147,Chain Snatching,2025-02-24,23:51,Chikkamagaluru,Mudigere,MEDIUM,UNDER_INVESTIGATION,13.2737,75.7286,Chain Snatching reported at Basavanagudi. Pillion snatch.,Pillion snatch
+FIR000148,Sexual Offence,2025-02-25,23:17,Bidar,Humnabad,LOW,CLOSED,17.9355,77.5725,Sexual Offence reported at Sadashivanagar. Eve teasing.,Eve teasing
+FIR000149,Domestic Violence,2025-02-26,09:56,Udupi,Brahmavar,LOW,UNDER_INVESTIGATION,13.3282,74.7073,Domestic Violence reported at Dasarahalli. Marital rape.,Marital rape
+FIR000150,Drug Offence,2025-02-27,11:12,Hassan,Sakleshpur,HIGH,CLOSED,13.0496,76.138,Drug Offence reported at Malleshwaram 8th Cross. Online sale.,Online sale
+FIR000151,Criminal Trespass,2025-02-28,01:28,Chikkaballapur,Main Police Station,LOW,COLD,13.4175,77.7115,Criminal Trespass reported at Electronic City Phase 1. Illegal occupation.,Illegal occupation
+FIR000152,Burglary,2025-03-01,03:54,Bidar,Humnabad,CRITICAL,CLOSED,17.9156,77.5605,Burglary reported at Yelahanka New Town. Forceful entry.,Forceful entry
+FIR000153,Pickpocketing,2025-01-31,17:01,Bengaluru Urban,Banashankari,HIGH,PENDING,12.995,77.6262,Pickpocketing reported at Uttarahalli. Distraction theft.,Distraction theft
+FIR000154,Assault,2025-02-01,14:45,Bengaluru Urban,Mysore Road,CRITICAL,CLOSED,12.9934,77.6113,Assault reported at Subramanyapura. Group assault.,Group assault
+FIR000155,Criminal Trespass,2025-02-02,00:46,Mysuru,Kuvempunagar,HIGH,UNDER_INVESTIGATION,12.2475,76.6876,Criminal Trespass reported at Subramanyapura. Boundary violation.,Boundary violation
+FIR000156,Drug Offence,2025-02-03,01:07,Bengaluru Urban,Koramangala,LOW,COLD,12.9222,77.6039,Drug Offence reported at MG Road. Street peddling.,Street peddling
+FIR000157,Vehicle Theft,2025-02-04,07:43,Yadgiri,Shahapur,CRITICAL,CLOSED,16.7653,77.1681,Vehicle Theft reported at MG Road. Valet theft.,Valet theft
+FIR000158,Murder,2025-02-05,07:49,Kolar,KGF,HIGH,CLOSED,13.155,78.1147,Murder reported at Whitefield Main Road. Sharp weapon.,Sharp weapon
+FIR000159,Criminal Trespass,2025-02-06,18:04,Udupi,Udupi Town,LOW,PENDING,13.3775,74.7328,Criminal Trespass reported at JP Nagar 6th Phase. Illegal occupation.,Illegal occupation
+FIR000160,Domestic Violence,2025-02-07,20:04,Raichur,Raichur Town,CRITICAL,UNDER_INVESTIGATION,16.2378,77.3084,Domestic Violence reported at Peenya Industrial Area. Elder abuse.,Elder abuse
+FIR000161,Burglary,2025-02-08,16:09,Hassan,Hassan Town,LOW,CLOSED,12.99,76.1396,Burglary reported at RT Nagar. Lock picking.,Lock picking
+FIR000162,Arson,2025-02-09,23:05,Chikkamagaluru,Kadur,MEDIUM,PENDING,13.302,75.7288,Arson reported at Uttarahalli. Industrial arson.,Industrial arson
+FIR000163,Domestic Violence,2025-02-10,08:11,Chamarajanagar,Main Police Station,CRITICAL,CLOSED,11.9498,76.9153,Domestic Violence reported at Mahalakshmi Layout. Physical abuse.,Physical abuse
+FIR000164,Burglary,2025-02-11,01:34,Kalaburagi,Chincholi,LOW,PENDING,17.3322,76.8797,Burglary reported at Kengeri Satellite Town. Disguised entry. [DELAYED INVESTIGATION],Disguised entry
+FIR000165,Murder,2025-02-12,11:58,Bengaluru Urban,Mysore Road,LOW,UNDER_INVESTIGATION,12.9775,77.5466,Murder reported at Nagarbhavi. Poisoning.,Poisoning
+FIR000166,Pickpocketing,2025-02-13,16:27,Kodagu,Somwarpet,HIGH,UNDER_INVESTIGATION,12.4492,75.7298,Pickpocketing reported at Subramanyapura. Distraction theft.,Distraction theft
+FIR000167,Pickpocketing,2025-02-14,10:59,Tumakuru,Kunigal,CRITICAL,CLOSED,13.3861,77.1505,Pickpocketing reported at Whitefield Main Road. Distraction theft.,Distraction theft
+FIR000168,Burglary,2025-02-15,07:45,Ramanagara,Magadi,LOW,PENDING,12.7556,77.2976,Burglary reported at Banashankari 2nd Stage. Rooftop entry.,Rooftop entry
+FIR000169,Arson,2025-02-16,16:12,Koppal,Kushtagi,LOW,COLD,15.2979,76.1903,Arson reported at Kumaraswamy Layout. Property arson.,Property arson
+FIR000170,Drug Offence,2025-02-17,23:41,Koppal,Gangavati,CRITICAL,CLOSED,15.3774,76.1978,Drug Offence reported at MG Road. Online sale.,Online sale
+FIR000171,Pickpocketing,2025-02-18,23:05,Tumakuru,Tumakuru Town,HIGH,PENDING,13.3858,77.0646,Pickpocketing reported at Malleshwaram 8th Cross. Bus pick.,Bus pick
+FIR000172,Assault,2025-02-19,12:37,Ballari,Ballari Town,MEDIUM,CLOSED,15.0966,76.9556,Assault reported at Mahalakshmi Layout. Strangulation.,Strangulation
+FIR000173,Vehicle Theft,2025-02-20,19:12,Tumakuru,Kunigal,MEDIUM,COLD,13.3348,77.1292,Vehicle Theft reported at Whitefield Main Road. Lock breaking.,Lock breaking
+FIR000174,Burglary,2025-02-21,00:30,Chikkaballapur,Main Police Station,LOW,PENDING,13.4588,77.7493,Burglary reported at Subramanyapura. Rooftop entry.,Rooftop entry
+FIR000175,Criminal Trespass,2025-02-22,01:00,Ramanagara,Ramanagara Town,LOW,PENDING,12.687,77.2565,Criminal Trespass reported at Dasarahalli. Illegal occupation.,Illegal occupation
+FIR000176,Murder,2025-02-23,04:07,Haveri,Byadgi,HIGH,CLOSED,14.8052,75.3763,Murder reported at Uttarahalli. Poisoning.,Poisoning
+FIR000177,Domestic Violence,2025-02-24,18:32,Bengaluru Urban,Jayanagar,MEDIUM,COLD,13.0014,77.5681,Domestic Violence reported at MG Road. Marital rape.,Marital rape
+FIR000178,Arson,2025-02-25,00:31,Chamarajanagar,Main Police Station,MEDIUM,UNDER_INVESTIGATION,11.9204,76.9695,Arson reported at Electronic City Phase 1. Property arson.,Property arson
+FIR000179,Vehicle Theft,2025-02-26,17:33,Shivamogga,Sagara,MEDIUM,UNDER_INVESTIGATION,13.9725,75.5312,Vehicle Theft reported at Whitefield Main Road. Lock breaking.,Lock breaking
+FIR000180,Cybercrime,2025-02-27,02:08,Dharwad,Kalghatgi,HIGH,COLD,15.48,75.0123,Cybercrime reported at Whitefield Main Road. Fake call centre.,Fake call centre
+FIR000181,Burglary,2025-02-28,11:48,Udupi,Kundapur,MEDIUM,CLOSED,13.3296,74.7207,Burglary reported at Vijayanagar Town. Rooftop entry.,Rooftop entry
+FIR000182,Murder,2025-03-01,19:35,Vijayapura,Vijayapura Town,HIGH,PENDING,16.8695,75.7077,Murder reported at Kumaraswamy Layout. Blunt force.,Blunt force
+FIR000183,Criminal Trespass,2025-01-31,22:32,Vijayanagara,Kampli,CRITICAL,UNDER_INVESTIGATION,15.2933,76.6556,Criminal Trespass reported at Jayanagar 4th Block. Illegal occupation.,Illegal occupation
+FIR000184,Sexual Offence,2025-02-01,07:59,Vijayapura,Sindagi,MEDIUM,PENDING,16.8191,75.7196,Sexual Offence reported at RT Nagar. Assault.,Assault
+FIR000185,Murder,2025-03-02,13:20,Koppal,Yelburga,LOW,COLD,15.356,76.1218,Murder reported at Nagarbhavi. Blunt force.,Blunt force
+FIR000186,Domestic Violence,2025-03-03,10:48,Chitradurga,Molakalmuru,MEDIUM,COLD,14.2238,76.403,Domestic Violence reported at Padmanabhanagar. Verbal abuse.,Verbal abuse
+FIR000187,Fraud,2025-03-04,10:36,Shivamogga,Tirthahalli,CRITICAL,UNDER_INVESTIGATION,13.8932,75.5652,Fraud reported at Nagarbhavi. Property fraud.,Property fraud
+FIR000188,Cybercrime,2025-03-05,01:19,Chamarajanagar,Main Police Station,CRITICAL,COLD,11.9416,76.9593,Cybercrime reported at Electronic City Phase 1. Malware attack.,Malware attack
+FIR000189,Criminal Trespass,2025-03-06,23:55,Ramanagara,Channapatna,MEDIUM,PENDING,12.7274,77.3326,Criminal Trespass reported at JP Nagar 6th Phase. Illegal occupation.,Illegal occupation
+FIR000190,Pickpocketing,2025-03-07,15:31,Mandya,Nagamangala,LOW,COLD,12.5397,76.8728,Pickpocketing reported at Malleshwaram 8th Cross. Crowd pick.,Crowd pick
+FIR000191,Domestic Violence,2025-03-08,05:05,Kalaburagi,Sedam,MEDIUM,PENDING,17.3252,76.7946,Domestic Violence reported at Electronic City Phase 1. Marital rape. [DELAYED INVESTIGATION],Marital rape
+FIR000192,Criminal Trespass,2025-03-09,13:42,Raichur,Manvi,LOW,PENDING,16.258,77.3168,Criminal Trespass reported at Sadashivanagar. Boundary violation.,Boundary violation
+FIR000193,Sexual Offence,2025-03-10,13:55,Chamarajanagar,Main Police Station,CRITICAL,UNDER_INVESTIGATION,11.9687,76.9394,Sexual Offence reported at Mahalakshmi Layout. Eve teasing.,Eve teasing
+FIR000194,Criminal Trespass,2025-03-11,04:14,Chikkamagaluru,Chikkamagaluru Town,MEDIUM,UNDER_INVESTIGATION,13.3322,75.7922,Criminal Trespass reported at JP Nagar 6th Phase. Temple trespass.,Temple trespass
+FIR000195,Sexual Offence,2025-03-12,01:27,Gadag,Naragund,LOW,PENDING,15.3698,75.6234,Sexual Offence reported at Malleshwaram 8th Cross. Stalking.,Stalking
+FIR000196,Vehicle Theft,2025-03-13,01:51,Chikkamagaluru,Kadur,LOW,CLOSED,13.2779,75.7422,Vehicle Theft reported at BTM Layout Stage 2. Carjacking.,Carjacking
+FIR000197,Domestic Violence,2025-03-14,02:52,Dharwad,Hubli South,HIGH,PENDING,15.4704,75.0006,Domestic Violence reported at Basavanagudi. Verbal abuse.,Verbal abuse
+FIR000198,Pickpocketing,2025-03-15,21:17,Raichur,Sindhnur,CRITICAL,COLD,16.2414,77.3881,Pickpocketing reported at Marathahalli Bridge. Distraction theft.,Distraction theft
+FIR000199,Drug Offence,2025-03-16,12:29,Vijayapura,Vijayapura Town,MEDIUM,CLOSED,16.8623,75.7212,Drug Offence reported at Kumaraswamy Layout. Transportation.,Transportation
+FIR000200,Arson,2025-03-17,03:57,Bengaluru Urban,Mysore Road,MEDIUM,PENDING,12.9608,77.6078,Arson reported at Banashankari 2nd Stage. Industrial arson.,Industrial arson
+FIR000201,Cybercrime,2025-03-18,02:55,Tumakuru,Tiptur,LOW,CLOSED,13.3821,77.114,Cybercrime reported at Jayanagar 4th Block. Social engineering.,Social engineering
+FIR000202,Assault,2025-03-19,05:56,Shivamogga,Sagara,MEDIUM,COLD,13.9287,75.5879,Assault reported at Banashankari 2nd Stage. Confrontation.,Confrontation
+FIR000203,Criminal Trespass,2025-03-20,07:14,Chitradurga,Chitradurga Town,HIGH,COLD,14.2638,76.3934,Criminal Trespass reported at Vijayanagar 2nd Stage. Encroachment.,Encroachment
+FIR000204,Domestic Violence,2025-03-21,11:25,Dakshina Kannada,Mangaluru South,CRITICAL,COLD,12.912,74.8231,Domestic Violence reported at JP Nagar 6th Phase. Verbal abuse.,Verbal abuse
+FIR000205,Domestic Violence,2025-03-22,00:08,Dharwad,Kalghatgi,LOW,PENDING,15.4412,74.9963,Domestic Violence reported at Peenya Industrial Area. Verbal abuse.,Verbal abuse
+FIR000206,Criminal Trespass,2025-03-23,23:04,Chitradurga,Hosadurga,HIGH,PENDING,14.167,76.4373,Criminal Trespass reported at Mahalakshmi Layout. Boundary violation.,Boundary violation
+FIR000207,Kidnapping,2025-03-24,17:42,Vijayanagara,Hospet,LOW,PENDING,15.2838,76.602,Kidnapping reported at Koramangala 1st Cross. Political.,Political
+FIR000208,Chain Snatching,2025-03-25,20:57,Chamarajanagar,Main Police Station,HIGH,CLOSED,11.8975,76.9049,Chain Snatching reported at Whitefield Main Road. Pillion snatch.,Pillion snatch
+FIR000209,Burglary,2025-03-26,14:24,Raichur,Sindhnur,LOW,PENDING,16.1679,77.3275,Burglary reported at Vijayanagar Town. Forceful entry.,Forceful entry
+FIR000210,Kidnapping,2025-03-27,01:19,Bengaluru Rural,Magadi,LOW,CLOSED,13.0889,77.5955,Kidnapping reported at Whitefield Main Road. For ransom.,For ransom
+FIR000211,Burglary,2025-03-28,10:49,Kolar,Kolar Town,MEDIUM,CLOSED,13.1122,78.1313,Burglary reported at Marathahalli Bridge. Lock picking.,Lock picking
+FIR000212,Fraud,2025-03-29,21:09,Dharwad,Hubli North,HIGH,COLD,15.5027,74.9669,Fraud reported at Vijayanagar Town. Online scam.,Online scam
+FIR000213,Murder,2025-03-30,09:32,Vijayanagara,Kampli,HIGH,UNDER_INVESTIGATION,15.2404,76.6663,Murder reported at RT Nagar. Blunt force.,Blunt force
+FIR000214,Criminal Trespass,2025-03-31,00:05,Haveri,Byadgi,MEDIUM,UNDER_INVESTIGATION,14.8208,75.3795,Criminal Trespass reported at Hebbal Ring Road. Temple trespass.,Temple trespass
+FIR000215,Burglary,2025-03-02,23:48,Koppal,Gangavati,MEDIUM,PENDING,15.3067,76.1749,Burglary reported at Vijayanagar 2nd Stage. Forceful entry.,Forceful entry
+FIR000216,Criminal Trespass,2025-03-03,03:37,Mysuru,Vijayanagar,HIGH,UNDER_INVESTIGATION,12.2571,76.6124,Criminal Trespass reported at Subramanyapura. Illegal occupation.,Illegal occupation
+FIR000217,Murder,2025-03-04,22:35,Chikkamagaluru,Mudigere,MEDIUM,UNDER_INVESTIGATION,13.2894,75.7391,Murder reported at Malleshwaram 8th Cross. Sharp weapon.,Sharp weapon
+FIR000218,Assault,2025-03-05,06:06,Yadgiri,Shahapur,MEDIUM,COLD,16.7743,77.1669,Assault reported at Padmanabhanagar. Weapon attack.,Weapon attack
+FIR000219,Chain Snatching,2025-03-06,13:07,Vijayapura,Sindagi,HIGH,CLOSED,16.8201,75.6606,Chain Snatching reported at Padmanabhanagar. Roadside snatch.,Roadside snatch
+FIR000220,Domestic Violence,2025-03-07,20:58,Davanagere,Davanagere Town,MEDIUM,COLD,14.4753,75.9195,Domestic Violence reported at Hebbal Ring Road. Verbal abuse.,Verbal abuse
+FIR000221,Murder,2025-03-08,08:43,Chikkamagaluru,Mudigere,LOW,COLD,13.2901,75.7228,Murder reported at Padmanabhanagar. Strangulation.,Strangulation
+FIR000222,Sexual Offence,2025-03-09,06:33,Belagavi,Camp,CRITICAL,UNDER_INVESTIGATION,15.8476,74.5265,Sexual Offence reported at Whitefield Main Road. Eve teasing.,Eve teasing
+FIR000223,Domestic Violence,2025-03-10,04:17,Haveri,Byadgi,HIGH,PENDING,14.7716,75.3552,Domestic Violence reported at HSR Layout Sector 3. Dowry harassment.,Dowry harassment
+FIR000224,Burglary,2025-03-11,01:55,Gadag,Mundargi,HIGH,UNDER_INVESTIGATION,15.4103,75.6637,Burglary reported at Vijayanagar 2nd Stage. Disguised entry.,Disguised entry
+FIR000225,Domestic Violence,2025-03-12,14:45,Gadag,Ron,HIGH,PENDING,15.4387,75.5958,Domestic Violence reported at Basavanagudi. Verbal abuse.,Verbal abuse
+FIR000226,Domestic Violence,2025-03-13,16:54,Chikkaballapur,Main Police Station,LOW,CLOSED,13.3841,77.6932,Domestic Violence reported at RT Nagar. Elder abuse.,Elder abuse
+FIR000227,Sexual Offence,2025-03-14,08:54,Dharwad,Dharwad Town,MEDIUM,CLOSED,15.4672,74.9605,Sexual Offence reported at Subramanyapura. Harassment.,Harassment
+FIR000228,Drug Offence,2025-03-15,11:39,Dakshina Kannada,Sullia,CRITICAL,CLOSED,12.8477,74.8352,"Drug Offence reported at 12th Main, Indiranagar. Smuggling.",Smuggling
+FIR000229,Criminal Trespass,2025-03-16,08:10,Belagavi,Tilakwadi,LOW,CLOSED,15.8629,74.5039,Criminal Trespass reported at Marathahalli Bridge. Encroachment.,Encroachment
+FIR000230,Assault,2025-03-17,14:34,Tumakuru,Kunigal,HIGH,UNDER_INVESTIGATION,13.3738,77.0784,Assault reported at BTM Layout Stage 2. Confrontation.,Confrontation
+FIR000231,Robbery,2025-03-18,07:37,Belagavi,Shahapur,HIGH,UNDER_INVESTIGATION,15.8782,74.4812,Robbery reported at Dasarahalli. Highway robbery.,Highway robbery
+FIR000232,Vehicle Theft,2025-03-19,20:10,Mandya,Nagamangala,LOW,UNDER_INVESTIGATION,12.5175,76.868,Vehicle Theft reported at Rajajinagar. Towing.,Towing
+FIR000233,Pickpocketing,2025-03-20,16:15,Yadgiri,Yadgiri Town,HIGH,CLOSED,16.8069,77.0997,Pickpocketing reported at Sadashivanagar. Distraction theft.,Distraction theft
+FIR000234,Sexual Offence,2025-03-21,21:16,Kolar,Bangarpet,LOW,UNDER_INVESTIGATION,13.1392,78.1411,Sexual Offence reported at Vijayanagar Town. Stalking.,Stalking
+FIR000235,Robbery,2025-03-22,03:32,Koppal,Gangavati,MEDIUM,PENDING,15.3698,76.1584,Robbery reported at JP Nagar 6th Phase. Highway robbery.,Highway robbery
+FIR000236,Drug Offence,2025-03-23,01:48,Haveri,Haveri Town,MEDIUM,COLD,14.7587,75.4108,Drug Offence reported at Malleshwaram 8th Cross. Smuggling.,Smuggling
+FIR000237,Sexual Offence,2025-03-24,05:04,Yadgiri,Yadgiri Town,HIGH,CLOSED,16.758,77.1659,"Sexual Offence reported at 12th Main, Indiranagar. Workplace harassment.",Workplace harassment
+FIR000238,Cybercrime,2025-03-25,00:58,Belagavi,Tilakwadi,HIGH,CLOSED,15.8385,74.5409,Cybercrime reported at Nagarbhavi. Phishing link.,Phishing link
+FIR000239,Criminal Trespass,2025-03-26,04:49,Haveri,Haveri Town,MEDIUM,UNDER_INVESTIGATION,14.8164,75.3792,Criminal Trespass reported at Brigade Road. Illegal occupation.,Illegal occupation
+FIR000240,Sexual Offence,2025-03-27,21:51,Davanagere,Harihara,LOW,CLOSED,14.4725,75.9372,Sexual Offence reported at Vijayanagar 2nd Stage. Eve teasing.,Eve teasing
+FIR000241,Robbery,2025-03-28,22:15,Mysuru,Nazarbad,LOW,UNDER_INVESTIGATION,12.2635,76.6892,Robbery reported at Electronic City Phase 1. Chain snatching.,Chain snatching
+FIR000242,Criminal Trespass,2025-03-29,01:04,Belagavi,Maruti,HIGH,COLD,15.8461,74.5112,Criminal Trespass reported at Hebbal Ring Road. Boundary violation.,Boundary violation
+FIR000243,Criminal Trespass,2025-03-30,09:38,Kalaburagi,Sedam,LOW,PENDING,17.2922,76.8324,Criminal Trespass reported at Mahalakshmi Layout. Illegal occupation. [DELAYED INVESTIGATION],Illegal occupation
+FIR000244,Vehicle Theft,2025-03-31,14:31,Chikkaballapur,Main Police Station,LOW,CLOSED,13.4801,77.6956,Vehicle Theft reported at Subramanyapura. Lock breaking.,Lock breaking
+FIR000245,Domestic Violence,2025-03-02,06:48,Koppal,Gangavati,LOW,UNDER_INVESTIGATION,15.3951,76.1876,Domestic Violence reported at Malleshwaram 8th Cross. Elder abuse.,Elder abuse
+FIR000246,Arson,2025-03-03,01:47,Kodagu,Somwarpet,MEDIUM,PENDING,12.4275,75.7492,Arson reported at Kumaraswamy Layout. Forest fire.,Forest fire
+FIR000247,Assault,2025-03-04,01:46,Ramanagara,Ramanagara Town,MEDIUM,UNDER_INVESTIGATION,12.7432,77.2735,Assault reported at Marathahalli Bridge. Strangulation.,Strangulation
+FIR000248,Vehicle Theft,2025-03-05,12:51,Ramanagara,Kanakapura,MEDIUM,CLOSED,12.7274,77.3262,Vehicle Theft reported at Mahalakshmi Layout. Carjacking.,Carjacking
+FIR000249,Sexual Offence,2025-03-06,22:37,Shivamogga,Tirthahalli,MEDIUM,CLOSED,13.9244,75.6119,Sexual Offence reported at Uttarahalli. Eve teasing.,Eve teasing
+FIR000250,Vehicle Theft,2025-03-07,17:24,Chamarajanagar,Main Police Station,LOW,COLD,11.9512,76.9166,Vehicle Theft reported at Vijayanagar Town. Key duplication.,Key duplication
+FIR000251,Assault,2025-03-08,22:14,Yadgiri,Shahapur,HIGH,CLOSED,16.8005,77.1268,Assault reported at RT Nagar. Group assault.,Group assault
+FIR000252,Robbery,2025-03-09,23:42,Uttara Kannada,Main Police Station,CRITICAL,CLOSED,14.8429,74.1514,Robbery reported at Vijayanagar 2nd Stage. Bank robbery.,Bank robbery
+FIR000253,Drug Offence,2025-03-10,08:52,Hassan,Hassan Town,CRITICAL,UNDER_INVESTIGATION,12.9553,76.065,Drug Offence reported at Basavanagudi. Street peddling.,Street peddling
+FIR000254,Drug Offence,2025-03-11,14:11,Udupi,Kundapur,CRITICAL,COLD,13.3082,74.6942,Drug Offence reported at Subramanyapura. Smuggling.,Smuggling
+FIR000255,Kidnapping,2025-03-12,08:54,Raichur,Manvi,HIGH,UNDER_INVESTIGATION,16.175,77.3876,Kidnapping reported at Subramanyapura. Custodial.,Custodial
+FIR000256,Arson,2025-03-13,21:45,Mysuru,Vijayanagar,CRITICAL,CLOSED,12.3133,76.6263,Arson reported at Vijayanagar Town. Vehicle arson.,Vehicle arson
+FIR000257,Fraud,2025-03-14,14:56,Kolar,Bangarpet,MEDIUM,UNDER_INVESTIGATION,13.1326,78.103,Fraud reported at Basavanagudi. Property fraud.,Property fraud
+FIR000258,Kidnapping,2025-03-15,09:33,Chitradurga,Hiriyur,LOW,PENDING,14.2429,76.3969,Kidnapping reported at Yelahanka New Town. Political.,Political
+FIR000259,Burglary,2025-03-16,01:43,Uttara Kannada,Main Police Station,CRITICAL,UNDER_INVESTIGATION,14.7929,74.0953,Burglary reported at BTM Layout Stage 2. Forceful entry.,Forceful entry
+FIR000260,Domestic Violence,2025-03-17,02:02,Hassan,Arsikere,HIGH,COLD,12.97,76.1513,Domestic Violence reported at Peenya Industrial Area. Verbal abuse.,Verbal abuse
+FIR000261,Assault,2025-03-18,01:54,Dharwad,Hubli North,LOW,CLOSED,15.4858,74.9612,Assault reported at Sadashivanagar. Confrontation.,Confrontation
+FIR000262,Domestic Violence,2025-03-19,16:32,Vijayapura,Muddebihal,LOW,CLOSED,16.8382,75.723,Domestic Violence reported at Padmanabhanagar. Verbal abuse.,Verbal abuse
+FIR000263,Cybercrime,2025-03-20,22:27,Kolar,Malur,CRITICAL,PENDING,13.1153,78.1234,Cybercrime reported at Subramanyapura. Malware attack.,Malware attack
+FIR000264,Domestic Violence,2025-03-21,14:03,Hassan,Hassan Town,HIGH,CLOSED,13.0008,76.096,Domestic Violence reported at Padmanabhanagar. Marital rape.,Marital rape
+FIR000265,Domestic Violence,2025-03-22,20:14,Bengaluru Rural,Hoskote,LOW,PENDING,13.0854,77.6419,Domestic Violence reported at Basavanagudi. Physical abuse.,Physical abuse
+FIR000266,Kidnapping,2025-03-23,21:46,Gadag,Naragund,LOW,CLOSED,15.3989,75.6293,Kidnapping reported at Sadashivanagar. Human trafficking.,Human trafficking
+FIR000267,Arson,2025-03-24,17:46,Davanagere,Davanagere Town,MEDIUM,PENDING,14.4308,75.8992,Arson reported at BTM Layout Stage 2. Property arson.,Property arson
+FIR000268,Robbery,2025-03-25,11:31,Davanagere,Harihara,HIGH,UNDER_INVESTIGATION,14.4773,75.9059,Robbery reported at Kumaraswamy Layout. Armed robbery.,Armed robbery
+FIR000269,Domestic Violence,2025-03-26,20:18,Dharwad,Hubli North,MEDIUM,CLOSED,15.505,75.0286,Domestic Violence reported at Whitefield Main Road. Marital rape.,Marital rape
+FIR000270,Robbery,2025-03-27,09:56,Belagavi,Maruti,HIGH,COLD,15.8202,74.4802,Robbery reported at Marathahalli Bridge. Highway robbery.,Highway robbery
+FIR000271,Arson,2025-03-28,07:24,Mandya,Mandya Town,MEDIUM,COLD,12.5091,76.8956,Arson reported at Basavanagudi. Forest fire.,Forest fire
+FIR000272,Murder,2025-03-29,21:33,Chikkamagaluru,Kadur,LOW,UNDER_INVESTIGATION,13.3405,75.7828,Murder reported at Koramangala 1st Cross. Blunt force.,Blunt force
+FIR000273,Drug Offence,2025-03-30,12:41,Davanagere,Harihara,HIGH,COLD,14.418,75.8983,Drug Offence reported at HSR Layout Sector 3. Transportation.,Transportation
+FIR000274,Pickpocketing,2025-03-31,09:21,Koppal,Kushtagi,MEDIUM,UNDER_INVESTIGATION,15.3353,76.1212,Pickpocketing reported at Electronic City Phase 1. Crowd pick.,Crowd pick
+FIR000275,Criminal Trespass,2025-03-02,12:24,Hassan,Arsikere,HIGH,COLD,13.0457,76.1202,Criminal Trespass reported at Vijayanagar 2nd Stage. Illegal occupation.,Illegal occupation
+FIR000276,Vehicle Theft,2025-03-03,17:43,Koppal,Koppal Town,HIGH,CLOSED,15.3791,76.1609,Vehicle Theft reported at Jayanagar 4th Block. Key duplication.,Key duplication
+FIR000277,Chain Snatching,2025-04-01,20:14,Dakshina Kannada,Mangaluru North,HIGH,PENDING,12.8595,74.8467,Chain Snatching reported at Basavanagudi. Market snatch.,Market snatch
+FIR000278,Robbery,2025-04-02,15:54,Haveri,Haveri Town,HIGH,COLD,14.8326,75.4206,Robbery reported at HSR Layout Sector 3. Armed robbery.,Armed robbery
+FIR000279,Fraud,2025-04-03,05:19,Haveri,Byadgi,HIGH,UNDER_INVESTIGATION,14.8037,75.4364,Fraud reported at Padmanabhanagar. Identity theft.,Identity theft
+FIR000280,Kidnapping,2025-04-04,02:52,Shivamogga,Tirthahalli,HIGH,PENDING,13.9678,75.5511,Kidnapping reported at Kengeri Satellite Town. Custodial.,Custodial
+FIR000281,Burglary,2025-04-05,02:38,Chikkaballapur,Main Police Station,HIGH,UNDER_INVESTIGATION,13.4309,77.7446,Burglary reported at Whitefield Main Road. Disguised entry.,Disguised entry
+FIR000282,Assault,2025-04-06,05:52,Raichur,Manvi,LOW,PENDING,16.1609,77.3482,Assault reported at Banashankari 2nd Stage. Strangulation.,Strangulation
+FIR000283,Burglary,2025-04-07,17:47,Mysuru,Kuvempunagar,MEDIUM,UNDER_INVESTIGATION,12.289,76.596,Burglary reported at RT Nagar. Disguised entry.,Disguised entry
+FIR000284,Kidnapping,2025-04-08,12:01,Davanagere,Jagalur,LOW,PENDING,14.501,75.9584,Kidnapping reported at Nagarbhavi. Human trafficking.,Human trafficking
+FIR000285,Drug Offence,2025-04-09,19:48,Chikkamagaluru,Mudigere,CRITICAL,COLD,13.3554,75.8179,Drug Offence reported at Banashankari 2nd Stage. Street peddling.,Street peddling
+FIR000286,Arson,2025-04-10,05:16,Kodagu,Madikeri,LOW,COLD,12.4188,75.6928,Arson reported at Mahalakshmi Layout. Vehicle arson.,Vehicle arson
+FIR000287,Assault,2025-04-11,14:06,Dakshina Kannada,Mangaluru South,HIGH,PENDING,12.8827,74.8107,Assault reported at Malleshwaram 8th Cross. Confrontation.,Confrontation
+FIR000288,Domestic Violence,2025-04-12,14:39,Chikkamagaluru,Narasimharajapura,HIGH,UNDER_INVESTIGATION,13.2827,75.7652,Domestic Violence reported at RT Nagar. Elder abuse.,Elder abuse
+FIR000289,Murder,2025-04-13,16:35,Dharwad,Kalghatgi,CRITICAL,COLD,15.4493,75.0391,Murder reported at Padmanabhanagar. Poisoning.,Poisoning
+FIR000290,Assault,2025-04-14,04:31,Belagavi,Shahapur,LOW,PENDING,15.8104,74.5102,Assault reported at Kengeri Satellite Town. Weapon attack.,Weapon attack
+FIR000291,Cybercrime,2025-04-15,08:24,Bengaluru Rural,Nelamangala,CRITICAL,CLOSED,13.0615,77.6067,Cybercrime reported at Vijayanagar 2nd Stage. Malware attack.,Malware attack
+FIR000292,Sexual Offence,2025-04-16,16:45,Kodagu,Madikeri,CRITICAL,CLOSED,12.4245,75.7431,Sexual Offence reported at Electronic City Phase 1. Workplace harassment.,Workplace harassment
+FIR000293,Cybercrime,2025-04-17,14:50,Udupi,Brahmavar,CRITICAL,CLOSED,13.3313,74.7911,Cybercrime reported at Whitefield Main Road. Fake call centre.,Fake call centre
+FIR000294,Assault,2025-04-18,05:23,Vijayanagara,Hospet,CRITICAL,PENDING,15.2464,76.6321,Assault reported at Nagarbhavi. Confrontation.,Confrontation
+FIR000295,Chain Snatching,2025-04-19,19:05,Vijayapura,Sindagi,LOW,CLOSED,16.8032,75.7512,Chain Snatching reported at Basavanagudi. Market snatch.,Market snatch
+FIR000296,Vehicle Theft,2025-04-20,16:29,Uttara Kannada,Main Police Station,CRITICAL,CLOSED,14.859,74.1345,Vehicle Theft reported at Hebbal Ring Road. Towing.,Towing
+FIR000297,Murder,2025-04-21,21:45,Chamarajanagar,Main Police Station,CRITICAL,PENDING,11.9298,76.917,Murder reported at Dasarahalli. Firearm.,Firearm
+FIR000298,Fraud,2025-04-22,12:40,Uttara Kannada,Main Police Station,LOW,COLD,14.8083,74.0804,Fraud reported at MG Road. Online scam.,Online scam
+FIR000299,Fraud,2025-04-23,23:36,Dharwad,Kalghatgi,LOW,UNDER_INVESTIGATION,15.4643,74.9835,Fraud reported at RT Nagar. Online scam.,Online scam
+FIR000300,Domestic Violence,2025-04-24,10:08,Uttara Kannada,Main Police Station,HIGH,COLD,14.7999,74.1231,Domestic Violence reported at BTM Layout Stage 2. Physical abuse.,Physical abuse
+FIR000301,Domestic Violence,2025-04-25,15:36,Haveri,Ranebennur,MEDIUM,CLOSED,14.7549,75.39,Domestic Violence reported at MG Road. Physical abuse.,Physical abuse
+FIR000302,Arson,2025-04-26,06:46,Mysuru,Vijayanagar,MEDIUM,CLOSED,12.2526,76.6411,Arson reported at JP Nagar 6th Phase. Vehicle arson.,Vehicle arson
+FIR000303,Murder,2025-04-27,22:09,Shivamogga,Shivamogga Town,CRITICAL,COLD,13.9784,75.5425,Murder reported at Marathahalli Bridge. Strangulation.,Strangulation
+FIR000304,Kidnapping,2025-04-28,01:33,Haveri,Hangal,LOW,CLOSED,14.7665,75.3551,Kidnapping reported at MG Road. Honour related.,Honour related
+FIR000305,Arson,2025-04-29,07:43,Shivamogga,Tirthahalli,CRITICAL,UNDER_INVESTIGATION,13.9447,75.5192,Arson reported at Koramangala 1st Cross. Forest fire.,Forest fire
+FIR000306,Robbery,2025-04-30,16:07,Davanagere,Honnali,CRITICAL,PENDING,14.4831,75.9096,Robbery reported at Banashankari 2nd Stage. Bank robbery.,Bank robbery
+FIR000307,Kidnapping,2025-04-01,00:28,Hassan,Holenarasipura,CRITICAL,COLD,12.9564,76.1459,Kidnapping reported at Nagarbhavi. Custodial.,Custodial
+FIR000308,Chain Snatching,2025-04-02,18:16,Vijayapura,Indi,MEDIUM,CLOSED,16.7823,75.687,Chain Snatching reported at Banashankari 2nd Stage. Pedestrian snatch.,Pedestrian snatch
+FIR000309,Cybercrime,2025-04-03,01:54,Mysuru,Krishnaraja,MEDIUM,UNDER_INVESTIGATION,12.3453,76.6229,Cybercrime reported at Kengeri Satellite Town. Credential theft.,Credential theft
+FIR000310,Criminal Trespass,2025-04-04,06:49,Vijayanagara,Hospet,LOW,PENDING,15.2929,76.6593,Criminal Trespass reported at JP Nagar 6th Phase. Temple trespass.,Temple trespass
+FIR000311,Drug Offence,2025-04-05,01:00,Shivamogga,Tirthahalli,LOW,COLD,13.9771,75.5489,Drug Offence reported at Rajajinagar. Smuggling.,Smuggling
+FIR000312,Fraud,2025-04-06,10:22,Dharwad,Hubli South,LOW,CLOSED,15.4862,74.9811,Fraud reported at Peenya Industrial Area. Property fraud.,Property fraud
+FIR000313,Pickpocketing,2025-04-07,08:39,Mandya,Nagamangala,MEDIUM,CLOSED,12.4841,76.8597,Pickpocketing reported at Whitefield Main Road. Crowd pick.,Crowd pick
+FIR000314,Cybercrime,2025-04-08,00:43,Chikkaballapur,Main Police Station,CRITICAL,PENDING,13.4259,77.7375,Cybercrime reported at BTM Layout Stage 2. Malware attack.,Malware attack
+FIR000315,Burglary,2025-04-09,18:44,Yadgiri,Shahapur,LOW,UNDER_INVESTIGATION,16.7638,77.0885,Burglary reported at JP Nagar 6th Phase. Disguised entry.,Disguised entry
+FIR000316,Kidnapping,2025-04-10,06:20,Kalaburagi,Gulbarga North,HIGH,PENDING,17.2842,76.8481,Kidnapping reported at Kengeri Satellite Town. Custodial. [DELAYED INVESTIGATION],Custodial
+FIR000317,Assault,2025-04-11,16:42,Ballari,Ballari Town,CRITICAL,COLD,15.144,76.8756,Assault reported at Sadashivanagar. Group assault.,Group assault
+FIR000318,Burglary,2025-04-12,13:42,Ballari,Sandur,HIGH,PENDING,15.128,76.9164,Burglary reported at Uttarahalli. Window break.,Window break
+FIR000319,Burglary,2025-04-13,14:54,Mysuru,Vijayanagar,HIGH,UNDER_INVESTIGATION,12.2942,76.6304,Burglary reported at Mahalakshmi Layout. Rooftop entry.,Rooftop entry
+FIR000320,Assault,2025-04-14,23:50,Bengaluru Rural,Doddaballapura,CRITICAL,CLOSED,13.0655,77.6007,Assault reported at Jayanagar 4th Block. Strangulation.,Strangulation
+FIR000321,Kidnapping,2025-04-15,19:48,Raichur,Raichur Town,CRITICAL,PENDING,16.1676,77.3859,Kidnapping reported at Vijayanagar 2nd Stage. For ransom.,For ransom
+FIR000322,Burglary,2025-04-16,11:06,Mysuru,Udayagiri,LOW,CLOSED,12.2934,76.6251,Burglary reported at Vijayanagar Town. Disguised entry.,Disguised entry
+FIR000323,Kidnapping,2025-04-17,17:31,Bidar,Basavakalyan,MEDIUM,CLOSED,17.8775,77.5714,Kidnapping reported at BTM Layout Stage 2. For ransom.,For ransom
+FIR000324,Murder,2025-04-18,09:18,Vijayanagara,Hospet,HIGH,CLOSED,15.2378,76.6116,Murder reported at MG Road. Sharp weapon.,Sharp weapon
+FIR000325,Drug Offence,2025-04-19,06:00,Vijayanagara,Hospet,CRITICAL,PENDING,15.2614,76.6193,Drug Offence reported at Electronic City Phase 1. Transportation.,Transportation
+FIR000326,Burglary,2025-04-20,21:42,Mysuru,Kuvempunagar,HIGH,PENDING,12.2833,76.65,Burglary reported at Hebbal Ring Road. Forceful entry.,Forceful entry
+FIR000327,Robbery,2025-04-21,01:24,Mysuru,Nazarbad,CRITICAL,COLD,12.3378,76.6025,"Robbery reported at 12th Main, Indiranagar. Highway robbery.",Highway robbery
+FIR000328,Fraud,2025-04-22,23:31,Tumakuru,Kunigal,HIGH,PENDING,13.297,77.0973,Fraud reported at HSR Layout Sector 3. Identity theft.,Identity theft
+FIR000329,Cybercrime,2025-04-23,10:17,Gadag,Mundargi,MEDIUM,CLOSED,15.4623,75.6411,Cybercrime reported at Basavanagudi. Fake call centre.,Fake call centre
+FIR000330,Cybercrime,2025-04-24,21:46,Gadag,Ron,LOW,UNDER_INVESTIGATION,15.3777,75.5833,Cybercrime reported at Kengeri Satellite Town. Fake call centre.,Fake call centre
+FIR000331,Drug Offence,2025-04-25,20:42,Koppal,Gangavati,HIGH,PENDING,15.3767,76.1498,Drug Offence reported at Nagarbhavi. Smuggling.,Smuggling
+FIR000332,Drug Offence,2025-04-26,15:11,Tumakuru,Kunigal,HIGH,CLOSED,13.3042,77.0628,Drug Offence reported at Vijayanagar Town. Manufacturing.,Manufacturing
+FIR000333,Burglary,2025-04-27,16:41,Mysuru,Nazarbad,CRITICAL,UNDER_INVESTIGATION,12.276,76.6294,Burglary reported at JP Nagar 6th Phase. Rooftop entry.,Rooftop entry
+FIR000334,Arson,2025-04-28,00:14,Chamarajanagar,Main Police Station,HIGH,CLOSED,11.8963,76.9766,Arson reported at Marathahalli Bridge. Industrial arson.,Industrial arson
+FIR000335,Assault,2025-04-29,00:56,Raichur,Lingsugur,CRITICAL,CLOSED,16.1945,77.3783,Assault reported at Subramanyapura. Strangulation.,Strangulation
+FIR000336,Drug Offence,2025-04-30,00:17,Dharwad,Hubli North,HIGH,UNDER_INVESTIGATION,15.4489,75.0431,Drug Offence reported at Uttarahalli. Online sale.,Online sale
+FIR000337,Vehicle Theft,2025-04-01,18:40,Shivamogga,Bhadravati,HIGH,UNDER_INVESTIGATION,13.9774,75.5326,Vehicle Theft reported at Koramangala 1st Cross. Valet theft.,Valet theft
+FIR000338,Chain Snatching,2025-04-02,12:15,Uttara Kannada,Main Police Station,MEDIUM,UNDER_INVESTIGATION,14.8549,74.1334,Chain Snatching reported at HSR Layout Sector 3. Market snatch.,Market snatch
+FIR000339,Murder,2025-04-03,18:43,Gadag,Naragund,LOW,UNDER_INVESTIGATION,15.4526,75.6142,Murder reported at Subramanyapura. Blunt force.,Blunt force
+FIR000340,Drug Offence,2025-04-04,00:41,Vijayapura,Indi,HIGH,COLD,16.7942,75.6772,Drug Offence reported at Hebbal Ring Road. Transportation.,Transportation
+FIR000341,Chain Snatching,2025-04-05,10:03,Gadag,Gadag Town,MEDIUM,COLD,15.4495,75.5806,Chain Snatching reported at Banashankari 2nd Stage. Pedestrian snatch.,Pedestrian snatch
+FIR000342,Arson,2025-04-06,13:23,Chitradurga,Hiriyur,HIGH,CLOSED,14.2171,76.3785,Arson reported at Nagarbhavi. Forest fire.,Forest fire
+FIR000343,Assault,2025-04-07,02:37,Bengaluru Rural,Magadi,MEDIUM,PENDING,13.0653,77.5752,Assault reported at Marathahalli Bridge. Group assault.,Group assault
+FIR000344,Vehicle Theft,2025-04-08,11:40,Ballari,Kampli,LOW,CLOSED,15.0927,76.9215,Vehicle Theft reported at Koramangala 1st Cross. Key duplication.,Key duplication
+FIR000345,Burglary,2025-04-09,09:22,Mysuru,Nazarbad,LOW,UNDER_INVESTIGATION,12.2625,76.6214,Burglary reported at MG Road. Disguised entry.,Disguised entry
+FIR000346,Burglary,2025-04-10,11:38,Mysuru,Krishnaraja,CRITICAL,UNDER_INVESTIGATION,12.2757,76.632,Burglary reported at Dasarahalli. Lock picking.,Lock picking
+FIR000347,Pickpocketing,2025-04-11,03:52,Haveri,Ranebennur,HIGH,CLOSED,14.8129,75.3627,Pickpocketing reported at Vijayanagar Town. Distraction theft.,Distraction theft
+FIR000348,Burglary,2025-04-12,16:15,Kolar,KGF,LOW,COLD,13.1437,78.0823,Burglary reported at Koramangala 1st Cross. Forceful entry.,Forceful entry
+FIR000349,Murder,2025-04-13,08:23,Belagavi,Shahapur,HIGH,COLD,15.8879,74.4854,Murder reported at Uttarahalli. Poisoning.,Poisoning
+FIR000350,Kidnapping,2025-04-14,01:48,Gadag,Mundargi,LOW,CLOSED,15.38,75.6632,Kidnapping reported at Brigade Road. Honour related.,Honour related
+FIR000351,Burglary,2025-04-15,09:48,Mysuru,Kuvempunagar,LOW,PENDING,12.2539,76.6257,Burglary reported at Subramanyapura. Lock picking.,Lock picking
+FIR000352,Murder,2025-04-16,19:19,Mandya,Nagamangala,MEDIUM,UNDER_INVESTIGATION,12.571,76.8597,Murder reported at MG Road. Blunt force.,Blunt force
+FIR000353,Fraud,2025-04-17,19:05,Kalaburagi,Gulbarga South,LOW,PENDING,17.3675,76.8531,Fraud reported at RT Nagar. Identity theft. [DELAYED INVESTIGATION],Identity theft
+FIR000354,Drug Offence,2025-04-18,14:41,Dharwad,Dharwad Town,CRITICAL,PENDING,15.4669,75.0503,Drug Offence reported at Rajajinagar. Street peddling.,Street peddling
+FIR000355,Pickpocketing,2025-04-19,09:19,Uttara Kannada,Main Police Station,MEDIUM,PENDING,14.7678,74.1591,Pickpocketing reported at Subramanyapura. Crowd pick.,Crowd pick
+FIR000356,Kidnapping,2025-04-20,11:36,Ballari,Hospet,HIGH,UNDER_INVESTIGATION,15.1424,76.8914,Kidnapping reported at Kumaraswamy Layout. Human trafficking.,Human trafficking
+FIR000357,Domestic Violence,2025-04-21,17:28,Yadgiri,Yadgiri Town,MEDIUM,UNDER_INVESTIGATION,16.764,77.1598,Domestic Violence reported at Subramanyapura. Physical abuse.,Physical abuse
+FIR000358,Fraud,2025-04-22,10:42,Davanagere,Davanagere Town,LOW,PENDING,14.4657,75.8827,Fraud reported at JP Nagar 6th Phase. Insurance fraud.,Insurance fraud
+FIR000359,Vehicle Theft,2025-04-23,01:17,Bengaluru Rural,Hoskote,LOW,CLOSED,13.0689,77.5978,Vehicle Theft reported at Dasarahalli. Valet theft.,Valet theft
+FIR000360,Robbery,2025-04-24,22:28,Chikkaballapur,Main Police Station,MEDIUM,COLD,13.4543,77.7275,Robbery reported at Kengeri Satellite Town. Armed robbery.,Armed robbery
+FIR000361,Robbery,2025-04-25,02:08,Chamarajanagar,Main Police Station,HIGH,COLD,11.9427,76.9034,Robbery reported at Basavanagudi. Bank robbery.,Bank robbery
+FIR000362,Sexual Offence,2025-04-26,15:34,Vijayanagara,Hospet,CRITICAL,COLD,15.271,76.6581,Sexual Offence reported at Rajajinagar. Harassment.,Harassment
+FIR000363,Burglary,2025-04-27,21:38,Mysuru,Kuvempunagar,CRITICAL,UNDER_INVESTIGATION,12.2626,76.6468,Burglary reported at Uttarahalli. Forceful entry.,Forceful entry
+FIR000364,Fraud,2025-04-28,20:32,Uttara Kannada,Main Police Station,LOW,COLD,14.8115,74.1776,Fraud reported at Uttarahalli. Insurance fraud.,Insurance fraud
+FIR000365,Vehicle Theft,2025-04-29,22:05,Chitradurga,Molakalmuru,LOW,COLD,14.2188,76.4419,Vehicle Theft reported at MG Road. Valet theft.,Valet theft
+FIR000366,Assault,2025-04-30,04:48,Ramanagara,Channapatna,LOW,COLD,12.6897,77.2572,Assault reported at Kumaraswamy Layout. Road rage.,Road rage
+FIR000367,Burglary,2025-04-01,10:34,Chikkaballapur,Main Police Station,MEDIUM,PENDING,13.3917,77.6993,Burglary reported at Hebbal Ring Road. Rooftop entry.,Rooftop entry
+FIR000368,Vehicle Theft,2025-04-02,01:37,Chikkaballapur,Main Police Station,LOW,UNDER_INVESTIGATION,13.3868,77.7552,Vehicle Theft reported at MG Road. Carjacking.,Carjacking
+FIR000369,Kidnapping,2025-05-01,15:42,Uttara Kannada,Main Police Station,CRITICAL,COLD,14.7788,74.1267,Kidnapping reported at BTM Layout Stage 2. Custodial.,Custodial
+FIR000370,Kidnapping,2025-05-02,15:04,Ramanagara,Channapatna,MEDIUM,PENDING,12.7136,77.2717,Kidnapping reported at Vijayanagar 2nd Stage. Political.,Political
+FIR000371,Chain Snatching,2025-05-03,19:13,Raichur,Sindhnur,LOW,PENDING,16.2185,77.3228,Chain Snatching reported at Uttarahalli. Pillion snatch.,Pillion snatch
+FIR000372,Robbery,2025-05-04,17:11,Dakshina Kannada,Bantwal,MEDIUM,UNDER_INVESTIGATION,12.8556,74.8762,Robbery reported at Nagarbhavi. Chain snatching.,Chain snatching
+FIR000373,Burglary,2025-05-05,23:09,Kodagu,Somwarpet,CRITICAL,UNDER_INVESTIGATION,12.4213,75.7099,Burglary reported at JP Nagar 6th Phase. Rooftop entry.,Rooftop entry
+FIR000374,Domestic Violence,2025-05-06,11:57,Raichur,Lingsugur,LOW,UNDER_INVESTIGATION,16.1992,77.3187,Domestic Violence reported at Yelahanka New Town. Physical abuse.,Physical abuse
+FIR000375,Murder,2025-05-07,06:30,Kalaburagi,Gulbarga South,LOW,PENDING,17.3702,76.8583,Murder reported at Malleshwaram 8th Cross. Poisoning. [DELAYED INVESTIGATION],Poisoning
+FIR000376,Burglary,2025-05-08,05:20,Mysuru,Vijayanagar,LOW,COLD,12.3012,76.6142,Burglary reported at Peenya Industrial Area. Lock picking.,Lock picking
+FIR000377,Domestic Violence,2025-05-09,06:50,Vijayapura,Muddebihal,MEDIUM,COLD,16.8284,75.7501,Domestic Violence reported at Kumaraswamy Layout. Marital rape.,Marital rape
+FIR000378,Pickpocketing,2025-05-10,14:33,Mandya,Maddur,MEDIUM,COLD,12.5067,76.8955,Pickpocketing reported at Padmanabhanagar. Bus pick.,Bus pick
+FIR000379,Burglary,2025-05-11,20:54,Mysuru,Krishnaraja,MEDIUM,COLD,12.3353,76.6256,Burglary reported at Brigade Road. Rooftop entry.,Rooftop entry
+FIR000380,Burglary,2025-05-12,13:42,Mysuru,Vijayanagar,LOW,COLD,12.2668,76.5949,Burglary reported at Mahalakshmi Layout. Disguised entry.,Disguised entry
+FIR000381,Chain Snatching,2025-05-13,00:26,Shivamogga,Sagara,HIGH,PENDING,13.8939,75.6082,Chain Snatching reported at Jayanagar 4th Block. Market snatch.,Market snatch
+FIR000382,Kidnapping,2025-05-14,10:49,Davanagere,Honnali,HIGH,PENDING,14.4196,75.9597,Kidnapping reported at JP Nagar 6th Phase. Political.,Political
+FIR000383,Chain Snatching,2025-05-15,16:08,Chikkamagaluru,Chikkamagaluru Town,CRITICAL,PENDING,13.3547,75.8107,Chain Snatching reported at Uttarahalli. Pedestrian snatch.,Pedestrian snatch
+FIR000384,Murder,2025-05-16,21:37,Gadag,Mundargi,MEDIUM,COLD,15.4551,75.6146,Murder reported at Malleshwaram 8th Cross. Poisoning.,Poisoning
+FIR000385,Assault,2025-05-17,10:44,Bidar,Basavakalyan,CRITICAL,CLOSED,17.9111,77.532,Assault reported at Mahalakshmi Layout. Confrontation.,Confrontation
+FIR000386,Kidnapping,2025-05-18,12:04,Bengaluru Urban,Banashankari,MEDIUM,PENDING,12.9637,77.5534,Kidnapping reported at Dasarahalli. Political.,Political
+FIR000387,Burglary,2025-05-19,05:44,Mysuru,Kuvempunagar,LOW,PENDING,12.3427,76.6828,Burglary reported at Vijayanagar Town. Forceful entry.,Forceful entry
+FIR000388,Burglary,2025-05-20,21:07,Vijayanagara,Kampli,MEDIUM,COLD,15.29,76.6212,Burglary reported at Kengeri Satellite Town. Lock picking.,Lock picking
+FIR000389,Robbery,2025-05-21,20:42,Chikkaballapur,Main Police Station,CRITICAL,UNDER_INVESTIGATION,13.4275,77.7825,Robbery reported at Jayanagar 4th Block. Highway robbery.,Highway robbery
+FIR000390,Pickpocketing,2025-05-22,20:59,Vijayanagara,Kampli,MEDIUM,COLD,15.2468,76.5723,Pickpocketing reported at RT Nagar. Bus pick.,Bus pick
+FIR000391,Fraud,2025-05-23,14:56,Bidar,Bidar Town,HIGH,COLD,17.8655,77.5086,Fraud reported at Dasarahalli. Insurance fraud.,Insurance fraud
+FIR000392,Domestic Violence,2025-05-24,12:00,Haveri,Haveri Town,HIGH,CLOSED,14.8452,75.4038,"Domestic Violence reported at 12th Main, Indiranagar. Elder abuse.",Elder abuse
+FIR000393,Drug Offence,2025-05-25,03:44,Mysuru,Nazarbad,HIGH,CLOSED,12.2638,76.6179,Drug Offence reported at Vijayanagar 2nd Stage. Online sale.,Online sale
+FIR000394,Fraud,2025-05-26,04:29,Vijayanagara,Hospet,HIGH,UNDER_INVESTIGATION,15.291,76.5718,"Fraud reported at 12th Main, Indiranagar. Identity theft.",Identity theft
+FIR000395,Vehicle Theft,2025-05-27,05:16,Yadgiri,Shahapur,HIGH,COLD,16.7952,77.1449,Vehicle Theft reported at JP Nagar 6th Phase. Lock breaking.,Lock breaking
+FIR000396,Assault,2025-05-28,08:24,Yadgiri,Yadgiri Town,CRITICAL,COLD,16.7471,77.09,Assault reported at BTM Layout Stage 2. Group assault.,Group assault
+FIR000397,Pickpocketing,2025-05-29,05:19,Davanagere,Harihara,CRITICAL,UNDER_INVESTIGATION,14.5001,75.9518,Pickpocketing reported at HSR Layout Sector 3. Bus pick.,Bus pick
+FIR000398,Kidnapping,2025-05-30,15:44,Kalaburagi,Gulbarga North,LOW,UNDER_INVESTIGATION,17.3538,76.8826,Kidnapping reported at Whitefield Main Road. Honour related.,Honour related
+FIR000399,Drug Offence,2025-05-01,23:22,Haveri,Hangal,LOW,CLOSED,14.7884,75.4415,Drug Offence reported at JP Nagar 6th Phase. Street peddling.,Street peddling
+FIR000400,Burglary,2025-05-02,07:23,Mysuru,Kuvempunagar,CRITICAL,COLD,12.3162,76.6445,Burglary reported at Brigade Road. Forceful entry.,Forceful entry
+FIR000401,Chain Snatching,2025-05-03,19:56,Davanagere,Honnali,MEDIUM,UNDER_INVESTIGATION,14.4831,75.9455,Chain Snatching reported at Jayanagar 4th Block. Market snatch.,Market snatch
+FIR000402,Arson,2025-05-04,10:51,Vijayanagara,Kampli,MEDIUM,COLD,15.2985,76.5668,Arson reported at Peenya Industrial Area. Industrial arson.,Industrial arson
+FIR000403,Burglary,2025-05-05,03:12,Bidar,Bhalki,LOW,UNDER_INVESTIGATION,17.9419,77.5258,Burglary reported at MG Road. Window break.,Window break
+FIR000404,Sexual Offence,2025-05-06,01:48,Dharwad,Dharwad Town,MEDIUM,COLD,15.4399,74.977,Sexual Offence reported at Brigade Road. Assault.,Assault
+FIR000405,Drug Offence,2025-05-07,01:14,Uttara Kannada,Main Police Station,CRITICAL,COLD,14.8259,74.1165,Drug Offence reported at Yelahanka New Town. Manufacturing.,Manufacturing
+FIR000406,Burglary,2025-05-08,15:47,Gadag,Mundargi,LOW,UNDER_INVESTIGATION,15.4097,75.6415,Burglary reported at Nagarbhavi. Window break.,Window break
+FIR000407,Arson,2025-05-09,13:01,Shivamogga,Shivamogga Town,MEDIUM,CLOSED,13.9637,75.5296,Arson reported at Malleshwaram 8th Cross. Industrial arson.,Industrial arson
+FIR000408,Kidnapping,2025-05-10,16:08,Vijayapura,Vijayapura Town,CRITICAL,CLOSED,16.8759,75.727,Kidnapping reported at Vijayanagar 2nd Stage. Political.,Political
+FIR000409,Fraud,2025-05-11,19:42,Udupi,Udupi Town,MEDIUM,UNDER_INVESTIGATION,13.3126,74.7457,Fraud reported at Hebbal Ring Road. Insurance fraud.,Insurance fraud
+FIR000410,Chain Snatching,2025-05-12,10:15,Bidar,Bhalki,LOW,COLD,17.8818,77.5057,Chain Snatching reported at Uttarahalli. Roadside snatch.,Roadside snatch
+FIR000411,Domestic Violence,2025-05-13,06:16,Chikkaballapur,Main Police Station,LOW,CLOSED,13.4005,77.7443,Domestic Violence reported at Electronic City Phase 1. Dowry harassment.,Dowry harassment
+FIR000412,Murder,2025-05-14,05:37,Chitradurga,Molakalmuru,HIGH,UNDER_INVESTIGATION,14.1899,76.3731,Murder reported at Jayanagar 4th Block. Firearm.,Firearm
+FIR000413,Assault,2025-05-15,16:39,Shivamogga,Sagara,LOW,CLOSED,13.911,75.5765,Assault reported at Vijayanagar Town. Road rage.,Road rage
+FIR000414,Kidnapping,2025-05-16,03:13,Uttara Kannada,Main Police Station,CRITICAL,CLOSED,14.7893,74.1527,Kidnapping reported at Vijayanagar Town. Custodial.,Custodial
+FIR000415,Kidnapping,2025-05-17,12:20,Belagavi,Maruti,LOW,PENDING,15.8961,74.5345,Kidnapping reported at Marathahalli Bridge. Honour related.,Honour related
+FIR000416,Pickpocketing,2025-05-18,10:07,Dharwad,Dharwad Town,LOW,PENDING,15.4902,75.0009,Pickpocketing reported at Whitefield Main Road. Crowd pick.,Crowd pick
+FIR000417,Robbery,2025-05-19,20:41,Udupi,Karkala,CRITICAL,PENDING,13.3044,74.7836,Robbery reported at Kengeri Satellite Town. Highway robbery.,Highway robbery
+FIR000418,Pickpocketing,2025-05-20,14:16,Bengaluru Urban,Indiranagar,MEDIUM,PENDING,12.9622,77.5724,Pickpocketing reported at Whitefield Main Road. Distraction theft.,Distraction theft
+FIR000419,Kidnapping,2025-05-21,19:12,Chamarajanagar,Main Police Station,CRITICAL,UNDER_INVESTIGATION,11.8887,76.9739,Kidnapping reported at Uttarahalli. Honour related.,Honour related
+FIR000420,Fraud,2025-05-22,06:15,Chamarajanagar,Main Police Station,LOW,CLOSED,11.9658,76.9329,Fraud reported at Subramanyapura. Property fraud.,Property fraud
+FIR000421,Chain Snatching,2025-05-23,16:02,Kodagu,Madikeri,LOW,COLD,12.4217,75.6978,Chain Snatching reported at Marathahalli Bridge. Market snatch.,Market snatch
+FIR000422,Criminal Trespass,2025-05-24,15:36,Yadgiri,Shahapur,HIGH,PENDING,16.7564,77.1512,Criminal Trespass reported at Uttarahalli. Illegal occupation.,Illegal occupation
+FIR000423,Murder,2025-05-25,16:50,Chikkaballapur,Main Police Station,CRITICAL,COLD,13.4362,77.7078,Murder reported at JP Nagar 6th Phase. Strangulation.,Strangulation
+FIR000424,Burglary,2025-05-26,19:33,Vijayanagara,Kampli,HIGH,COLD,15.2816,76.6072,Burglary reported at Padmanabhanagar. Forceful entry.,Forceful entry
+FIR000425,Sexual Offence,2025-05-27,10:46,Mysuru,Krishnaraja,HIGH,UNDER_INVESTIGATION,12.3301,76.6224,Sexual Offence reported at Banashankari 2nd Stage. Harassment.,Harassment
+FIR000426,Domestic Violence,2025-05-28,18:52,Dakshina Kannada,Sullia,CRITICAL,PENDING,12.8594,74.8775,Domestic Violence reported at HSR Layout Sector 3. Marital rape.,Marital rape
+FIR000427,Cybercrime,2025-05-29,12:53,Dakshina Kannada,Puttur,CRITICAL,PENDING,12.8278,74.8636,Cybercrime reported at Whitefield Main Road. Credential theft.,Credential theft
+FIR000428,Burglary,2025-05-30,20:29,Chikkamagaluru,Chikkamagaluru Town,MEDIUM,CLOSED,13.3112,75.7243,Burglary reported at Electronic City Phase 1. Lock picking.,Lock picking
+FIR000429,Vehicle Theft,2025-05-01,18:14,Chikkaballapur,Main Police Station,LOW,PENDING,13.4772,77.7232,Vehicle Theft reported at Hebbal Ring Road. Lock breaking.,Lock breaking
+FIR000430,Fraud,2025-05-02,21:55,Chamarajanagar,Main Police Station,LOW,CLOSED,11.884,76.9678,Fraud reported at Yelahanka New Town. Online scam.,Online scam
+FIR000431,Criminal Trespass,2025-05-03,00:28,Kolar,KGF,HIGH,PENDING,13.1193,78.1648,Criminal Trespass reported at Kumaraswamy Layout. Encroachment.,Encroachment
+FIR000432,Vehicle Theft,2025-05-04,11:58,Mysuru,Vijayanagar,HIGH,PENDING,12.2494,76.6831,Vehicle Theft reported at Banashankari 2nd Stage. Valet theft.,Valet theft
+FIR000433,Murder,2025-05-05,01:09,Vijayanagara,Kampli,LOW,UNDER_INVESTIGATION,15.3083,76.6031,Murder reported at Kumaraswamy Layout. Strangulation.,Strangulation
+FIR000434,Chain Snatching,2025-05-06,20:11,Bengaluru Rural,Doddaballapura,MEDIUM,CLOSED,13.1077,77.5785,Chain Snatching reported at Peenya Industrial Area. Pedestrian snatch.,Pedestrian snatch
+FIR000435,Fraud,2025-05-07,08:49,Chamarajanagar,Main Police Station,MEDIUM,CLOSED,11.9248,76.9766,Fraud reported at MG Road. Property fraud.,Property fraud
+FIR000436,Cybercrime,2025-05-08,23:26,Bengaluru Urban,Koramangala,CRITICAL,UNDER_INVESTIGATION,12.9224,77.5923,Cybercrime reported at Kengeri Satellite Town. Social engineering.,Social engineering
+FIR000437,Cybercrime,2025-05-09,07:24,Chamarajanagar,Main Police Station,HIGH,PENDING,11.9449,76.9447,Cybercrime reported at Basavanagudi. Phishing link.,Phishing link
+FIR000438,Vehicle Theft,2025-05-10,20:54,Chikkaballapur,Main Police Station,CRITICAL,COLD,13.4239,77.745,Vehicle Theft reported at Padmanabhanagar. Towing.,Towing
+FIR000439,Murder,2025-05-11,04:03,Bengaluru Urban,Cubbon Park,HIGH,COLD,12.9268,77.6034,Murder reported at Nagarbhavi. Sharp weapon.,Sharp weapon
+FIR000440,Sexual Offence,2025-05-12,06:07,Bidar,Humnabad,MEDIUM,COLD,17.9267,77.5151,Sexual Offence reported at Kumaraswamy Layout. Workplace harassment.,Workplace harassment
+FIR000441,Chain Snatching,2025-05-13,14:56,Haveri,Ranebennur,CRITICAL,CLOSED,14.7657,75.3956,Chain Snatching reported at BTM Layout Stage 2. Pedestrian snatch.,Pedestrian snatch
+FIR000442,Assault,2025-05-14,13:10,Haveri,Hangal,LOW,COLD,14.8107,75.3975,Assault reported at Dasarahalli. Confrontation.,Confrontation
+FIR000443,Arson,2025-05-15,05:20,Chitradurga,Hosadurga,MEDIUM,CLOSED,14.2166,76.3814,Arson reported at Hebbal Ring Road. Forest fire.,Forest fire
+FIR000444,Arson,2025-05-16,03:07,Shivamogga,Tirthahalli,MEDIUM,CLOSED,13.9432,75.5959,Arson reported at Dasarahalli. Forest fire.,Forest fire
+FIR000445,Domestic Violence,2025-05-17,01:00,Dakshina Kannada,Mangaluru North,CRITICAL,CLOSED,12.9005,74.8927,Domestic Violence reported at Yelahanka New Town. Verbal abuse.,Verbal abuse
+FIR000446,Sexual Offence,2025-05-18,18:33,Vijayanagara,Hospet,CRITICAL,CLOSED,15.3092,76.5903,Sexual Offence reported at Kumaraswamy Layout. Stalking.,Stalking
+FIR000447,Robbery,2025-05-19,08:28,Raichur,Raichur Town,HIGH,CLOSED,16.2537,77.3762,Robbery reported at MG Road. Bank robbery.,Bank robbery
+FIR000448,Domestic Violence,2025-05-20,21:49,Kolar,Kolar Town,LOW,COLD,13.1344,78.1335,Domestic Violence reported at Malleshwaram 8th Cross. Marital rape.,Marital rape
+FIR000449,Kidnapping,2025-05-21,14:18,Vijayanagara,Kampli,MEDIUM,UNDER_INVESTIGATION,15.2172,76.5837,Kidnapping reported at Kengeri Satellite Town. For ransom.,For ransom
+FIR000450,Sexual Offence,2025-05-22,15:34,Ballari,Hospet,CRITICAL,UNDER_INVESTIGATION,15.1681,76.8886,Sexual Offence reported at Subramanyapura. Stalking.,Stalking
+FIR000451,Pickpocketing,2025-05-23,20:30,Belagavi,Maruti,LOW,UNDER_INVESTIGATION,15.8753,74.5471,Pickpocketing reported at Kumaraswamy Layout. Bus pick.,Bus pick
+FIR000452,Vehicle Theft,2025-05-24,06:50,Udupi,Karkala,CRITICAL,UNDER_INVESTIGATION,13.3362,74.7848,Vehicle Theft reported at JP Nagar 6th Phase. Valet theft.,Valet theft
+FIR000453,Fraud,2025-05-25,05:58,Chikkamagaluru,Chikkamagaluru Town,LOW,UNDER_INVESTIGATION,13.3143,75.7387,Fraud reported at Jayanagar 4th Block. Property fraud.,Property fraud
+FIR000454,Murder,2025-05-26,17:22,Tumakuru,Tiptur,LOW,COLD,13.3319,77.1454,"Murder reported at 12th Main, Indiranagar. Strangulation.",Strangulation
+FIR000455,Vehicle Theft,2025-05-27,15:09,Hassan,Sakleshpur,HIGH,COLD,12.9985,76.1328,Vehicle Theft reported at Dasarahalli. Lock breaking.,Lock breaking
+FIR000456,Robbery,2025-05-28,21:18,Chikkaballapur,Main Police Station,LOW,PENDING,13.4341,77.753,Robbery reported at Kumaraswamy Layout. Chain snatching.,Chain snatching
+FIR000457,Arson,2025-05-29,02:35,Mandya,Mandya Town,MEDIUM,CLOSED,12.5467,76.8622,Arson reported at Peenya Industrial Area. Industrial arson.,Industrial arson
+FIR000458,Assault,2025-05-30,14:48,Shivamogga,Sagara,HIGH,UNDER_INVESTIGATION,13.9791,75.6148,Assault reported at Kengeri Satellite Town. Road rage.,Road rage
+FIR000459,Burglary,2025-05-01,07:58,Mysuru,Nazarbad,HIGH,COLD,12.2957,76.6803,Burglary reported at Jayanagar 4th Block. Disguised entry.,Disguised entry
+FIR000460,Murder,2025-05-02,01:12,Kolar,KGF,CRITICAL,UNDER_INVESTIGATION,13.1812,78.1058,Murder reported at Marathahalli Bridge. Poisoning.,Poisoning
+FIR000461,Murder,2025-05-31,01:28,Dakshina Kannada,Sullia,LOW,CLOSED,12.8853,74.8435,Murder reported at Rajajinagar. Strangulation.,Strangulation
+FIR000462,Pickpocketing,2025-06-01,11:08,Raichur,Lingsugur,CRITICAL,CLOSED,16.2248,77.3247,"Pickpocketing reported at 12th Main, Indiranagar. Bus pick.",Bus pick
+FIR000463,Burglary,2025-06-02,19:42,Mysuru,Udayagiri,CRITICAL,COLD,12.3158,76.6801,Burglary reported at Padmanabhanagar. Window break.,Window break
+FIR000464,Burglary,2025-06-03,15:23,Mysuru,Udayagiri,HIGH,COLD,12.2645,76.6601,Burglary reported at Whitefield Main Road. Forceful entry.,Forceful entry
+FIR000465,Fraud,2025-06-04,00:12,Mysuru,Nazarbad,CRITICAL,UNDER_INVESTIGATION,12.328,76.6701,Fraud reported at Jayanagar 4th Block. Identity theft.,Identity theft
+FIR000466,Fraud,2025-06-05,06:00,Bengaluru Urban,Jayanagar,LOW,UNDER_INVESTIGATION,13.0078,77.5597,Fraud reported at MG Road. Credit card fraud.,Credit card fraud
+FIR000467,Burglary,2025-06-06,09:03,Mysuru,Nazarbad,HIGH,UNDER_INVESTIGATION,12.3067,76.6066,Burglary reported at Subramanyapura. Forceful entry.,Forceful entry
+FIR000468,Vehicle Theft,2025-06-07,05:59,Raichur,Manvi,MEDIUM,CLOSED,16.2111,77.3733,Vehicle Theft reported at Brigade Road. Lock breaking.,Lock breaking
+FIR000469,Criminal Trespass,2025-06-08,15:36,Mysuru,Udayagiri,CRITICAL,CLOSED,12.3208,76.6323,Criminal Trespass reported at Whitefield Main Road. Boundary violation.,Boundary violation
+FIR000470,Criminal Trespass,2025-06-09,17:20,Ballari,Sandur,HIGH,COLD,15.1302,76.9495,Criminal Trespass reported at Uttarahalli. Boundary violation.,Boundary violation
+FIR000471,Burglary,2025-06-10,13:13,Mandya,Maddur,CRITICAL,CLOSED,12.5474,76.9398,Burglary reported at Koramangala 1st Cross. Forceful entry.,Forceful entry
+FIR000472,Drug Offence,2025-06-11,19:08,Yadgiri,Shahapur,HIGH,PENDING,16.7509,77.1155,Drug Offence reported at Kengeri Satellite Town. Transportation.,Transportation
+FIR000473,Sexual Offence,2025-06-12,19:58,Ballari,Ballari Town,MEDIUM,UNDER_INVESTIGATION,15.1442,76.9646,Sexual Offence reported at Padmanabhanagar. Harassment.,Harassment
+FIR000474,Domestic Violence,2025-06-13,04:17,Haveri,Ranebennur,LOW,COLD,14.7989,75.4344,Domestic Violence reported at JP Nagar 6th Phase. Verbal abuse.,Verbal abuse
+FIR000475,Cybercrime,2025-06-14,23:00,Mandya,Maddur,MEDIUM,CLOSED,12.5137,76.8984,Cybercrime reported at Peenya Industrial Area. Credential theft.,Credential theft
+FIR000476,Robbery,2025-06-15,22:09,Dharwad,Dharwad Town,HIGH,UNDER_INVESTIGATION,15.4169,75.0525,Robbery reported at Dasarahalli. Home invasion.,Home invasion
+FIR000477,Murder,2025-06-16,10:21,Yadgiri,Yadgiri Town,CRITICAL,COLD,16.7833,77.1324,Murder reported at Kumaraswamy Layout. Poisoning.,Poisoning
+FIR000478,Sexual Offence,2025-06-17,06:38,Bengaluru Urban,Yeshwanthpur,LOW,PENDING,12.9377,77.6445,Sexual Offence reported at BTM Layout Stage 2. Eve teasing.,Eve teasing
+FIR000479,Drug Offence,2025-06-18,16:50,Chikkamagaluru,Narasimharajapura,CRITICAL,COLD,13.2983,75.7781,Drug Offence reported at MG Road. Street peddling.,Street peddling
+FIR000480,Criminal Trespass,2025-06-19,05:29,Bengaluru Rural,Nelamangala,MEDIUM,UNDER_INVESTIGATION,13.0547,77.6146,Criminal Trespass reported at Uttarahalli. Illegal occupation.,Illegal occupation
+FIR000481,Domestic Violence,2025-06-20,23:21,Ballari,Sandur,HIGH,COLD,15.1319,76.9142,Domestic Violence reported at JP Nagar 6th Phase. Physical abuse.,Physical abuse
+FIR000482,Drug Offence,2025-06-21,02:08,Raichur,Raichur Town,HIGH,COLD,16.169,77.3395,Drug Offence reported at Sadashivanagar. Smuggling.,Smuggling
+FIR000483,Burglary,2025-06-22,07:54,Hassan,Arsikere,LOW,COLD,13.0205,76.1106,Burglary reported at Subramanyapura. Window break.,Window break
+FIR000484,Criminal Trespass,2025-06-23,13:50,Haveri,Ranebennur,MEDIUM,COLD,14.8057,75.4209,Criminal Trespass reported at Malleshwaram 8th Cross. Encroachment.,Encroachment
+FIR000485,Arson,2025-06-24,14:54,Dakshina Kannada,Bantwal,MEDIUM,COLD,12.8478,74.8316,Arson reported at Vijayanagar 2nd Stage. Industrial arson.,Industrial arson
+FIR000486,Domestic Violence,2025-06-25,01:06,Vijayanagara,Kampli,HIGH,CLOSED,15.2861,76.5868,Domestic Violence reported at Sadashivanagar. Marital rape.,Marital rape
+FIR000487,Pickpocketing,2025-06-26,16:58,Tumakuru,Tiptur,LOW,UNDER_INVESTIGATION,13.3779,77.1222,Pickpocketing reported at HSR Layout Sector 3. Cut pocket.,Cut pocket
+FIR000488,Murder,2025-06-27,02:12,Kolar,KGF,CRITICAL,COLD,13.1653,78.1157,Murder reported at Vijayanagar Town. Strangulation.,Strangulation
+FIR000489,Burglary,2025-06-28,04:09,Uttara Kannada,Main Police Station,MEDIUM,UNDER_INVESTIGATION,14.8351,74.173,Burglary reported at Kumaraswamy Layout. Window break.,Window break
+FIR000490,Fraud,2025-06-29,04:39,Mandya,Nagamangala,LOW,UNDER_INVESTIGATION,12.5705,76.9251,Fraud reported at RT Nagar. Identity theft.,Identity theft
+FIR000491,Fraud,2025-05-31,19:51,Dharwad,Hubli North,HIGH,PENDING,15.4716,74.9856,Fraud reported at Sadashivanagar. Insurance fraud.,Insurance fraud
+FIR000492,Arson,2025-06-01,02:25,Shivamogga,Bhadravati,HIGH,COLD,13.9645,75.538,Arson reported at Hebbal Ring Road. Forest fire.,Forest fire
+FIR000493,Drug Offence,2025-06-02,11:24,Haveri,Ranebennur,CRITICAL,PENDING,14.8355,75.3811,Drug Offence reported at Sadashivanagar. Smuggling.,Smuggling
+FIR000494,Fraud,2025-06-03,12:55,Bengaluru Rural,Magadi,CRITICAL,CLOSED,13.0683,77.6408,Fraud reported at Yelahanka New Town. Property fraud.,Property fraud
+FIR000495,Pickpocketing,2025-06-04,08:22,Ballari,Kampli,MEDIUM,PENDING,15.1092,76.8838,Pickpocketing reported at Basavanagudi. Bus pick.,Bus pick
+FIR000496,Murder,2025-06-05,15:34,Raichur,Lingsugur,CRITICAL,PENDING,16.2564,77.3721,Murder reported at Yelahanka New Town. Sharp weapon.,Sharp weapon
+FIR000497,Robbery,2025-06-06,04:32,Udupi,Karkala,CRITICAL,COLD,13.3289,74.746,Robbery reported at HSR Layout Sector 3. Chain snatching.,Chain snatching
+FIR000498,Criminal Trespass,2025-06-07,05:27,Vijayanagara,Hospet,HIGH,PENDING,15.243,76.6207,Criminal Trespass reported at Basavanagudi. Temple trespass.,Temple trespass
+FIR000499,Assault,2025-06-08,15:30,Raichur,Sindhnur,MEDIUM,PENDING,16.2279,77.3415,Assault reported at Vijayanagar Town. Road rage.,Road rage
+FIR000500,Fraud,2025-06-09,19:31,Yadgiri,Shahapur,CRITICAL,UNDER_INVESTIGATION,16.7232,77.1234,Fraud reported at Jayanagar 4th Block. Credit card fraud.,Credit card fraud
+FIR000501,Kidnapping,2025-06-10,08:03,Kodagu,Madikeri,MEDIUM,CLOSED,12.3745,75.73,Kidnapping reported at Sadashivanagar. For ransom.,For ransom
+FIR000502,Drug Offence,2025-06-11,07:19,Chitradurga,Hiriyur,LOW,UNDER_INVESTIGATION,14.1713,76.3778,Drug Offence reported at Sadashivanagar. Transportation.,Transportation
+FIR000503,Pickpocketing,2025-06-12,00:12,Bengaluru Rural,Magadi,MEDIUM,COLD,13.1217,77.6318,Pickpocketing reported at Marathahalli Bridge. Distraction theft.,Distraction theft
+FIR000504,Drug Offence,2025-06-13,15:21,Ballari,Sandur,CRITICAL,COLD,15.164,76.9071,Drug Offence reported at Rajajinagar. Online sale.,Online sale
+FIR000505,Chain Snatching,2025-06-14,00:29,Bengaluru Urban,Banashankari,CRITICAL,COLD,12.9645,77.6026,Chain Snatching reported at Yelahanka New Town. Roadside snatch.,Roadside snatch
+FIR000506,Assault,2025-06-15,23:36,Belagavi,Shahapur,HIGH,PENDING,15.8025,74.5227,Assault reported at RT Nagar. Road rage.,Road rage
+FIR000507,Cybercrime,2025-06-16,05:33,Tumakuru,Madhugiri,CRITICAL,COLD,13.3718,77.064,Cybercrime reported at BTM Layout Stage 2. Social engineering.,Social engineering
+FIR000508,Cybercrime,2025-06-17,22:34,Chitradurga,Hiriyur,MEDIUM,CLOSED,14.1729,76.3622,Cybercrime reported at Vijayanagar Town. Fake call centre.,Fake call centre
+FIR000509,Vehicle Theft,2025-06-18,11:25,Hassan,Holenarasipura,MEDIUM,CLOSED,12.9684,76.0528,Vehicle Theft reported at Koramangala 1st Cross. Lock breaking.,Lock breaking
+FIR000510,Vehicle Theft,2025-06-19,19:45,Raichur,Lingsugur,LOW,UNDER_INVESTIGATION,16.2277,77.3777,Vehicle Theft reported at Padmanabhanagar. Towing.,Towing
+FIR000511,Drug Offence,2025-06-20,16:30,Belagavi,Maruti,LOW,CLOSED,15.8507,74.4764,Drug Offence reported at MG Road. Smuggling.,Smuggling
+FIR000512,Chain Snatching,2025-06-21,05:36,Yadgiri,Yadgiri Town,MEDIUM,CLOSED,16.7527,77.0989,Chain Snatching reported at Rajajinagar. Pillion snatch.,Pillion snatch
+FIR000513,Domestic Violence,2025-06-22,13:23,Kolar,KGF,CRITICAL,UNDER_INVESTIGATION,13.1118,78.1478,Domestic Violence reported at Vijayanagar Town. Verbal abuse.,Verbal abuse
+FIR000514,Pickpocketing,2025-06-23,22:02,Yadgiri,Shahapur,MEDIUM,PENDING,16.806,77.124,Pickpocketing reported at Padmanabhanagar. Bus pick.,Bus pick
+FIR000515,Robbery,2025-06-24,12:59,Vijayapura,Vijayapura Town,CRITICAL,UNDER_INVESTIGATION,16.8674,75.695,Robbery reported at Padmanabhanagar. Highway robbery.,Highway robbery
+FIR000516,Burglary,2025-06-25,23:49,Udupi,Kundapur,HIGH,UNDER_INVESTIGATION,13.3298,74.7535,Burglary reported at Kumaraswamy Layout. Rooftop entry.,Rooftop entry
+FIR000517,Fraud,2025-06-26,02:44,Koppal,Kushtagi,CRITICAL,UNDER_INVESTIGATION,15.3221,76.1355,Fraud reported at Padmanabhanagar. Identity theft.,Identity theft
+FIR000518,Criminal Trespass,2025-06-27,09:27,Bidar,Bhalki,CRITICAL,PENDING,17.9101,77.505,Criminal Trespass reported at Mahalakshmi Layout. Temple trespass.,Temple trespass
+FIR000519,Fraud,2025-06-28,19:01,Hassan,Hassan Town,HIGH,CLOSED,13.0359,76.1517,Fraud reported at Kumaraswamy Layout. Identity theft.,Identity theft
+FIR000520,Domestic Violence,2025-06-29,07:21,Ramanagara,Ramanagara Town,LOW,PENDING,12.6863,77.2407,Domestic Violence reported at MG Road. Physical abuse.,Physical abuse
+FIR000521,Drug Offence,2025-05-31,06:42,Mandya,Mandya Town,LOW,PENDING,12.4945,76.8627,Drug Offence reported at Uttarahalli. Online sale.,Online sale
+FIR000522,Burglary,2025-06-01,14:09,Mysuru,Krishnaraja,CRITICAL,COLD,12.319,76.668,Burglary reported at Koramangala 1st Cross. Lock picking.,Lock picking
+FIR000523,Fraud,2025-06-02,02:24,Kodagu,Ponnampet,CRITICAL,COLD,12.4487,75.7744,Fraud reported at Jayanagar 4th Block. Credit card fraud.,Credit card fraud
+FIR000524,Sexual Offence,2025-06-03,20:56,Chamarajanagar,Main Police Station,LOW,PENDING,11.9721,76.9303,Sexual Offence reported at HSR Layout Sector 3. Eve teasing.,Eve teasing
+FIR000525,Domestic Violence,2025-06-04,16:47,Haveri,Hangal,MEDIUM,COLD,14.8111,75.4444,Domestic Violence reported at Uttarahalli. Physical abuse.,Physical abuse
+FIR000526,Assault,2025-06-05,13:54,Dakshina Kannada,Sullia,HIGH,CLOSED,12.9179,74.8181,Assault reported at Uttarahalli. Weapon attack.,Weapon attack
+FIR000527,Vehicle Theft,2025-06-06,03:54,Tumakuru,Tumakuru Town,CRITICAL,CLOSED,13.325,77.0512,Vehicle Theft reported at Dasarahalli. Key duplication.,Key duplication
+FIR000528,Robbery,2025-06-07,21:37,Kalaburagi,Gulbarga North,HIGH,COLD,17.3112,76.8409,Robbery reported at Peenya Industrial Area. Highway robbery.,Highway robbery
+FIR000529,Vehicle Theft,2025-06-08,19:35,Mandya,Maddur,HIGH,CLOSED,12.5242,76.943,Vehicle Theft reported at Marathahalli Bridge. Carjacking.,Carjacking
+FIR000530,Sexual Offence,2025-06-09,15:25,Haveri,Haveri Town,MEDIUM,COLD,14.8079,75.3772,Sexual Offence reported at MG Road. Harassment.,Harassment
+FIR000531,Robbery,2025-06-10,06:43,Kalaburagi,Gulbarga South,HIGH,COLD,17.3353,76.8126,Robbery reported at Malleshwaram 8th Cross. Bank robbery.,Bank robbery
+FIR000532,Pickpocketing,2025-06-11,09:34,Ramanagara,Kanakapura,CRITICAL,COLD,12.6876,77.2683,Pickpocketing reported at Kengeri Satellite Town. Bus pick.,Bus pick
+FIR000533,Chain Snatching,2025-06-12,10:38,Belagavi,Maruti,LOW,COLD,15.8128,74.5139,"Chain Snatching reported at 12th Main, Indiranagar. Pillion snatch.",Pillion snatch
+FIR000534,Burglary,2025-06-13,07:44,Mysuru,Udayagiri,HIGH,CLOSED,12.2508,76.5988,"Burglary reported at 12th Main, Indiranagar. Forceful entry.",Forceful entry
+FIR000535,Vehicle Theft,2025-06-14,01:37,Shivamogga,Sagara,MEDIUM,PENDING,13.8981,75.5221,Vehicle Theft reported at Electronic City Phase 1. Key duplication.,Key duplication
+FIR000536,Vehicle Theft,2025-06-15,06:02,Chikkamagaluru,Chikkamagaluru Town,LOW,COLD,13.3111,75.7424,Vehicle Theft reported at Sadashivanagar. Lock breaking.,Lock breaking
+FIR000537,Vehicle Theft,2025-06-16,01:09,Dakshina Kannada,Mangaluru South,CRITICAL,UNDER_INVESTIGATION,12.8753,74.8275,Vehicle Theft reported at JP Nagar 6th Phase. Valet theft.,Valet theft
+FIR000538,Drug Offence,2025-06-17,14:04,Udupi,Udupi Town,LOW,CLOSED,13.3417,74.7708,Drug Offence reported at Yelahanka New Town. Smuggling.,Smuggling
+FIR000539,Burglary,2025-06-18,15:49,Mysuru,Nazarbad,LOW,UNDER_INVESTIGATION,12.3227,76.5992,Burglary reported at Whitefield Main Road. Disguised entry.,Disguised entry
+FIR000540,Burglary,2025-06-19,13:31,Mysuru,Kuvempunagar,MEDIUM,COLD,12.2546,76.6659,Burglary reported at JP Nagar 6th Phase. Window break.,Window break
+FIR000541,Burglary,2025-06-20,19:12,Mysuru,Vijayanagar,CRITICAL,UNDER_INVESTIGATION,12.32,76.5929,Burglary reported at MG Road. Window break.,Window break
+FIR000542,Cybercrime,2025-06-21,13:45,Vijayanagara,Hospet,MEDIUM,PENDING,15.2951,76.5706,Cybercrime reported at Koramangala 1st Cross. Social engineering.,Social engineering
+FIR000543,Chain Snatching,2025-06-22,11:42,Ballari,Kampli,HIGH,PENDING,15.1779,76.9635,Chain Snatching reported at Electronic City Phase 1. Market snatch.,Market snatch
+FIR000544,Pickpocketing,2025-06-23,17:26,Vijayanagara,Kampli,LOW,COLD,15.2375,76.6295,Pickpocketing reported at Koramangala 1st Cross. Cut pocket.,Cut pocket
+FIR000545,Chain Snatching,2025-06-24,00:38,Kalaburagi,Chincholi,CRITICAL,COLD,17.3198,76.8052,Chain Snatching reported at Electronic City Phase 1. Market snatch.,Market snatch
+FIR000546,Assault,2025-06-25,04:48,Dakshina Kannada,Bantwal,CRITICAL,COLD,12.8348,74.839,Assault reported at Padmanabhanagar. Confrontation.,Confrontation
+FIR000547,Drug Offence,2025-06-26,07:44,Bidar,Bhalki,MEDIUM,PENDING,17.9153,77.4919,Drug Offence reported at Padmanabhanagar. Smuggling.,Smuggling
+FIR000548,Assault,2025-06-27,21:11,Dakshina Kannada,Mangaluru South,MEDIUM,PENDING,12.8426,74.8847,Assault reported at BTM Layout Stage 2. Weapon attack.,Weapon attack
+FIR000549,Murder,2025-06-28,19:03,Mysuru,Vijayanagar,MEDIUM,PENDING,12.2626,76.6437,Murder reported at Dasarahalli. Strangulation.,Strangulation
+FIR000550,Fraud,2025-06-29,00:32,Haveri,Ranebennur,LOW,COLD,14.79,75.3871,Fraud reported at Jayanagar 4th Block. Property fraud.,Property fraud
+FIR000551,Vehicle Theft,2025-05-31,17:37,Raichur,Manvi,HIGH,COLD,16.2527,77.3801,Vehicle Theft reported at Koramangala 1st Cross. Key duplication.,Key duplication
+FIR000552,Assault,2025-06-01,17:02,Uttara Kannada,Main Police Station,MEDIUM,COLD,14.7693,74.1473,Assault reported at Electronic City Phase 1. Weapon attack.,Weapon attack
+FIR000553,Fraud,2025-06-30,12:19,Yadgiri,Shorapur,HIGH,CLOSED,16.7838,77.1812,Fraud reported at Rajajinagar. Credit card fraud.,Credit card fraud
+FIR000554,Murder,2025-07-01,06:53,Ballari,Hospet,HIGH,CLOSED,15.1247,76.8896,Murder reported at BTM Layout Stage 2. Firearm.,Firearm
+FIR000555,Burglary,2025-07-02,20:35,Bidar,Bhalki,LOW,PENDING,17.8716,77.557,Burglary reported at HSR Layout Sector 3. Forceful entry.,Forceful entry
+FIR000556,Burglary,2025-07-03,11:01,Mysuru,Krishnaraja,CRITICAL,CLOSED,12.2643,76.6278,Burglary reported at Sadashivanagar. Disguised entry.,Disguised entry
+FIR000557,Chain Snatching,2025-07-04,07:02,Mandya,Nagamangala,MEDIUM,COLD,12.5162,76.9393,Chain Snatching reported at Koramangala 1st Cross. Market snatch.,Market snatch
+FIR000558,Sexual Offence,2025-07-05,05:26,Chikkaballapur,Main Police Station,MEDIUM,UNDER_INVESTIGATION,13.4651,77.7693,Sexual Offence reported at Peenya Industrial Area. Eve teasing.,Eve teasing
+FIR000559,Kidnapping,2025-07-06,11:09,Uttara Kannada,Main Police Station,LOW,COLD,14.7767,74.1787,Kidnapping reported at Mahalakshmi Layout. Honour related.,Honour related
+FIR000560,Assault,2025-07-07,08:18,Dharwad,Hubli South,HIGH,COLD,15.503,75.0219,Assault reported at Marathahalli Bridge. Weapon attack.,Weapon attack
+FIR000561,Fraud,2025-07-08,03:52,Kalaburagi,Gulbarga North,MEDIUM,UNDER_INVESTIGATION,17.3365,76.788,Fraud reported at Padmanabhanagar. Property fraud.,Property fraud
+FIR000562,Murder,2025-07-09,03:35,Yadgiri,Yadgiri Town,CRITICAL,COLD,16.7462,77.1628,Murder reported at Basavanagudi. Blunt force.,Blunt force
+FIR000563,Arson,2025-07-10,01:29,Kodagu,Virajpet,LOW,PENDING,12.4271,75.7335,Arson reported at Brigade Road. Forest fire.,Forest fire
+FIR000564,Vehicle Theft,2025-07-11,12:56,Ballari,Ballari Town,CRITICAL,COLD,15.1043,76.8923,Vehicle Theft reported at Koramangala 1st Cross. Carjacking.,Carjacking
+FIR000565,Kidnapping,2025-07-12,01:12,Koppal,Kushtagi,MEDIUM,COLD,15.3692,76.1482,Kidnapping reported at Banashankari 2nd Stage. Custodial.,Custodial
+FIR000566,Burglary,2025-07-13,14:01,Mysuru,Udayagiri,CRITICAL,COLD,12.2982,76.6558,Burglary reported at Rajajinagar. Rooftop entry.,Rooftop entry
+FIR000567,Kidnapping,2025-07-14,07:09,Chamarajanagar,Main Police Station,HIGH,UNDER_INVESTIGATION,11.8875,76.9769,Kidnapping reported at Uttarahalli. Custodial.,Custodial
+FIR000568,Domestic Violence,2025-07-15,04:41,Kalaburagi,Afzalpur,MEDIUM,COLD,17.3412,76.7883,Domestic Violence reported at Basavanagudi. Verbal abuse.,Verbal abuse
+FIR000569,Vehicle Theft,2025-07-16,18:16,Gadag,Gadag Town,MEDIUM,UNDER_INVESTIGATION,15.3902,75.61,Vehicle Theft reported at Brigade Road. Key duplication.,Key duplication
+FIR000570,Vehicle Theft,2025-07-17,00:12,Ballari,Hospet,LOW,COLD,15.1224,76.884,Vehicle Theft reported at Kengeri Satellite Town. Key duplication.,Key duplication
+FIR000571,Fraud,2025-07-18,14:54,Ballari,Hospet,MEDIUM,COLD,15.1282,76.8958,Fraud reported at Whitefield Main Road. Online scam.,Online scam
+FIR000572,Cybercrime,2025-07-19,07:26,Yadgiri,Shorapur,CRITICAL,PENDING,16.7982,77.1165,Cybercrime reported at HSR Layout Sector 3. Social engineering.,Social engineering
+FIR000573,Robbery,2025-07-20,13:07,Koppal,Koppal Town,HIGH,CLOSED,15.3328,76.1267,Robbery reported at Basavanagudi. Armed robbery.,Armed robbery
+FIR000574,Vehicle Theft,2025-07-21,00:34,Shivamogga,Tirthahalli,MEDIUM,UNDER_INVESTIGATION,13.892,75.6117,Vehicle Theft reported at Basavanagudi. Key duplication.,Key duplication
+FIR000575,Domestic Violence,2025-07-22,01:08,Vijayapura,Vijayapura Town,HIGH,CLOSED,16.8318,75.6626,Domestic Violence reported at Dasarahalli. Physical abuse.,Physical abuse
+FIR000576,Drug Offence,2025-07-23,00:40,Kodagu,Madikeri,MEDIUM,COLD,12.3933,75.6964,Drug Offence reported at RT Nagar. Transportation.,Transportation
+FIR000577,Vehicle Theft,2025-07-24,19:33,Ballari,Sandur,HIGH,COLD,15.1419,76.8823,Vehicle Theft reported at Padmanabhanagar. Towing.,Towing
+FIR000578,Drug Offence,2025-07-25,04:01,Gadag,Gadag Town,HIGH,PENDING,15.4339,75.6212,Drug Offence reported at Brigade Road. Online sale.,Online sale
+FIR000579,Criminal Trespass,2025-07-26,23:26,Vijayanagara,Kampli,HIGH,CLOSED,15.2648,76.6494,Criminal Trespass reported at Electronic City Phase 1. Illegal occupation.,Illegal occupation
+FIR000580,Criminal Trespass,2025-07-27,10:55,Bengaluru Urban,Jayanagar,HIGH,PENDING,12.963,77.6047,Criminal Trespass reported at Koramangala 1st Cross. Boundary violation.,Boundary violation
+FIR000581,Cybercrime,2025-07-28,00:51,Vijayanagara,Kampli,CRITICAL,PENDING,15.2599,76.6499,Cybercrime reported at Jayanagar 4th Block. Social engineering.,Social engineering
+FIR000582,Domestic Violence,2025-07-29,05:06,Chikkamagaluru,Mudigere,MEDIUM,COLD,13.2676,75.7657,Domestic Violence reported at Basavanagudi. Physical abuse.,Physical abuse
+FIR000583,Vehicle Theft,2025-06-30,19:47,Vijayanagara,Hospet,CRITICAL,CLOSED,15.2835,76.5952,Vehicle Theft reported at Kumaraswamy Layout. Valet theft.,Valet theft
+FIR000584,Pickpocketing,2025-07-01,13:09,Bengaluru Urban,Banashankari,CRITICAL,PENDING,12.9963,77.6275,Pickpocketing reported at BTM Layout Stage 2. Cut pocket.,Cut pocket
+FIR000585,Pickpocketing,2025-07-02,12:19,Haveri,Byadgi,MEDIUM,PENDING,14.7979,75.3496,Pickpocketing reported at Yelahanka New Town. Distraction theft.,Distraction theft
+FIR000586,Kidnapping,2025-07-03,09:53,Chikkamagaluru,Narasimharajapura,MEDIUM,PENDING,13.3404,75.8122,Kidnapping reported at Subramanyapura. Honour related.,Honour related
+FIR000587,Chain Snatching,2025-07-04,12:21,Yadgiri,Yadgiri Town,CRITICAL,PENDING,16.8054,77.1246,Chain Snatching reported at Sadashivanagar. Pedestrian snatch.,Pedestrian snatch
+FIR000588,Murder,2025-07-05,13:55,Mysuru,Kuvempunagar,MEDIUM,CLOSED,12.3224,76.6033,Murder reported at Yelahanka New Town. Firearm.,Firearm
+FIR000589,Criminal Trespass,2025-07-06,23:25,Vijayapura,Indi,CRITICAL,UNDER_INVESTIGATION,16.8184,75.6807,Criminal Trespass reported at Banashankari 2nd Stage. Temple trespass.,Temple trespass
+FIR000590,Vehicle Theft,2025-07-07,22:59,Hassan,Hassan Town,CRITICAL,COLD,13.0403,76.0658,Vehicle Theft reported at Dasarahalli. Carjacking.,Carjacking
+FIR000591,Robbery,2025-07-08,08:50,Uttara Kannada,Main Police Station,LOW,PENDING,14.7674,74.1246,Robbery reported at Kumaraswamy Layout. Home invasion.,Home invasion
+FIR000592,Fraud,2025-07-09,13:13,Hassan,Sakleshpur,CRITICAL,CLOSED,12.9785,76.0652,Fraud reported at Jayanagar 4th Block. Insurance fraud.,Insurance fraud
+FIR000593,Burglary,2025-07-10,19:44,Gadag,Naragund,HIGH,PENDING,15.4621,75.6332,Burglary reported at Uttarahalli. Lock picking.,Lock picking
+FIR000594,Kidnapping,2025-07-11,14:01,Chitradurga,Hosadurga,MEDIUM,UNDER_INVESTIGATION,14.2568,76.4387,Kidnapping reported at Peenya Industrial Area. Honour related.,Honour related
+FIR000595,Pickpocketing,2025-07-12,23:41,Ramanagara,Ramanagara Town,CRITICAL,CLOSED,12.6895,77.2927,Pickpocketing reported at Vijayanagar Town. Crowd pick.,Crowd pick
+FIR000596,Kidnapping,2025-07-13,22:26,Mandya,Nagamangala,MEDIUM,COLD,12.5332,76.8842,Kidnapping reported at Vijayanagar Town. Political.,Political
+FIR000597,Burglary,2025-07-14,13:24,Mysuru,Udayagiri,HIGH,COLD,12.2755,76.6331,Burglary reported at Marathahalli Bridge. Window break.,Window break
+FIR000598,Robbery,2025-07-15,14:28,Tumakuru,Madhugiri,MEDIUM,UNDER_INVESTIGATION,13.3079,77.1068,Robbery reported at Rajajinagar. Home invasion.,Home invasion
+FIR000599,Fraud,2025-07-16,00:20,Kolar,Malur,CRITICAL,CLOSED,13.1811,78.1522,"Fraud reported at 12th Main, Indiranagar. Identity theft.",Identity theft
+FIR000600,Burglary,2025-07-17,19:55,Mysuru,Vijayanagar,LOW,UNDER_INVESTIGATION,12.3049,76.6551,Burglary reported at Koramangala 1st Cross. Lock picking.,Lock picking
+FIR000601,Kidnapping,2025-07-18,20:07,Raichur,Raichur Town,HIGH,CLOSED,16.2422,77.3436,Kidnapping reported at Whitefield Main Road. Political.,Political
+FIR000602,Burglary,2025-07-19,23:35,Yadgiri,Shorapur,CRITICAL,UNDER_INVESTIGATION,16.7761,77.1037,Burglary reported at Sadashivanagar. Window break.,Window break
+FIR000603,Murder,2025-07-20,18:55,Uttara Kannada,Main Police Station,CRITICAL,CLOSED,14.7822,74.1317,Murder reported at Vijayanagar Town. Sharp weapon.,Sharp weapon
+FIR000604,Sexual Offence,2025-07-21,06:31,Haveri,Byadgi,MEDIUM,COLD,14.7478,75.3791,Sexual Offence reported at Padmanabhanagar. Eve teasing.,Eve teasing
+FIR000605,Sexual Offence,2025-07-22,19:04,Chikkaballapur,Main Police Station,CRITICAL,PENDING,13.4315,77.7777,Sexual Offence reported at MG Road. Harassment.,Harassment
+FIR000606,Domestic Violence,2025-07-23,23:37,Ballari,Ballari Town,LOW,COLD,15.1126,76.9554,Domestic Violence reported at Peenya Industrial Area. Verbal abuse.,Verbal abuse
+FIR000607,Sexual Offence,2025-07-24,21:16,Tumakuru,Tiptur,MEDIUM,COLD,13.3258,77.0714,Sexual Offence reported at Padmanabhanagar. Assault.,Assault
+FIR000608,Murder,2025-07-25,14:50,Kalaburagi,Gulbarga North,LOW,PENDING,17.3241,76.857,Murder reported at Vijayanagar Town. Sharp weapon.,Sharp weapon
+FIR000609,Murder,2025-07-26,13:08,Tumakuru,Tiptur,CRITICAL,PENDING,13.3008,77.1099,Murder reported at Malleshwaram 8th Cross. Sharp weapon.,Sharp weapon
+FIR000610,Murder,2025-07-27,03:16,Hassan,Sakleshpur,MEDIUM,UNDER_INVESTIGATION,12.9659,76.0953,Murder reported at Vijayanagar Town. Strangulation.,Strangulation
+FIR000611,Fraud,2025-07-28,00:29,Koppal,Koppal Town,HIGH,UNDER_INVESTIGATION,15.3934,76.1914,Fraud reported at Vijayanagar Town. Credit card fraud.,Credit card fraud
+FIR000612,Vehicle Theft,2025-07-29,09:43,Ballari,Kampli,MEDIUM,UNDER_INVESTIGATION,15.1636,76.8821,Vehicle Theft reported at Brigade Road. Towing.,Towing
+FIR000613,Assault,2025-06-30,16:03,Chitradurga,Molakalmuru,CRITICAL,CLOSED,14.2651,76.44,Assault reported at Subramanyapura. Strangulation.,Strangulation
+FIR000614,Pickpocketing,2025-07-01,05:19,Mysuru,Nazarbad,HIGH,COLD,12.2481,76.6694,Pickpocketing reported at Uttarahalli. Cut pocket.,Cut pocket
+FIR000615,Vehicle Theft,2025-07-02,12:04,Koppal,Yelburga,HIGH,CLOSED,15.3935,76.1563,Vehicle Theft reported at Mahalakshmi Layout. Towing.,Towing
+FIR000616,Assault,2025-07-03,21:00,Ballari,Ballari Town,MEDIUM,UNDER_INVESTIGATION,15.1653,76.8729,Assault reported at Whitefield Main Road. Road rage.,Road rage
+FIR000617,Pickpocketing,2025-07-04,17:33,Chikkaballapur,Main Police Station,LOW,UNDER_INVESTIGATION,13.4012,77.7515,Pickpocketing reported at Koramangala 1st Cross. Cut pocket.,Cut pocket
+FIR000618,Vehicle Theft,2025-07-05,11:40,Ballari,Sandur,CRITICAL,COLD,15.1278,76.9265,Vehicle Theft reported at Peenya Industrial Area. Lock breaking.,Lock breaking
+FIR000619,Arson,2025-07-06,00:10,Shivamogga,Sagara,HIGH,CLOSED,13.938,75.6116,Arson reported at RT Nagar. Industrial arson.,Industrial arson
+FIR000620,Vehicle Theft,2025-07-07,07:39,Ballari,Kampli,MEDIUM,CLOSED,15.1311,76.9684,"Vehicle Theft reported at 12th Main, Indiranagar. Valet theft.",Valet theft
+FIR000621,Murder,2025-07-08,00:30,Chikkamagaluru,Chikkamagaluru Town,LOW,PENDING,13.316,75.8095,Murder reported at Electronic City Phase 1. Strangulation.,Strangulation
+FIR000622,Arson,2025-07-09,08:00,Dakshina Kannada,Puttur,CRITICAL,CLOSED,12.9076,74.8465,Arson reported at Koramangala 1st Cross. Industrial arson.,Industrial arson
+FIR000623,Sexual Offence,2025-07-10,06:11,Mandya,Mandya Town,LOW,CLOSED,12.5388,76.8995,Sexual Offence reported at Yelahanka New Town. Workplace harassment.,Workplace harassment
+FIR000624,Arson,2025-07-11,01:34,Vijayapura,Indi,HIGH,CLOSED,16.8297,75.7439,Arson reported at HSR Layout Sector 3. Forest fire.,Forest fire
+FIR000625,Criminal Trespass,2025-07-12,08:32,Mysuru,Krishnaraja,MEDIUM,PENDING,12.3041,76.6277,Criminal Trespass reported at Hebbal Ring Road. Illegal occupation.,Illegal occupation
+FIR000626,Burglary,2025-07-13,14:19,Mysuru,Krishnaraja,LOW,UNDER_INVESTIGATION,12.2557,76.6825,"Burglary reported at 12th Main, Indiranagar. Window break.",Window break
+FIR000627,Cybercrime,2025-07-14,07:34,Vijayanagara,Kampli,MEDIUM,PENDING,15.2423,76.5841,Cybercrime reported at Malleshwaram 8th Cross. Malware attack.,Malware attack
+FIR000628,Murder,2025-07-15,03:05,Raichur,Sindhnur,MEDIUM,PENDING,16.2375,77.3075,Murder reported at Whitefield Main Road. Poisoning.,Poisoning
+FIR000629,Arson,2025-07-16,18:15,Dharwad,Kalghatgi,HIGH,UNDER_INVESTIGATION,15.4576,75.0177,Arson reported at Yelahanka New Town. Property arson.,Property arson
+FIR000630,Pickpocketing,2025-07-17,03:36,Kodagu,Somwarpet,MEDIUM,COLD,12.4352,75.7467,Pickpocketing reported at Kengeri Satellite Town. Cut pocket.,Cut pocket
+FIR000631,Vehicle Theft,2025-07-18,03:04,Hassan,Sakleshpur,CRITICAL,PENDING,12.9905,76.0541,"Vehicle Theft reported at 12th Main, Indiranagar. Carjacking.",Carjacking
+FIR000632,Murder,2025-07-19,15:23,Vijayanagara,Hospet,MEDIUM,UNDER_INVESTIGATION,15.239,76.5692,Murder reported at Banashankari 2nd Stage. Firearm.,Firearm
+FIR000633,Pickpocketing,2025-07-20,08:44,Yadgiri,Shorapur,MEDIUM,CLOSED,16.7834,77.1811,Pickpocketing reported at Uttarahalli. Crowd pick.,Crowd pick
+FIR000634,Criminal Trespass,2025-07-21,17:48,Davanagere,Davanagere Town,CRITICAL,UNDER_INVESTIGATION,14.4602,75.8759,Criminal Trespass reported at HSR Layout Sector 3. Illegal occupation.,Illegal occupation
+FIR000635,Domestic Violence,2025-07-22,07:04,Kodagu,Madikeri,CRITICAL,CLOSED,12.4617,75.758,Domestic Violence reported at Peenya Industrial Area. Marital rape.,Marital rape
+FIR000636,Chain Snatching,2025-07-23,23:47,Ramanagara,Ramanagara Town,MEDIUM,PENDING,12.7644,77.2905,Chain Snatching reported at Rajajinagar. Market snatch.,Market snatch
+FIR000637,Assault,2025-07-24,15:24,Chikkaballapur,Main Police Station,HIGH,COLD,13.4078,77.7238,Assault reported at MG Road. Confrontation.,Confrontation
+FIR000638,Drug Offence,2025-07-25,06:28,Kalaburagi,Chincholi,CRITICAL,CLOSED,17.3474,76.8094,Drug Offence reported at Kengeri Satellite Town. Manufacturing.,Manufacturing
+FIR000639,Domestic Violence,2025-07-26,14:25,Belagavi,Tilakwadi,MEDIUM,UNDER_INVESTIGATION,15.8116,74.5047,Domestic Violence reported at HSR Layout Sector 3. Dowry harassment.,Dowry harassment
+FIR000640,Fraud,2025-07-27,01:17,Dakshina Kannada,Sullia,MEDIUM,COLD,12.8948,74.8724,Fraud reported at RT Nagar. Credit card fraud.,Credit card fraud
+FIR000641,Burglary,2025-07-28,12:08,Bidar,Bhalki,LOW,UNDER_INVESTIGATION,17.8952,77.5151,Burglary reported at Banashankari 2nd Stage. Window break.,Window break
+FIR000642,Vehicle Theft,2025-07-29,16:13,Shivamogga,Tirthahalli,LOW,CLOSED,13.9707,75.608,Vehicle Theft reported at Jayanagar 4th Block. Carjacking.,Carjacking
+FIR000643,Chain Snatching,2025-06-30,10:53,Dakshina Kannada,Puttur,LOW,COLD,12.901,74.8187,Chain Snatching reported at Peenya Industrial Area. Market snatch.,Market snatch
+FIR000644,Criminal Trespass,2025-07-01,16:26,Bidar,Basavakalyan,LOW,COLD,17.8919,77.5163,Criminal Trespass reported at RT Nagar. Temple trespass.,Temple trespass
+FIR000645,Sexual Offence,2025-07-30,14:48,Dharwad,Hubli South,HIGH,PENDING,15.4597,74.9936,Sexual Offence reported at Marathahalli Bridge. Harassment.,Harassment
+FIR000646,Domestic Violence,2025-07-31,15:13,Hassan,Sakleshpur,HIGH,CLOSED,12.9839,76.1297,Domestic Violence reported at Marathahalli Bridge. Elder abuse.,Elder abuse
+FIR000647,Vehicle Theft,2025-08-01,06:39,Ballari,Ballari Town,HIGH,PENDING,15.1429,76.9558,Vehicle Theft reported at Malleshwaram 8th Cross. Valet theft.,Valet theft
+FIR000648,Domestic Violence,2025-08-02,19:51,Haveri,Byadgi,LOW,UNDER_INVESTIGATION,14.7464,75.3551,Domestic Violence reported at Uttarahalli. Dowry harassment.,Dowry harassment
+FIR000649,Drug Offence,2025-08-03,16:50,Shivamogga,Sagara,MEDIUM,COLD,13.9559,75.5709,Drug Offence reported at Rajajinagar. Smuggling.,Smuggling
+FIR000650,Burglary,2025-08-04,05:30,Mysuru,Kuvempunagar,MEDIUM,COLD,12.3124,76.6046,Burglary reported at Kumaraswamy Layout. Window break.,Window break
+FIR000651,Burglary,2025-08-05,23:58,Vijayapura,Indi,CRITICAL,PENDING,16.8619,75.6702,Burglary reported at Subramanyapura. Lock picking.,Lock picking
+FIR000652,Burglary,2025-08-06,10:18,Mysuru,Kuvempunagar,CRITICAL,COLD,12.2775,76.6041,Burglary reported at Uttarahalli. Disguised entry.,Disguised entry
+FIR000653,Burglary,2025-08-07,10:21,Mysuru,Udayagiri,MEDIUM,CLOSED,12.2864,76.5971,Burglary reported at HSR Layout Sector 3. Lock picking.,Lock picking
+FIR000654,Fraud,2025-08-08,05:48,Bengaluru Rural,Hoskote,LOW,CLOSED,13.121,77.6302,Fraud reported at Hebbal Ring Road. Insurance fraud.,Insurance fraud
+FIR000655,Sexual Offence,2025-08-09,21:16,Hassan,Hassan Town,CRITICAL,UNDER_INVESTIGATION,13.029,76.1116,Sexual Offence reported at Vijayanagar Town. Assault.,Assault
+FIR000656,Domestic Violence,2025-08-10,19:29,Chamarajanagar,Main Police Station,CRITICAL,COLD,11.8765,76.9627,Domestic Violence reported at Kengeri Satellite Town. Marital rape.,Marital rape
+FIR000657,Pickpocketing,2025-08-11,16:27,Mysuru,Nazarbad,HIGH,UNDER_INVESTIGATION,12.3434,76.6117,Pickpocketing reported at RT Nagar. Cut pocket.,Cut pocket
+FIR000658,Burglary,2025-08-12,07:07,Mysuru,Vijayanagar,HIGH,UNDER_INVESTIGATION,12.3261,76.5948,Burglary reported at Brigade Road. Lock picking.,Lock picking
+FIR000659,Vehicle Theft,2025-08-13,16:27,Chikkamagaluru,Chikkamagaluru Town,MEDIUM,CLOSED,13.3349,75.7739,Vehicle Theft reported at Dasarahalli. Valet theft.,Valet theft
+FIR000660,Fraud,2025-08-14,12:17,Chikkaballapur,Main Police Station,CRITICAL,COLD,13.4421,77.765,Fraud reported at Banashankari 2nd Stage. Insurance fraud.,Insurance fraud
+FIR000661,Burglary,2025-08-15,13:15,Mysuru,Nazarbad,CRITICAL,CLOSED,12.2593,76.6641,Burglary reported at Marathahalli Bridge. Rooftop entry.,Rooftop entry
+FIR000662,Fraud,2025-08-16,07:33,Tumakuru,Madhugiri,HIGH,COLD,13.3245,77.1116,Fraud reported at MG Road. Credit card fraud.,Credit card fraud
+FIR000663,Burglary,2025-08-17,05:44,Mysuru,Nazarbad,MEDIUM,CLOSED,12.2581,76.5914,Burglary reported at Vijayanagar 2nd Stage. Window break.,Window break
+FIR000664,Cybercrime,2025-08-18,06:35,Kolar,Kolar Town,LOW,CLOSED,13.1502,78.1627,Cybercrime reported at Vijayanagar Town. Credential theft.,Credential theft
+FIR000665,Domestic Violence,2025-08-19,17:37,Udupi,Udupi Town,HIGH,CLOSED,13.2994,74.7388,Domestic Violence reported at Sadashivanagar. Physical abuse.,Physical abuse
+FIR000666,Cybercrime,2025-08-20,16:41,Dharwad,Hubli North,LOW,CLOSED,15.4248,74.985,Cybercrime reported at Sadashivanagar. Malware attack.,Malware attack
+FIR000667,Murder,2025-08-21,22:02,Ballari,Sandur,MEDIUM,COLD,15.1566,76.9611,"Murder reported at 12th Main, Indiranagar. Strangulation.",Strangulation
+FIR000668,Robbery,2025-08-22,12:56,Chikkaballapur,Main Police Station,MEDIUM,COLD,13.4557,77.7383,Robbery reported at HSR Layout Sector 3. Chain snatching.,Chain snatching
+FIR000669,Burglary,2025-08-23,17:13,Dharwad,Dharwad Town,HIGH,CLOSED,15.4774,75.0382,Burglary reported at Banashankari 2nd Stage. Rooftop entry.,Rooftop entry
+FIR000670,Arson,2025-08-24,09:27,Koppal,Gangavati,MEDIUM,CLOSED,15.362,76.1564,Arson reported at Malleshwaram 8th Cross. Property arson.,Property arson
+FIR000671,Vehicle Theft,2025-08-25,12:32,Ballari,Hospet,LOW,CLOSED,15.1724,76.9518,Vehicle Theft reported at Jayanagar 4th Block. Towing.,Towing
+FIR000672,Burglary,2025-08-26,06:42,Raichur,Raichur Town,LOW,CLOSED,16.2528,77.3499,"Burglary reported at 12th Main, Indiranagar. Rooftop entry.",Rooftop entry
+FIR000673,Vehicle Theft,2025-08-27,19:57,Gadag,Gadag Town,CRITICAL,CLOSED,15.3864,75.626,Vehicle Theft reported at Koramangala 1st Cross. Key duplication.,Key duplication
+FIR000674,Murder,2025-08-28,07:27,Raichur,Manvi,CRITICAL,UNDER_INVESTIGATION,16.2478,77.3632,Murder reported at Jayanagar 4th Block. Strangulation.,Strangulation
+FIR000675,Murder,2025-07-30,01:13,Hassan,Hassan Town,LOW,PENDING,13.0089,76.1095,Murder reported at Sadashivanagar. Poisoning.,Poisoning
+FIR000676,Domestic Violence,2025-07-31,19:28,Bengaluru Rural,Devanahalli,MEDIUM,COLD,13.0837,77.634,Domestic Violence reported at Uttarahalli. Elder abuse.,Elder abuse
+FIR000677,Chain Snatching,2025-08-01,18:42,Haveri,Byadgi,CRITICAL,CLOSED,14.811,75.4027,Chain Snatching reported at Hebbal Ring Road. Roadside snatch.,Roadside snatch
+FIR000678,Assault,2025-08-02,07:14,Vijayapura,Sindagi,MEDIUM,COLD,16.8675,75.725,Assault reported at Hebbal Ring Road. Weapon attack.,Weapon attack
+FIR000679,Arson,2025-08-03,12:00,Mysuru,Udayagiri,CRITICAL,COLD,12.2928,76.6187,Arson reported at Kengeri Satellite Town. Forest fire.,Forest fire
+FIR000680,Vehicle Theft,2025-08-04,15:02,Kolar,Bangarpet,HIGH,CLOSED,13.1444,78.1262,Vehicle Theft reported at Kumaraswamy Layout. Carjacking.,Carjacking
+FIR000681,Criminal Trespass,2025-08-05,21:13,Bengaluru Rural,Devanahalli,MEDIUM,COLD,13.1245,77.6162,Criminal Trespass reported at Subramanyapura. Boundary violation.,Boundary violation
+FIR000682,Robbery,2025-08-06,18:53,Mysuru,Udayagiri,MEDIUM,UNDER_INVESTIGATION,12.3192,76.5905,Robbery reported at Sadashivanagar. Chain snatching.,Chain snatching
+FIR000683,Criminal Trespass,2025-08-07,11:32,Tumakuru,Kunigal,MEDIUM,PENDING,13.3331,77.1101,Criminal Trespass reported at Banashankari 2nd Stage. Boundary violation.,Boundary violation
+FIR000684,Vehicle Theft,2025-08-08,00:37,Bidar,Humnabad,MEDIUM,UNDER_INVESTIGATION,17.888,77.5388,Vehicle Theft reported at Brigade Road. Valet theft.,Valet theft
+FIR000685,Vehicle Theft,2025-08-09,00:49,Ballari,Hospet,CRITICAL,COLD,15.1,76.939,Vehicle Theft reported at Brigade Road. Lock breaking.,Lock breaking
+FIR000686,Vehicle Theft,2025-08-10,17:53,Ballari,Kampli,HIGH,CLOSED,15.1841,76.911,Vehicle Theft reported at BTM Layout Stage 2. Lock breaking.,Lock breaking
+FIR000687,Assault,2025-08-11,21:34,Mysuru,Nazarbad,CRITICAL,COLD,12.298,76.5942,Assault reported at Marathahalli Bridge. Confrontation.,Confrontation
+FIR000688,Arson,2025-08-12,09:06,Gadag,Naragund,HIGH,COLD,15.3766,75.6133,Arson reported at Banashankari 2nd Stage. Vehicle arson.,Vehicle arson
+FIR000689,Chain Snatching,2025-08-13,19:48,Bengaluru Urban,Yeshwanthpur,MEDIUM,PENDING,13.0167,77.5448,Chain Snatching reported at Subramanyapura. Roadside snatch.,Roadside snatch
+FIR000690,Criminal Trespass,2025-08-14,16:57,Dakshina Kannada,Mangaluru South,CRITICAL,CLOSED,12.8883,74.8915,Criminal Trespass reported at Padmanabhanagar. Temple trespass.,Temple trespass
+FIR000691,Robbery,2025-08-15,15:59,Chitradurga,Molakalmuru,MEDIUM,PENDING,14.182,76.4003,Robbery reported at RT Nagar. Armed robbery.,Armed robbery
+FIR000692,Sexual Offence,2025-08-16,02:49,Davanagere,Honnali,HIGH,PENDING,14.4784,75.888,Sexual Offence reported at Padmanabhanagar. Assault.,Assault
+FIR000693,Murder,2025-08-17,09:24,Ramanagara,Magadi,HIGH,CLOSED,12.6884,77.3329,Murder reported at JP Nagar 6th Phase. Blunt force.,Blunt force
+FIR000694,Drug Offence,2025-08-18,02:48,Bengaluru Urban,Whitefield,CRITICAL,CLOSED,12.9452,77.6017,Drug Offence reported at HSR Layout Sector 3. Manufacturing.,Manufacturing
+FIR000695,Cybercrime,2025-08-19,11:58,Dharwad,Dharwad Town,MEDIUM,CLOSED,15.4597,74.9761,"Cybercrime reported at 12th Main, Indiranagar. Malware attack.",Malware attack
+FIR000696,Criminal Trespass,2025-08-20,04:41,Ballari,Ballari Town,MEDIUM,COLD,15.1011,76.9101,Criminal Trespass reported at Koramangala 1st Cross. Boundary violation.,Boundary violation
+FIR000697,Sexual Offence,2025-08-21,14:31,Bidar,Bhalki,LOW,PENDING,17.9526,77.5704,Sexual Offence reported at JP Nagar 6th Phase. Eve teasing.,Eve teasing
+FIR000698,Cybercrime,2025-08-22,03:33,Chikkamagaluru,Kadur,MEDIUM,CLOSED,13.2917,75.8037,Cybercrime reported at Hebbal Ring Road. Phishing link.,Phishing link
+FIR000699,Arson,2025-08-23,17:53,Ballari,Kampli,HIGH,PENDING,15.1074,76.9015,Arson reported at Rajajinagar. Forest fire.,Forest fire
+FIR000700,Arson,2025-08-24,16:42,Vijayapura,Vijayapura Town,HIGH,CLOSED,16.8189,75.6603,Arson reported at Vijayanagar Town. Industrial arson.,Industrial arson
+FIR000701,Sexual Offence,2025-08-25,02:26,Ballari,Sandur,MEDIUM,UNDER_INVESTIGATION,15.1893,76.9294,Sexual Offence reported at Malleshwaram 8th Cross. Stalking.,Stalking
+FIR000702,Robbery,2025-08-26,11:37,Chamarajanagar,Main Police Station,LOW,UNDER_INVESTIGATION,11.9689,76.9283,Robbery reported at Marathahalli Bridge. Home invasion.,Home invasion
+FIR000703,Assault,2025-08-27,19:01,Ramanagara,Magadi,CRITICAL,PENDING,12.6864,77.2656,Assault reported at Banashankari 2nd Stage. Group assault.,Group assault
+FIR000704,Murder,2025-08-28,00:10,Mandya,Nagamangala,HIGH,CLOSED,12.5325,76.9308,Murder reported at Kengeri Satellite Town. Poisoning.,Poisoning
+FIR000705,Domestic Violence,2025-07-30,16:35,Chamarajanagar,Main Police Station,CRITICAL,CLOSED,11.9121,76.9123,Domestic Violence reported at RT Nagar. Physical abuse.,Physical abuse
+FIR000706,Robbery,2025-07-31,15:43,Uttara Kannada,Main Police Station,CRITICAL,PENDING,14.8401,74.1512,Robbery reported at Jayanagar 4th Block. Armed robbery.,Armed robbery
+FIR000707,Vehicle Theft,2025-08-01,13:34,Ballari,Hospet,CRITICAL,CLOSED,15.1185,76.9375,Vehicle Theft reported at Mahalakshmi Layout. Towing.,Towing
+FIR000708,Drug Offence,2025-08-02,15:00,Kodagu,Madikeri,LOW,COLD,12.3783,75.7536,Drug Offence reported at Vijayanagar Town. Online sale.,Online sale
+FIR000709,Vehicle Theft,2025-08-03,04:02,Ballari,Sandur,HIGH,COLD,15.1053,76.9532,Vehicle Theft reported at Uttarahalli. Carjacking.,Carjacking
+FIR000710,Sexual Offence,2025-08-04,10:10,Mysuru,Nazarbad,MEDIUM,COLD,12.2744,76.6192,Sexual Offence reported at Rajajinagar. Harassment.,Harassment
+FIR000711,Arson,2025-08-05,23:47,Kolar,Bangarpet,LOW,COLD,13.1784,78.1225,Arson reported at Brigade Road. Vehicle arson.,Vehicle arson
+FIR000712,Vehicle Theft,2025-08-06,14:38,Davanagere,Harihara,LOW,COLD,14.424,75.9333,Vehicle Theft reported at RT Nagar. Key duplication.,Key duplication
+FIR000713,Sexual Offence,2025-08-07,00:05,Vijayapura,Sindagi,MEDIUM,CLOSED,16.8478,75.711,Sexual Offence reported at Electronic City Phase 1. Harassment.,Harassment
+FIR000714,Murder,2025-08-08,23:19,Vijayanagara,Hospet,CRITICAL,PENDING,15.2804,76.6259,Murder reported at BTM Layout Stage 2. Sharp weapon.,Sharp weapon
+FIR000715,Cybercrime,2025-08-09,00:54,Chikkamagaluru,Mudigere,LOW,PENDING,13.3474,75.7606,Cybercrime reported at Yelahanka New Town. Phishing link.,Phishing link
+FIR000716,Pickpocketing,2025-08-10,09:38,Chamarajanagar,Main Police Station,MEDIUM,UNDER_INVESTIGATION,11.9505,76.901,Pickpocketing reported at Kumaraswamy Layout. Cut pocket.,Cut pocket
+FIR000717,Domestic Violence,2025-08-11,22:33,Udupi,Karkala,HIGH,UNDER_INVESTIGATION,13.2943,74.7858,"Domestic Violence reported at 12th Main, Indiranagar. Dowry harassment.",Dowry harassment
+FIR000718,Assault,2025-08-12,09:31,Belagavi,Kadapa,MEDIUM,CLOSED,15.8564,74.5264,Assault reported at Mahalakshmi Layout. Road rage.,Road rage
+FIR000719,Pickpocketing,2025-08-13,17:04,Bengaluru Urban,Jayanagar,MEDIUM,COLD,13.0156,77.6261,Pickpocketing reported at Electronic City Phase 1. Crowd pick.,Crowd pick
+FIR000720,Drug Offence,2025-08-14,11:16,Tumakuru,Tiptur,MEDIUM,UNDER_INVESTIGATION,13.3638,77.0608,Drug Offence reported at Uttarahalli. Street peddling.,Street peddling
+FIR000721,Pickpocketing,2025-08-15,05:05,Chikkamagaluru,Chikkamagaluru Town,CRITICAL,PENDING,13.2778,75.755,Pickpocketing reported at Dasarahalli. Bus pick.,Bus pick
+FIR000722,Drug Offence,2025-08-16,18:20,Belagavi,Tilakwadi,HIGH,PENDING,15.8344,74.5474,Drug Offence reported at Peenya Industrial Area. Street peddling.,Street peddling
+FIR000723,Vehicle Theft,2025-08-17,15:44,Ballari,Ballari Town,MEDIUM,COLD,15.1448,76.8791,Vehicle Theft reported at Koramangala 1st Cross. Key duplication.,Key duplication
+FIR000724,Burglary,2025-08-18,07:17,Yadgiri,Yadgiri Town,LOW,PENDING,16.7989,77.1137,Burglary reported at Rajajinagar. Lock picking.,Lock picking
+FIR000725,Criminal Trespass,2025-08-19,12:48,Gadag,Ron,MEDIUM,PENDING,15.3979,75.5949,Criminal Trespass reported at Mahalakshmi Layout. Illegal occupation.,Illegal occupation
+FIR000726,Chain Snatching,2025-08-20,15:41,Kolar,KGF,LOW,COLD,13.1579,78.0816,Chain Snatching reported at Dasarahalli. Roadside snatch.,Roadside snatch
+FIR000727,Drug Offence,2025-08-21,01:31,Tumakuru,Tumakuru Town,HIGH,UNDER_INVESTIGATION,13.2975,77.0725,Drug Offence reported at Yelahanka New Town. Smuggling.,Smuggling
+FIR000728,Arson,2025-08-22,14:15,Ramanagara,Magadi,LOW,PENDING,12.759,77.2994,Arson reported at Jayanagar 4th Block. Forest fire.,Forest fire
+FIR000729,Burglary,2025-08-23,12:57,Mysuru,Krishnaraja,CRITICAL,CLOSED,12.3134,76.5987,Burglary reported at Peenya Industrial Area. Forceful entry.,Forceful entry
+FIR000730,Fraud,2025-08-24,15:02,Raichur,Lingsugur,CRITICAL,CLOSED,16.1712,77.3685,Fraud reported at RT Nagar. Property fraud.,Property fraud
+FIR000731,Domestic Violence,2025-08-25,13:16,Mandya,Srirangapatna,MEDIUM,CLOSED,12.5519,76.8642,"Domestic Violence reported at 12th Main, Indiranagar. Physical abuse.",Physical abuse
+FIR000732,Sexual Offence,2025-08-26,10:07,Chikkaballapur,Main Police Station,MEDIUM,CLOSED,13.4596,77.7119,Sexual Offence reported at BTM Layout Stage 2. Assault.,Assault
+FIR000733,Domestic Violence,2025-08-27,06:50,Yadgiri,Shahapur,MEDIUM,PENDING,16.775,77.1505,Domestic Violence reported at JP Nagar 6th Phase. Verbal abuse.,Verbal abuse
+FIR000734,Domestic Violence,2025-08-28,09:12,Dharwad,Hubli South,HIGH,COLD,15.4695,75.0229,Domestic Violence reported at Sadashivanagar. Marital rape.,Marital rape
+FIR000735,Criminal Trespass,2025-07-30,01:33,Davanagere,Jagalur,CRITICAL,UNDER_INVESTIGATION,14.4873,75.907,Criminal Trespass reported at Marathahalli Bridge. Temple trespass.,Temple trespass
+FIR000736,Drug Offence,2025-07-31,09:40,Dakshina Kannada,Mangaluru North,MEDIUM,UNDER_INVESTIGATION,12.8876,74.8777,Drug Offence reported at Mahalakshmi Layout. Street peddling.,Street peddling
+FIR000737,Pickpocketing,2025-08-29,12:54,Chitradurga,Chitradurga Town,CRITICAL,COLD,14.179,76.3896,Pickpocketing reported at Malleshwaram 8th Cross. Bus pick.,Bus pick
+FIR000738,Kidnapping,2025-08-30,17:00,Belagavi,Shahapur,CRITICAL,UNDER_INVESTIGATION,15.8311,74.4699,Kidnapping reported at Subramanyapura. Human trafficking.,Human trafficking
+FIR000739,Kidnapping,2025-08-31,18:26,Davanagere,Harihara,HIGH,CLOSED,14.4472,75.9155,Kidnapping reported at Peenya Industrial Area. Honour related.,Honour related
+FIR000740,Domestic Violence,2025-09-01,12:22,Belagavi,Shahapur,MEDIUM,COLD,15.8188,74.4755,Domestic Violence reported at Peenya Industrial Area. Marital rape.,Marital rape
+FIR000741,Arson,2025-09-02,11:05,Bidar,Bidar Town,CRITICAL,COLD,17.8926,77.4834,Arson reported at Electronic City Phase 1. Forest fire.,Forest fire
+FIR000742,Pickpocketing,2025-09-03,18:30,Raichur,Manvi,CRITICAL,COLD,16.1922,77.3076,Pickpocketing reported at Koramangala 1st Cross. Crowd pick.,Crowd pick
+FIR000743,Criminal Trespass,2025-09-04,13:32,Koppal,Yelburga,HIGH,CLOSED,15.2978,76.163,Criminal Trespass reported at Koramangala 1st Cross. Encroachment.,Encroachment
+FIR000744,Vehicle Theft,2025-09-05,23:30,Bengaluru Urban,Banashankari,CRITICAL,COLD,12.9466,77.5887,Vehicle Theft reported at Rajajinagar. Valet theft.,Valet theft
+FIR000745,Fraud,2025-09-06,00:40,Mysuru,Krishnaraja,MEDIUM,PENDING,12.287,76.6008,Fraud reported at Brigade Road. Insurance fraud.,Insurance fraud
+FIR000746,Kidnapping,2025-09-07,01:29,Udupi,Karkala,MEDIUM,CLOSED,13.3498,74.7514,Kidnapping reported at Whitefield Main Road. Human trafficking.,Human trafficking
+FIR000747,Criminal Trespass,2025-09-08,05:08,Raichur,Raichur Town,LOW,PENDING,16.2306,77.3556,Criminal Trespass reported at Uttarahalli. Temple trespass.,Temple trespass
+FIR000748,Vehicle Theft,2025-09-09,22:18,Ballari,Hospet,CRITICAL,PENDING,15.1211,76.9149,Vehicle Theft reported at Brigade Road. Key duplication.,Key duplication
+FIR000749,Pickpocketing,2025-09-10,20:06,Bengaluru Rural,Devanahalli,MEDIUM,COLD,13.0855,77.568,Pickpocketing reported at Mahalakshmi Layout. Cut pocket.,Cut pocket
+FIR000750,Vehicle Theft,2025-09-11,03:13,Ballari,Hospet,MEDIUM,UNDER_INVESTIGATION,15.1139,76.9528,Vehicle Theft reported at Malleshwaram 8th Cross. Towing.,Towing
+FIR000751,Burglary,2025-09-12,13:37,Mysuru,Vijayanagar,CRITICAL,UNDER_INVESTIGATION,12.2804,76.6078,Burglary reported at JP Nagar 6th Phase. Rooftop entry.,Rooftop entry
+FIR000752,Vehicle Theft,2025-09-13,08:21,Ballari,Hospet,CRITICAL,UNDER_INVESTIGATION,15.1627,76.8883,Vehicle Theft reported at JP Nagar 6th Phase. Valet theft.,Valet theft
+FIR000753,Murder,2025-09-14,16:24,Chitradurga,Chitradurga Town,CRITICAL,CLOSED,14.2063,76.4129,Murder reported at Koramangala 1st Cross. Firearm.,Firearm
+FIR000754,Drug Offence,2025-09-15,04:19,Hassan,Arsikere,LOW,UNDER_INVESTIGATION,13.0396,76.0544,Drug Offence reported at Koramangala 1st Cross. Online sale.,Online sale
+FIR000755,Arson,2025-09-16,08:21,Bengaluru Rural,Hoskote,CRITICAL,PENDING,13.0998,77.5516,Arson reported at MG Road. Vehicle arson.,Vehicle arson
+FIR000756,Fraud,2025-09-17,04:30,Chamarajanagar,Main Police Station,MEDIUM,CLOSED,11.8748,76.9866,Fraud reported at RT Nagar. Property fraud.,Property fraud
+FIR000757,Chain Snatching,2025-09-18,12:16,Chitradurga,Hosadurga,HIGH,PENDING,14.2181,76.4201,"Chain Snatching reported at 12th Main, Indiranagar. Pedestrian snatch.",Pedestrian snatch
+FIR000758,Vehicle Theft,2025-09-19,22:18,Tumakuru,Madhugiri,MEDIUM,COLD,13.3401,77.136,Vehicle Theft reported at MG Road. Key duplication.,Key duplication
+FIR000759,Fraud,2025-09-20,00:25,Uttara Kannada,Main Police Station,CRITICAL,PENDING,14.8092,74.1386,Fraud reported at Koramangala 1st Cross. Identity theft.,Identity theft
+FIR000760,Kidnapping,2025-09-21,15:16,Bidar,Basavakalyan,LOW,CLOSED,17.92,77.5595,Kidnapping reported at Padmanabhanagar. Honour related.,Honour related
+FIR000761,Drug Offence,2025-09-22,02:56,Yadgiri,Shahapur,CRITICAL,CLOSED,16.7717,77.1471,Drug Offence reported at Kengeri Satellite Town. Street peddling.,Street peddling
+FIR000762,Vehicle Theft,2025-09-23,18:49,Ballari,Ballari Town,MEDIUM,PENDING,15.1061,76.9226,Vehicle Theft reported at Whitefield Main Road. Lock breaking.,Lock breaking
+FIR000763,Criminal Trespass,2025-09-24,07:18,Yadgiri,Yadgiri Town,CRITICAL,PENDING,16.7724,77.1481,Criminal Trespass reported at HSR Layout Sector 3. Encroachment.,Encroachment
+FIR000764,Burglary,2025-09-25,14:57,Ramanagara,Ramanagara Town,CRITICAL,CLOSED,12.7515,77.2473,Burglary reported at JP Nagar 6th Phase. Window break.,Window break
+FIR000765,Criminal Trespass,2025-09-26,04:27,Dharwad,Kalghatgi,LOW,COLD,15.4701,75.0156,Criminal Trespass reported at MG Road. Encroachment.,Encroachment
+FIR000766,Vehicle Theft,2025-09-27,07:47,Haveri,Byadgi,LOW,CLOSED,14.7526,75.4018,Vehicle Theft reported at Sadashivanagar. Key duplication.,Key duplication
+FIR000767,Sexual Offence,2025-08-29,06:30,Ramanagara,Channapatna,HIGH,UNDER_INVESTIGATION,12.732,77.3012,Sexual Offence reported at Subramanyapura. Workplace harassment.,Workplace harassment
+FIR000768,Chain Snatching,2025-08-30,17:37,Chikkamagaluru,Chikkamagaluru Town,CRITICAL,PENDING,13.3375,75.8156,Chain Snatching reported at Banashankari 2nd Stage. Pillion snatch.,Pillion snatch
+FIR000769,Pickpocketing,2025-08-31,09:42,Shivamogga,Tirthahalli,HIGH,PENDING,13.8844,75.5841,Pickpocketing reported at Nagarbhavi. Distraction theft.,Distraction theft
+FIR000770,Murder,2025-09-01,03:22,Mysuru,Krishnaraja,MEDIUM,UNDER_INVESTIGATION,12.2494,76.676,Murder reported at Kumaraswamy Layout. Sharp weapon.,Sharp weapon
+FIR000771,Burglary,2025-09-02,07:48,Hassan,Hassan Town,MEDIUM,UNDER_INVESTIGATION,13.0211,76.0712,Burglary reported at BTM Layout Stage 2. Window break.,Window break
+FIR000772,Criminal Trespass,2025-09-03,18:32,Raichur,Raichur Town,HIGH,COLD,16.1663,77.3167,Criminal Trespass reported at Electronic City Phase 1. Boundary violation.,Boundary violation
+FIR000773,Burglary,2025-09-04,16:05,Mysuru,Kuvempunagar,MEDIUM,PENDING,12.2705,76.6166,Burglary reported at Koramangala 1st Cross. Rooftop entry.,Rooftop entry
+FIR000774,Burglary,2025-09-05,05:50,Mysuru,Vijayanagar,HIGH,CLOSED,12.3118,76.6503,Burglary reported at Sadashivanagar. Window break.,Window break
+FIR000775,Burglary,2025-09-06,20:28,Ramanagara,Kanakapura,LOW,CLOSED,12.6917,77.2858,Burglary reported at Malleshwaram 8th Cross. Disguised entry.,Disguised entry
+FIR000776,Robbery,2025-09-07,05:03,Dakshina Kannada,Mangaluru North,HIGH,CLOSED,12.9193,74.8317,Robbery reported at Uttarahalli. Bank robbery.,Bank robbery
+FIR000777,Murder,2025-09-08,08:36,Raichur,Sindhnur,CRITICAL,COLD,16.2198,77.3297,Murder reported at Yelahanka New Town. Sharp weapon.,Sharp weapon
+FIR000778,Drug Offence,2025-09-09,19:19,Yadgiri,Shorapur,MEDIUM,UNDER_INVESTIGATION,16.7699,77.1042,Drug Offence reported at Dasarahalli. Smuggling.,Smuggling
+FIR000779,Chain Snatching,2025-09-10,05:14,Mysuru,Krishnaraja,LOW,CLOSED,12.332,76.6492,Chain Snatching reported at Malleshwaram 8th Cross. Market snatch.,Market snatch
+FIR000780,Burglary,2025-09-11,23:28,Ramanagara,Magadi,HIGH,PENDING,12.7256,77.2434,Burglary reported at Dasarahalli. Disguised entry.,Disguised entry
+FIR000781,Chain Snatching,2025-09-12,09:02,Gadag,Naragund,CRITICAL,CLOSED,15.4397,75.5673,Chain Snatching reported at Kengeri Satellite Town. Pedestrian snatch.,Pedestrian snatch
+FIR000782,Sexual Offence,2025-09-13,08:43,Hassan,Arsikere,HIGH,COLD,13.0147,76.0979,Sexual Offence reported at Vijayanagar 2nd Stage. Workplace harassment.,Workplace harassment
+FIR000783,Arson,2025-09-14,13:14,Ramanagara,Ramanagara Town,MEDIUM,UNDER_INVESTIGATION,12.6903,77.3172,Arson reported at Kengeri Satellite Town. Property arson.,Property arson
+FIR000784,Vehicle Theft,2025-09-15,03:37,Bengaluru Rural,Hoskote,HIGH,PENDING,13.1232,77.6086,Vehicle Theft reported at JP Nagar 6th Phase. Key duplication.,Key duplication
+FIR000785,Robbery,2025-09-16,17:20,Uttara Kannada,Main Police Station,LOW,UNDER_INVESTIGATION,14.7835,74.0921,Robbery reported at Yelahanka New Town. Armed robbery.,Armed robbery
+FIR000786,Fraud,2025-09-17,08:40,Chikkamagaluru,Narasimharajapura,HIGH,CLOSED,13.2682,75.7248,Fraud reported at Dasarahalli. Insurance fraud.,Insurance fraud
+FIR000787,Robbery,2025-09-18,03:46,Raichur,Raichur Town,MEDIUM,CLOSED,16.2085,77.3619,"Robbery reported at 12th Main, Indiranagar. Chain snatching.",Chain snatching
+FIR000788,Arson,2025-09-19,17:46,Kodagu,Somwarpet,HIGH,UNDER_INVESTIGATION,12.408,75.7139,Arson reported at BTM Layout Stage 2. Industrial arson.,Industrial arson
+FIR000789,Chain Snatching,2025-09-20,05:09,Hassan,Arsikere,HIGH,COLD,12.9958,76.093,Chain Snatching reported at HSR Layout Sector 3. Roadside snatch.,Roadside snatch
+FIR000790,Burglary,2025-09-21,10:46,Hassan,Hassan Town,HIGH,CLOSED,12.963,76.1333,Burglary reported at Nagarbhavi. Window break.,Window break
+FIR000791,Sexual Offence,2025-09-22,17:25,Mysuru,Udayagiri,LOW,CLOSED,12.2771,76.6556,Sexual Offence reported at Nagarbhavi. Stalking.,Stalking
+FIR000792,Chain Snatching,2025-09-23,15:04,Davanagere,Jagalur,LOW,PENDING,14.4318,75.8971,Chain Snatching reported at Padmanabhanagar. Market snatch.,Market snatch
+FIR000793,Robbery,2025-09-24,06:21,Dakshina Kannada,Sullia,MEDIUM,UNDER_INVESTIGATION,12.8983,74.8264,Robbery reported at Kengeri Satellite Town. Highway robbery.,Highway robbery
+FIR000794,Vehicle Theft,2025-09-25,23:16,Ballari,Ballari Town,HIGH,PENDING,15.1415,76.9064,Vehicle Theft reported at Marathahalli Bridge. Lock breaking.,Lock breaking
+FIR000795,Robbery,2025-09-26,13:36,Ramanagara,Channapatna,CRITICAL,CLOSED,12.7295,77.2804,Robbery reported at BTM Layout Stage 2. Armed robbery.,Armed robbery
+FIR000796,Domestic Violence,2025-09-27,06:51,Raichur,Sindhnur,HIGH,CLOSED,16.1714,77.3585,Domestic Violence reported at Jayanagar 4th Block. Elder abuse.,Elder abuse
+FIR000797,Pickpocketing,2025-08-29,07:46,Chikkaballapur,Main Police Station,HIGH,UNDER_INVESTIGATION,13.4552,77.7239,Pickpocketing reported at Vijayanagar 2nd Stage. Crowd pick.,Crowd pick
+FIR000798,Robbery,2025-08-30,03:34,Davanagere,Harihara,HIGH,UNDER_INVESTIGATION,14.4102,75.9622,Robbery reported at Koramangala 1st Cross. Highway robbery.,Highway robbery
+FIR000799,Fraud,2025-08-31,10:33,Uttara Kannada,Main Police Station,MEDIUM,UNDER_INVESTIGATION,14.82,74.1417,Fraud reported at Koramangala 1st Cross. Online scam.,Online scam
+FIR000800,Domestic Violence,2025-09-01,19:23,Ramanagara,Kanakapura,HIGH,CLOSED,12.7216,77.2898,Domestic Violence reported at MG Road. Physical abuse.,Physical abuse
+FIR000801,Domestic Violence,2025-09-02,00:08,Dharwad,Hubli North,MEDIUM,CLOSED,15.4903,75.0149,Domestic Violence reported at Sadashivanagar. Physical abuse.,Physical abuse
+FIR000802,Arson,2025-09-03,13:07,Udupi,Brahmavar,CRITICAL,UNDER_INVESTIGATION,13.3895,74.7587,Arson reported at Peenya Industrial Area. Forest fire.,Forest fire
+FIR000803,Burglary,2025-09-04,02:02,Mysuru,Kuvempunagar,HIGH,COLD,12.2768,76.5976,Burglary reported at Malleshwaram 8th Cross. Window break.,Window break
+FIR000804,Chain Snatching,2025-09-05,11:18,Ballari,Kampli,MEDIUM,PENDING,15.1001,76.9405,Chain Snatching reported at Vijayanagar 2nd Stage. Market snatch.,Market snatch
+FIR000805,Drug Offence,2025-09-06,12:20,Mysuru,Udayagiri,CRITICAL,PENDING,12.294,76.6614,Drug Offence reported at Hebbal Ring Road. Transportation.,Transportation
+FIR000806,Murder,2025-09-07,14:43,Gadag,Gadag Town,MEDIUM,CLOSED,15.3717,75.6078,Murder reported at Hebbal Ring Road. Sharp weapon.,Sharp weapon
+FIR000807,Burglary,2025-09-08,04:50,Dakshina Kannada,Mangaluru North,MEDIUM,COLD,12.8934,74.8829,Burglary reported at Basavanagudi. Disguised entry.,Disguised entry
+FIR000808,Murder,2025-09-09,22:17,Haveri,Haveri Town,MEDIUM,PENDING,14.7661,75.4184,Murder reported at Padmanabhanagar. Strangulation.,Strangulation
+FIR000809,Arson,2025-09-10,22:06,Ballari,Kampli,HIGH,COLD,15.1826,76.8781,Arson reported at Brigade Road. Property arson.,Property arson
+FIR000810,Burglary,2025-09-11,05:46,Hassan,Sakleshpur,MEDIUM,UNDER_INVESTIGATION,13.0025,76.1387,Burglary reported at Dasarahalli. Forceful entry.,Forceful entry
+FIR000811,Chain Snatching,2025-09-12,11:27,Haveri,Hangal,MEDIUM,CLOSED,14.7982,75.3783,Chain Snatching reported at Subramanyapura. Roadside snatch.,Roadside snatch
+FIR000812,Vehicle Theft,2025-09-13,12:10,Ballari,Hospet,LOW,UNDER_INVESTIGATION,15.0938,76.9685,Vehicle Theft reported at Rajajinagar. Carjacking.,Carjacking
+FIR000813,Murder,2025-09-14,23:29,Chikkaballapur,Main Police Station,HIGH,PENDING,13.4264,77.7491,Murder reported at Peenya Industrial Area. Blunt force.,Blunt force
+FIR000814,Arson,2025-09-15,00:43,Chamarajanagar,Main Police Station,LOW,PENDING,11.894,76.9014,Arson reported at Vijayanagar 2nd Stage. Vehicle arson.,Vehicle arson
+FIR000815,Cybercrime,2025-09-16,05:27,Dakshina Kannada,Mangaluru North,LOW,UNDER_INVESTIGATION,12.89,74.886,Cybercrime reported at Brigade Road. Phishing link.,Phishing link
+FIR000816,Pickpocketing,2025-09-17,02:37,Kalaburagi,Sedam,MEDIUM,COLD,17.3332,76.8157,"Pickpocketing reported at 12th Main, Indiranagar. Bus pick.",Bus pick
+FIR000817,Drug Offence,2025-09-18,09:43,Shivamogga,Shivamogga Town,LOW,UNDER_INVESTIGATION,13.8871,75.5477,Drug Offence reported at Marathahalli Bridge. Manufacturing.,Manufacturing
+FIR000818,Drug Offence,2025-09-19,13:30,Vijayanagara,Kampli,CRITICAL,PENDING,15.2942,76.6653,Drug Offence reported at Jayanagar 4th Block. Street peddling.,Street peddling
+FIR000819,Assault,2025-09-20,17:42,Ramanagara,Ramanagara Town,HIGH,UNDER_INVESTIGATION,12.7196,77.3117,Assault reported at BTM Layout Stage 2. Road rage.,Road rage
+FIR000820,Fraud,2025-09-21,13:45,Raichur,Raichur Town,CRITICAL,CLOSED,16.2485,77.3158,Fraud reported at Koramangala 1st Cross. Insurance fraud.,Insurance fraud
+FIR000821,Drug Offence,2025-09-22,07:50,Bengaluru Rural,Doddaballapura,HIGH,PENDING,13.1193,77.6287,Drug Offence reported at HSR Layout Sector 3. Transportation.,Transportation
+FIR000822,Criminal Trespass,2025-09-23,02:06,Gadag,Gadag Town,HIGH,UNDER_INVESTIGATION,15.4597,75.603,Criminal Trespass reported at Brigade Road. Temple trespass.,Temple trespass
+FIR000823,Vehicle Theft,2025-09-24,13:08,Udupi,Kundapur,CRITICAL,CLOSED,13.3612,74.734,Vehicle Theft reported at Peenya Industrial Area. Lock breaking.,Lock breaking
+FIR000824,Assault,2025-09-25,18:01,Bengaluru Rural,Doddaballapura,CRITICAL,COLD,13.1282,77.6357,Assault reported at Padmanabhanagar. Strangulation.,Strangulation
+FIR000825,Assault,2025-09-26,21:18,Dakshina Kannada,Sullia,HIGH,PENDING,12.8491,74.8324,Assault reported at Vijayanagar 2nd Stage. Confrontation.,Confrontation
+FIR000826,Chain Snatching,2025-09-27,19:54,Kalaburagi,Sedam,MEDIUM,PENDING,17.3282,76.8103,Chain Snatching reported at Nagarbhavi. Pedestrian snatch.,Pedestrian snatch
+FIR000827,Fraud,2025-08-29,22:15,Davanagere,Jagalur,MEDIUM,CLOSED,14.501,75.9121,Fraud reported at Koramangala 1st Cross. Property fraud.,Property fraud
+FIR000828,Vehicle Theft,2025-08-30,15:50,Ballari,Sandur,LOW,CLOSED,15.0975,76.9281,Vehicle Theft reported at Whitefield Main Road. Valet theft.,Valet theft
+FIR000829,Kidnapping,2025-09-28,19:27,Bidar,Bhalki,MEDIUM,UNDER_INVESTIGATION,17.908,77.5754,Kidnapping reported at Dasarahalli. Honour related.,Honour related
+FIR000830,Fraud,2025-09-29,20:35,Koppal,Koppal Town,LOW,PENDING,15.3463,76.121,Fraud reported at Kumaraswamy Layout. Property fraud.,Property fraud
+FIR000831,Vehicle Theft,2025-09-30,05:08,Ballari,Hospet,HIGH,COLD,15.1488,76.8927,Vehicle Theft reported at Whitefield Main Road. Carjacking.,Carjacking
+FIR000832,Murder,2025-10-01,05:50,Vijayanagara,Kampli,HIGH,UNDER_INVESTIGATION,15.235,76.6451,Murder reported at BTM Layout Stage 2. Poisoning.,Poisoning
+FIR000833,Burglary,2025-10-02,15:57,Vijayapura,Indi,HIGH,COLD,16.8384,75.7452,Burglary reported at JP Nagar 6th Phase. Forceful entry.,Forceful entry
+FIR000834,Fraud,2025-10-03,18:49,Chikkaballapur,Main Police Station,CRITICAL,CLOSED,13.4164,77.7105,Fraud reported at Kumaraswamy Layout. Identity theft.,Identity theft
+FIR000835,Murder,2025-10-04,17:09,Haveri,Ranebennur,MEDIUM,UNDER_INVESTIGATION,14.8323,75.3765,Murder reported at Uttarahalli. Blunt force.,Blunt force
+FIR000836,Drug Offence,2025-10-05,21:06,Mandya,Srirangapatna,CRITICAL,CLOSED,12.5685,76.927,Drug Offence reported at Sadashivanagar. Smuggling.,Smuggling
+FIR000837,Criminal Trespass,2025-10-06,10:26,Chikkamagaluru,Mudigere,CRITICAL,PENDING,13.2875,75.8183,Criminal Trespass reported at Malleshwaram 8th Cross. Illegal occupation.,Illegal occupation
+FIR000838,Vehicle Theft,2025-10-07,11:59,Mysuru,Kuvempunagar,MEDIUM,CLOSED,12.2868,76.6804,Vehicle Theft reported at Whitefield Main Road. Towing.,Towing
+FIR000839,Assault,2025-10-08,09:10,Vijayapura,Indi,MEDIUM,CLOSED,16.8554,75.7088,Assault reported at Padmanabhanagar. Confrontation.,Confrontation
+FIR000840,Vehicle Theft,2025-10-09,16:19,Ballari,Hospet,HIGH,CLOSED,15.1887,76.8753,Vehicle Theft reported at Jayanagar 4th Block. Lock breaking.,Lock breaking
+FIR000841,Vehicle Theft,2025-10-10,17:11,Ballari,Hospet,CRITICAL,PENDING,15.1049,76.8764,Vehicle Theft reported at Padmanabhanagar. Carjacking.,Carjacking
+FIR000842,Vehicle Theft,2025-10-11,05:09,Ballari,Hospet,MEDIUM,PENDING,15.1379,76.8798,Vehicle Theft reported at Kengeri Satellite Town. Valet theft.,Valet theft
+FIR000843,Vehicle Theft,2025-10-12,04:52,Raichur,Sindhnur,CRITICAL,COLD,16.2273,77.3318,Vehicle Theft reported at Basavanagudi. Key duplication.,Key duplication
+FIR000844,Pickpocketing,2025-10-13,20:33,Uttara Kannada,Main Police Station,CRITICAL,PENDING,14.8619,74.1306,Pickpocketing reported at Yelahanka New Town. Bus pick.,Bus pick
+FIR000845,Chain Snatching,2025-10-14,12:27,Mandya,Maddur,LOW,PENDING,12.5347,76.9423,Chain Snatching reported at Banashankari 2nd Stage. Market snatch.,Market snatch
+FIR000846,Chain Snatching,2025-10-15,18:12,Dharwad,Hubli North,CRITICAL,PENDING,15.4531,75.0526,Chain Snatching reported at Uttarahalli. Pedestrian snatch.,Pedestrian snatch
+FIR000847,Assault,2025-10-16,22:11,Yadgiri,Yadgiri Town,CRITICAL,COLD,16.7874,77.1274,Assault reported at Kumaraswamy Layout. Strangulation.,Strangulation
+FIR000848,Pickpocketing,2025-10-17,17:37,Yadgiri,Shahapur,MEDIUM,COLD,16.8141,77.098,Pickpocketing reported at Kengeri Satellite Town. Bus pick.,Bus pick
+FIR000849,Fraud,2025-10-18,15:19,Shivamogga,Bhadravati,CRITICAL,CLOSED,13.8843,75.5553,Fraud reported at Brigade Road. Property fraud.,Property fraud
+FIR000850,Drug Offence,2025-10-19,16:52,Ramanagara,Channapatna,LOW,PENDING,12.7431,77.2802,Drug Offence reported at Malleshwaram 8th Cross. Manufacturing.,Manufacturing
+FIR000851,Arson,2025-10-20,03:14,Bengaluru Rural,Nelamangala,MEDIUM,PENDING,13.1439,77.6011,Arson reported at Vijayanagar 2nd Stage. Vehicle arson.,Vehicle arson
+FIR000852,Murder,2025-10-21,09:34,Kolar,Bangarpet,LOW,CLOSED,13.1625,78.0978,Murder reported at Banashankari 2nd Stage. Sharp weapon.,Sharp weapon
+FIR000853,Burglary,2025-10-22,09:20,Vijayanagara,Kampli,MEDIUM,PENDING,15.2932,76.6546,Burglary reported at Peenya Industrial Area. Disguised entry.,Disguised entry
+FIR000854,Chain Snatching,2025-10-23,02:13,Bengaluru Rural,Devanahalli,HIGH,PENDING,13.1459,77.5569,Chain Snatching reported at Whitefield Main Road. Market snatch.,Market snatch
+FIR000855,Criminal Trespass,2025-10-24,04:48,Bengaluru Urban,Yeshwanthpur,CRITICAL,UNDER_INVESTIGATION,12.9505,77.6042,Criminal Trespass reported at Subramanyapura. Encroachment.,Encroachment
+FIR000856,Vehicle Theft,2025-10-25,21:22,Ballari,Hospet,HIGH,PENDING,15.0954,76.906,Vehicle Theft reported at MG Road. Valet theft.,Valet theft
+FIR000857,Kidnapping,2025-10-26,20:22,Chikkamagaluru,Kadur,MEDIUM,COLD,13.3387,75.7231,Kidnapping reported at Vijayanagar 2nd Stage. For ransom.,For ransom
+FIR000858,Sexual Offence,2025-10-27,12:04,Kodagu,Ponnampet,LOW,COLD,12.4213,75.7161,Sexual Offence reported at Padmanabhanagar. Harassment.,Harassment
+FIR000859,Burglary,2025-09-28,16:51,Gadag,Mundargi,HIGH,CLOSED,15.446,75.6293,Burglary reported at Kumaraswamy Layout. Lock picking.,Lock picking
+FIR000860,Vehicle Theft,2025-09-29,02:59,Ballari,Ballari Town,LOW,PENDING,15.097,76.8816,Vehicle Theft reported at Kumaraswamy Layout. Valet theft.,Valet theft
+FIR000861,Chain Snatching,2025-09-30,13:25,Davanagere,Davanagere Town,CRITICAL,UNDER_INVESTIGATION,14.4373,75.9282,Chain Snatching reported at Mahalakshmi Layout. Pedestrian snatch.,Pedestrian snatch
+FIR000862,Arson,2025-10-01,03:14,Raichur,Manvi,MEDIUM,CLOSED,16.2069,77.3151,Arson reported at Subramanyapura. Vehicle arson.,Vehicle arson
+FIR000863,Drug Offence,2025-10-02,21:33,Ballari,Sandur,CRITICAL,PENDING,15.1681,76.9138,"Drug Offence reported at 12th Main, Indiranagar. Transportation.",Transportation
+FIR000864,Domestic Violence,2025-10-03,12:44,Udupi,Brahmavar,CRITICAL,CLOSED,13.2982,74.7812,Domestic Violence reported at Padmanabhanagar. Dowry harassment.,Dowry harassment
+FIR000865,Vehicle Theft,2025-10-04,00:35,Ballari,Ballari Town,LOW,UNDER_INVESTIGATION,15.1467,76.9107,Vehicle Theft reported at Dasarahalli. Valet theft.,Valet theft
+FIR000866,Cybercrime,2025-10-05,07:43,Chikkaballapur,Main Police Station,MEDIUM,UNDER_INVESTIGATION,13.4672,77.7366,Cybercrime reported at Sadashivanagar. Malware attack.,Malware attack
+FIR000867,Criminal Trespass,2025-10-06,17:53,Udupi,Kundapur,MEDIUM,UNDER_INVESTIGATION,13.3416,74.7634,Criminal Trespass reported at Uttarahalli. Illegal occupation.,Illegal occupation
+FIR000868,Chain Snatching,2025-10-07,06:38,Hassan,Sakleshpur,CRITICAL,PENDING,13.0256,76.0541,Chain Snatching reported at Dasarahalli. Pillion snatch.,Pillion snatch
+FIR000869,Arson,2025-10-08,14:48,Haveri,Hangal,LOW,CLOSED,14.7476,75.3594,Arson reported at Koramangala 1st Cross. Vehicle arson.,Vehicle arson
+FIR000870,Kidnapping,2025-10-09,14:42,Dakshina Kannada,Puttur,CRITICAL,COLD,12.9142,74.8844,"Kidnapping reported at 12th Main, Indiranagar. Honour related.",Honour related
+FIR000871,Kidnapping,2025-10-10,03:10,Kolar,Kolar Town,CRITICAL,CLOSED,13.1289,78.0849,Kidnapping reported at Peenya Industrial Area. Custodial.,Custodial
+FIR000872,Assault,2025-10-11,02:06,Mandya,Nagamangala,LOW,CLOSED,12.487,76.8964,Assault reported at Kengeri Satellite Town. Group assault.,Group assault
+FIR000873,Drug Offence,2025-10-12,01:12,Haveri,Hangal,MEDIUM,COLD,14.8037,75.3733,Drug Offence reported at Nagarbhavi. Street peddling.,Street peddling
+FIR000874,Sexual Offence,2025-10-13,05:26,Uttara Kannada,Main Police Station,LOW,CLOSED,14.8244,74.1359,Sexual Offence reported at Basavanagudi. Stalking.,Stalking
+FIR000875,Pickpocketing,2025-10-14,22:05,Udupi,Udupi Town,LOW,PENDING,13.2979,74.7834,Pickpocketing reported at Mahalakshmi Layout. Distraction theft.,Distraction theft
+FIR000876,Vehicle Theft,2025-10-15,14:37,Ballari,Sandur,CRITICAL,UNDER_INVESTIGATION,15.119,76.8947,Vehicle Theft reported at Malleshwaram 8th Cross. Towing.,Towing
+FIR000877,Arson,2025-10-16,14:48,Uttara Kannada,Main Police Station,MEDIUM,UNDER_INVESTIGATION,14.7825,74.1643,Arson reported at Uttarahalli. Forest fire.,Forest fire
+FIR000878,Fraud,2025-10-17,18:52,Dharwad,Kalghatgi,MEDIUM,COLD,15.4624,75.049,Fraud reported at Hebbal Ring Road. Identity theft.,Identity theft
+FIR000879,Cybercrime,2025-10-18,15:28,Bengaluru Urban,Whitefield,HIGH,CLOSED,12.9693,77.6068,Cybercrime reported at Jayanagar 4th Block. Social engineering.,Social engineering
+FIR000880,Assault,2025-10-19,16:12,Uttara Kannada,Main Police Station,MEDIUM,CLOSED,14.7708,74.1312,Assault reported at JP Nagar 6th Phase. Confrontation.,Confrontation
+FIR000881,Criminal Trespass,2025-10-20,03:43,Ramanagara,Channapatna,MEDIUM,UNDER_INVESTIGATION,12.6857,77.2533,Criminal Trespass reported at Malleshwaram 8th Cross. Boundary violation.,Boundary violation
+FIR000882,Drug Offence,2025-10-21,17:25,Kalaburagi,Afzalpur,LOW,COLD,17.2893,76.8778,Drug Offence reported at Peenya Industrial Area. Smuggling.,Smuggling
+FIR000883,Sexual Offence,2025-10-22,09:37,Kalaburagi,Afzalpur,CRITICAL,COLD,17.2903,76.7882,Sexual Offence reported at Marathahalli Bridge. Assault.,Assault
+FIR000884,Murder,2025-10-23,07:04,Ramanagara,Channapatna,LOW,CLOSED,12.7232,77.255,Murder reported at Electronic City Phase 1. Blunt force.,Blunt force
+FIR000885,Drug Offence,2025-10-24,10:47,Bengaluru Rural,Hoskote,CRITICAL,PENDING,13.0726,77.5998,Drug Offence reported at Kengeri Satellite Town. Transportation.,Transportation
+FIR000886,Burglary,2025-10-25,06:26,Chikkamagaluru,Kadur,CRITICAL,PENDING,13.2789,75.781,Burglary reported at Marathahalli Bridge. Lock picking.,Lock picking
+FIR000887,Fraud,2025-10-26,04:18,Vijayapura,Sindagi,MEDIUM,PENDING,16.8365,75.7268,Fraud reported at Subramanyapura. Credit card fraud.,Credit card fraud
+FIR000888,Arson,2025-10-27,12:59,Shivamogga,Tirthahalli,LOW,COLD,13.9342,75.551,Arson reported at Rajajinagar. Forest fire.,Forest fire
+FIR000889,Domestic Violence,2025-09-28,13:10,Chikkamagaluru,Narasimharajapura,HIGH,COLD,13.2929,75.7677,Domestic Violence reported at Electronic City Phase 1. Dowry harassment.,Dowry harassment
+FIR000890,Vehicle Theft,2025-09-29,12:44,Belagavi,Kadapa,HIGH,COLD,15.8061,74.4644,Vehicle Theft reported at Yelahanka New Town. Lock breaking.,Lock breaking
+FIR000891,Pickpocketing,2025-09-30,12:43,Hassan,Hassan Town,MEDIUM,UNDER_INVESTIGATION,13.0476,76.0932,Pickpocketing reported at Vijayanagar Town. Bus pick.,Bus pick
+FIR000892,Assault,2025-10-01,21:28,Koppal,Gangavati,HIGH,UNDER_INVESTIGATION,15.3673,76.1233,Assault reported at Peenya Industrial Area. Strangulation.,Strangulation
+FIR000893,Vehicle Theft,2025-10-02,17:41,Gadag,Ron,CRITICAL,CLOSED,15.4165,75.6465,Vehicle Theft reported at JP Nagar 6th Phase. Key duplication.,Key duplication
+FIR000894,Murder,2025-10-03,14:25,Davanagere,Honnali,MEDIUM,CLOSED,14.4452,75.8898,Murder reported at Basavanagudi. Firearm.,Firearm
+FIR000895,Vehicle Theft,2025-10-04,00:20,Ballari,Sandur,HIGH,PENDING,15.0896,76.9424,Vehicle Theft reported at Uttarahalli. Lock breaking.,Lock breaking
+FIR000896,Robbery,2025-10-05,16:35,Kolar,Malur,HIGH,COLD,13.0936,78.0927,Robbery reported at Kengeri Satellite Town. Home invasion.,Home invasion
+FIR000897,Sexual Offence,2025-10-06,22:30,Dharwad,Hubli South,LOW,PENDING,15.4475,74.9617,Sexual Offence reported at JP Nagar 6th Phase. Harassment.,Harassment
+FIR000898,Drug Offence,2025-10-07,13:52,Uttara Kannada,Main Police Station,HIGH,PENDING,14.845,74.1612,Drug Offence reported at Padmanabhanagar. Street peddling.,Street peddling
+FIR000899,Pickpocketing,2025-10-08,09:44,Haveri,Ranebennur,HIGH,CLOSED,14.7861,75.4084,Pickpocketing reported at Yelahanka New Town. Cut pocket.,Cut pocket
+FIR000900,Murder,2025-10-09,11:38,Kalaburagi,Afzalpur,CRITICAL,PENDING,17.2837,76.8245,Murder reported at Dasarahalli. Strangulation.,Strangulation
+FIR000901,Kidnapping,2025-10-10,11:52,Uttara Kannada,Main Police Station,LOW,COLD,14.8315,74.1172,Kidnapping reported at Koramangala 1st Cross. Human trafficking.,Human trafficking
+FIR000902,Burglary,2025-10-11,10:55,Chitradurga,Hosadurga,HIGH,CLOSED,14.2349,76.4122,Burglary reported at Whitefield Main Road. Rooftop entry.,Rooftop entry
+FIR000903,Cybercrime,2025-10-12,21:39,Bidar,Bhalki,HIGH,PENDING,17.9284,77.5763,Cybercrime reported at MG Road. Credential theft.,Credential theft
+FIR000904,Vehicle Theft,2025-10-13,16:15,Ballari,Hospet,HIGH,CLOSED,15.1341,76.9117,Vehicle Theft reported at Banashankari 2nd Stage. Carjacking.,Carjacking
+FIR000905,Sexual Offence,2025-10-14,22:23,Ramanagara,Ramanagara Town,CRITICAL,COLD,12.7005,77.2682,Sexual Offence reported at HSR Layout Sector 3. Harassment.,Harassment
+FIR000906,Pickpocketing,2025-10-15,16:15,Hassan,Sakleshpur,MEDIUM,UNDER_INVESTIGATION,13.0454,76.0987,Pickpocketing reported at Uttarahalli. Bus pick.,Bus pick
+FIR000907,Assault,2025-10-16,06:55,Tumakuru,Tiptur,HIGH,CLOSED,13.3784,77.0669,Assault reported at Kumaraswamy Layout. Confrontation.,Confrontation
+FIR000908,Burglary,2025-10-17,19:40,Ballari,Sandur,MEDIUM,UNDER_INVESTIGATION,15.1653,76.9286,Burglary reported at Kengeri Satellite Town. Forceful entry.,Forceful entry
+FIR000909,Kidnapping,2025-10-18,15:28,Chikkamagaluru,Mudigere,MEDIUM,CLOSED,13.2828,75.7384,Kidnapping reported at Uttarahalli. Custodial.,Custodial
+FIR000910,Arson,2025-10-19,11:38,Bengaluru Rural,Hoskote,MEDIUM,UNDER_INVESTIGATION,13.1053,77.5822,Arson reported at Padmanabhanagar. Property arson.,Property arson
+FIR000911,Domestic Violence,2025-10-20,04:13,Vijayanagara,Kampli,CRITICAL,CLOSED,15.2404,76.5968,Domestic Violence reported at Vijayanagar Town. Marital rape.,Marital rape
+FIR000912,Robbery,2025-10-21,09:13,Kodagu,Somwarpet,LOW,PENDING,12.4551,75.7168,Robbery reported at Dasarahalli. Bank robbery.,Bank robbery
+FIR000913,Assault,2025-10-22,13:31,Bidar,Bidar Town,LOW,UNDER_INVESTIGATION,17.9571,77.5552,Assault reported at Brigade Road. Confrontation.,Confrontation
+FIR000914,Pickpocketing,2025-10-23,22:54,Belagavi,Camp,HIGH,COLD,15.8425,74.4875,Pickpocketing reported at Electronic City Phase 1. Bus pick.,Bus pick
+FIR000915,Robbery,2025-10-24,02:52,Mandya,Mandya Town,HIGH,PENDING,12.5218,76.88,Robbery reported at Banashankari 2nd Stage. Home invasion.,Home invasion
+FIR000916,Cybercrime,2025-10-25,04:17,Ramanagara,Magadi,CRITICAL,COLD,12.6866,77.2857,Cybercrime reported at Uttarahalli. Phishing link.,Phishing link
+FIR000917,Arson,2025-10-26,13:30,Raichur,Lingsugur,MEDIUM,COLD,16.2336,77.3791,Arson reported at Peenya Industrial Area. Property arson.,Property arson
+FIR000918,Criminal Trespass,2025-10-27,01:43,Uttara Kannada,Main Police Station,MEDIUM,CLOSED,14.84,74.1715,Criminal Trespass reported at Uttarahalli. Illegal occupation.,Illegal occupation
+FIR000919,Kidnapping,2025-09-28,22:42,Kolar,KGF,CRITICAL,UNDER_INVESTIGATION,13.1685,78.1294,Kidnapping reported at Whitefield Main Road. For ransom.,For ransom
+FIR000920,Domestic Violence,2025-09-29,02:31,Davanagere,Jagalur,HIGH,CLOSED,14.4924,75.909,Domestic Violence reported at Nagarbhavi. Physical abuse.,Physical abuse
+FIR000921,Cybercrime,2025-10-28,06:11,Bengaluru Urban,Cubbon Park,HIGH,COLD,12.9833,77.6412,Cybercrime reported at MG Road. Credential theft.,Credential theft
+FIR000922,Cybercrime,2025-10-29,17:18,Bengaluru Urban,Indiranagar,HIGH,CLOSED,12.9793,77.6445,Cybercrime reported at Vijayanagar 2nd Stage. Social engineering.,Social engineering
+FIR000923,Pickpocketing,2025-10-30,08:00,Gadag,Mundargi,HIGH,CLOSED,15.4298,75.6114,Pickpocketing reported at Dasarahalli. Cut pocket.,Cut pocket
+FIR000924,Cybercrime,2025-10-31,03:21,Bengaluru Urban,Jayanagar,LOW,PENDING,12.9547,77.5818,Cybercrime reported at Basavanagudi. Social engineering.,Social engineering
+FIR000925,Robbery,2025-11-01,05:22,Belagavi,Kadapa,CRITICAL,UNDER_INVESTIGATION,15.814,74.5081,Robbery reported at Mahalakshmi Layout. Bank robbery.,Bank robbery
+FIR000926,Vehicle Theft,2025-11-02,11:11,Chitradurga,Hosadurga,CRITICAL,CLOSED,14.1711,76.4339,Vehicle Theft reported at Subramanyapura. Towing.,Towing
+FIR000927,Pickpocketing,2025-11-03,21:08,Kodagu,Virajpet,MEDIUM,CLOSED,12.4488,75.78,Pickpocketing reported at Mahalakshmi Layout. Bus pick.,Bus pick
+FIR000928,Cybercrime,2025-11-04,11:01,Bengaluru Urban,Banashankari,LOW,CLOSED,12.9906,77.5984,Cybercrime reported at Brigade Road. Fake call centre.,Fake call centre
+FIR000929,Cybercrime,2025-11-05,08:37,Bengaluru Urban,Whitefield,CRITICAL,CLOSED,12.9577,77.5577,Cybercrime reported at Hebbal Ring Road. Malware attack.,Malware attack
+FIR000930,Domestic Violence,2025-11-06,17:44,Mandya,Maddur,HIGH,UNDER_INVESTIGATION,12.5737,76.9415,Domestic Violence reported at Kumaraswamy Layout. Verbal abuse.,Verbal abuse
+FIR000931,Cybercrime,2025-11-07,11:26,Bengaluru Urban,Mysore Road,LOW,COLD,12.9271,77.5638,Cybercrime reported at Vijayanagar Town. Credential theft.,Credential theft
+FIR000932,Cybercrime,2025-11-08,11:30,Bengaluru Urban,Koramangala,HIGH,CLOSED,13.0047,77.638,Cybercrime reported at Hebbal Ring Road. Phishing link.,Phishing link
+FIR000933,Vehicle Theft,2025-11-09,17:36,Belagavi,Maruti,CRITICAL,UNDER_INVESTIGATION,15.8475,74.4699,Vehicle Theft reported at MG Road. Key duplication.,Key duplication
+FIR000934,Burglary,2025-11-10,06:15,Uttara Kannada,Main Police Station,MEDIUM,CLOSED,14.8449,74.0928,Burglary reported at Hebbal Ring Road. Lock picking.,Lock picking
+FIR000935,Cybercrime,2025-11-11,15:32,Bengaluru Urban,Indiranagar,HIGH,PENDING,12.9385,77.6244,Cybercrime reported at HSR Layout Sector 3. Phishing link.,Phishing link
+FIR000936,Vehicle Theft,2025-11-12,17:17,Ballari,Ballari Town,MEDIUM,PENDING,15.154,76.8803,Vehicle Theft reported at Sadashivanagar. Carjacking.,Carjacking
+FIR000937,Cybercrime,2025-11-13,13:03,Bengaluru Rural,Magadi,HIGH,COLD,13.1472,77.5655,Cybercrime reported at Marathahalli Bridge. Malware attack.,Malware attack
+FIR000938,Drug Offence,2025-11-14,05:32,Tumakuru,Madhugiri,HIGH,COLD,13.3478,77.0805,Drug Offence reported at Uttarahalli. Street peddling.,Street peddling
+FIR000939,Robbery,2025-11-15,02:05,Vijayapura,Vijayapura Town,HIGH,UNDER_INVESTIGATION,16.8133,75.746,Robbery reported at Whitefield Main Road. Bank robbery.,Bank robbery
+FIR000940,Pickpocketing,2025-11-16,21:04,Haveri,Hangal,CRITICAL,COLD,14.7622,75.432,Pickpocketing reported at Hebbal Ring Road. Cut pocket.,Cut pocket
+FIR000941,Criminal Trespass,2025-11-17,18:19,Kalaburagi,Afzalpur,LOW,PENDING,17.3494,76.8212,Criminal Trespass reported at Subramanyapura. Illegal occupation.,Illegal occupation
+FIR000942,Cybercrime,2025-11-18,05:18,Koppal,Kushtagi,LOW,COLD,15.3326,76.1183,Cybercrime reported at Rajajinagar. Credential theft.,Credential theft
+FIR000943,Vehicle Theft,2025-11-19,07:02,Ballari,Kampli,LOW,CLOSED,15.1815,76.9076,Vehicle Theft reported at MG Road. Towing.,Towing
+FIR000944,Cybercrime,2025-11-20,14:24,Bengaluru Urban,Yeshwanthpur,LOW,CLOSED,12.9726,77.5617,Cybercrime reported at Whitefield Main Road. Credential theft.,Credential theft
+FIR000945,Cybercrime,2025-11-21,20:22,Bengaluru Urban,Whitefield,MEDIUM,UNDER_INVESTIGATION,12.9851,77.5715,Cybercrime reported at Jayanagar 4th Block. Phishing link.,Phishing link
+FIR000946,Criminal Trespass,2025-11-22,17:46,Dakshina Kannada,Mangaluru South,LOW,COLD,12.8509,74.8126,Criminal Trespass reported at Peenya Industrial Area. Illegal occupation.,Illegal occupation
+FIR000947,Arson,2025-11-23,06:32,Chikkaballapur,Main Police Station,CRITICAL,PENDING,13.4225,77.7582,Arson reported at MG Road. Property arson.,Property arson
+FIR000948,Cybercrime,2025-11-24,13:12,Bengaluru Urban,Indiranagar,MEDIUM,PENDING,12.9761,77.5973,Cybercrime reported at Dasarahalli. Fake call centre.,Fake call centre
+FIR000949,Criminal Trespass,2025-11-25,15:52,Chikkaballapur,Main Police Station,MEDIUM,UNDER_INVESTIGATION,13.437,77.7004,Criminal Trespass reported at Mahalakshmi Layout. Temple trespass.,Temple trespass
+FIR000950,Criminal Trespass,2025-11-26,14:16,Chikkaballapur,Main Police Station,CRITICAL,COLD,13.4814,77.7728,Criminal Trespass reported at RT Nagar. Boundary violation.,Boundary violation
+FIR000951,Drug Offence,2025-10-28,14:37,Ballari,Kampli,HIGH,PENDING,15.1673,76.9087,Drug Offence reported at Vijayanagar Town. Online sale.,Online sale
+FIR000952,Cybercrime,2025-10-29,01:02,Bengaluru Urban,Indiranagar,MEDIUM,COLD,12.9751,77.614,Cybercrime reported at Mahalakshmi Layout. Social engineering.,Social engineering
+FIR000953,Cybercrime,2025-10-30,18:21,Bengaluru Urban,Indiranagar,CRITICAL,PENDING,12.9439,77.5891,Cybercrime reported at Basavanagudi. Social engineering.,Social engineering
+FIR000954,Sexual Offence,2025-10-31,09:39,Chamarajanagar,Main Police Station,HIGH,CLOSED,11.8816,76.957,Sexual Offence reported at Sadashivanagar. Workplace harassment.,Workplace harassment
+FIR000955,Arson,2025-11-01,20:03,Shivamogga,Sagara,MEDIUM,CLOSED,13.9031,75.5714,Arson reported at Kengeri Satellite Town. Property arson.,Property arson
+FIR000956,Cybercrime,2025-11-02,10:08,Bengaluru Urban,Banashankari,HIGH,CLOSED,12.926,77.5456,Cybercrime reported at Uttarahalli. Social engineering.,Social engineering
+FIR000957,Kidnapping,2025-11-03,09:27,Koppal,Yelburga,LOW,CLOSED,15.3504,76.1361,Kidnapping reported at Marathahalli Bridge. For ransom.,For ransom
+FIR000958,Pickpocketing,2025-11-04,04:20,Koppal,Yelburga,LOW,COLD,15.3939,76.2024,Pickpocketing reported at Sadashivanagar. Cut pocket.,Cut pocket
+FIR000959,Domestic Violence,2025-11-05,20:26,Raichur,Sindhnur,HIGH,UNDER_INVESTIGATION,16.2107,77.3301,Domestic Violence reported at Marathahalli Bridge. Marital rape.,Marital rape
+FIR000960,Sexual Offence,2025-11-06,07:45,Uttara Kannada,Main Police Station,LOW,CLOSED,14.8388,74.1571,Sexual Offence reported at Electronic City Phase 1. Assault.,Assault
+FIR000961,Fraud,2025-11-07,12:32,Chikkamagaluru,Kadur,LOW,PENDING,13.3582,75.8094,Fraud reported at HSR Layout Sector 3. Credit card fraud.,Credit card fraud
+FIR000962,Cybercrime,2025-11-08,22:37,Bengaluru Urban,Indiranagar,HIGH,PENDING,12.9573,77.6165,Cybercrime reported at Hebbal Ring Road. Social engineering.,Social engineering
+FIR000963,Robbery,2025-11-09,11:56,Haveri,Haveri Town,HIGH,PENDING,14.7466,75.4066,Robbery reported at RT Nagar. Armed robbery.,Armed robbery
+FIR000964,Criminal Trespass,2025-11-10,12:44,Koppal,Gangavati,HIGH,PENDING,15.3402,76.1905,Criminal Trespass reported at Kengeri Satellite Town. Temple trespass.,Temple trespass
+FIR000965,Arson,2025-11-11,23:11,Uttara Kannada,Main Police Station,LOW,CLOSED,14.861,74.0897,Arson reported at Rajajinagar. Industrial arson.,Industrial arson
+FIR000966,Criminal Trespass,2025-11-12,11:41,Bengaluru Urban,Yeshwanthpur,HIGH,COLD,12.9804,77.596,Criminal Trespass reported at Jayanagar 4th Block. Temple trespass.,Temple trespass
+FIR000967,Vehicle Theft,2025-11-13,17:48,Chamarajanagar,Main Police Station,HIGH,CLOSED,11.9187,76.975,Vehicle Theft reported at Nagarbhavi. Carjacking.,Carjacking
+FIR000968,Sexual Offence,2025-11-14,18:40,Koppal,Gangavati,HIGH,PENDING,15.38,76.1368,Sexual Offence reported at Peenya Industrial Area. Stalking.,Stalking
+FIR000969,Pickpocketing,2025-11-15,18:56,Kodagu,Somwarpet,MEDIUM,COLD,12.4665,75.6897,Pickpocketing reported at Kengeri Satellite Town. Bus pick.,Bus pick
+FIR000970,Vehicle Theft,2025-11-16,02:40,Dakshina Kannada,Mangaluru North,LOW,CLOSED,12.9107,74.8819,Vehicle Theft reported at Peenya Industrial Area. Key duplication.,Key duplication
+FIR000971,Cybercrime,2025-11-17,12:55,Bengaluru Urban,Jayanagar,LOW,COLD,12.9716,77.5687,Cybercrime reported at Brigade Road. Malware attack.,Malware attack
+FIR000972,Criminal Trespass,2025-11-18,17:27,Davanagere,Harihara,CRITICAL,PENDING,14.4454,75.8783,Criminal Trespass reported at Banashankari 2nd Stage. Boundary violation.,Boundary violation
+FIR000973,Fraud,2025-11-19,05:53,Ballari,Hospet,HIGH,CLOSED,15.1779,76.873,Fraud reported at HSR Layout Sector 3. Insurance fraud.,Insurance fraud
+FIR000974,Drug Offence,2025-11-20,04:40,Raichur,Manvi,LOW,PENDING,16.1747,77.3528,Drug Offence reported at Dasarahalli. Online sale.,Online sale
+FIR000975,Cybercrime,2025-11-21,17:42,Bengaluru Urban,Mysore Road,HIGH,COLD,12.9357,77.5626,Cybercrime reported at MG Road. Fake call centre.,Fake call centre
+FIR000976,Fraud,2025-11-22,15:30,Kolar,KGF,HIGH,CLOSED,13.1338,78.1701,Fraud reported at Whitefield Main Road. Insurance fraud.,Insurance fraud
+FIR000977,Chain Snatching,2025-11-23,02:04,Yadgiri,Shorapur,CRITICAL,CLOSED,16.7899,77.101,"Chain Snatching reported at 12th Main, Indiranagar. Pillion snatch.",Pillion snatch
+FIR000978,Chain Snatching,2025-11-24,04:08,Kalaburagi,Afzalpur,CRITICAL,UNDER_INVESTIGATION,17.3501,76.8651,Chain Snatching reported at Koramangala 1st Cross. Roadside snatch.,Roadside snatch
+FIR000979,Cybercrime,2025-11-25,22:40,Bengaluru Urban,Indiranagar,MEDIUM,COLD,12.9452,77.6155,Cybercrime reported at Nagarbhavi. Social engineering.,Social engineering
+FIR000980,Cybercrime,2025-11-26,12:30,Bengaluru Urban,Yeshwanthpur,MEDIUM,UNDER_INVESTIGATION,12.9963,77.5662,Cybercrime reported at Basavanagudi. Credential theft.,Credential theft
+FIR000981,Cybercrime,2025-10-28,00:50,Bengaluru Urban,Whitefield,MEDIUM,COLD,12.9912,77.6353,Cybercrime reported at HSR Layout Sector 3. Phishing link.,Phishing link
+FIR000982,Vehicle Theft,2025-10-29,18:14,Ballari,Hospet,MEDIUM,PENDING,15.0922,76.9653,Vehicle Theft reported at MG Road. Towing.,Towing
+FIR000983,Cybercrime,2025-10-30,10:16,Bengaluru Urban,Jayanagar,MEDIUM,PENDING,12.9284,77.6348,Cybercrime reported at Peenya Industrial Area. Fake call centre.,Fake call centre
+FIR000984,Robbery,2025-10-31,01:38,Vijayanagara,Kampli,LOW,UNDER_INVESTIGATION,15.2976,76.6516,Robbery reported at Sadashivanagar. Chain snatching.,Chain snatching
+FIR000985,Fraud,2025-11-01,03:16,Ballari,Sandur,CRITICAL,CLOSED,15.0963,76.9316,Fraud reported at Mahalakshmi Layout. Online scam.,Online scam
+FIR000986,Cybercrime,2025-11-02,03:00,Bengaluru Urban,Yeshwanthpur,HIGH,UNDER_INVESTIGATION,12.9729,77.5645,Cybercrime reported at Nagarbhavi. Malware attack.,Malware attack
+FIR000987,Vehicle Theft,2025-11-03,23:29,Udupi,Brahmavar,CRITICAL,CLOSED,13.3512,74.7458,Vehicle Theft reported at Electronic City Phase 1. Key duplication.,Key duplication
+FIR000988,Burglary,2025-11-04,00:42,Tumakuru,Madhugiri,LOW,CLOSED,13.3392,77.0629,Burglary reported at Koramangala 1st Cross. Forceful entry.,Forceful entry
+FIR000989,Kidnapping,2025-11-05,19:39,Chitradurga,Hosadurga,HIGH,CLOSED,14.2549,76.452,Kidnapping reported at HSR Layout Sector 3. Political.,Political
+FIR000990,Domestic Violence,2025-11-06,01:26,Uttara Kannada,Main Police Station,HIGH,COLD,14.7958,74.1426,Domestic Violence reported at Mahalakshmi Layout. Physical abuse.,Physical abuse
+FIR000991,Cybercrime,2025-11-07,19:16,Bengaluru Urban,Yeshwanthpur,MEDIUM,PENDING,12.9945,77.6364,Cybercrime reported at BTM Layout Stage 2. Fake call centre.,Fake call centre
+FIR000992,Pickpocketing,2025-11-08,22:34,Udupi,Brahmavar,CRITICAL,PENDING,13.3764,74.7139,Pickpocketing reported at Mahalakshmi Layout. Distraction theft.,Distraction theft
+FIR000993,Sexual Offence,2025-11-09,10:20,Yadgiri,Shorapur,CRITICAL,UNDER_INVESTIGATION,16.7285,77.1122,Sexual Offence reported at Nagarbhavi. Stalking.,Stalking
+FIR000994,Drug Offence,2025-11-10,21:35,Chitradurga,Molakalmuru,MEDIUM,PENDING,14.2534,76.3863,Drug Offence reported at Hebbal Ring Road. Smuggling.,Smuggling
+FIR000995,Robbery,2025-11-11,09:50,Gadag,Ron,LOW,UNDER_INVESTIGATION,15.4231,75.6152,Robbery reported at MG Road. Highway robbery.,Highway robbery
+FIR000996,Arson,2025-11-12,12:40,Ramanagara,Magadi,HIGH,CLOSED,12.7437,77.2852,Arson reported at MG Road. Vehicle arson.,Vehicle arson
+FIR000997,Chain Snatching,2025-11-13,08:58,Bidar,Bidar Town,HIGH,COLD,17.9135,77.5661,Chain Snatching reported at Banashankari 2nd Stage. Pedestrian snatch.,Pedestrian snatch
+FIR000998,Cybercrime,2025-11-14,12:48,Shivamogga,Bhadravati,CRITICAL,UNDER_INVESTIGATION,13.9421,75.5503,Cybercrime reported at Basavanagudi. Social engineering.,Social engineering
+FIR000999,Cybercrime,2025-11-15,23:30,Kalaburagi,Sedam,CRITICAL,UNDER_INVESTIGATION,17.3017,76.8268,Cybercrime reported at Jayanagar 4th Block. Malware attack.,Malware attack
+FIR001000,Arson,2025-11-16,00:58,Mysuru,Krishnaraja,CRITICAL,PENDING,12.2648,76.6454,Arson reported at HSR Layout Sector 3. Industrial arson.,Industrial arson
+FIR001001,Robbery,2025-11-17,06:12,Kalaburagi,Sedam,HIGH,COLD,17.2966,76.8744,Robbery reported at Dasarahalli. Bank robbery.,Bank robbery
+FIR001002,Vehicle Theft,2025-11-18,20:29,Ballari,Sandur,HIGH,UNDER_INVESTIGATION,15.1153,76.9242,Vehicle Theft reported at JP Nagar 6th Phase. Key duplication.,Key duplication
+FIR001003,Cybercrime,2025-11-19,20:44,Bengaluru Urban,Koramangala,HIGH,CLOSED,12.9929,77.6147,Cybercrime reported at Whitefield Main Road. Malware attack.,Malware attack
+FIR001004,Robbery,2025-11-20,10:00,Bengaluru Urban,Whitefield,CRITICAL,UNDER_INVESTIGATION,12.9602,77.5897,Robbery reported at BTM Layout Stage 2. Home invasion.,Home invasion
+FIR001005,Pickpocketing,2025-11-21,23:31,Chitradurga,Hiriyur,CRITICAL,UNDER_INVESTIGATION,14.2422,76.4357,Pickpocketing reported at Basavanagudi. Bus pick.,Bus pick
+FIR001006,Cybercrime,2025-11-22,15:37,Bengaluru Urban,Banashankari,MEDIUM,UNDER_INVESTIGATION,12.986,77.6082,Cybercrime reported at Electronic City Phase 1. Credential theft.,Credential theft
+FIR001007,Burglary,2025-11-23,22:11,Chamarajanagar,Main Police Station,MEDIUM,UNDER_INVESTIGATION,11.8973,76.9827,Burglary reported at Sadashivanagar. Disguised entry.,Disguised entry
+FIR001008,Cybercrime,2025-11-24,22:03,Hassan,Hassan Town,MEDIUM,UNDER_INVESTIGATION,13.0515,76.1218,Cybercrime reported at JP Nagar 6th Phase. Phishing link.,Phishing link
+FIR001009,Assault,2025-11-25,23:02,Udupi,Udupi Town,CRITICAL,UNDER_INVESTIGATION,13.327,74.7014,Assault reported at Padmanabhanagar. Road rage.,Road rage
+FIR001010,Kidnapping,2025-11-26,23:29,Ballari,Sandur,MEDIUM,CLOSED,15.1296,76.9518,Kidnapping reported at RT Nagar. Honour related.,Honour related
+FIR001011,Chain Snatching,2025-10-28,15:05,Yadgiri,Yadgiri Town,CRITICAL,PENDING,16.8009,77.0934,Chain Snatching reported at BTM Layout Stage 2. Roadside snatch.,Roadside snatch
+FIR001012,Drug Offence,2025-10-29,02:04,Udupi,Udupi Town,LOW,UNDER_INVESTIGATION,13.2937,74.7059,Drug Offence reported at HSR Layout Sector 3. Smuggling.,Smuggling
+FIR001013,Fraud,2025-11-27,15:54,Koppal,Yelburga,LOW,CLOSED,15.3454,76.1073,Fraud reported at Dasarahalli. Credit card fraud.,Credit card fraud
+FIR001014,Cybercrime,2025-11-28,20:52,Bengaluru Urban,Jayanagar,CRITICAL,UNDER_INVESTIGATION,12.9731,77.5762,Cybercrime reported at Nagarbhavi. Phishing link.,Phishing link
+FIR001015,Sexual Offence,2025-11-29,22:24,Dakshina Kannada,Bantwal,HIGH,PENDING,12.8436,74.8565,Sexual Offence reported at Rajajinagar. Workplace harassment.,Workplace harassment
+FIR001016,Cybercrime,2025-11-30,08:39,Bengaluru Urban,Mysore Road,LOW,PENDING,12.9282,77.5857,Cybercrime reported at Peenya Industrial Area. Phishing link.,Phishing link
+FIR001017,Cybercrime,2025-12-01,15:28,Bengaluru Urban,Koramangala,HIGH,UNDER_INVESTIGATION,12.9373,77.591,Cybercrime reported at Yelahanka New Town. Credential theft.,Credential theft
+FIR001018,Kidnapping,2025-12-02,00:25,Dakshina Kannada,Sullia,HIGH,CLOSED,12.8809,74.8351,Kidnapping reported at Padmanabhanagar. Honour related.,Honour related
+FIR001019,Pickpocketing,2025-12-03,12:56,Yadgiri,Shorapur,LOW,PENDING,16.7583,77.0897,Pickpocketing reported at Hebbal Ring Road. Bus pick.,Bus pick
+FIR001020,Pickpocketing,2025-12-04,15:36,Davanagere,Jagalur,LOW,UNDER_INVESTIGATION,14.4814,75.9364,Pickpocketing reported at Jayanagar 4th Block. Bus pick.,Bus pick
+FIR001021,Cybercrime,2025-12-05,23:18,Bengaluru Urban,Cubbon Park,LOW,COLD,12.9249,77.6287,Cybercrime reported at Kengeri Satellite Town. Fake call centre.,Fake call centre
+FIR001022,Vehicle Theft,2025-12-06,23:45,Dakshina Kannada,Sullia,MEDIUM,COLD,12.8555,74.8549,Vehicle Theft reported at Padmanabhanagar. Valet theft.,Valet theft
+FIR001023,Cybercrime,2025-12-07,11:09,Bengaluru Urban,Whitefield,CRITICAL,PENDING,12.9909,77.6337,Cybercrime reported at Dasarahalli. Malware attack.,Malware attack
+FIR001024,Domestic Violence,2025-12-08,18:05,Mandya,Mandya Town,CRITICAL,CLOSED,12.5665,76.9266,Domestic Violence reported at Subramanyapura. Physical abuse.,Physical abuse
+FIR001025,Arson,2025-12-09,02:07,Chikkamagaluru,Narasimharajapura,CRITICAL,UNDER_INVESTIGATION,13.2962,75.8012,Arson reported at Whitefield Main Road. Forest fire.,Forest fire
+FIR001026,Cybercrime,2025-12-10,14:23,Bengaluru Urban,Banashankari,CRITICAL,CLOSED,12.9674,77.5924,"Cybercrime reported at 12th Main, Indiranagar. Social engineering.",Social engineering
+FIR001027,Chain Snatching,2025-12-11,02:40,Kodagu,Madikeri,MEDIUM,UNDER_INVESTIGATION,12.4161,75.7253,Chain Snatching reported at Vijayanagar 2nd Stage. Roadside snatch.,Roadside snatch
+FIR001028,Cybercrime,2025-12-12,01:51,Bengaluru Urban,Jayanagar,HIGH,PENDING,12.9439,77.6345,Cybercrime reported at JP Nagar 6th Phase. Malware attack.,Malware attack
+FIR001029,Cybercrime,2025-12-13,03:26,Bengaluru Urban,Indiranagar,MEDIUM,PENDING,13.0108,77.6316,Cybercrime reported at Hebbal Ring Road. Malware attack.,Malware attack
+FIR001030,Pickpocketing,2025-12-14,03:36,Kolar,KGF,LOW,COLD,13.1366,78.1786,Pickpocketing reported at MG Road. Bus pick.,Bus pick
+FIR001031,Vehicle Theft,2025-12-15,11:38,Shivamogga,Shivamogga Town,LOW,CLOSED,13.901,75.5671,Vehicle Theft reported at Kumaraswamy Layout. Towing.,Towing
+FIR001032,Vehicle Theft,2025-12-16,09:22,Ballari,Kampli,LOW,COLD,15.122,76.9046,Vehicle Theft reported at JP Nagar 6th Phase. Lock breaking.,Lock breaking
+FIR001033,Sexual Offence,2025-12-17,21:21,Davanagere,Honnali,HIGH,UNDER_INVESTIGATION,14.4141,75.8783,Sexual Offence reported at Vijayanagar 2nd Stage. Stalking.,Stalking
+FIR001034,Cybercrime,2025-12-18,01:32,Bengaluru Urban,Jayanagar,MEDIUM,CLOSED,12.9455,77.5541,Cybercrime reported at Banashankari 2nd Stage. Social engineering.,Social engineering
+FIR001035,Cybercrime,2025-12-19,05:52,Bengaluru Urban,Cubbon Park,HIGH,UNDER_INVESTIGATION,12.9232,77.5629,Cybercrime reported at Electronic City Phase 1. Fake call centre.,Fake call centre
+FIR001036,Criminal Trespass,2025-12-20,19:37,Chikkaballapur,Main Police Station,MEDIUM,CLOSED,13.4246,77.6979,Criminal Trespass reported at Brigade Road. Boundary violation.,Boundary violation
+FIR001037,Sexual Offence,2025-12-21,13:13,Chamarajanagar,Main Police Station,CRITICAL,COLD,11.9569,76.9527,Sexual Offence reported at Electronic City Phase 1. Eve teasing.,Eve teasing
+FIR001038,Cybercrime,2025-12-22,07:31,Bengaluru Urban,Yeshwanthpur,CRITICAL,PENDING,12.9598,77.6395,Cybercrime reported at Banashankari 2nd Stage. Credential theft.,Credential theft
+FIR001039,Vehicle Theft,2025-12-23,04:55,Vijayanagara,Kampli,HIGH,PENDING,15.2441,76.612,Vehicle Theft reported at Electronic City Phase 1. Lock breaking.,Lock breaking
+FIR001040,Vehicle Theft,2025-12-24,22:50,Mandya,Srirangapatna,HIGH,COLD,12.5523,76.8733,Vehicle Theft reported at Rajajinagar. Key duplication.,Key duplication
+FIR001041,Chain Snatching,2025-12-25,05:52,Vijayapura,Vijayapura Town,HIGH,COLD,16.782,75.6955,Chain Snatching reported at Kengeri Satellite Town. Roadside snatch.,Roadside snatch
+FIR001042,Domestic Violence,2025-12-26,12:33,Shivamogga,Sagara,LOW,COLD,13.9564,75.5386,Domestic Violence reported at Subramanyapura. Elder abuse.,Elder abuse
+FIR001043,Cybercrime,2025-11-27,11:36,Bengaluru Urban,Jayanagar,HIGH,UNDER_INVESTIGATION,13.0043,77.5993,Cybercrime reported at BTM Layout Stage 2. Social engineering.,Social engineering
+FIR001044,Arson,2025-11-28,23:39,Dakshina Kannada,Puttur,LOW,CLOSED,12.9182,74.8887,Arson reported at JP Nagar 6th Phase. Industrial arson.,Industrial arson
+FIR001045,Domestic Violence,2025-11-29,21:55,Kodagu,Virajpet,MEDIUM,COLD,12.4656,75.7047,Domestic Violence reported at Vijayanagar Town. Physical abuse.,Physical abuse
+FIR001046,Cybercrime,2025-11-30,04:20,Bengaluru Urban,Koramangala,MEDIUM,COLD,12.9599,77.5782,Cybercrime reported at Yelahanka New Town. Social engineering.,Social engineering
+FIR001047,Assault,2025-12-01,17:09,Dakshina Kannada,Mangaluru North,HIGH,PENDING,12.8218,74.7976,Assault reported at MG Road. Group assault.,Group assault
+FIR001048,Assault,2025-12-02,15:01,Bengaluru Urban,Mysore Road,CRITICAL,COLD,13.0128,77.6068,Assault reported at Peenya Industrial Area. Group assault.,Group assault
+FIR001049,Cybercrime,2025-12-03,08:23,Ballari,Ballari Town,LOW,CLOSED,15.1832,76.9646,Cybercrime reported at Dasarahalli. Credential theft.,Credential theft
+FIR001050,Assault,2025-12-04,20:10,Raichur,Manvi,CRITICAL,UNDER_INVESTIGATION,16.2081,77.3246,Assault reported at RT Nagar. Confrontation.,Confrontation
+FIR001051,Domestic Violence,2025-12-05,15:08,Hassan,Arsikere,MEDIUM,CLOSED,12.9579,76.107,Domestic Violence reported at BTM Layout Stage 2. Marital rape.,Marital rape
+FIR001052,Pickpocketing,2025-12-06,15:42,Belagavi,Kadapa,HIGH,COLD,15.8577,74.5325,Pickpocketing reported at Jayanagar 4th Block. Cut pocket.,Cut pocket
+FIR001053,Vehicle Theft,2025-12-07,23:15,Ballari,Ballari Town,LOW,PENDING,15.1628,76.9629,Vehicle Theft reported at Vijayanagar Town. Key duplication.,Key duplication
+FIR001054,Kidnapping,2025-12-08,08:51,Chitradurga,Molakalmuru,HIGH,COLD,14.1975,76.4094,Kidnapping reported at Uttarahalli. For ransom.,For ransom
+FIR001055,Drug Offence,2025-12-09,19:07,Gadag,Naragund,LOW,PENDING,15.4104,75.6343,Drug Offence reported at Brigade Road. Online sale.,Online sale
+FIR001056,Vehicle Theft,2025-12-10,07:31,Ballari,Sandur,LOW,COLD,15.1543,76.8722,Vehicle Theft reported at Vijayanagar 2nd Stage. Key duplication.,Key duplication
+FIR001057,Cybercrime,2025-12-11,10:52,Ramanagara,Channapatna,LOW,UNDER_INVESTIGATION,12.6764,77.2476,"Cybercrime reported at 12th Main, Indiranagar. Credential theft.",Credential theft
+FIR001058,Cybercrime,2025-12-12,15:59,Bengaluru Urban,Jayanagar,LOW,CLOSED,13.0083,77.5562,Cybercrime reported at Banashankari 2nd Stage. Fake call centre.,Fake call centre
+FIR001059,Cybercrime,2025-12-13,02:01,Davanagere,Davanagere Town,LOW,UNDER_INVESTIGATION,14.4491,75.965,Cybercrime reported at HSR Layout Sector 3. Fake call centre.,Fake call centre
+FIR001060,Cybercrime,2025-12-14,17:40,Bengaluru Urban,Koramangala,HIGH,COLD,12.9391,77.5686,Cybercrime reported at Peenya Industrial Area. Phishing link.,Phishing link
+FIR001061,Domestic Violence,2025-12-15,03:52,Kalaburagi,Gulbarga South,MEDIUM,CLOSED,17.3214,76.8417,Domestic Violence reported at Vijayanagar Town. Verbal abuse.,Verbal abuse
+FIR001062,Robbery,2025-12-16,14:25,Shivamogga,Sagara,HIGH,UNDER_INVESTIGATION,13.9515,75.5707,Robbery reported at Peenya Industrial Area. Highway robbery.,Highway robbery
+FIR001063,Assault,2025-12-17,12:31,Kodagu,Virajpet,LOW,CLOSED,12.4021,75.7485,Assault reported at Kumaraswamy Layout. Strangulation.,Strangulation
+FIR001064,Criminal Trespass,2025-12-18,09:42,Ramanagara,Channapatna,LOW,COLD,12.7086,77.3075,Criminal Trespass reported at Mahalakshmi Layout. Encroachment.,Encroachment
+FIR001065,Sexual Offence,2025-12-19,16:28,Raichur,Sindhnur,LOW,CLOSED,16.2517,77.3713,Sexual Offence reported at RT Nagar. Assault.,Assault
+FIR001066,Cybercrime,2025-12-20,08:38,Bengaluru Urban,Cubbon Park,MEDIUM,COLD,12.98,77.5913,Cybercrime reported at JP Nagar 6th Phase. Credential theft.,Credential theft
+FIR001067,Cybercrime,2025-12-21,10:45,Bengaluru Urban,Banashankari,HIGH,COLD,12.9813,77.6282,Cybercrime reported at Malleshwaram 8th Cross. Fake call centre.,Fake call centre
+FIR001068,Burglary,2025-12-22,02:33,Yadgiri,Yadgiri Town,MEDIUM,PENDING,16.7635,77.1574,Burglary reported at Malleshwaram 8th Cross. Forceful entry.,Forceful entry
+FIR001069,Robbery,2025-12-23,23:09,Hassan,Arsikere,MEDIUM,COLD,13.0248,76.0858,Robbery reported at Sadashivanagar. Bank robbery.,Bank robbery
+FIR001070,Chain Snatching,2025-12-24,17:35,Dharwad,Hubli North,CRITICAL,PENDING,15.4632,75.0117,Chain Snatching reported at Dasarahalli. Pedestrian snatch.,Pedestrian snatch
+FIR001071,Chain Snatching,2025-12-25,20:43,Hassan,Sakleshpur,CRITICAL,COLD,13.0243,76.1178,Chain Snatching reported at Sadashivanagar. Pedestrian snatch.,Pedestrian snatch
+FIR001072,Drug Offence,2025-12-26,09:59,Raichur,Lingsugur,CRITICAL,PENDING,16.2252,77.3848,Drug Offence reported at Yelahanka New Town. Street peddling.,Street peddling
+FIR001073,Cybercrime,2025-11-27,20:14,Bengaluru Urban,Whitefield,LOW,COLD,12.9872,77.6105,Cybercrime reported at Mahalakshmi Layout. Fake call centre.,Fake call centre
+FIR001074,Cybercrime,2025-11-28,15:03,Bengaluru Urban,Whitefield,LOW,PENDING,12.9296,77.5942,Cybercrime reported at Electronic City Phase 1. Fake call centre.,Fake call centre
+FIR001075,Drug Offence,2025-11-29,01:42,Chitradurga,Molakalmuru,CRITICAL,CLOSED,14.1779,76.362,Drug Offence reported at Basavanagudi. Online sale.,Online sale
+FIR001076,Cybercrime,2025-11-30,17:01,Bengaluru Urban,Whitefield,LOW,COLD,12.9384,77.5558,Cybercrime reported at Basavanagudi. Malware attack.,Malware attack
+FIR001077,Cybercrime,2025-12-01,22:16,Bengaluru Urban,Indiranagar,CRITICAL,PENDING,12.9602,77.5991,Cybercrime reported at Electronic City Phase 1. Fake call centre.,Fake call centre
+FIR001078,Pickpocketing,2025-12-02,19:36,Kalaburagi,Chincholi,LOW,COLD,17.3417,76.8816,"Pickpocketing reported at 12th Main, Indiranagar. Cut pocket.",Cut pocket
+FIR001079,Assault,2025-12-03,09:46,Ballari,Ballari Town,MEDIUM,CLOSED,15.1733,76.906,Assault reported at Uttarahalli. Strangulation.,Strangulation
+FIR001080,Pickpocketing,2025-12-04,15:57,Bidar,Bidar Town,LOW,CLOSED,17.9028,77.5183,Pickpocketing reported at Peenya Industrial Area. Distraction theft.,Distraction theft
+FIR001081,Fraud,2025-12-05,05:45,Shivamogga,Bhadravati,MEDIUM,PENDING,13.88,75.552,Fraud reported at Hebbal Ring Road. Property fraud.,Property fraud
+FIR001082,Cybercrime,2025-12-06,23:33,Bengaluru Urban,Whitefield,HIGH,COLD,12.9383,77.5615,Cybercrime reported at Dasarahalli. Phishing link.,Phishing link
+FIR001083,Drug Offence,2025-12-07,22:19,Belagavi,Tilakwadi,HIGH,UNDER_INVESTIGATION,15.8326,74.4943,Drug Offence reported at Electronic City Phase 1. Smuggling.,Smuggling
+FIR001084,Cybercrime,2025-12-08,13:51,Ramanagara,Magadi,CRITICAL,CLOSED,12.7445,77.2763,Cybercrime reported at Dasarahalli. Fake call centre.,Fake call centre
+FIR001085,Kidnapping,2025-12-09,22:07,Dharwad,Hubli North,MEDIUM,UNDER_INVESTIGATION,15.4823,74.9903,Kidnapping reported at Vijayanagar 2nd Stage. Human trafficking.,Human trafficking
+FIR001086,Sexual Offence,2025-12-10,02:26,Belagavi,Kadapa,HIGH,COLD,15.8339,74.492,Sexual Offence reported at Whitefield Main Road. Harassment.,Harassment
+FIR001087,Arson,2025-12-11,14:56,Hassan,Sakleshpur,LOW,COLD,13.0422,76.0713,Arson reported at JP Nagar 6th Phase. Property arson.,Property arson
+FIR001088,Cybercrime,2025-12-12,14:44,Bengaluru Urban,Whitefield,MEDIUM,COLD,12.9346,77.624,Cybercrime reported at Padmanabhanagar. Fake call centre.,Fake call centre
+FIR001089,Murder,2025-12-13,21:13,Chikkaballapur,Main Police Station,LOW,CLOSED,13.4641,77.7209,Murder reported at Jayanagar 4th Block. Firearm.,Firearm
+FIR001090,Sexual Offence,2025-12-14,02:03,Chitradurga,Hiriyur,HIGH,UNDER_INVESTIGATION,14.2031,76.364,Sexual Offence reported at Marathahalli Bridge. Workplace harassment.,Workplace harassment
+FIR001091,Domestic Violence,2025-12-15,18:26,Bengaluru Rural,Magadi,CRITICAL,UNDER_INVESTIGATION,13.0611,77.629,Domestic Violence reported at Vijayanagar 2nd Stage. Physical abuse.,Physical abuse
+FIR001092,Robbery,2025-12-16,17:46,Bengaluru Urban,Banashankari,HIGH,UNDER_INVESTIGATION,12.981,77.5641,Robbery reported at Yelahanka New Town. Chain snatching.,Chain snatching
+FIR001093,Vehicle Theft,2025-12-17,17:40,Ballari,Sandur,HIGH,PENDING,15.1165,76.8914,Vehicle Theft reported at HSR Layout Sector 3. Valet theft.,Valet theft
+FIR001094,Cybercrime,2025-12-18,14:36,Bengaluru Urban,Jayanagar,LOW,CLOSED,12.9372,77.5841,Cybercrime reported at Subramanyapura. Social engineering.,Social engineering
+FIR001095,Arson,2025-12-19,14:38,Chikkamagaluru,Narasimharajapura,CRITICAL,COLD,13.3143,75.7239,Arson reported at Rajajinagar. Vehicle arson.,Vehicle arson
+FIR001096,Arson,2025-12-20,05:36,Haveri,Ranebennur,CRITICAL,UNDER_INVESTIGATION,14.8045,75.4074,Arson reported at Yelahanka New Town. Industrial arson.,Industrial arson
+FIR001097,Cybercrime,2025-12-21,20:24,Bengaluru Urban,Cubbon Park,MEDIUM,COLD,13.0169,77.584,Cybercrime reported at BTM Layout Stage 2. Malware attack.,Malware attack
+FIR001098,Criminal Trespass,2025-12-22,23:00,Shivamogga,Shivamogga Town,LOW,CLOSED,13.8984,75.6159,Criminal Trespass reported at Dasarahalli. Boundary violation.,Boundary violation
+FIR001099,Cybercrime,2025-12-23,15:44,Bengaluru Urban,Jayanagar,LOW,COLD,12.9419,77.5518,Cybercrime reported at Dasarahalli. Credential theft.,Credential theft
+FIR001100,Sexual Offence,2025-12-24,22:18,Vijayapura,Muddebihal,CRITICAL,CLOSED,16.7935,75.7483,Sexual Offence reported at Uttarahalli. Eve teasing.,Eve teasing

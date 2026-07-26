@@ -1,4 +1,4 @@
-import {
+﻿import {
   humanize,
   normalizeDimensionLabel,
   normalizeText,

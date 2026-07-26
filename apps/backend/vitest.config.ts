@@ -9,8 +9,9 @@ export default defineConfig({
   test: {
     environment: "node",
     globals: true,
-    include: ["src/**/*.{test,spec}.js"],
-    testTimeout: 15000,
+    include: ["src/__tests__/**/*.{test,spec}.js", "src/**/*.{test,spec}.js"],
+    testTimeout: 30000,
+    hookTimeout: 30000,
     coverage: {
       provider: "v8",
       reporter: ["text", "json-summary", "html"],

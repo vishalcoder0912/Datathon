@@ -1,4 +1,4 @@
-import { Dataset } from '@/features/data/model/dataStore';
+﻿import { Dataset } from '@/features/data/model/dataStore';
 
 export function exportDatasetCSV(dataset: Dataset) {
   const headers = dataset.columns.map(c => c.name);

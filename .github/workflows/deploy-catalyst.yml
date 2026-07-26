@@ -1,0 +1,98 @@
+name: Deploy to Zoho Catalyst
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.gitignore'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: production
+        type: choice
+        options:
+          - production
+          - staging
+
+concurrency:
+  group: catalyst-deploy
+  cancel-in-progress: false
+
+env:
+  NODE_VERSION: 20
+  CATALYST_PROJECT: kavach-ai
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'production' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run pre-deploy checks
+        run: node scripts/health-check.mjs --pre-deploy
+        env:
+          NODE_ENV: test
+
+      - name: Build frontend
+        run: npm run build:frontend
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL || 'https://api.kavach.ai' }}
+
+      - name: Set up Catalyst CLI
+        run: |
+          npm install -g zoho-catalyst
+          catalyst --version
+
+      - name: Deploy to Catalyst
+        run: node scripts/deploy-catalyst.mjs
+        env:
+          CATALYST_EMAIL: ${{ secrets.CATALYST_EMAIL }}
+          CATALYST_PASSWORD: ${{ secrets.CATALYST_PASSWORD }}
+          CATALYST_PROJECT_NAME: ${{ env.CATALYST_PROJECT }}
+          CATALYST_ENVIRONMENT: ${{ github.event.inputs.environment || 'production' }}
+          NODE_ENV: production
+
+      - name: Post-deploy smoke test
+        run: node scripts/health-check.mjs --smoke
+        env:
+          DEPLOY_URL: ${{ secrets.DEPLOY_URL || 'https://kavach-ai.catalystserverless.com' }}
+
+      - name: Rollback on failure
+        if: failure()
+        run: node scripts/rollback.mjs
+        env:
+          CATALYST_EMAIL: ${{ secrets.CATALYST_EMAIL }}
+          CATALYST_PASSWORD: ${{ secrets.CATALYST_PASSWORD }}
+          CATALYST_PROJECT_NAME: ${{ env.CATALYST_PROJECT }}
+          DEPLOY_ENVIRONMENT: ${{ github.event.inputs.environment || 'production' }}
+
+      - name: Notify deployment status
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const status = '${{ job.status }}';
+            const message = status === 'success'
+              ? '✅ Deploy to Catalyst completed successfully'
+              : '❌ Deploy to Catalyst failed';
+            if (context.issue?.number) {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: message
+              });
+            }

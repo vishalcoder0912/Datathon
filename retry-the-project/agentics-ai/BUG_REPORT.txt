@@ -1,0 +1,7 @@
+Bug report notes
+
+Fixed chart label problems.
+Fixed trend field selection.
+Fixed entity ranking logic.
+Fixed responsive preview layout.
+Added setup notes.

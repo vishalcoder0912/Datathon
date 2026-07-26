@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+﻿import { lazy, Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AppLayout from "@/shared/layout/AppLayout";
 import StatusPanel from "@/shared/layout/StatusPanel";
@@ -18,6 +18,7 @@ const PdfUploadPage = lazy(() => import("@/features/pdf/pages/PdfUploadPage"));
 const NotFoundPage = lazy(() => import("@/app/routes/NotFoundPage"));
 
 const KavachDashboard = lazy(() => import("@/kavach/pages/DashboardPage"));
+const IntelligenceOS = lazy(() => import("@/kavach/pages/IntelligenceOSPage"));
 const GeoIntelligence = lazy(() => import("@/kavach/pages/GeoIntelligencePage"));
 const TrendIntelligence = lazy(() => import("@/kavach/pages/TrendIntelligencePage"));
 const NetworkIntelligence = lazy(() => import("@/kavach/pages/NetworkIntelligencePage"));
@@ -53,6 +54,7 @@ export default function AppRouter() {
 
                 {/* ── Command Centre ── */}
                 <Route path="/dashboard" element={<KavachDashboard />} />
+                <Route path="/intelligence-os" element={<IntelligenceOS />} />
                 <Route path="/geo-intelligence" element={<GeoIntelligence />} />
                 <Route path="/trend-intelligence" element={<TrendIntelligence />} />
                 <Route path="/network-intelligence" element={<NetworkIntelligence />} />

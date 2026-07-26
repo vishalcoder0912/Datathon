@@ -1,0 +1,145 @@
+# OWASP ZAP API Scan Rules - InsightFlow
+# These rules define API-specific scan thresholds and exclusions
+
+# ==========================================================
+# Global Settings
+# ==========================================================
+alertThreshold = "MEDIUM"
+attackStrength = "MEDIUM"
+
+# ==========================================================
+# Rule Overrides - InsightFlow-specific tuning
+# ==========================================================
+
+# Enable all active scan rules relevant to REST APIs
+rules += [
+    # Injection rules (critical for APIs)
+    {
+        id: 40018         # SQL Injection
+        threshold: "HIGH"
+    },
+    {
+        id: 40019         # SQL Injection - SQLite
+        threshold: "HIGH"
+    },
+    {
+        id: 40020         # SQL Injection - Hypersonic
+        threshold: "MEDIUM"
+    },
+    {
+        id: 40021         # SQL Injection - Oracle
+        threshold: "MEDIUM"
+    },
+    {
+        id: 40022         # SQL Injection - PostgreSQL
+        threshold: "HIGH"
+    },
+    {
+        id: 90018         # SQL Injection - SQLMap
+        threshold: "MEDIUM"
+    },
+    {
+        id: 40014         # Persisted XSS
+        threshold: "HIGH"
+    },
+    {
+        id: 40012         # Reflected XSS
+        threshold: "HIGH"
+    },
+    {
+        id: 40017         # NoSQL Injection
+        threshold: "HIGH"
+    },
+    {
+        id: 90019         # Server-Side Code Injection
+        threshold: "HIGH"
+    },
+    {
+        id: 90020         # Command Injection
+        threshold: "HIGH"
+    },
+
+    # Security Misconfiguration
+    {
+        id: 10038         # CSP Violation
+        threshold: "MEDIUM"
+    },
+    {
+        id: 10095         # Backup File Disclosure
+        threshold: "LOW"
+    },
+    {
+        id: 10109         # Open Redirect
+        threshold: "HIGH"
+    },
+
+    # Session Management
+    {
+        id: 40003         # Session ID in URL Rewrite
+        threshold: "HIGH"
+    },
+    {
+        id: 7             # Session ID via Fiddler
+        threshold: "MEDIUM"
+    },
+
+    # Information Disclosure
+    {
+        id: 10049         # Non-Productive Hostnames in URLs
+        threshold: "LOW"
+    },
+    {
+        id: 10054         # Cookie without Secure Flag
+        threshold: "HIGH"
+    },
+    {
+        id: 10055         # Cookie without HttpOnly Flag
+        threshold: "HIGH"
+    },
+
+    # JWT
+    {
+        id: 40044         # JWT Detection
+        threshold: "MEDIUM"
+    },
+    {
+        id: 40045         # JWT None Algorithm
+        threshold: "HIGH"
+    },
+    {
+        id: 40046         # JWT Weak HMAC Key
+        threshold: "HIGH"
+    }
+]
+
+# ==========================================================
+# Path Exclusions
+# ==========================================================
+excludePaths = [
+    "/api/health.*",
+    "/api/ai/test.*",
+    "/api/.*/export.*"
+]
+
+# ==========================================================
+# Rate Limiting for API Scanning
+# ==========================================================
+rateLimit = 20                # requests per second
+delayInMs = 50                # delay between requests
+
+# ==========================================================
+# Authentication
+# ==========================================================
+authentication = {
+    method: "json-based-script",
+    endpoint: "/api/auth/login",
+    credentials: {
+        email: "security-scan@kavach.local",
+        password: "${ZAP_SCAN_PASSWORD}"
+    },
+    tokenExtraction: {
+        field: "data.accessToken",
+        header: "Authorization",
+        format: "Bearer %s"
+    }
+}

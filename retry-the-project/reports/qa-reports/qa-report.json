@@ -1,0 +1,3182 @@
+{
+  "timestamp": "2026-05-21T07:56:17.529Z",
+  "duration": 94802,
+  "summary": {
+    "totalFiles": 244,
+    "totalLines": 50958,
+    "totalTestFiles": 23,
+    "filesWithTests": 3,
+    "filesWithoutTests": 241,
+    "testCoveragePct": 1.23,
+    "totalFunctions": 1140,
+    "totalImports": 821
+  },
+  "tests": {
+    "frontend": {
+      "ok": true,
+      "total": 31,
+      "passed": 31,
+      "failed": 0,
+      "skipped": 0,
+      "files": [
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/frontend/src/test/dataStore.test.ts",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/frontend/src/test/example.test.ts",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/frontend/src/__tests__/AppLayout.test.tsx",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/frontend/src/__tests__/DashboardPage.test.tsx",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/frontend/src/__tests__/dataUploadFlow.test.tsx",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/frontend/src/__tests__/SchemaDashboardChat.test.tsx",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/frontend/src/__tests__/schemaLocalAnalytics.test.ts",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/frontend/src/__tests__/SmartChartCard.test.tsx",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/frontend/src/shared/lib/logger.test.ts",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/frontend/src/features/dashboard/utils/dashboardAnalytics.test.ts",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/frontend/src/features/data/api/dataApi.test.ts"
+      ]
+    },
+    "backend": {
+      "ok": true,
+      "total": 27,
+      "passed": 27,
+      "failed": 0,
+      "skipped": 0,
+      "files": [
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/backend/src/__tests__/dashboard-command.test.js",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/backend/src/__tests__/dashboard-plan-engine.test.js",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/backend/src/__tests__/dashboard-quality-guardian.test.js",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/backend/src/__tests__/health.test.js",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/backend/src/__tests__/ollama-schema-safety.test.js",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/backend/src/__tests__/pdf-intelligence.test.js",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/backend/src/__tests__/schema-fingerprint.test.js",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/backend/src/__tests__/schema-memory.test.js",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/backend/src/__tests__/schema-trained-ai.routes.test.js",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/backend/src/services/__tests__/schema-only-dashboard-engine.test.js",
+        "C:/Users/VISHAL/Desktop/20-12-2025/All_full_stack_preparation/expo/retry-the-project/apps/backend/src/services/__tests__/schema-packet-builder.test.js"
+      ]
+    }
+  },
+  "quality": {
+    "lint": {
+      "ok": true,
+      "errorCount": 0,
+      "warnCount": 0,
+      "issues": []
+    },
+    "typescript": {
+      "ok": true,
+      "errors": 0,
+      "details": {
+        "stdout": "",
+        "stderr": "",
+        "exitCode": 0
+      }
+    }
+  },
+  "coverage": {
+    "pct": 1.23,
+    "filesWithTests": 3,
+    "totalFiles": 244
+  },
+  "untestedFiles": [
+    {
+      "file": "apps\\frontend\\src\\app\\App.tsx",
+      "lines": 11
+    },
+    {
+      "file": "apps\\frontend\\src\\app\\providers\\AppErrorBoundary.tsx",
+      "lines": 47
+    },
+    {
+      "file": "apps\\frontend\\src\\app\\providers\\AppProviders.tsx",
+      "lines": 35
+    },
+    {
+      "file": "apps\\frontend\\src\\app\\routes\\AppRouter.tsx",
+      "lines": 52
+    },
+    {
+      "file": "apps\\frontend\\src\\app\\routes\\NotFoundPage.tsx",
+      "lines": 25
+    },
+    {
+      "file": "apps\\frontend\\src\\components\\GenAIDashboard.tsx",
+      "lines": 249
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\AnalyticsPage.tsx",
+      "lines": 400
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\AnomalyDetectionPage.tsx",
+      "lines": 73
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\DataCleaningPage.tsx",
+      "lines": 77
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\DataProfilingPage.tsx",
+      "lines": 118
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\ExportPage.tsx",
+      "lines": 59
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\RelationshipsPage.tsx",
+      "lines": 94
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\chat\\components\\ChatInterface.tsx",
+      "lines": 509
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\chat\\components\\LocalAIChatInterface.tsx",
+      "lines": 161
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\chat\\pages\\ChatPage.tsx",
+      "lines": 54
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\chat\\pages\\LocalChatPage.tsx",
+      "lines": 8
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\AnalyticsChart.tsx",
+      "lines": 375
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\AnalyticsSidebar.tsx",
+      "lines": 333
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\DashboardFilters.tsx",
+      "lines": 145
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\DataQualityPanel.tsx",
+      "lines": 155
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\ExportMenu.tsx",
+      "lines": 78
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\KPICard.tsx",
+      "lines": 96
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\LlamaQueryBuilder.tsx",
+      "lines": 267
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\RecommendationsPanel.tsx",
+      "lines": 134
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\SchemaDashboardChat.tsx",
+      "lines": 292
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\SmartChartCard.tsx",
+      "lines": 356
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\hooks\\useDashboardAiController.ts",
+      "lines": 292
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\hooks\\useEliteAnalytics.ts",
+      "lines": 56
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\hooks\\useKPIEngine.ts",
+      "lines": 405
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\hooks\\useSchemaTrainedDashboard.ts",
+      "lines": 763
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\pages\\DashboardPage.tsx",
+      "lines": 294
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\pages\\DataTablePage.tsx",
+      "lines": 681
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\pages\\EliteDashboardPage.tsx",
+      "lines": 633
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\types\\dashboardTypes.ts",
+      "lines": 107
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\utils\\dashboardController.ts",
+      "lines": 126
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\utils\\dashboardStateStorage.ts",
+      "lines": 36
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\utils\\dynamicQuestionSuggestions.ts",
+      "lines": 134
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\utils\\schemaLocalAnalytics.ts",
+      "lines": 283
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\api\\schemaAiClient.ts",
+      "lines": 135
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\api\\schemaTrainedApi.additions.ts",
+      "lines": 84
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\context\\data-context-store.ts",
+      "lines": 25
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\context\\DataContext.tsx",
+      "lines": 397
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\context\\localDataContext.tsx",
+      "lines": 202
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\context\\useData.ts",
+      "lines": 9
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\model\\analyticsEngine.ts",
+      "lines": 1041
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\model\\dataStore.ts",
+      "lines": 788
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\pages\\MobileUploadPortal.tsx",
+      "lines": 372
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\pages\\UploadPage.tsx",
+      "lines": 478
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\utils\\exportUtils.ts",
+      "lines": 26
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\utils\\localFileProcessor.ts",
+      "lines": 205
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\ml\\pages\\MLPage.tsx",
+      "lines": 300
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\pdf\\pages\\PdfUploadPage.tsx",
+      "lines": 419
+    },
+    {
+      "file": "apps\\frontend\\src\\main.tsx",
+      "lines": 7
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ErrorBoundary.tsx",
+      "lines": 45
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\navigation\\NavLink.tsx",
+      "lines": 29
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\accordion.tsx",
+      "lines": 53
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\alert-dialog.tsx",
+      "lines": 105
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\alert.tsx",
+      "lines": 44
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\aspect-ratio.tsx",
+      "lines": 6
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\avatar.tsx",
+      "lines": 39
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\badge.tsx",
+      "lines": 30
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\breadcrumb.tsx",
+      "lines": 91
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\button-variants.ts",
+      "lines": 30
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\button.tsx",
+      "lines": 22
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\calendar.tsx",
+      "lines": 55
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\card.tsx",
+      "lines": 44
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\carousel.tsx",
+      "lines": 225
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\chart.tsx",
+      "lines": 304
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\checkbox.tsx",
+      "lines": 27
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\collapsible.tsx",
+      "lines": 10
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\command.tsx",
+      "lines": 133
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\context-menu.tsx",
+      "lines": 179
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\dialog.tsx",
+      "lines": 96
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\drawer.tsx",
+      "lines": 88
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\dropdown-menu.tsx",
+      "lines": 180
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\form.tsx",
+      "lines": 130
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\hover-card.tsx",
+      "lines": 28
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\input-otp.tsx",
+      "lines": 62
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\input.tsx",
+      "lines": 23
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\label.tsx",
+      "lines": 18
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\menubar.tsx",
+      "lines": 208
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\navigation-menu.tsx",
+      "lines": 120
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\pagination.tsx",
+      "lines": 83
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\popover.tsx",
+      "lines": 30
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\progress.tsx",
+      "lines": 24
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\radio-group.tsx",
+      "lines": 37
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\resizable.tsx",
+      "lines": 38
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\scroll-area.tsx",
+      "lines": 39
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\select.tsx",
+      "lines": 144
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\separator.tsx",
+      "lines": 21
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\sheet.tsx",
+      "lines": 108
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\sidebar.tsx",
+      "lines": 637
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\skeleton.tsx",
+      "lines": 8
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\slider.tsx",
+      "lines": 24
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\sonner.tsx",
+      "lines": 28
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\switch.tsx",
+      "lines": 28
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\table.tsx",
+      "lines": 73
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\tabs.tsx",
+      "lines": 54
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\textarea.tsx",
+      "lines": 22
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\toast.tsx",
+      "lines": 112
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\toaster.tsx",
+      "lines": 25
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\toggle-group.tsx",
+      "lines": 49
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\toggle-variants.ts",
+      "lines": 25
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\toggle.tsx",
+      "lines": 17
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\tooltip.tsx",
+      "lines": 29
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\use-toast.ts",
+      "lines": 4
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\hooks\\use-mobile.tsx",
+      "lines": 20
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\hooks\\use-toast.ts",
+      "lines": 187
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\layout\\AppLayout.tsx",
+      "lines": 67
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\layout\\AppSidebar.tsx",
+      "lines": 100
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\layout\\StatusPanel.tsx",
+      "lines": 26
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\layout\\ThemeToggle.tsx",
+      "lines": 35
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\lib\\utils.ts",
+      "lines": 7
+    },
+    {
+      "file": "apps\\frontend\\src\\test\\setup.ts",
+      "lines": 24
+    },
+    {
+      "file": "apps\\frontend\\src\\vite-env.d.ts",
+      "lines": 2
+    },
+    {
+      "file": "apps\\backend\\src\\config\\constants.js",
+      "lines": 217
+    },
+    {
+      "file": "apps\\backend\\src\\config\\environment.js",
+      "lines": 220
+    },
+    {
+      "file": "apps\\backend\\src\\config\\gemini-config.js",
+      "lines": 66
+    },
+    {
+      "file": "apps\\backend\\src\\core\\server.js",
+      "lines": 174
+    },
+    {
+      "file": "apps\\backend\\src\\database\\dataset-repository.js",
+      "lines": 289
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\analyticsEngine.ts",
+      "lines": 734
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.ts",
+      "lines": 85
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\reportGenerator.ts",
+      "lines": 204
+    },
+    {
+      "file": "apps\\backend\\src\\index.js",
+      "lines": 37
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\cors.js",
+      "lines": 49
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\error-handler.js",
+      "lines": 154
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\error.middleware.js",
+      "lines": 123
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\logger.middleware.js",
+      "lines": 103
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\request-logger.js",
+      "lines": 126
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\validation.middleware.js",
+      "lines": 224
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\ai-analyst.routes.js",
+      "lines": 88
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\ai.js",
+      "lines": 397
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\analytics-brain.js",
+      "lines": 102
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\analytics.js",
+      "lines": 378
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\analytics.routes.js",
+      "lines": 119
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\chat.js",
+      "lines": 242
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\chat.routes.js",
+      "lines": 184
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\dashboard-quality.js",
+      "lines": 68
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\dashboardAiRoutes.js",
+      "lines": 154
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\dataset.routes.js",
+      "lines": 186
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\datasets.js",
+      "lines": 313
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\export.js",
+      "lines": 168
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\genaiRoutes.ts",
+      "lines": 101
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\health.js",
+      "lines": 166
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\health.routes.js",
+      "lines": 61
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\index.js",
+      "lines": 137
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\machine-learning.js",
+      "lines": 201
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\pdf.js",
+      "lines": 359
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\playbook-analysis.js",
+      "lines": 40
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\qr-upload.js",
+      "lines": 469
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\schema-trained-ai.routes.js",
+      "lines": 175
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\state.js",
+      "lines": 127
+    },
+    {
+      "file": "apps\\backend\\src\\server.js",
+      "lines": 744
+    },
+    {
+      "file": "apps\\backend\\src\\server.ts",
+      "lines": 27
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ai-manager.js",
+      "lines": 324
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\dashboardPlanner.js",
+      "lines": 382
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\insightflowMasterPlanner.ts",
+      "lines": 517
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ollamaClient.js",
+      "lines": 75
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\anthropic-provider.js",
+      "lines": 193
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\gemini-provider.js",
+      "lines": 208
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\ollama-provider.js",
+      "lines": 270
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\openai-provider.js",
+      "lines": 193
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\utils\\prompt-templates.js",
+      "lines": 178
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\utils\\response-parser.js",
+      "lines": 281
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\utils\\token-counter.js",
+      "lines": 256
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\ai-analyst-orchestrator.js",
+      "lines": 181
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\analyst-memory.js",
+      "lines": 94
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\analyst-playbooks.js",
+      "lines": 239
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\chart-engine.js",
+      "lines": 237
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\command-router.js",
+      "lines": 151
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\dashboard-plan-engine.js",
+      "lines": 255
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\dashboard-quality-guardian.js",
+      "lines": 406
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\kpi-engine.js",
+      "lines": 126
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\llm-schema-dashboard-planner.js",
+      "lines": 200
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\schema-fingerprint.js",
+      "lines": 263
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\schema-profiler.js",
+      "lines": 153
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\schema-trained-ai-service.js",
+      "lines": 206
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\schema-training-store.js",
+      "lines": 129
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyzer.js",
+      "lines": 287
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-cascade-service.js",
+      "lines": 195
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-data-service.js",
+      "lines": 578
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-providers\\ai-router.js",
+      "lines": 167
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-providers\\gemini-service.js",
+      "lines": 133
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-providers\\local-nlp-service.js",
+      "lines": 283
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-providers\\ollama-service.js",
+      "lines": 106
+    },
+    {
+      "file": "apps\\backend\\src\\services\\alert-service.js",
+      "lines": 200
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-brain-service.js",
+      "lines": 730
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-memory-service.js",
+      "lines": 96
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-playbook-engine.js",
+      "lines": 498
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-service.js",
+      "lines": 946
+    },
+    {
+      "file": "apps\\backend\\src\\services\\dashboard\\dashboard-integrity-engine.js",
+      "lines": 897
+    },
+    {
+      "file": "apps\\backend\\src\\services\\dashboard\\dashboardAnalytics.js",
+      "lines": 307
+    },
+    {
+      "file": "apps\\backend\\src\\services\\dashboard\\dashboardFixEngine.js",
+      "lines": 84
+    },
+    {
+      "file": "apps\\backend\\src\\services\\dashboard\\schemaProfiler.js",
+      "lines": 180
+    },
+    {
+      "file": "apps\\backend\\src\\services\\dashboard-ai-agent.js",
+      "lines": 434
+    },
+    {
+      "file": "apps\\backend\\src\\services\\data-merger.js",
+      "lines": 195
+    },
+    {
+      "file": "apps\\backend\\src\\services\\data-sampling-service.js",
+      "lines": 62
+    },
+    {
+      "file": "apps\\backend\\src\\services\\data-visualization-service.js",
+      "lines": 136
+    },
+    {
+      "file": "apps\\backend\\src\\services\\dataset-role-detector.js",
+      "lines": 104
+    },
+    {
+      "file": "apps\\backend\\src\\services\\domain-detector.js",
+      "lines": 45
+    },
+    {
+      "file": "apps\\backend\\src\\services\\export-service.js",
+      "lines": 51
+    },
+    {
+      "file": "apps\\backend\\src\\services\\gemini-ai-service.js",
+      "lines": 159
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-chat-agent.js",
+      "lines": 91
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "lines": 515
+    },
+    {
+      "file": "apps\\backend\\src\\services\\local-database-service.js",
+      "lines": 230
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ml\\automl-service.js",
+      "lines": 407
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ml-client.js",
+      "lines": 166
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ollama\\dataset-schema-summary.js",
+      "lines": 201
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ollama\\ollama-dual-model-service.js",
+      "lines": 159
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ollama-ai-service.js",
+      "lines": 441
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ollama-service.js",
+      "lines": 121
+    },
+    {
+      "file": "apps\\backend\\src\\services\\pdf\\pdf-dataset-builder.js",
+      "lines": 74
+    },
+    {
+      "file": "apps\\backend\\src\\services\\pdf\\pdf-loader-service.js",
+      "lines": 57
+    },
+    {
+      "file": "apps\\backend\\src\\services\\pdf\\pdf-qa-service.js",
+      "lines": 94
+    },
+    {
+      "file": "apps\\backend\\src\\services\\pdf\\pdf-rag-chunker.js",
+      "lines": 38
+    },
+    {
+      "file": "apps\\backend\\src\\services\\pdf\\pdf-store.js",
+      "lines": 40
+    },
+    {
+      "file": "apps\\backend\\src\\services\\pdf\\pdf-table-extractor.js",
+      "lines": 141
+    },
+    {
+      "file": "apps\\backend\\src\\services\\pipeline-service.js",
+      "lines": 151
+    },
+    {
+      "file": "apps\\backend\\src\\services\\playbooks\\data-analytics-projects-playbooks.js",
+      "lines": 96
+    },
+    {
+      "file": "apps\\backend\\src\\services\\playbooks\\playbook-dashboard-engine.js",
+      "lines": 345
+    },
+    {
+      "file": "apps\\backend\\src\\services\\playbooks\\playbook-matcher.js",
+      "lines": 168
+    },
+    {
+      "file": "apps\\backend\\src\\services\\predictive-analytics.js",
+      "lines": 194
+    },
+    {
+      "file": "apps\\backend\\src\\services\\qr-upload\\qr-file-parser.js",
+      "lines": 145
+    },
+    {
+      "file": "apps\\backend\\src\\services\\qr-upload\\qr-upload-store.js",
+      "lines": 81
+    },
+    {
+      "file": "apps\\backend\\src\\services\\qr-upload-service.js",
+      "lines": 106
+    },
+    {
+      "file": "apps\\backend\\src\\services\\query-cache.js",
+      "lines": 163
+    },
+    {
+      "file": "apps\\backend\\src\\services\\recommendation-engine.js",
+      "lines": 279
+    },
+    {
+      "file": "apps\\backend\\src\\services\\report-generator.js",
+      "lines": 168
+    },
+    {
+      "file": "apps\\backend\\src\\services\\schema-ai-service.js",
+      "lines": 314
+    },
+    {
+      "file": "apps\\backend\\src\\services\\schema-dashboard-engine.js",
+      "lines": 924
+    },
+    {
+      "file": "apps\\backend\\src\\services\\schema-detector.js",
+      "lines": 1595
+    },
+    {
+      "file": "apps\\backend\\src\\services\\schema-only-dashboard-engine.js",
+      "lines": 424
+    },
+    {
+      "file": "apps\\backend\\src\\services\\schema-packet-builder.js",
+      "lines": 397
+    },
+    {
+      "file": "apps\\backend\\src\\services\\schema-packet-worker.js",
+      "lines": 128
+    },
+    {
+      "file": "apps\\backend\\src\\services\\smart-query-handler.js",
+      "lines": 454
+    },
+    {
+      "file": "apps\\backend\\src\\utils\\helpers.js",
+      "lines": 247
+    },
+    {
+      "file": "apps\\backend\\src\\utils\\logger.js",
+      "lines": 79
+    },
+    {
+      "file": "apps\\backend\\src\\utils\\response-utils.js",
+      "lines": 290
+    },
+    {
+      "file": "apps\\backend\\src\\utils\\schema-extractor.js",
+      "lines": 182
+    },
+    {
+      "file": "packages\\shared-analytics\\src\\index.js",
+      "lines": 526
+    },
+    {
+      "file": "packages\\shared-errors\\index.js",
+      "lines": 192
+    }
+  ],
+  "files": [
+    {
+      "file": "apps\\backend\\src\\__tests__\\dashboard-command.test.js",
+      "lines": 19,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\backend\\src\\__tests__\\dashboard-plan-engine.test.js",
+      "lines": 52,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\backend\\src\\__tests__\\dashboard-quality-guardian.test.js",
+      "lines": 82,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\backend\\src\\__tests__\\health.test.js",
+      "lines": 19,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\backend\\src\\__tests__\\ollama-schema-safety.test.js",
+      "lines": 64,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\backend\\src\\__tests__\\pdf-intelligence.test.js",
+      "lines": 21,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\backend\\src\\__tests__\\schema-fingerprint.test.js",
+      "lines": 21,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\backend\\src\\__tests__\\schema-memory.test.js",
+      "lines": 54,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\backend\\src\\__tests__\\schema-trained-ai.routes.test.js",
+      "lines": 70,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\backend\\src\\__tests__\\test-helpers.js",
+      "lines": 57,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\backend\\src\\config\\constants.js",
+      "lines": 217,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\config\\environment.js",
+      "lines": 220,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\config\\gemini-config.js",
+      "lines": 66,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\core\\server.js",
+      "lines": 174,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\database\\dataset-repository.js",
+      "lines": 289,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\analyticsEngine.ts",
+      "lines": 734,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\dashboardBuilder.ts",
+      "lines": 85,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\genai\\reportGenerator.ts",
+      "lines": 204,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\index.js",
+      "lines": 37,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\cors.js",
+      "lines": 49,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\error-handler.js",
+      "lines": 154,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\error.middleware.js",
+      "lines": 123,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\logger.middleware.js",
+      "lines": 103,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\request-logger.js",
+      "lines": 126,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\middleware\\validation.middleware.js",
+      "lines": 224,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\ai-analyst.routes.js",
+      "lines": 88,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\ai.js",
+      "lines": 397,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\analytics-brain.js",
+      "lines": 102,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\analytics.js",
+      "lines": 378,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\analytics.routes.js",
+      "lines": 119,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\chat.js",
+      "lines": 242,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\chat.routes.js",
+      "lines": 184,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\dashboard-quality.js",
+      "lines": 68,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\dashboardAiRoutes.js",
+      "lines": 154,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\dataset.routes.js",
+      "lines": 186,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\datasets.js",
+      "lines": 313,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\export.js",
+      "lines": 168,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\genaiRoutes.ts",
+      "lines": 101,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\health.js",
+      "lines": 166,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\health.routes.js",
+      "lines": 61,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\index.js",
+      "lines": 137,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\machine-learning.js",
+      "lines": 201,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\pdf.js",
+      "lines": 359,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\playbook-analysis.js",
+      "lines": 40,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\qr-upload.js",
+      "lines": 469,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\schema-trained-ai.routes.js",
+      "lines": 175,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\routes\\state.js",
+      "lines": 127,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\server.js",
+      "lines": 744,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\server.ts",
+      "lines": 27,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\__tests__\\schema-only-dashboard-engine.test.js",
+      "lines": 105,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\backend\\src\\services\\__tests__\\schema-packet-builder.test.js",
+      "lines": 83,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\ai-analyst-orchestrator.js",
+      "lines": 181,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\analyst-memory.js",
+      "lines": 94,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\analyst-playbooks.js",
+      "lines": 239,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\chart-engine.js",
+      "lines": 237,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\command-router.js",
+      "lines": 151,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\dashboard-plan-engine.js",
+      "lines": 255,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\dashboard-quality-guardian.js",
+      "lines": 406,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\kpi-engine.js",
+      "lines": 126,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\llm-schema-dashboard-planner.js",
+      "lines": 200,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\schema-fingerprint.js",
+      "lines": 263,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\schema-profiler.js",
+      "lines": 153,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\schema-trained-ai-service.js",
+      "lines": 206,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyst\\schema-training-store.js",
+      "lines": 129,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-analyzer.js",
+      "lines": 287,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-cascade-service.js",
+      "lines": 195,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-data-service.js",
+      "lines": 578,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-providers\\ai-router.js",
+      "lines": 167,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-providers\\gemini-service.js",
+      "lines": 133,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-providers\\local-nlp-service.js",
+      "lines": 283,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai-providers\\ollama-service.js",
+      "lines": 106,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ai-manager.js",
+      "lines": 324,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\dashboardPlanner.js",
+      "lines": 382,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\insightflowMasterPlanner.ts",
+      "lines": 517,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\ollamaClient.js",
+      "lines": 75,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\anthropic-provider.js",
+      "lines": 193,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\gemini-provider.js",
+      "lines": 208,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\ollama-provider.js",
+      "lines": 270,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\providers\\openai-provider.js",
+      "lines": 193,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\utils\\prompt-templates.js",
+      "lines": 178,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\utils\\response-parser.js",
+      "lines": 281,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ai\\utils\\token-counter.js",
+      "lines": 256,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\alert-service.js",
+      "lines": 200,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-brain-service.js",
+      "lines": 730,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-memory-service.js",
+      "lines": 96,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-playbook-engine.js",
+      "lines": 498,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\analytics-service.js",
+      "lines": 946,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\dashboard-ai-agent.js",
+      "lines": 434,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\dashboard\\dashboard-integrity-engine.js",
+      "lines": 897,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\dashboard\\dashboardAnalytics.js",
+      "lines": 307,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\dashboard\\dashboardFixEngine.js",
+      "lines": 84,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\dashboard\\schemaProfiler.js",
+      "lines": 180,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\data-merger.js",
+      "lines": 195,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\data-sampling-service.js",
+      "lines": 62,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\data-visualization-service.js",
+      "lines": 136,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\dataset-role-detector.js",
+      "lines": 104,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\domain-detector.js",
+      "lines": 45,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\export-service.js",
+      "lines": 51,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\gemini-ai-service.js",
+      "lines": 159,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-chat-agent.js",
+      "lines": 91,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\llama-validation-middleware.js",
+      "lines": 515,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\local-database-service.js",
+      "lines": 230,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ml-client.js",
+      "lines": 166,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ml\\automl-service.js",
+      "lines": 407,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ollama-ai-service.js",
+      "lines": 441,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ollama-service.js",
+      "lines": 121,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ollama\\dataset-schema-summary.js",
+      "lines": 201,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\ollama\\ollama-dual-model-service.js",
+      "lines": 159,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\pdf\\pdf-dataset-builder.js",
+      "lines": 74,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\pdf\\pdf-loader-service.js",
+      "lines": 57,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\pdf\\pdf-qa-service.js",
+      "lines": 94,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\pdf\\pdf-rag-chunker.js",
+      "lines": 38,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\pdf\\pdf-store.js",
+      "lines": 40,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\pdf\\pdf-table-extractor.js",
+      "lines": 141,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\pipeline-service.js",
+      "lines": 151,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\playbooks\\data-analytics-projects-playbooks.js",
+      "lines": 96,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\playbooks\\playbook-dashboard-engine.js",
+      "lines": 345,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\playbooks\\playbook-matcher.js",
+      "lines": 168,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\predictive-analytics.js",
+      "lines": 194,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\qr-upload-service.js",
+      "lines": 106,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\qr-upload\\qr-file-parser.js",
+      "lines": 145,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\qr-upload\\qr-upload-store.js",
+      "lines": 81,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\query-cache.js",
+      "lines": 163,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\recommendation-engine.js",
+      "lines": 279,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\report-generator.js",
+      "lines": 168,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\schema-ai-service.js",
+      "lines": 314,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\schema-dashboard-engine.js",
+      "lines": 924,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\schema-detector.js",
+      "lines": 1595,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\schema-only-dashboard-engine.js",
+      "lines": 424,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\schema-packet-builder.js",
+      "lines": 397,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\schema-packet-worker.js",
+      "lines": 128,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\services\\smart-query-handler.js",
+      "lines": 454,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\utils\\helpers.js",
+      "lines": 247,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\utils\\logger.js",
+      "lines": 79,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\utils\\response-utils.js",
+      "lines": 290,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\backend\\src\\utils\\schema-extractor.js",
+      "lines": 182,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\__tests__\\AppLayout.test.tsx",
+      "lines": 28,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\frontend\\src\\__tests__\\DashboardPage.test.tsx",
+      "lines": 55,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\frontend\\src\\__tests__\\dataUploadFlow.test.tsx",
+      "lines": 58,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\frontend\\src\\__tests__\\SchemaDashboardChat.test.tsx",
+      "lines": 84,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\frontend\\src\\__tests__\\schemaLocalAnalytics.test.ts",
+      "lines": 61,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\frontend\\src\\__tests__\\SmartChartCard.test.tsx",
+      "lines": 33,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": true
+    },
+    {
+      "file": "apps\\frontend\\src\\app\\App.tsx",
+      "lines": 11,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\app\\providers\\AppErrorBoundary.tsx",
+      "lines": 47,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\app\\providers\\AppProviders.tsx",
+      "lines": 35,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\app\\routes\\AppRouter.tsx",
+      "lines": 52,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\app\\routes\\NotFoundPage.tsx",
+      "lines": 25,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\components\\GenAIDashboard.tsx",
+      "lines": 249,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\AnalyticsPage.tsx",
+      "lines": 400,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\AnomalyDetectionPage.tsx",
+      "lines": 73,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\DataCleaningPage.tsx",
+      "lines": 77,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\DataProfilingPage.tsx",
+      "lines": 118,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\ExportPage.tsx",
+      "lines": 59,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\analytics\\pages\\RelationshipsPage.tsx",
+      "lines": 94,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\chat\\components\\ChatInterface.tsx",
+      "lines": 509,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\chat\\components\\LocalAIChatInterface.tsx",
+      "lines": 161,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\chat\\pages\\ChatPage.tsx",
+      "lines": 54,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\chat\\pages\\LocalChatPage.tsx",
+      "lines": 8,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\AnalyticsChart.tsx",
+      "lines": 375,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\AnalyticsSidebar.tsx",
+      "lines": 333,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\DashboardFilters.tsx",
+      "lines": 145,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\DataQualityPanel.tsx",
+      "lines": 155,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\ExportMenu.tsx",
+      "lines": 78,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\KPICard.tsx",
+      "lines": 96,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\LlamaQueryBuilder.tsx",
+      "lines": 267,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\RecommendationsPanel.tsx",
+      "lines": 134,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\SchemaDashboardChat.tsx",
+      "lines": 292,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\components\\SmartChartCard.tsx",
+      "lines": 356,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\hooks\\useDashboardAiController.ts",
+      "lines": 292,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\hooks\\useEliteAnalytics.ts",
+      "lines": 56,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\hooks\\useKPIEngine.ts",
+      "lines": 405,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\hooks\\useSchemaTrainedDashboard.ts",
+      "lines": 763,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\pages\\DashboardPage.tsx",
+      "lines": 294,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\pages\\DataTablePage.tsx",
+      "lines": 681,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\pages\\EliteDashboardPage.tsx",
+      "lines": 633,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\types\\dashboardTypes.ts",
+      "lines": 107,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\utils\\dashboardAnalytics.test.ts",
+      "lines": 106,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\utils\\dashboardAnalytics.ts",
+      "lines": 1069,
+      "hasTest": true,
+      "testFile": "apps\\frontend\\src\\features\\dashboard\\utils\\dashboardAnalytics.test.ts",
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\utils\\dashboardController.ts",
+      "lines": 126,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\utils\\dashboardStateStorage.ts",
+      "lines": 36,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\utils\\dynamicQuestionSuggestions.ts",
+      "lines": 134,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\dashboard\\utils\\schemaLocalAnalytics.ts",
+      "lines": 283,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\api\\dataApi.test.ts",
+      "lines": 86,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\api\\dataApi.ts",
+      "lines": 662,
+      "hasTest": true,
+      "testFile": "apps\\frontend\\src\\features\\data\\api\\dataApi.test.ts",
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\api\\schemaAiClient.ts",
+      "lines": 135,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\api\\schemaTrainedApi.additions.ts",
+      "lines": 84,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\context\\data-context-store.ts",
+      "lines": 25,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\context\\DataContext.tsx",
+      "lines": 397,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\context\\localDataContext.tsx",
+      "lines": 202,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\context\\useData.ts",
+      "lines": 9,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\model\\analyticsEngine.ts",
+      "lines": 1041,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\model\\dataStore.ts",
+      "lines": 788,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\pages\\MobileUploadPortal.tsx",
+      "lines": 372,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\pages\\UploadPage.tsx",
+      "lines": 478,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\utils\\exportUtils.ts",
+      "lines": 26,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\data\\utils\\localFileProcessor.ts",
+      "lines": 205,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\ml\\pages\\MLPage.tsx",
+      "lines": 300,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\features\\pdf\\pages\\PdfUploadPage.tsx",
+      "lines": 419,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\main.tsx",
+      "lines": 7,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ErrorBoundary.tsx",
+      "lines": 45,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\navigation\\NavLink.tsx",
+      "lines": 29,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\accordion.tsx",
+      "lines": 53,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\alert-dialog.tsx",
+      "lines": 105,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\alert.tsx",
+      "lines": 44,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\aspect-ratio.tsx",
+      "lines": 6,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\avatar.tsx",
+      "lines": 39,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\badge.tsx",
+      "lines": 30,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\breadcrumb.tsx",
+      "lines": 91,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\button-variants.ts",
+      "lines": 30,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\button.tsx",
+      "lines": 22,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\calendar.tsx",
+      "lines": 55,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\card.tsx",
+      "lines": 44,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\carousel.tsx",
+      "lines": 225,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\chart.tsx",
+      "lines": 304,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\checkbox.tsx",
+      "lines": 27,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\collapsible.tsx",
+      "lines": 10,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\command.tsx",
+      "lines": 133,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\context-menu.tsx",
+      "lines": 179,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\dialog.tsx",
+      "lines": 96,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\drawer.tsx",
+      "lines": 88,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\dropdown-menu.tsx",
+      "lines": 180,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\form.tsx",
+      "lines": 130,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\hover-card.tsx",
+      "lines": 28,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\input-otp.tsx",
+      "lines": 62,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\input.tsx",
+      "lines": 23,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\label.tsx",
+      "lines": 18,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\menubar.tsx",
+      "lines": 208,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\navigation-menu.tsx",
+      "lines": 120,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\pagination.tsx",
+      "lines": 83,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\popover.tsx",
+      "lines": 30,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\progress.tsx",
+      "lines": 24,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\radio-group.tsx",
+      "lines": 37,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\resizable.tsx",
+      "lines": 38,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\scroll-area.tsx",
+      "lines": 39,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\select.tsx",
+      "lines": 144,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\separator.tsx",
+      "lines": 21,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\sheet.tsx",
+      "lines": 108,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\sidebar.tsx",
+      "lines": 637,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\skeleton.tsx",
+      "lines": 8,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\slider.tsx",
+      "lines": 24,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\sonner.tsx",
+      "lines": 28,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\switch.tsx",
+      "lines": 28,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\table.tsx",
+      "lines": 73,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\tabs.tsx",
+      "lines": 54,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\textarea.tsx",
+      "lines": 22,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\toast.tsx",
+      "lines": 112,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\toaster.tsx",
+      "lines": 25,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\toggle-group.tsx",
+      "lines": 49,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\toggle-variants.ts",
+      "lines": 25,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\toggle.tsx",
+      "lines": 17,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\tooltip.tsx",
+      "lines": 29,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\components\\ui\\use-toast.ts",
+      "lines": 4,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\hooks\\use-mobile.tsx",
+      "lines": 20,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\hooks\\use-toast.ts",
+      "lines": 187,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\layout\\AppLayout.tsx",
+      "lines": 67,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\layout\\AppSidebar.tsx",
+      "lines": 100,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\layout\\StatusPanel.tsx",
+      "lines": 26,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\layout\\ThemeToggle.tsx",
+      "lines": 35,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\lib\\logger.test.ts",
+      "lines": 44,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\lib\\logger.ts",
+      "lines": 180,
+      "hasTest": true,
+      "testFile": "apps\\frontend\\src\\shared\\lib\\logger.test.ts",
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\shared\\lib\\utils.ts",
+      "lines": 7,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\test\\dataStore.test.ts",
+      "lines": 161,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\test\\example.test.ts",
+      "lines": 8,
+      "hasTest": true,
+      "testFile": null,
+      "isTestFile": true,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\test\\setup.ts",
+      "lines": 24,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "apps\\frontend\\src\\vite-env.d.ts",
+      "lines": 2,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "packages\\shared-analytics\\src\\index.js",
+      "lines": 526,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    },
+    {
+      "file": "packages\\shared-errors\\index.js",
+      "lines": 192,
+      "hasTest": false,
+      "testFile": null,
+      "isTestFile": false,
+      "isInTestDir": false
+    }
+  ]
+}

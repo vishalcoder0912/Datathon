@@ -1,4 +1,4 @@
-import type { GeoLocationData } from "./geoIntelligenceEngine";
+﻿import type { GeoLocationData } from "./geoIntelligenceEngine";
 
 interface GeoRankingPanelProps {
   locations: GeoLocationData[];
@@ -41,7 +41,7 @@ export default function GeoRankingPanel({
               </div>
               <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-[#E2E8F0]">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-[#7C3AED] to-[#2563EB] transition-all"
+                  className="h-full rounded-full bg-gradient-to-r from-[#7C3AED] to-[#2563EB] transition-[width]"
                   style={{ width: `${pct}%` }}
                 />
               </div>

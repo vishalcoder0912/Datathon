@@ -1,0 +1,5 @@
+"""HTTP routers for the internal KAVACH analytics service."""
+
+from .analytics import router as analytics_router
+
+__all__ = ["analytics_router"]

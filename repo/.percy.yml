@@ -1,0 +1,16 @@
+version: 2
+snapshot:
+  percy-css: |
+    iframe {
+      display: none !important;
+    }
+    .fixed,
+    .sticky {
+      position: static !important;
+    }
+  widths: [375, 768, 1440]
+  min-height: 1024
+agent:
+  assets-dir: apps/frontend/public
+static:
+  base-path: /

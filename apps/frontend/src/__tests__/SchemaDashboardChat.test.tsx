@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+﻿import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import SchemaDashboardChat from "@/features/dashboard/components/SchemaDashboardChat";
 import { api } from "@/features/data/api/dataApi";

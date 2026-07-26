@@ -1,0 +1,54 @@
+{
+  "project": "InsightFlow AI Data Analytics Platform",
+  "generatedAt": "2026-05-20T14:08:37.155Z",
+  "environment": {
+    "node": "v24.1.0",
+    "os": "Windows_NT 10.0.26200 x64",
+    "packageManager": "npm",
+    "appMode": "test"
+  },
+  "summary": {
+    "total": 54,
+    "passed": 54,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 63410
+  },
+  "coverage": {
+    "statements": 40.76,
+    "branches": 33.12,
+    "functions": 42.91,
+    "lines": 42.87
+  },
+  "featureCoverage": {
+    "Backend health": true,
+    "Dataset upload": true,
+    "Schema profiling": true,
+    "Schema-trained dashboard": true,
+    "Ollama schema-only planner": true,
+    "Dashboard command AI": true,
+    "Local KPI/chart calculation": true,
+    "Frontend dashboard rendering": true,
+    "AI chat": true,
+    "PDF intelligence": true
+  },
+  "aiSafetyChecks": [
+    {
+      "name": "Raw rows not sent to LLM",
+      "passed": true
+    },
+    {
+      "name": "LLM chart.data removed",
+      "passed": true
+    },
+    {
+      "name": "KPI values calculated locally",
+      "passed": true
+    },
+    {
+      "name": "Invalid chart commands handled safely",
+      "passed": true
+    }
+  ],
+  "readinessScore": 85
+}

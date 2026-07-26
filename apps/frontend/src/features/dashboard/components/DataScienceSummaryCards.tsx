@@ -1,4 +1,4 @@
-type DataScienceSummaryProps = {
+﻿type DataScienceSummaryProps = {
   profile?: {
     rowCount?: number;
     columnCount?: number;

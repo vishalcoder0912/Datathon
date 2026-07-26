@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+﻿import { Outlet } from "react-router-dom";
 import AppSidebar from "@/shared/layout/AppSidebar";
 
 export default function AppLayout() {

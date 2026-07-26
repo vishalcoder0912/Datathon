@@ -1,0 +1,9 @@
+Setup guide
+
+Use these commands from the frontend folder.
+
+npm install
+npm run build
+npm run dev
+
+Expected result: the dashboard loads, charts render, the assistant responds, and the dataset preview is responsive.

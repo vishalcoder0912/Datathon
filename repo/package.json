@@ -1,0 +1,60 @@
+{
+  "name": "insightflow",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "workspaces": [
+    "apps/frontend",
+    "apps/backend",
+    "packages/shared-analytics",
+    "packages/kavach-domain"
+  ],
+  "scripts": {
+    "dev": "npm run seed:kavach && concurrently --kill-others --names backend,frontend --prefix-colors cyan,green \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:all": "npm run dev",
+    "dev:frontend": "npm run dev -w apps/frontend",
+    "dev:backend": "npm run dev -w apps/backend",
+    "dev:ml": "python -m uvicorn app.main:app --host 127.0.0.1 --port 5000 --workers 1 --app-dir apps/ml-service",
+    "dev:full": "concurrently --kill-others \"npm run dev:backend\" \"npm run dev:frontend\" \"npm run dev:ml\"",
+    "db:up": "docker compose -f infra/docker-compose.yml up -d postgres",
+    "db:down": "docker compose -f infra/docker-compose.yml down",
+    "db:migrate": "node apps/backend/scripts/migrate.js",
+    "db:seed": "node apps/backend/scripts/seed.js",
+    "db:reset": "node apps/backend/scripts/reset-database.js",
+    "db:migrate-demo": "node scripts/migrate-kavach-demo-to-postgres.mjs",
+    "build": "npm run build -w apps/frontend",
+    "build:frontend": "npm run build -w apps/frontend",
+    "build:backend": "npm run build -w apps/backend",
+    "export:ai-safe": "node scripts/export-ai-safe.js",
+    "export:onefile": "node scripts/export-full-codebase-one-file.js",
+    "export:codebase": "node scripts/generate-codebase-export.mjs",
+    "export:watch": "node scripts/watch-and-export-codebase.mjs",
+    "lint": "npm run lint -w apps/frontend",
+    "test": "npm run test -w apps/frontend",
+    "test:backend": "npm run test:run -w apps/backend",
+    "test:frontend": "npm run test -w apps/frontend",
+    "test:integration": "npm run test:run -w apps/backend -- src/__tests__/integration",
+    "test:e2e:kavach": "node scripts/run-kavach-e2e.mjs",
+    "test:e2e": "npx playwright test",
+    "qa:report": "node tools/qa/generate-final-qa-report.mjs",
+    "test:ai": "vitest run -w apps/backend apps/backend/src/__tests__/ai-provider-router.test.js",
+    "test:rag": "vitest run -w apps/backend apps/backend/src/__tests__/rag-retrieval.test.js",
+    "test:guardian": "vitest run -w apps/backend apps/backend/src/__tests__/dashboard-guardian.test.js",
+    "test:insightflow-api": "node scripts/verify-insightflow-backend.mjs",
+    "test:pipeline": "node scripts/run-production-test-pipeline.mjs",
+    "doctor": "npx react-doctor@latest",
+    "audit:code": "node scripts/audit-codebase.js",
+    "seed:kavach": "node scripts/seed-kavach.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "cross-env": "^10.1.0",
+    "react-doctor": "^0.2.13"
+  },
+  "dependencies": {
+    "@types/react-simple-maps": "^3.0.6",
+    "@types/topojson-client": "^3.1.5",
+    "react-simple-maps": "^3.0.0",
+    "topojson-client": "^3.1.0"
+  }
+}

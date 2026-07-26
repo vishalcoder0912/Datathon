@@ -1,4 +1,4 @@
-import {Navigate, Outlet, useLocation} from "react-router-dom";
+﻿import {Navigate, Outlet, useLocation} from "react-router-dom";
 import StatusPanel from "@/shared/layout/StatusPanel";
 import {useAuth} from "@/auth/AuthProvider";
 import type {KavachRole} from "@/kavach/api/types";

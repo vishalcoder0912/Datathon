@@ -1,4 +1,4 @@
-type PipelineStep = {
+﻿type PipelineStep = {
   label: string;
   status: "completed" | "running" | "queued" | "skipped" | "no";
   progress: number;

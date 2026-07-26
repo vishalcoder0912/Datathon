@@ -65,3 +65,8 @@ reports/demo-data-migration-report.json
 .env.example
 
 .vercel
+
+# External plugin generated artifacts (junctions to .agents-wshobson)
+.opencode/agents/
+.opencode/commands/
+.opencode/skills/

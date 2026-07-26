@@ -1,4 +1,4 @@
-import type { ColumnProfile, DashboardPlan } from "@/types/dashboard";
+﻿import type { ColumnProfile, DashboardPlan } from "@/types/dashboard";
 
 export type SchemaTrainResponse = {
   ok: boolean;

@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+﻿import { FormEvent, useState } from "react";
 import { Download, RefreshCw, Send, Share2, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useData } from "@/features/data/context/useData";
@@ -93,6 +93,7 @@ export default function CommandTopBar() {
               onChange={(event) => setCommand(event.target.value)}
               className="h-full min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-slate-400"
               placeholder="Ask InsightFlow AI anything about your data..."
+              aria-label="Ask InsightFlow AI anything about your data"
             />
             <button
               type="submit"

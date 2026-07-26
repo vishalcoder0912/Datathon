@@ -1,0 +1,78 @@
+config:
+  target: "{{ $processEnvironment.BASE_URL || 'http://localhost:3001' }}"
+  phases:
+    - name: "Warmup"
+      duration: 60
+      arrivalRate: 5
+      rampTo: 50
+    - name: "AI Flood"
+      duration: 120
+      arrivalRate: 50
+      rampTo: 500
+    - name: "Extreme Load"
+      duration: 60
+      arrivalRate: 500
+      rampTo: 1000
+    - name: "Sustain"
+      duration: 120
+      arrivalRate: 500
+    - name: "Graceful Degradation Check"
+      duration: 60
+      arrivalRate: 5
+  defaults:
+    headers:
+      Content-Type: "application/json"
+
+scenarios:
+  - name: "AI Provider Health"
+    weight: 20
+    flow:
+      - get:
+          url: "/api/ai/providers/health"
+          expect:
+            - statusCode: [200, 503]
+      - think: 1
+      - get:
+          url: "/api/ai/ollama/health"
+          expect:
+            - statusCode: [200, 503]
+
+  - name: "AI Chat Queries"
+    weight: 40
+    flow:
+      - post:
+          url: "/api/ai/chat"
+          json:
+            message: "Analyze dataset trends and provide insights"
+            datasetId: "test-{{ $randomString }}"
+            command: "analysis"
+          expect:
+            - statusCode: [200, 404, 429, 503]
+      - think: 3
+
+  - name: "AI Dashboard Generation"
+    weight: 20
+    flow:
+      - post:
+          url: "/api/dashboard-ai/generate"
+          json:
+            datasetId: "test-{{ $randomString }}"
+            datasetName: "Stress Test Dataset"
+            rows:
+              - { id: 1, name: "Test", value: 100, category: "A" }
+              - { id: 2, name: "Test2", value: 200, category: "B" }
+          expect:
+            - statusCode: [200, 429, 503]
+      - think: 5
+
+  - name: "Agentic AI"
+    weight: 20
+    flow:
+      - post:
+          url: "/api/agentic/analyze"
+          json:
+            command: "analyze"
+            datasetId: "test-{{ $randomString }}"
+          expect:
+            - statusCode: [200, 404, 429, 503]
+      - think: 4

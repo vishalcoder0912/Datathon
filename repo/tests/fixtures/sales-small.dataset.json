@@ -1,0 +1,11 @@
+{
+  "name": "Sales Small",
+  "columns": ["order_id", "order_date", "region", "category", "revenue", "profit", "discount", "quantity"],
+  "rows": [
+    { "order_id": "ORD001", "order_date": "2024-01-15", "region": "North", "category": "Office", "revenue": 1200, "profit": 300, "discount": 0.05, "quantity": 12 },
+    { "order_id": "ORD002", "order_date": "2024-01-18", "region": "South", "category": "Tech", "revenue": 1800, "profit": 450, "discount": 0.10, "quantity": 18 },
+    { "order_id": "ORD003", "order_date": "2024-02-05", "region": "North", "category": "Tech", "revenue": 900, "profit": 180, "discount": 0.00, "quantity": 9 },
+    { "order_id": "ORD004", "order_date": "2024-02-12", "region": "East", "category": "Furniture", "revenue": 2500, "profit": 500, "discount": 0.15, "quantity": 5 },
+    { "order_id": "ORD005", "order_date": "2024-02-28", "region": "West", "category": "Office", "revenue": 600, "profit": 150, "discount": 0.02, "quantity": 6 }
+  ]
+}

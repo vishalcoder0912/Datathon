@@ -1,0 +1,2461 @@
+{
+  "generatedAt": "2026-05-30T08:32:57.421Z",
+  "backendUrl": "http://127.0.0.1:3001",
+  "csvPaths": {
+    "train": "c:\\Users\\VISHAL\\OneDrive\\Documents\\Downloads\\SD_salary\\train.csv",
+    "test": "c:\\Users\\VISHAL\\OneDrive\\Documents\\Downloads\\SD_salary\\test.csv",
+    "dictionary": "c:\\Users\\VISHAL\\OneDrive\\Documents\\Downloads\\SD_salary\\data_dictionary.csv"
+  },
+  "datasetInputs": {
+    "train": {
+      "rowCount": 40000,
+      "columnCount": 7
+    },
+    "test": {
+      "rowCount": 10000,
+      "columnCount": 7
+    },
+    "dictionary": {
+      "rowCount": 7,
+      "columnCount": 3
+    }
+  },
+  "deterministic": {
+    "rowCount": 40000,
+    "columnCount": 7,
+    "missingValues": {
+      "experience": 0,
+      "country": 0,
+      "education": 0,
+      "languages": 0,
+      "frameworks": 0,
+      "company_size": 0,
+      "salary_usd": 0
+    },
+    "duplicateRows": 0,
+    "experience": {
+      "count": 40000,
+      "sum": 796515,
+      "avg": 19.912875,
+      "min": 0,
+      "max": 40,
+      "median": 20,
+      "outliersIqr": 0
+    },
+    "salary_usd": {
+      "count": 40000,
+      "sum": 5273377661,
+      "avg": 131834.441525,
+      "min": 12024,
+      "max": 277554,
+      "median": 130579,
+      "outliersIqr": 24
+    },
+    "correlation_experience_salary_usd": 0.7724927105564574
+  },
+  "phases": [
+    {
+      "id": "phase1",
+      "title": "Dataset Registration",
+      "status": "FAIL",
+      "checks": [
+        {
+          "name": "Backend dataset list is readable before upload",
+          "pass": true,
+          "evidence": {
+            "status": 200
+          }
+        },
+        {
+          "name": "All three CSVs import successfully",
+          "pass": true,
+          "evidence": {
+            "train": 201,
+            "test": 201,
+            "dictionary": 201
+          }
+        },
+        {
+          "name": "Each upload returns a datasetId",
+          "pass": true,
+          "evidence": {
+            "ids": [
+              "fdae65ad-c736-48c4-9f24-cd8a4abad472",
+              "7e670b16-c03b-4e16-824b-bda035eb0928",
+              "c535f230-88c8-4bfe-8f68-8deddc0a3cf8"
+            ]
+          }
+        },
+        {
+          "name": "Dataset IDs are unique",
+          "pass": true,
+          "evidence": {
+            "ids": [
+              "fdae65ad-c736-48c4-9f24-cd8a4abad472",
+              "7e670b16-c03b-4e16-824b-bda035eb0928",
+              "c535f230-88c8-4bfe-8f68-8deddc0a3cf8"
+            ]
+          }
+        },
+        {
+          "name": "Dataset count increased",
+          "pass": true,
+          "evidence": {
+            "initialCount": 130,
+            "finalCount": 133
+          }
+        },
+        {
+          "name": "Datasets can be retrieved after upload",
+          "pass": true,
+          "evidence": {
+            "train": 200,
+            "test": 200,
+            "dictionary": 200
+          }
+        },
+        {
+          "name": "Stored metadata includes row and column counts",
+          "pass": true,
+          "evidence": {
+            "train": {
+              "rowCount": 40000,
+              "columnCount": 7
+            },
+            "test": {
+              "rowCount": 10000,
+              "columnCount": 7
+            },
+            "dictionary": {
+              "rowCount": 7,
+              "columnCount": 3
+            }
+          }
+        },
+        {
+          "name": "Import response includes generated schema profile/dashboard analysis",
+          "pass": false,
+          "evidence": {
+            "hasSchemaPacket": false,
+            "analysisKeys": []
+          }
+        }
+      ],
+      "evidence": {
+        "trainDatasetId": "fdae65ad-c736-48c4-9f24-cd8a4abad472",
+        "testDatasetId": "7e670b16-c03b-4e16-824b-bda035eb0928",
+        "dictionaryDatasetId": "c535f230-88c8-4bfe-8f68-8deddc0a3cf8"
+      },
+      "improvements": []
+    },
+    {
+      "id": "phase2",
+      "title": "Schema Understanding",
+      "status": "FAIL",
+      "checks": [
+        {
+          "name": "Schema understanding endpoint executes",
+          "pass": false,
+          "evidence": {
+            "status": 500
+          }
+        },
+        {
+          "name": "Schema dashboard/profile endpoint executes",
+          "pass": true,
+          "evidence": {
+            "status": 200
+          }
+        },
+        {
+          "name": "Columns are inventoried",
+          "pass": true,
+          "evidence": {
+            "count": 7,
+            "names": [
+              "experience",
+              "country",
+              "education",
+              "languages",
+              "frameworks",
+              "company_size",
+              "salary_usd"
+            ]
+          }
+        },
+        {
+          "name": "Columns are not all treated as strings",
+          "pass": true,
+          "evidence": [
+            {
+              "name": "experience",
+              "type": "number",
+              "role": "continuous_metric"
+            },
+            {
+              "name": "country",
+              "type": "string",
+              "role": "location"
+            },
+            {
+              "name": "education",
+              "type": "string",
+              "role": "category"
+            },
+            {
+              "name": "languages",
+              "type": "string",
+              "role": "continuous_metric"
+            },
+            {
+              "name": "frameworks",
+              "type": "string",
+              "role": "category"
+            },
+            {
+              "name": "company_size",
+              "type": "string",
+              "role": "category"
+            },
+            {
+              "name": "salary_usd",
+              "type": "number",
+              "role": "money_metric"
+            }
+          ]
+        },
+        {
+          "name": "Measures are detected",
+          "pass": true,
+          "evidence": [
+            "experience",
+            "languages",
+            "salary_usd"
+          ]
+        },
+        {
+          "name": "Dimensions are detected",
+          "pass": true,
+          "evidence": [
+            "country",
+            "education",
+            "frameworks",
+            "company_size"
+          ]
+        },
+        {
+          "name": "Target/salary column is recognized as analytic metric",
+          "pass": true,
+          "evidence": {
+            "name": "salary_usd",
+            "normalizedName": "salary_usd",
+            "type": "number",
+            "role": "money_metric",
+            "description": "Target variable to predict",
+            "uniqueCount": 35646,
+            "missingPct": 0,
+            "topValuesCount": 0
+          }
+        },
+        {
+          "name": "Data dictionary descriptions are used",
+          "pass": true,
+          "evidence": [
+            {
+              "name": "experience",
+              "description": "Years of professional coding experience"
+            },
+            {
+              "name": "country",
+              "description": "Country of residence"
+            },
+            {
+              "name": "education",
+              "description": "Highest level of formal education"
+            },
+            {
+              "name": "languages",
+              "description": "Primary programming languages"
+            },
+            {
+              "name": "frameworks",
+              "description": "Primary frameworks used"
+            },
+            {
+              "name": "company_size",
+              "description": "Number of employees in the company"
+            },
+            {
+              "name": "salary_usd",
+              "description": "Target variable to predict"
+            }
+          ]
+        }
+      ],
+      "evidence": {
+        "outputShape": {
+          "datasetId": "fdae65ad-c736-48c4-9f24-cd8a4abad472",
+          "dimensions": [
+            "country",
+            "education",
+            "frameworks",
+            "company_size"
+          ],
+          "measures": [
+            "experience",
+            "languages",
+            "salary_usd"
+          ],
+          "targets": [
+            "salary_usd"
+          ],
+          "qualityScore": 100
+        }
+      },
+      "improvements": []
+    },
+    {
+      "id": "phase3",
+      "title": "Multi-Dataset Reasoning",
+      "status": "FAIL",
+      "checks": [
+        {
+          "name": "train.csv and test.csv share the same schema",
+          "pass": true,
+          "evidence": {
+            "mergeable": true,
+            "confidence": 0.98,
+            "joinKeys": [],
+            "appendCompatible": true,
+            "schemaDifferences": []
+          }
+        },
+        {
+          "name": "Multi-file endpoint executes",
+          "pass": true,
+          "evidence": {
+            "status": 200
+          }
+        },
+        {
+          "name": "Endpoint classifies primary/test/dictionary roles",
+          "pass": true,
+          "evidence": {
+            "primaryDataset": "train.csv",
+            "metadataFiles": [
+              "data_dictionary.csv"
+            ],
+            "testFiles": [
+              "test.csv"
+            ]
+          }
+        },
+        {
+          "name": "Endpoint returns explicit merge plan shape",
+          "pass": false,
+          "evidence": {
+            "expectedKeys": [
+              "mergeable",
+              "confidence",
+              "joinKeys",
+              "schemaDifferences"
+            ],
+            "actualKeys": [
+              "dataset",
+              "chatMessages",
+              "pipeline",
+              "relatedDatasets",
+              "analysis"
+            ]
+          }
+        }
+      ],
+      "evidence": {
+        "expectedMergePlan": {
+          "mergeable": true,
+          "confidence": 0.98,
+          "joinKeys": [],
+          "appendCompatible": true,
+          "schemaDifferences": []
+        },
+        "endpointResult": {
+          "dataset": {
+            "id": "6aabedd2-709a-4b8c-9f48-ede9b80974ea",
+            "name": "Combined (train.csv, test.csv)",
+            "columns": {
+              "type": "array",
+              "length": 7
+            },
+            "rows": {
+              "type": "array",
+              "length": 40000
+            },
+            "uploadedAt": "2026-05-30T08:30:55.660Z",
+            "rowCount": 40000,
+            "sourceType": "multi-file",
+            "fileName": "train.csv"
+          },
+          "chatMessages": {
+            "type": "array",
+            "length": 0,
+            "sample": []
+          },
+          "pipeline": "multi-file-smart-analysis",
+          "relatedDatasets": {
+            "primaryDataset": "train.csv",
+            "metadataFiles": {
+              "type": "array",
+              "length": 1
+            },
+            "testFiles": {
+              "type": "array",
+              "length": 1
+            }
+          },
+          "analysis": {
+            "id": "f7510cce-5b65-41d4-81b3-832ee0b4b194",
+            "dataType": "salary_hr_jobs",
+            "dataTypeLabel": "Salary & Jobs Analytics",
+            "rowCount": 40000,
+            "columnCount": 7,
+            "kpis": {
+              "type": "array",
+              "length": 4
+            },
+            "chartRecommendations": {
+              "type": "array",
+              "length": 5
+            },
+            "insights": {
+              "type": "array",
+              "length": 2
+            },
+            "schemaPacket": {
+              "datasetName": "Combined (train.csv, test.csv)",
+              "rowCount": 40000,
+              "columnCount": 7,
+              "columns": {
+                "type": "array",
+                "length": 7
+              },
+              "rawRowsSentToAI": false
+            },
+            "memory": {
+              "usedPreviousPattern": true,
+              "similarity": 1,
+              "domain": "salary_hr_jobs",
+              "columnSignature": "company_size|country|education|experience|frameworks|languages|salary_usd"
+            },
+            "privacy": {
+              "schemaOnly": true,
+              "rawRowsSentToAI": false
+            }
+          }
+        }
+      },
+      "improvements": [
+        "Add a real merge-plan response with mergeable, confidence, joinKeys, and schemaDifferences."
+      ]
+    },
+    {
+      "id": "phase4",
+      "title": "Dataset Update Test",
+      "status": "FAIL",
+      "checks": [
+        {
+          "name": "Existing row-level PATCH update works",
+          "pass": true,
+          "evidence": {
+            "patchStatus": 200,
+            "restoreStatus": 200
+          }
+        },
+        {
+          "name": "Dataset-level replace endpoint exists",
+          "pass": false,
+          "evidence": {
+            "status": 404
+          }
+        },
+        {
+          "name": "Dataset-level append endpoint exists",
+          "pass": false,
+          "evidence": {
+            "status": 404
+          }
+        },
+        {
+          "name": "Dataset version history endpoint exists",
+          "pass": false,
+          "evidence": {
+            "status": 404
+          }
+        },
+        {
+          "name": "Schema/KPI/dashboard refresh metadata returned for update",
+          "pass": false,
+          "evidence": {
+            "expected": [
+              "rowsAdded",
+              "rowsRemoved",
+              "schemaChanged",
+              "dashboardRegenerated"
+            ]
+          }
+        }
+      ],
+      "evidence": {
+        "outputShape": {
+          "rowsAdded": null,
+          "rowsRemoved": null,
+          "schemaChanged": null,
+          "dashboardRegenerated": null
+        }
+      },
+      "improvements": [
+        "Add dataset-level append/replace APIs.",
+        "Persist dataset versions and expose version history.",
+        "Return rowsAdded, rowsRemoved, schemaChanged, and dashboardRegenerated after updates."
+      ]
+    },
+    {
+      "id": "phase5",
+      "title": "Agent Orchestration Test",
+      "status": "FAIL",
+      "checks": [
+        {
+          "name": "Agentic analysis endpoint executes",
+          "pass": true,
+          "evidence": {
+            "status": 200
+          }
+        },
+        {
+          "name": "Audit trail exists",
+          "pass": true,
+          "evidence": [
+            {
+              "step": "schema_analysis",
+              "model": "insightflow-strict-schema-analyst:latest",
+              "status": "ok"
+            },
+            {
+              "step": "master_planning",
+              "model": "insightflow-master:latest",
+              "status": "ok"
+            },
+            {
+              "step": "dashboard_guardian",
+              "model": "insightflow-dashboard-guardian:latest",
+              "status": "ok"
+            }
+          ]
+        },
+        {
+          "name": "Schema Agent executes first",
+          "pass": true,
+          "evidence": {
+            "steps": [
+              "schema_analysis",
+              "master_planning",
+              "dashboard_guardian"
+            ]
+          }
+        },
+        {
+          "name": "Master Agent executes after schema",
+          "pass": true,
+          "evidence": {
+            "steps": [
+              "schema_analysis",
+              "master_planning",
+              "dashboard_guardian"
+            ]
+          }
+        },
+        {
+          "name": "Dashboard Guardian executes",
+          "pass": true,
+          "evidence": {
+            "steps": [
+              "schema_analysis",
+              "master_planning",
+              "dashboard_guardian"
+            ]
+          }
+        },
+        {
+          "name": "Full expected agent chain is present",
+          "pass": false,
+          "evidence": {
+            "expected": [
+              "schema_analysis",
+              "master_planning",
+              "analytics_engine",
+              "dashboard_guardian",
+              "final_explanation"
+            ],
+            "actual": [
+              "schema_analysis",
+              "master_planning",
+              "dashboard_guardian"
+            ],
+            "missing": [
+              "analytics_engine",
+              "final_explanation"
+            ]
+          }
+        },
+        {
+          "name": "More than one configured model appears in audit",
+          "pass": true,
+          "evidence": {
+            "models": [
+              "insightflow-strict-schema-analyst:latest",
+              "insightflow-master:latest",
+              "insightflow-dashboard-guardian:latest"
+            ]
+          }
+        }
+      ],
+      "evidence": {
+        "audit": [
+          {
+            "step": "schema_analysis",
+            "model": "insightflow-strict-schema-analyst:latest",
+            "status": "ok"
+          },
+          {
+            "step": "master_planning",
+            "model": "insightflow-master:latest",
+            "status": "ok"
+          },
+          {
+            "step": "dashboard_guardian",
+            "model": "insightflow-dashboard-guardian:latest",
+            "status": "ok"
+          }
+        ]
+      },
+      "improvements": [
+        "Extend orchestration audit to include analytics_engine and final_explanation steps."
+      ]
+    },
+    {
+      "id": "phase6",
+      "title": "Deterministic Analytics Test",
+      "status": "FAIL",
+      "checks": [
+        {
+          "name": "Harness computed independent row count",
+          "pass": true,
+          "evidence": {
+            "rowCount": 40000
+          }
+        },
+        {
+          "name": "Harness computed sum/avg/min/max",
+          "pass": true,
+          "evidence": {
+            "salary_usd": {
+              "count": 40000,
+              "sum": 5273377661,
+              "avg": 131834.441525,
+              "min": 12024,
+              "max": 277554,
+              "median": 130579,
+              "outliersIqr": 24
+            },
+            "experience": {
+              "count": 40000,
+              "sum": 796515,
+              "avg": 19.912875,
+              "min": 0,
+              "max": 40,
+              "median": 20,
+              "outliersIqr": 0
+            }
+          }
+        },
+        {
+          "name": "Harness computed correlation",
+          "pass": true,
+          "evidence": {
+            "correlation": 0.7724927105564574
+          }
+        },
+        {
+          "name": "Harness computed missing values and outliers",
+          "pass": true,
+          "evidence": {
+            "missingValues": {
+              "experience": 0,
+              "country": 0,
+              "education": 0,
+              "languages": 0,
+              "frameworks": 0,
+              "company_size": 0,
+              "salary_usd": 0
+            },
+            "outliers": {
+              "salary_usd": 24,
+              "experience": 0
+            }
+          }
+        },
+        {
+          "name": "Returned KPI values match deterministic calculations when present",
+          "pass": false,
+          "evidence": []
+        },
+        {
+          "name": "No accepted KPI value is only LLM text",
+          "pass": false,
+          "evidence": {
+            "checkedKpiCount": 0
+          }
+        }
+      ],
+      "evidence": {
+        "deterministic": {
+          "rowCount": 40000,
+          "columnCount": 7,
+          "missingValues": {
+            "experience": 0,
+            "country": 0,
+            "education": 0,
+            "languages": 0,
+            "frameworks": 0,
+            "company_size": 0,
+            "salary_usd": 0
+          },
+          "duplicateRows": 0,
+          "experience": {
+            "count": 40000,
+            "sum": 796515,
+            "avg": 19.912875,
+            "min": 0,
+            "max": 40,
+            "median": 20,
+            "outliersIqr": 0
+          },
+          "salary_usd": {
+            "count": 40000,
+            "sum": 5273377661,
+            "avg": 131834.441525,
+            "min": 12024,
+            "max": 277554,
+            "median": 130579,
+            "outliersIqr": 24
+          },
+          "correlation_experience_salary_usd": 0.7724927105564574
+        }
+      },
+      "improvements": []
+    },
+    {
+      "id": "phase7",
+      "title": "Dashboard Guardian Test",
+      "status": "FAIL",
+      "checks": [
+        {
+          "name": "Dashboard guardian endpoint executes",
+          "pass": true,
+          "evidence": {
+            "status": 200
+          }
+        },
+        {
+          "name": "Guardian reports issues, warnings, or corrections",
+          "pass": true,
+          "evidence": {
+            "isCorrect": false,
+            "issues": {
+              "type": "array",
+              "length": 7,
+              "sample": [
+                {
+                  "type": "missing_kpi",
+                  "severity": "medium",
+                  "message": "Missing KPI: Total Records",
+                  "fix": {
+                    "id": "string",
+                    "title": "string",
+                    "value": "string",
+                    "subtitle": "string",
+                    "metric": "string",
+                    "aggregation": "string"
+                  }
+                },
+                {
+                  "type": "missing_kpi",
+                  "severity": "medium",
+                  "message": "Missing KPI: Average salary_usd",
+                  "fix": {
+                    "id": "string",
+                    "title": "string",
+                    "value": "string",
+                    "subtitle": "string",
+                    "metric": "string",
+                    "aggregation": "string"
+                  }
+                },
+                {
+                  "type": "missing_kpi",
+                  "severity": "medium",
+                  "message": "Missing KPI: Median salary_usd",
+                  "fix": {
+                    "id": "string",
+                    "title": "string",
+                    "value": "string",
+                    "subtitle": "string",
+                    "metric": "string",
+                    "aggregation": "string"
+                  }
+                }
+              ]
+            },
+            "observations": {
+              "type": "array",
+              "length": 0,
+              "sample": []
+            },
+            "correctedDashboard": {
+              "dataType": "salary_jobs",
+              "rowCount": 40000,
+              "columnCount": 7,
+              "kpis": {
+                "type": "array",
+                "length": 5
+              },
+              "charts": {
+                "type": "array",
+                "length": 7
+              },
+              "chartRecommendations": {
+                "type": "array",
+                "length": 7
+              }
+            },
+            "message": "Found 7 dashboard issue(s). Corrected KPIs and 7 charts were regenerated from the dataset."
+          }
+        },
+        {
+          "name": "Guardian removes or corrects non-existent chart/KPI columns",
+          "pass": false,
+          "evidence": {
+            "isCorrect": false,
+            "issues": {
+              "type": "array",
+              "length": 7,
+              "sample": [
+                {
+                  "type": "missing_kpi",
+                  "severity": "medium",
+                  "message": "Missing KPI: Total Records",
+                  "fix": {
+                    "id": "string",
+                    "title": "string",
+                    "value": "string",
+                    "subtitle": "string",
+                    "metric": "string",
+                    "aggregation": "string"
+                  }
+                },
+                {
+                  "type": "missing_kpi",
+                  "severity": "medium",
+                  "message": "Missing KPI: Average salary_usd",
+                  "fix": {
+                    "id": "string",
+                    "title": "string",
+                    "value": "string",
+                    "subtitle": "string",
+                    "metric": "string",
+                    "aggregation": "string"
+                  }
+                },
+                {
+                  "type": "missing_kpi",
+                  "severity": "medium",
+                  "message": "Missing KPI: Median salary_usd",
+                  "fix": {
+                    "id": "string",
+                    "title": "string",
+                    "value": "string",
+                    "subtitle": "string",
+                    "metric": "string",
+                    "aggregation": "string"
+                  }
+                }
+              ]
+            },
+            "observations": {
+              "type": "array",
+              "length": 0,
+              "sample": []
+            },
+            "correctedDashboard": {
+              "dataType": "salary_jobs",
+              "rowCount": 40000,
+              "columnCount": 7,
+              "kpis": {
+                "type": "array",
+                "length": 5
+              },
+              "charts": {
+                "type": "array",
+                "length": 7
+              },
+              "chartRecommendations": {
+                "type": "array",
+                "length": 7
+              }
+            },
+            "message": "Found 7 dashboard issue(s). Corrected KPIs and 7 charts were regenerated from the dataset."
+          }
+        }
+      ],
+      "evidence": {
+        "expectedShape": {
+          "valid": false,
+          "warnings": [],
+          "corrections": [
+            {
+              "type": "missing_kpi",
+              "severity": "medium",
+              "message": "Missing KPI: Total Records",
+              "fix": {
+                "id": "kpi-total-records",
+                "title": "Total Records",
+                "value": "40,000",
+                "subtitle": "count",
+                "metric": "*",
+                "aggregation": "count"
+              }
+            },
+            {
+              "type": "missing_kpi",
+              "severity": "medium",
+              "message": "Missing KPI: Average salary_usd",
+              "fix": {
+                "id": "kpi-average-salary_usd",
+                "title": "Average salary_usd",
+                "value": "1,31,834.44",
+                "subtitle": "avg",
+                "metric": "salary_usd",
+                "aggregation": "avg"
+              }
+            },
+            {
+              "type": "missing_kpi",
+              "severity": "medium",
+              "message": "Missing KPI: Median salary_usd",
+              "fix": {
+                "id": "kpi-median-salary_usd",
+                "title": "Median salary_usd",
+                "value": "1,30,579",
+                "subtitle": "median",
+                "metric": "salary_usd",
+                "aggregation": "median"
+              }
+            },
+            {
+              "type": "missing_kpi",
+              "severity": "medium",
+              "message": "Missing KPI: Highest salary_usd",
+              "fix": {
+                "id": "kpi-highest-salary_usd",
+                "title": "Highest salary_usd",
+                "value": "2,77,554",
+                "subtitle": "max",
+                "metric": "salary_usd",
+                "aggregation": "max"
+              }
+            },
+            {
+              "type": "missing_kpi",
+              "severity": "medium",
+              "message": "Missing KPI: country Categories",
+              "fix": {
+                "id": "kpi-unique-country",
+                "title": "country Categories",
+                "value": "10",
+                "subtitle": "unique",
+                "metric": "country",
+                "aggregation": "unique"
+              }
+            },
+            {
+              "type": "wrong_chart_count",
+              "severity": "medium",
+              "message": "Dashboard should show 7 charts per dataset. Current: 1, expected: 7."
+            },
+            {
+              "type": "invalid_chart_schema",
+              "severity": "high",
+              "message": "Chart \"Fake Chart\" uses invalid keys x=fake_country, y=fake_salary."
+            }
+          ]
+        }
+      },
+      "improvements": []
+    },
+    {
+      "id": "phase8",
+      "title": "RAG Training Readiness",
+      "status": "FAIL",
+      "checks": [
+        {
+          "name": "RAG training endpoint executes",
+          "pass": true,
+          "evidence": {
+            "status": 200,
+            "embedding": {
+              "provider": "local-deterministic",
+              "model": "deterministic-hash",
+              "fallback": true
+            }
+          }
+        },
+        {
+          "name": "RAG memory endpoint executes",
+          "pass": true,
+          "evidence": {
+            "status": 200,
+            "stats": {
+              "memoryPath": "C:\\Users\\VISHAL\\Desktop\\20-12-2025\\All_full_stack_preparation\\expo\\Agentic ai Data analytics\\apps\\backend\\data\\schema-rag-memory.json",
+              "total": 5,
+              "domains": {
+                "workforce_salary": 3,
+                "sales_commerce": 2
+              },
+              "withEmbeddings": 5,
+              "updatedAt": "2026-05-30T08:32:56.872Z"
+            }
+          }
+        },
+        {
+          "name": "Memory chunks/summaries are generated",
+          "pass": true,
+          "evidence": {
+            "id": "fdae65ad-c736-48c4-9f24-cd8a4abad472",
+            "name": "salary_train_stress_audit",
+            "domain": "workforce_salary",
+            "source": "agentic-salary-stress-audit",
+            "rating": "good",
+            "notes": "Stress-audit generated salary dashboard memory.",
+            "schemaSignature": "b2db2001e50e2bbd12068f1c",
+            "schemaText": "Domain: workforce_salary\nSignature: b2db2001e50e2bbd12068f1c\nRows: 40000\nColumns: 7\nSchema:\nexperience number continuous_metric Years of professional coding experience unique:41 missing:0 topValuesCount:0 hasStats:true\ncountry string location Country of residence unique:10 missing:0 topValuesCount:1...",
+            "schemaProfile": {
+              "datasetName": "salary_train_stress_audit",
+              "rowCount": 40000,
+              "columnCount": 7,
+              "domain": "workforce_salary",
+              "signature": "b2db2001e50e2bbd12068f1c",
+              "columns": {
+                "type": "array",
+                "length": 7
+              }
+            },
+            "columns": {
+              "type": "array",
+              "length": 7,
+              "sample": [
+                {
+                  "name": "experience",
+                  "normalizedName": "experience",
+                  "title": "Experience",
+                  "type": "number",
+                  "role": "continuous_metric",
+                  "description": "Years of professional coding experience",
+                  "missingPct": 0,
+                  "uniqueCount": 41,
+                  "topValuesCount": 0,
+                  "hasStats": true
+                },
+                {
+                  "name": "country",
+                  "normalizedName": "country",
+                  "title": "Country",
+                  "type": "string",
+                  "role": "location",
+                  "description": "Country of residence",
+                  "missingPct": 0,
+                  "uniqueCount": 10,
+                  "topValuesCount": 10,
+                  "hasStats": false
+                },
+                {
+                  "name": "education",
+                  "normalizedName": "education",
+                  "title": "Education",
+                  "type": "string",
+                  "role": "category",
+                  "description": "Highest level of formal education",
+                  "missingPct": 0,
+                  "uniqueCount": 5,
+                  "topValuesCount": 5,
+                  "hasStats": false
+                }
+              ]
+            },
+            "dashboardPlan": {
+              "kpis": {
+                "type": "array",
+                "length": 8
+              },
+              "charts": {
+                "type": "array",
+                "length": 7
+              }
+            },
+            "examplesSeen": 1,
+            "createdAt": "2026-05-30T08:32:56.859Z",
+            "updatedAt": "2026-05-30T08:32:56.861Z"
+          }
+        },
+        {
+          "name": "Embeddings can be generated",
+          "pass": true,
+          "evidence": {
+            "provider": "local-deterministic",
+            "model": "deterministic-hash",
+            "fallback": true
+          }
+        },
+        {
+          "name": "Reusable memory records exist",
+          "pass": true,
+          "evidence": {
+            "actualMemoryPath": "C:\\Users\\VISHAL\\Desktop\\20-12-2025\\All_full_stack_preparation\\expo\\Agentic ai Data analytics\\apps\\backend\\data\\schema-rag-memory.json"
+          }
+        },
+        {
+          "name": "Required named memory export files exist",
+          "pass": false,
+          "evidence": {
+            "expectedFiles": [
+              "schema-memory.json",
+              "rag-memory.json",
+              "dataset-fingerprints.json",
+              "analytics-playbooks.json"
+            ],
+            "actualMemoryPath": "C:\\Users\\VISHAL\\Desktop\\20-12-2025\\All_full_stack_preparation\\expo\\Agentic ai Data analytics\\apps\\backend\\data\\schema-rag-memory.json"
+          }
+        }
+      ],
+      "evidence": {
+        "expectedOutputs": [
+          "schema-memory.json",
+          "rag-memory.json",
+          "dataset-fingerprints.json",
+          "analytics-playbooks.json"
+        ],
+        "actualMemoryPath": "C:\\Users\\VISHAL\\Desktop\\20-12-2025\\All_full_stack_preparation\\expo\\Agentic ai Data analytics\\apps\\backend\\data\\schema-rag-memory.json"
+      },
+      "improvements": [
+        "Add explicit export jobs for schema-memory.json, rag-memory.json, dataset-fingerprints.json, and analytics-playbooks.json."
+      ]
+    },
+    {
+      "id": "phase9",
+      "title": "LLM Training Readiness",
+      "status": "FAIL",
+      "checks": [
+        {
+          "name": "Harness can generate at least 50 schema-aware fine-tuning examples",
+          "pass": true,
+          "evidence": {
+            "count": 50,
+            "sample": {
+              "instruction": "Create a salary analytics dashboard.",
+              "schema": {
+                "datasetName": "salary_train_stress_audit",
+                "rowCount": 40000,
+                "columnCount": 7,
+                "columns": [
+                  {
+                    "name": "experience",
+                    "type": "number",
+                    "role": "metric",
+                    "description": "Years of professional coding experience"
+                  },
+                  {
+                    "name": "country",
+                    "type": "string",
+                    "role": "dimension",
+                    "description": "Country of residence"
+                  },
+                  {
+                    "name": "education",
+                    "type": "string",
+                    "role": "dimension",
+                    "description": "Highest level of formal education"
+                  },
+                  {
+                    "name": "languages",
+                    "type": "string",
+                    "role": "dimension",
+                    "description": "Primary programming languages"
+                  },
+                  {
+                    "name": "frameworks",
+                    "type": "string",
+                    "role": "dimension",
+                    "description": "Primary frameworks used"
+                  },
+                  {
+                    "name": "company_size",
+                    "type": "string",
+                    "role": "dimension",
+                    "description": "Number of employees in the company"
+                  },
+                  {
+                    "name": "salary_usd",
+                    "type": "number",
+                    "role": "target",
+                    "description": "Target variable to predict"
+                  }
+                ]
+              },
+              "dashboardPlan": {
+                "source": "guardian-workforce-salary+rag:trained-memory+rag:trained-memory+trained-memory+schema-understanding-engine+rules+guardian-rules",
+                "domain": "workforce_salary",
+                "schemaOnly": true,
+                "kpis": [
+                  {
+                    "id": "kpi-mps3cqdq-hrkq1",
+                    "title": "Total Records",
+                    "metric": "__row_count__",
+                    "aggregation": "count",
+                    "format": "number",
+                    "description": ""
+                  },
+                  {
+                    "id": "kpi-mps3cqdq-axsvk",
+                    "title": "Average Salary",
+                    "metric": "salary_usd",
+                    "aggregation": "avg",
+                    "format": "currency",
+                    "description": ""
+                  },
+                  {
+                    "id": "kpi-mps3cqdq-v8cc2",
+                    "title": "Median Salary",
+                    "metric": "salary_usd",
+                    "aggregation": "median",
+                    "format": "currency",
+                    "description": ""
+                  },
+                  {
+                    "id": "kpi-mps3cqdq-cuuwq",
+                    "title": "Highest Salary",
+                    "metric": "salary_usd",
+                    "aggregation": "max",
+                    "format": "currency",
+                    "description": ""
+                  },
+                  {
+                    "id": "kpi-mps3cqdq-aba7o",
+                    "title": "Countries",
+                    "metric": "country",
+                    "aggregation": "count_unique",
+                    "format": "number",
+                    "description": ""
+                  },
+                  {
+                    "id": "kpi-mps3cqdi-j3j1h",
+                    "title": "Average Salary Usd",
+                    "metric": "salary_usd",
+                    "aggregation": "avg",
+                    "format": "currency",
+                    "description": ""
+                  },
+                  {
+                    "id": "kpi-mps3cqdj-v1gz9",
+                    "title": "Total Columns",
+                    "metric": "__column_count__",
+                    "aggregation": "count",
+                    "format": "number",
+                    "description": ""
+                  },
+                  {
+                    "id": "kpi-mps3cqdj-gu65w",
+                    "title": "Median Salary Usd",
+                    "metric": "salary_usd",
+                    "aggregation": "median",
+                    "format": "currency",
+                    "description": ""
+                  }
+                ],
+                "charts": [
+                  {
+                    "id": "chart-mps3cqdu-0jw2a",
+                    "type": "bar",
+                    "title": "Average Salary by Country",
+                    "xKey": "country",
+                    "yKey": "salary_usd",
+                    "aggregation": "avg",
+                    "limit": 10,
+                    "reason": ""
+                  },
+                  {
+                    "id": "chart-mps3cqdu-lxjj2",
+                    "type": "histogram",
+                    "title": "Salary Distribution",
+                    "xKey": "salary_usd",
+                    "yKey": "salary_usd",
+                    "aggregation": "count",
+                    "limit": 12,
+                    "reason": ""
+                  },
+                  {
+                    "id": "chart-mps3cqdv-4ep7v",
+                    "type": "scatter",
+                    "title": "Salary vs Experience",
+                    "xKey": "experience",
+                    "yKey": "salary_usd",
+                    "aggregation": "count",
+                    "limit": 500,
+                    "reason": ""
+                  },
+                  {
+                    "id": "chart-mps3cqdv-svkl8",
+                    "type": "donut",
+                    "title": "Education Distribution",
+                    "xKey": "education",
+                    "yKey": "count",
+                    "aggregation": "count",
+                    "limit": 10,
+                    "reason": ""
+                  },
+                  {
+                    "id": "chart-mps3cqdx-pgynm",
+                    "type": "bar",
+                    "title": "Average Salary by Company Size",
+                    "xKey": "company_size",
+                    "yKey": "salary_usd",
+                    "aggregation": "avg",
+                    "limit": 10,
+                    "reason": ""
+                  },
+                  {
+                    "id": "chart-mps3cqdx-smj03",
+                    "type": "bar",
+                    "title": "Average Salary by Language",
+                    "xKey": "languages",
+                    "yKey": "salary_usd",
+                    "aggregation": "avg",
+                    "limit": 10,
+                    "reason": "",
+                    "splitValues": true
+                  },
+                  {
+                    "id": "chart-mps3cqdx-7hx17",
+                    "type": "bar",
+                    "title": "Average Salary by Framework",
+                    "xKey": "frameworks",
+                    "yKey": "salary_usd",
+                    "aggregation": "avg",
+                    "limit": 10,
+                    "reason": "",
+                    "splitValues": true
+                  }
+                ],
+                "filters": [],
+                "guardian": {
+                  "enforced": true,
+                  "chartCount": 7,
+                  "kpiCount": 8,
+                  "maxCharts": 7,
+                  "maxKpis": 8,
+                  "unsafeAiDataRemoved": true,
+                  "schemaOnly": true,
+                  "warnings": [],
+                  "fixes": [
+                    "Removed unsafe AI values/data and validated dashboard specs."
+                  ]
+                },
+                "qualityGuard": {
+                  "applied": true,
+                  "expectedCharts": 7,
+                  "actualCharts": 7,
+                  "schemaOnly": true,
+                  "reason": "Strict workforce salary dashboard pattern enforced."
+                }
+              },
+              "expectedOutput": {
+                "schemaOnly": true,
+                "domain": "workforce_salary",
+                "requiredColumns": [
+                  "experience",
+                  "country",
+                  "education",
+                  "languages",
+                  "frameworks",
+                  "company_size",
+                  "salary_usd"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name": "Training examples use instruction/schema/dashboardPlan/expectedOutput shape",
+          "pass": true,
+          "evidence": {
+            "sampleKeys": [
+              "instruction",
+              "schema",
+              "dashboardPlan",
+              "expectedOutput"
+            ]
+          }
+        },
+        {
+          "name": "Schema training endpoint executes",
+          "pass": true,
+          "evidence": {
+            "status": 200
+          }
+        },
+        {
+          "name": "Schema training memory endpoint executes",
+          "pass": true,
+          "evidence": {
+            "status": 200,
+            "stats": {
+              "count": 7,
+              "domains": {
+                "workforce_salary": 4,
+                "health_wellness": 1,
+                "sales_commerce": 2
+              },
+              "memoryPath": "C:\\Users\\VISHAL\\Desktop\\20-12-2025\\All_full_stack_preparation\\expo\\Agentic ai Data analytics\\apps\\backend\\data\\schema-training-memory.json"
+            }
+          }
+        },
+        {
+          "name": "Persisted training memory has at least 50 examples",
+          "pass": false,
+          "evidence": {
+            "count": 7
+          }
+        },
+        {
+          "name": "Training data is not generic chatbot text",
+          "pass": true,
+          "evidence": {
+            "checkedExamples": 50
+          }
+        }
+      ],
+      "evidence": {
+        "generatedExamples": 50,
+        "persistedMemoryCount": 7
+      },
+      "improvements": [
+        "Add/export a JSONL fine-tuning dataset with at least 50 distinct schema-aware records."
+      ]
+    }
+  ],
+  "finalVerdict": {
+    "Multi-Dataset Support": "FAIL",
+    "Dataset Update Support": "FAIL",
+    "Agentic Architecture": "FAIL",
+    "Dashboard Guardian": "FAIL",
+    "RAG Readiness": "FAIL",
+    "LLM Training Readiness": "FAIL",
+    "Deterministic Analytics": "FAIL",
+    "Production Readiness": "FAIL",
+    "Architecture Score": 0
+  },
+  "finalVerdictLettered": {
+    "A. Multi-Dataset Support": "FAIL",
+    "B. Dataset Update Support": "FAIL",
+    "C. Agentic Architecture": "FAIL",
+    "D. Dashboard Guardian": "FAIL",
+    "E. RAG Readiness": "FAIL",
+    "F. LLM Training Readiness": "FAIL",
+    "G. Deterministic Analytics": "FAIL",
+    "H. Production Readiness": "FAIL",
+    "I. Architecture Score": "0/100",
+    "J. What must be built next": [
+      "Add a real merge-plan response with mergeable, confidence, joinKeys, and schemaDifferences.",
+      "Add dataset-level append/replace APIs.",
+      "Persist dataset versions and expose version history.",
+      "Return rowsAdded, rowsRemoved, schemaChanged, and dashboardRegenerated after updates.",
+      "Extend orchestration audit to include analytics_engine and final_explanation steps.",
+      "Add explicit export jobs for schema-memory.json, rag-memory.json, dataset-fingerprints.json, and analytics-playbooks.json.",
+      "Add/export a JSONL fine-tuning dataset with at least 50 distinct schema-aware records.",
+      "apps/backend/src/routes/datasets.js: add append, replace, and version-history routes.",
+      "apps/backend/src/database/dataset-repository.js: persist dataset versions, schema fingerprints, and update metadata.",
+      "apps/backend/src/services/data-merger.js: expose evidence-based merge plan instead of only normalizing rows.",
+      "apps/backend/src/services/ai-analyst: add explicit memory/fingerprint/playbook export service.",
+      "apps/backend/scripts/export-schema-training-jsonl.js: ensure at least 50 schema-aware fine-tuning records are generated/exported."
+    ]
+  },
+  "whatMustBeBuiltNext": [
+    "Add a real merge-plan response with mergeable, confidence, joinKeys, and schemaDifferences.",
+    "Add dataset-level append/replace APIs.",
+    "Persist dataset versions and expose version history.",
+    "Return rowsAdded, rowsRemoved, schemaChanged, and dashboardRegenerated after updates.",
+    "Extend orchestration audit to include analytics_engine and final_explanation steps.",
+    "Add explicit export jobs for schema-memory.json, rag-memory.json, dataset-fingerprints.json, and analytics-playbooks.json.",
+    "Add/export a JSONL fine-tuning dataset with at least 50 distinct schema-aware records.",
+    "apps/backend/src/routes/datasets.js: add append, replace, and version-history routes.",
+    "apps/backend/src/database/dataset-repository.js: persist dataset versions, schema fingerprints, and update metadata.",
+    "apps/backend/src/services/data-merger.js: expose evidence-based merge plan instead of only normalizing rows.",
+    "apps/backend/src/services/ai-analyst: add explicit memory/fingerprint/playbook export service.",
+    "apps/backend/scripts/export-schema-training-jsonl.js: ensure at least 50 schema-aware fine-tuning records are generated/exported."
+  ],
+  "endpointEvidence": [
+    {
+      "method": "GET",
+      "route": "/api/health",
+      "status": 200,
+      "ok": true,
+      "ms": 340,
+      "summary": {
+        "status": "healthy",
+        "timestamp": "2026-05-30T08:30:48.658Z",
+        "uptime": 72.1712137,
+        "version": "1.0.0",
+        "environment": "development",
+        "memory": {
+          "rss": 155856896,
+          "heapTotal": 91287552,
+          "heapUsed": 61950360,
+          "external": 7015734,
+          "arrayBuffers": 3150394
+        },
+        "cpu": {
+          "user": 2375000,
+          "system": 1015000
+        },
+        "nodeVersion": "v24.1.0",
+        "platform": "win32",
+        "arch": "x64"
+      }
+    },
+    {
+      "method": "GET",
+      "route": "/api/datasets",
+      "status": 200,
+      "ok": true,
+      "ms": 12,
+      "summary": {
+        "success": true,
+        "data": {
+          "datasets": {
+            "type": "array",
+            "length": 130
+          },
+          "count": 130
+        },
+        "message": "Datasets retrieved",
+        "timestamp": "2026-05-30T08:30:48.806Z"
+      }
+    },
+    {
+      "method": "POST",
+      "route": "/api/datasets/import",
+      "status": 201,
+      "ok": true,
+      "ms": 1686,
+      "summary": {
+        "dataset": {
+          "id": "fdae65ad-c736-48c4-9f24-cd8a4abad472",
+          "name": "salary_train_stress_audit",
+          "fileName": "train.csv",
+          "sourceType": "stress-audit",
+          "columns": {
+            "type": "array",
+            "length": 7
+          },
+          "rows": {
+            "type": "array",
+            "length": 40000
+          },
+          "rowCount": 40000,
+          "columnCount": 7,
+          "isLocal": false,
+          "localDatasetId": null,
+          "createdAt": "2026-05-30T08:30:49.801Z",
+          "updatedAt": "2026-05-30T08:30:49.801Z"
+        },
+        "chatMessages": {
+          "type": "array",
+          "length": 0,
+          "sample": []
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "route": "/api/datasets/import",
+      "status": 201,
+      "ok": true,
+      "ms": 191,
+      "summary": {
+        "dataset": {
+          "id": "7e670b16-c03b-4e16-824b-bda035eb0928",
+          "name": "salary_test_stress_audit",
+          "fileName": "test.csv",
+          "sourceType": "stress-audit",
+          "columns": {
+            "type": "array",
+            "length": 7
+          },
+          "rows": {
+            "type": "array",
+            "length": 10000
+          },
+          "rowCount": 10000,
+          "columnCount": 7,
+          "isLocal": false,
+          "localDatasetId": null,
+          "createdAt": "2026-05-30T08:30:50.740Z",
+          "updatedAt": "2026-05-30T08:30:50.740Z"
+        },
+        "chatMessages": {
+          "type": "array",
+          "length": 0,
+          "sample": []
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "route": "/api/datasets/import",
+      "status": 201,
+      "ok": true,
+      "ms": 8,
+      "summary": {
+        "dataset": {
+          "id": "c535f230-88c8-4bfe-8f68-8deddc0a3cf8",
+          "name": "salary_data_dictionary_stress_audit",
+          "fileName": "data_dictionary.csv",
+          "sourceType": "stress-audit",
+          "columns": {
+            "type": "array",
+            "length": 3
+          },
+          "rows": {
+            "type": "array",
+            "length": 7
+          },
+          "rowCount": 7,
+          "columnCount": 3,
+          "isLocal": false,
+          "localDatasetId": null,
+          "createdAt": "2026-05-30T08:30:50.828Z",
+          "updatedAt": "2026-05-30T08:30:50.828Z"
+        },
+        "chatMessages": {
+          "type": "array",
+          "length": 0,
+          "sample": []
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "route": "/api/datasets/fdae65ad-c736-48c4-9f24-cd8a4abad472",
+      "status": 200,
+      "ok": true,
+      "ms": 939,
+      "summary": {
+        "success": true,
+        "data": {
+          "dataset": {
+            "id": "fdae65ad-c736-48c4-9f24-cd8a4abad472",
+            "name": "salary_train_stress_audit",
+            "fileName": "train.csv",
+            "sourceType": "stress-audit",
+            "columns": {
+              "type": "array",
+              "length": 7
+            },
+            "rows": {
+              "type": "array",
+              "length": 40000
+            },
+            "rowCount": 40000,
+            "columnCount": 7,
+            "isLocal": false,
+            "localDatasetId": null,
+            "createdAt": "2026-05-30T08:30:49.801Z",
+            "updatedAt": "2026-05-30T08:30:49.801Z"
+          }
+        },
+        "message": "Dataset retrieved",
+        "timestamp": "2026-05-30T08:30:50.835Z"
+      }
+    },
+    {
+      "method": "GET",
+      "route": "/api/datasets/7e670b16-c03b-4e16-824b-bda035eb0928",
+      "status": 200,
+      "ok": true,
+      "ms": 184,
+      "summary": {
+        "success": true,
+        "data": {
+          "dataset": {
+            "id": "7e670b16-c03b-4e16-824b-bda035eb0928",
+            "name": "salary_test_stress_audit",
+            "fileName": "test.csv",
+            "sourceType": "stress-audit",
+            "columns": {
+              "type": "array",
+              "length": 7
+            },
+            "rows": {
+              "type": "array",
+              "length": 10000
+            },
+            "rowCount": 10000,
+            "columnCount": 7,
+            "isLocal": false,
+            "localDatasetId": null,
+            "createdAt": "2026-05-30T08:30:50.740Z",
+            "updatedAt": "2026-05-30T08:30:50.740Z"
+          }
+        },
+        "message": "Dataset retrieved",
+        "timestamp": "2026-05-30T08:30:51.773Z"
+      }
+    },
+    {
+      "method": "GET",
+      "route": "/api/datasets/c535f230-88c8-4bfe-8f68-8deddc0a3cf8",
+      "status": 200,
+      "ok": true,
+      "ms": 7,
+      "summary": {
+        "success": true,
+        "data": {
+          "dataset": {
+            "id": "c535f230-88c8-4bfe-8f68-8deddc0a3cf8",
+            "name": "salary_data_dictionary_stress_audit",
+            "fileName": "data_dictionary.csv",
+            "sourceType": "stress-audit",
+            "columns": {
+              "type": "array",
+              "length": 3
+            },
+            "rows": {
+              "type": "array",
+              "length": 7
+            },
+            "rowCount": 7,
+            "columnCount": 3,
+            "isLocal": false,
+            "localDatasetId": null,
+            "createdAt": "2026-05-30T08:30:50.828Z",
+            "updatedAt": "2026-05-30T08:30:50.828Z"
+          }
+        },
+        "message": "Dataset retrieved",
+        "timestamp": "2026-05-30T08:30:51.958Z"
+      }
+    },
+    {
+      "method": "GET",
+      "route": "/api/datasets",
+      "status": 200,
+      "ok": true,
+      "ms": 12,
+      "summary": {
+        "success": true,
+        "data": {
+          "datasets": {
+            "type": "array",
+            "length": 133
+          },
+          "count": 133
+        },
+        "message": "Datasets retrieved",
+        "timestamp": "2026-05-30T08:30:51.965Z"
+      }
+    },
+    {
+      "method": "POST",
+      "route": "/api/datasets/fdae65ad-c736-48c4-9f24-cd8a4abad472/schema-understand",
+      "status": 500,
+      "ok": false,
+      "ms": 531,
+      "summary": {
+        "success": false,
+        "error": {
+          "message": "Cannot read properties of undefined (reading 'toLocaleString')"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "route": "/api/datasets/fdae65ad-c736-48c4-9f24-cd8a4abad472/schema-dashboard",
+      "status": 200,
+      "ok": true,
+      "ms": 1606,
+      "summary": {
+        "success": true,
+        "data": {
+          "success": true,
+          "schemaOnly": true,
+          "profile": {
+            "datasetName": "salary_train_with_dictionary",
+            "rowCount": 40000,
+            "columnCount": 7,
+            "domain": "workforce_salary",
+            "signature": "b2db2001e50e2bbd12068f1c",
+            "columns": {
+              "type": "array",
+              "length": 7
+            }
+          },
+          "understanding": {
+            "domain": {
+              "domain": "string",
+              "confidence": "number",
+              "candidates": "object"
+            },
+            "userExplanation": "I detected this as a workforce salary dataset with 100% confidence. It has 40,000 rows and 7 columns. Main metric appears to be \"salary_usd\". Main category appears to be \"country\". No strong time/date column detected.",
+            "primaryMetric": {
+              "name": "string",
+              "title": "string",
+              "role": "string",
+              "type": "string",
+              "priority": "number"
+            },
+            "primaryCategory": {
+              "name": "string",
+              "title": "string",
+              "role": "string",
+              "type": "string",
+              "uniqueCount": "number",
+              "multiValue": "boolean",
+              "priority": "number"
+            },
+            "recommendedKpis": {
+              "type": "array",
+              "length": 6
+            },
+            "recommendedCharts": {
+              "type": "array",
+              "length": 7
+            }
+          },
+          "match": {
+            "dataset": "Developer Salary / Workforce Analytics",
+            "domain": "workforce_salary",
+            "score": 1
+          },
+          "candidates": {
+            "type": "array",
+            "length": 5
+          },
+          "rag": {
+            "used": true,
+            "threshold": 0.55,
+            "query": {
+              "domain": "string",
+              "signature": "string",
+              "embeddingProvider": "string",
+              "embeddingModel": "string",
+              "embeddingFallback": "boolean"
+            },
+            "matches": {
+              "type": "array",
+              "length": 2
+            },
+            "stats": {
+              "memoryPath": "string",
+              "total": "number",
+              "domains": "object",
+              "withEmbeddings": "number",
+              "updatedAt": "string"
+            }
+          },
+          "dashboard": {
+            "source": "guardian-workforce-salary+rag:trained-memory+rag:trained-memory+trained-memory+schema-understanding-engine+rules+guardian-rules",
+            "domain": "workforce_salary",
+            "schemaOnly": true,
+            "kpis": {
+              "type": "array",
+              "length": 8
+            },
+            "charts": {
+              "type": "array",
+              "length": 7
+            },
+            "filters": {
+              "type": "array",
+              "length": 0
+            },
+            "guardian": {
+              "enforced": "boolean",
+              "chartCount": "number",
+              "kpiCount": "number",
+              "maxCharts": "number",
+              "maxKpis": "number",
+              "unsafeAiDataRemoved": "boolean",
+              "schemaOnly": "boolean",
+              "warnings": "object",
+              "fixes": "object"
+            },
+            "qualityGuard": {
+              "applied": "boolean",
+              "expectedCharts": "number",
+              "actualCharts": "number",
+              "schemaOnly": "boolean",
+              "reason": "string"
+            }
+          },
+          "dashboardPlan": {
+            "source": "guardian-workforce-salary+rag:trained-memory+rag:trained-memory+trained-memory+schema-understanding-engine+rules+guardian-rules",
+            "domain": "workforce_salary",
+            "schemaOnly": true,
+            "kpis": {
+              "type": "array",
+              "length": 8
+            },
+            "charts": {
+              "type": "array",
+              "length": 7
+            },
+            "filters": {
+              "type": "array",
+              "length": 0
+            },
+            "guardian": {
+              "enforced": "boolean",
+              "chartCount": "number",
+              "kpiCount": "number",
+              "maxCharts": "number",
+              "maxKpis": "number",
+              "unsafeAiDataRemoved": "boolean",
+              "schemaOnly": "boolean",
+              "warnings": "object",
+              "fixes": "object"
+            },
+            "qualityGuard": {
+              "applied": "boolean",
+              "expectedCharts": "number",
+              "actualCharts": "number",
+              "schemaOnly": "boolean",
+              "reason": "string"
+            }
+          },
+          "dashboardHealth": {
+            "status": "healthy",
+            "score": 100,
+            "issues": {
+              "type": "array",
+              "length": 0
+            },
+            "warnings": {
+              "type": "array",
+              "length": 0
+            }
+          },
+          "provider": "rag+local",
+          "model": "local",
+          "quality": {
+            "score": 100,
+            "health": {
+              "status": "string",
+              "score": "number",
+              "issues": "object",
+              "warnings": "object"
+            },
+            "warnings": {
+              "type": "array",
+              "length": 0
+            },
+            "fixes": {
+              "type": "array",
+              "length": 1
+            }
+          },
+          "llm": null
+        },
+        "message": "Schema-trained RAG dashboard generated"
+      }
+    },
+    {
+      "method": "POST",
+      "route": "/api/datasets/merge",
+      "status": 200,
+      "ok": true,
+      "ms": 6778,
+      "summary": {
+        "success": true,
+        "data": {
+          "dataset": {
+            "id": "6aabedd2-709a-4b8c-9f48-ede9b80974ea",
+            "name": "Combined (train.csv, test.csv)",
+            "columns": {
+              "type": "array",
+              "length": 7
+            },
+            "rows": {
+              "type": "array",
+              "length": 40000
+            },
+            "uploadedAt": "2026-05-30T08:30:55.660Z",
+            "rowCount": 40000,
+            "sourceType": "multi-file",
+            "fileName": "train.csv"
+          },
+          "chatMessages": {
+            "type": "array",
+            "length": 0
+          },
+          "pipeline": "multi-file-smart-analysis",
+          "relatedDatasets": {
+            "primaryDataset": "train.csv",
+            "metadataFiles": {
+              "type": "array",
+              "length": 1
+            },
+            "testFiles": {
+              "type": "array",
+              "length": 1
+            }
+          },
+          "analysis": {
+            "id": "f7510cce-5b65-41d4-81b3-832ee0b4b194",
+            "dataType": "salary_hr_jobs",
+            "dataTypeLabel": "Salary & Jobs Analytics",
+            "rowCount": 40000,
+            "columnCount": 7,
+            "kpis": {
+              "type": "array",
+              "length": 4
+            },
+            "chartRecommendations": {
+              "type": "array",
+              "length": 5
+            },
+            "insights": {
+              "type": "array",
+              "length": 2
+            },
+            "schemaPacket": {
+              "datasetName": "string",
+              "rowCount": "number",
+              "columnCount": "number",
+              "columns": "object",
+              "rawRowsSentToAI": "boolean"
+            },
+            "memory": {
+              "usedPreviousPattern": "boolean",
+              "similarity": "number",
+              "domain": "string",
+              "columnSignature": "string"
+            },
+            "privacy": {
+              "schemaOnly": "boolean",
+              "rawRowsSentToAI": "boolean"
+            }
+          }
+        },
+        "message": "Multi-file dataset analyzed successfully",
+        "timestamp": "2026-05-30T08:31:00.656Z"
+      }
+    },
+    {
+      "method": "PATCH",
+      "route": "/api/datasets/fdae65ad-c736-48c4-9f24-cd8a4abad472/rows/1",
+      "status": 200,
+      "ok": true,
+      "ms": 509,
+      "summary": {
+        "dataset": {
+          "id": "fdae65ad-c736-48c4-9f24-cd8a4abad472",
+          "name": "salary_train_stress_audit",
+          "fileName": "train.csv",
+          "sourceType": "stress-audit",
+          "columns": {
+            "type": "array",
+            "length": 7
+          },
+          "rows": {
+            "type": "array",
+            "length": 40000
+          },
+          "rowCount": 40000,
+          "columnCount": 7,
+          "isLocal": false,
+          "localDatasetId": null,
+          "createdAt": "2026-05-30T08:30:49.801Z",
+          "updatedAt": "2026-05-30T08:31:01.907Z"
+        }
+      }
+    },
+    {
+      "method": "PATCH",
+      "route": "/api/datasets/fdae65ad-c736-48c4-9f24-cd8a4abad472/rows/1",
+      "status": 200,
+      "ok": true,
+      "ms": 363,
+      "summary": {
+        "dataset": {
+          "id": "fdae65ad-c736-48c4-9f24-cd8a4abad472",
+          "name": "salary_train_stress_audit",
+          "fileName": "train.csv",
+          "sourceType": "stress-audit",
+          "columns": {
+            "type": "array",
+            "length": 7
+          },
+          "rows": {
+            "type": "array",
+            "length": 40000
+          },
+          "rowCount": 40000,
+          "columnCount": 7,
+          "isLocal": false,
+          "localDatasetId": null,
+          "createdAt": "2026-05-30T08:30:49.801Z",
+          "updatedAt": "2026-05-30T08:31:02.408Z"
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "route": "/api/datasets/fdae65ad-c736-48c4-9f24-cd8a4abad472",
+      "status": 404,
+      "ok": false,
+      "ms": 7,
+      "summary": {
+        "error": "Route not found",
+        "message": "Route not found"
+      }
+    },
+    {
+      "method": "POST",
+      "route": "/api/datasets/fdae65ad-c736-48c4-9f24-cd8a4abad472/rows",
+      "status": 404,
+      "ok": false,
+      "ms": 6,
+      "summary": {
+        "error": "Route not found",
+        "message": "Route not found"
+      }
+    },
+    {
+      "method": "GET",
+      "route": "/api/datasets/fdae65ad-c736-48c4-9f24-cd8a4abad472/versions",
+      "status": 404,
+      "ok": false,
+      "ms": 8,
+      "summary": {
+        "error": "Route not found",
+        "message": "Route not found"
+      }
+    },
+    {
+      "method": "POST",
+      "route": "/api/agentic-models/datasets/fdae65ad-c736-48c4-9f24-cd8a4abad472/analyze",
+      "status": 200,
+      "ok": true,
+      "ms": 112926,
+      "summary": {
+        "success": true,
+        "data": {
+          "success": true,
+          "mode": "model-aware-agentic-analytics",
+          "models": {
+            "masterPlanner": "insightflow-master:latest",
+            "schemaAnalyst": "insightflow-strict-schema-analyst:latest",
+            "schemaAnalystFallback": "strict-schema-analyst:latest",
+            "dashboardGuardian": "insightflow-dashboard-guardian:latest",
+            "deepReasoner": "minimax-m2.7:cloud",
+            "embedding": "nomic-embed-text:latest",
+            "codeAnalyst": "qwen2.5-coder:7b",
+            "generalReasoner": "qwen3:8b",
+            "fallbackChat": "llama3.2:latest",
+            "friendlyChat": "neural-chat:7b"
+          },
+          "profile": {
+            "rowCount": 40000,
+            "columnCount": 7,
+            "columns": {
+              "type": "array",
+              "length": 7
+            },
+            "numericColumns": {
+              "type": "array",
+              "length": 2
+            },
+            "dateColumns": {
+              "type": "array",
+              "length": 0
+            },
+            "categoricalColumns": {
+              "type": "array",
+              "length": 3
+            },
+            "textColumns": {
+              "type": "array",
+              "length": 2
+            }
+          },
+          "schemaAnalysis": {
+            "domain": "Workforce Salary Analytics",
+            "metricColumns": {
+              "type": "array",
+              "length": 2
+            },
+            "dimensionColumns": {
+              "type": "array",
+              "length": 5
+            },
+            "dateColumns": {
+              "type": "array",
+              "length": 0
+            },
+            "risks": {
+              "type": "array",
+              "length": 3
+            },
+            "dashboardGoal": "Audit salary analytics with schema-aware deterministic insights",
+            "confidence": 0.95
+          },
+          "plan": {
+            "objective": "Audit salary analytics dashboard with schema-aware deterministic insights",
+            "steps": {
+              "type": "array",
+              "length": 6
+            },
+            "toolCalls": {
+              "type": "array",
+              "length": 2
+            },
+            "expectedOutput": {
+              "kpis": "object",
+              "charts": "object"
+            },
+            "safetyRules": {
+              "type": "array",
+              "length": 5
+            }
+          },
+          "dashboard": {
+            "kpis": {
+              "type": "array",
+              "length": 0
+            },
+            "charts": {
+              "type": "array",
+              "length": 2
+            },
+            "filters": {
+              "type": "array",
+              "length": 0
+            },
+            "warnings": {
+              "type": "array",
+              "length": 1
+            }
+          },
+          "audit": {
+            "type": "array",
+            "length": 3
+          },
+          "nextTrainingHooks": {
+            "ragEmbeddingModel": "nomic-embed-text:latest",
+            "replaceRetrieverFile": "apps/backend/src/services/agentic/rag-retriever.js",
+            "fineTuneTargets": {
+              "type": "array",
+              "length": 3
+            }
+          }
+        },
+        "message": "Model-aware agentic analysis complete",
+        "timestamp": "2026-05-30T08:32:55.710Z"
+      }
+    },
+    {
+      "method": "POST",
+      "route": "/api/datasets/fdae65ad-c736-48c4-9f24-cd8a4abad472/dashboard-validate-fix",
+      "status": 200,
+      "ok": true,
+      "ms": 548,
+      "summary": {
+        "success": true,
+        "data": {
+          "isCorrect": false,
+          "issues": {
+            "type": "array",
+            "length": 7
+          },
+          "observations": {
+            "type": "array",
+            "length": 0
+          },
+          "correctedDashboard": {
+            "dataType": "salary_jobs",
+            "rowCount": 40000,
+            "columnCount": 7,
+            "kpis": {
+              "type": "array",
+              "length": 5
+            },
+            "charts": {
+              "type": "array",
+              "length": 7
+            },
+            "chartRecommendations": {
+              "type": "array",
+              "length": 7
+            }
+          },
+          "message": "Found 7 dashboard issue(s). Corrected KPIs and 7 charts were regenerated from the dataset."
+        },
+        "message": "Dashboard validation completed",
+        "timestamp": "2026-05-30T08:32:56.234Z"
+      }
+    },
+    {
+      "method": "POST",
+      "route": "/api/ai/schema-rag/train",
+      "status": 200,
+      "ok": true,
+      "ms": 553,
+      "summary": {
+        "success": true,
+        "data": {
+          "entry": {
+            "id": "fdae65ad-c736-48c4-9f24-cd8a4abad472",
+            "name": "salary_train_stress_audit",
+            "domain": "workforce_salary",
+            "source": "agentic-salary-stress-audit",
+            "rating": "good",
+            "notes": "Stress-audit generated salary dashboard memory.",
+            "schemaSignature": "b2db2001e50e2bbd12068f1c",
+            "schemaText": "Domain: workforce_salary\nSignature: b2db2001e50e2bbd12068f1c\nRows: 40000\nColumns: 7\nSchema:\nexperience number continuous_metric Years of professional coding experience unique:41 missing:0 topValuesCount:0 hasStats:true\ncountry string location Country of residence unique:10 missing:0 topValuesCount:1...",
+            "schemaProfile": {
+              "datasetName": "string",
+              "rowCount": "number",
+              "columnCount": "number",
+              "domain": "string",
+              "signature": "string",
+              "columns": "object"
+            },
+            "columns": {
+              "type": "array",
+              "length": 7
+            },
+            "dashboardPlan": {
+              "kpis": "object",
+              "charts": "object"
+            },
+            "examplesSeen": 1,
+            "createdAt": "2026-05-30T08:32:56.859Z",
+            "updatedAt": "2026-05-30T08:32:56.861Z"
+          },
+          "embedding": {
+            "provider": "local-deterministic",
+            "model": "deterministic-hash",
+            "fallback": true
+          },
+          "stats": {
+            "memoryPath": "C:\\Users\\VISHAL\\Desktop\\20-12-2025\\All_full_stack_preparation\\expo\\Agentic ai Data analytics\\apps\\backend\\data\\schema-rag-memory.json",
+            "total": 5,
+            "domains": {
+              "workforce_salary": "number",
+              "sales_commerce": "number"
+            },
+            "withEmbeddings": 5,
+            "updatedAt": "2026-05-30T08:32:56.866Z"
+          }
+        },
+        "message": "Schema RAG memory trained"
+      }
+    },
+    {
+      "method": "GET",
+      "route": "/api/ai/schema-rag-memory",
+      "status": 200,
+      "ok": true,
+      "ms": 8,
+      "summary": {
+        "success": true,
+        "data": {
+          "stats": {
+            "memoryPath": "C:\\Users\\VISHAL\\Desktop\\20-12-2025\\All_full_stack_preparation\\expo\\Agentic ai Data analytics\\apps\\backend\\data\\schema-rag-memory.json",
+            "total": 5,
+            "domains": {
+              "workforce_salary": "number",
+              "sales_commerce": "number"
+            },
+            "withEmbeddings": 5,
+            "updatedAt": "2026-05-30T08:32:56.872Z"
+          },
+          "memory": {
+            "type": "array",
+            "length": 5
+          }
+        },
+        "message": "Schema RAG memory loaded"
+      }
+    },
+    {
+      "method": "POST",
+      "route": "/api/ai/schema-training/train-memory",
+      "status": 200,
+      "ok": true,
+      "ms": 461,
+      "summary": {
+        "success": true,
+        "data": {
+          "trained": {
+            "type": "array",
+            "length": 50
+          },
+          "stats": {
+            "count": 7,
+            "domains": {
+              "workforce_salary": "number",
+              "health_wellness": "number",
+              "sales_commerce": "number"
+            },
+            "memoryPath": "C:\\Users\\VISHAL\\Desktop\\20-12-2025\\All_full_stack_preparation\\expo\\Agentic ai Data analytics\\apps\\backend\\data\\schema-training-memory.json"
+          }
+        },
+        "message": "Schema memory trained"
+      }
+    },
+    {
+      "method": "GET",
+      "route": "/api/ai/schema-training-memory",
+      "status": 200,
+      "ok": true,
+      "ms": 9,
+      "summary": {
+        "success": true,
+        "data": {
+          "stats": {
+            "count": 7,
+            "domains": {
+              "workforce_salary": "number",
+              "health_wellness": "number",
+              "sales_commerce": "number"
+            },
+            "memoryPath": "C:\\Users\\VISHAL\\Desktop\\20-12-2025\\All_full_stack_preparation\\expo\\Agentic ai Data analytics\\apps\\backend\\data\\schema-training-memory.json"
+          },
+          "memory": {
+            "type": "array",
+            "length": 7
+          }
+        },
+        "message": "Schema training memory loaded"
+      }
+    }
+  ]
+}

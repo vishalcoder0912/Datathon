@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+﻿import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
 import AppLayout from "@/shared/layout/AppLayout";
@@ -20,6 +20,18 @@ vi.mock("@/auth/AuthProvider", () => ({
     isDemoSession: true,
     logout: vi.fn(),
   }),
+}));
+
+vi.mock("@/kavach/context/ImportDataContext", () => ({
+  useImportData: () => ({
+    hasCustomData: false,
+    importedCount: 0,
+    lastImportAt: null,
+    refreshKey: 0,
+    notifyImported: vi.fn(),
+    reset: vi.fn(),
+  }),
+  ImportDataProvider: ({ children }: { children: React.ReactNode }) => children,
 }));
 
 describe("AppLayout", () => {

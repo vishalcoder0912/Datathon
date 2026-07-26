@@ -1,0 +1,12 @@
+{
+  "name": "Invalid Mixed",
+  "columns": ["country", "salary_usd", "experience", "secret_note"],
+  "rows": [
+    { "country": "India", "salary_usd": 50000, "experience": 2, "secret_note": "SECRET_RAW_ROW_SHOULD_NEVER_REACH_LLM" },
+    { "country": "USA", "salary_usd": 90000, "experience": 5, "secret_note": "private" },
+    { "country": "India", "salary_usd": 65000, "experience": 3, "secret_note": "" },
+    { "country": "", "salary_usd": "", "experience": "not-a-number", "secret_note": null },
+    {},
+    { "country": "Canada", "salary_usd": "100k", "experience": -5, "secret_note": "corrupted" }
+  ]
+}

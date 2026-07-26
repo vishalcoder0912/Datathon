@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import {
   ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   BarChart, Bar, Cell,
@@ -201,6 +201,7 @@ export default function SocialIntelligencePage() {
                   .map((corr) => (
                     <button
                       key={corr.pair}
+                      type="button"
                       onClick={() => setSelectedPair(corr.pair)}
                       className="flex w-full items-center gap-3 rounded-lg border border-slate-100 p-2 text-left text-xs transition hover:bg-slate-50"
                     >

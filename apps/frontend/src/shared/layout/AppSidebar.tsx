@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+﻿import { NavLink, useLocation } from "react-router-dom";
 import {
   Shield,
   Map,
@@ -34,6 +34,7 @@ interface NavigationItem {
 
 const kavachNavItems: NavigationItem[] = [
   { label: "Dashboard", to: "/dashboard", icon: Shield },
+  { label: "Intelligence OS", to: "/intelligence-os", icon: BrainCircuit },
   { label: "Geo Intelligence", to: "/geo-intelligence", icon: Map },
   { label: "Trend Intelligence", to: "/trend-intelligence", icon: TrendingUp },
   { label: "Network Intelligence", to: "/network-intelligence", icon: GitBranch },
@@ -111,7 +112,7 @@ export default function AppSidebar() {
               key={item.to}
               to={item.to}
               className={cn(
-                "relative flex h-11 items-center gap-3 rounded-xl px-3 text-sm font-semibold transition-all",
+                "relative flex h-11 items-center gap-3 rounded-xl px-3 text-sm font-semibold transition-colors",
                 active
                   ? "bg-gradient-to-r from-[#1D4ED8] to-[#0891B2] text-white shadow-lg shadow-blue-950/30"
                   : "text-slate-300 hover:bg-white/10 hover:text-white"
@@ -146,7 +147,7 @@ export default function AppSidebar() {
               key={item.to}
               to={item.to}
               className={cn(
-                "flex h-10 items-center gap-3 rounded-xl px-3 text-xs font-medium transition-all",
+                "flex h-10 items-center gap-3 rounded-xl px-3 text-xs font-medium transition-colors",
                 active
                   ? "bg-white/10 text-white"
                   : "text-slate-400 hover:bg-white/5 hover:text-slate-300"

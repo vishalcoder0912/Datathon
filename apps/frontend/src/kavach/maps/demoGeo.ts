@@ -1,4 +1,4 @@
-export interface DemoDistrict {
+﻿export interface DemoDistrict {
   district: string;
   longitude: number;
   latitude: number;
