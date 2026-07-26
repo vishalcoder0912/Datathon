@@ -9,8 +9,13 @@ async function postJson<T>(path: string, body: unknown): Promise<T> {
     body: JSON.stringify(body),
   });
 
+  if (!response.ok) {
+    const errorText = await response.text().catch(() => "");
+    throw new Error(errorText || `Request failed: ${response.status}`);
+  }
+
   const data = await response.json().catch(() => null);
-  if (!response.ok || data?.ok === false) {
+  if (data?.ok === false) {
     throw new Error(data?.error || data?.detail || `Request failed: ${response.status}`);
   }
 
@@ -19,9 +24,14 @@ async function postJson<T>(path: string, body: unknown): Promise<T> {
 
 async function getJson<T>(path: string): Promise<T> {
   const response = await fetch(`${API_BASE}${path}`);
-  const data = await response.json().catch(() => null);
 
-  if (!response.ok || data?.ok === false) {
+  if (!response.ok) {
+    const errorText = await response.text().catch(() => "");
+    throw new Error(errorText || `Request failed: ${response.status}`);
+  }
+
+  const data = await response.json().catch(() => null);
+  if (data?.ok === false) {
     throw new Error(data?.error || data?.detail || `Request failed: ${response.status}`);
   }
 
