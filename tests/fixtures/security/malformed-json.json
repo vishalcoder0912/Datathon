@@ -1,0 +1,122 @@
+[
+  {
+    "description": "Standard valid JSON",
+    "payload": {"name": "test", "value": 42}
+  },
+  {
+    "description": "Missing closing brace",
+    "payload": "{\"name\": \"test\""
+  },
+  {
+    "description": "Extra closing brace",
+    "payload": "{\"name\": \"test\"}}"
+  },
+  {
+    "description": "Single quotes instead of double",
+    "payload": "{'name': 'test'}"
+  },
+  {
+    "description": "No quotes on key",
+    "payload": "{name: \"test\"}"
+  },
+  {
+    "description": "Trailing comma",
+    "payload": "{\"name\": \"test\",}"
+  },
+  {
+    "description": "Multiple trailing commas",
+    "payload": "{\"a\": 1, \"b\": 2,,}"
+  },
+  {
+    "description": "Nested unclosed object",
+    "payload": "{\"outer\": {\"inner\": \"value\""
+  },
+  {
+    "description": "Deeply nested unclosed",
+    "payload": "{\"a\": {\"b\": {\"c\": {\"d\": \"value\"}}}}}}}}}"
+  },
+  {
+    "description": "NaN as value",
+    "payload": "{\"value\": NaN}"
+  },
+  {
+    "description": "Infinity as value",
+    "payload": "{\"value\": Infinity}"
+  },
+  {
+    "description": "undefined as value",
+    "payload": "{\"value\": undefined}"
+  },
+  {
+    "description": "Function as value",
+    "payload": "{\"func\": function() { return 1; }}"
+  },
+  {
+    "description": "Unescaped control character",
+    "payload": "{\"name\": \"test\u0000null\"}"
+  },
+  {
+    "description": "Tab in string",
+    "payload": "{\"name\": \"test\tvalue\"}"
+  },
+  {
+    "description": "Very deep nesting (stack overflow attempt)",
+    "payload": "{\"a":' + '{"a":'.repeat(10000) + '"x"}'
+  },
+  {
+    "description": "Duplicate keys",
+    "payload": "{\"key\": \"first\", \"key\": \"second\", \"key\": \"third\"}"
+  },
+  {
+    "description": "Prototype pollution attempt",
+    "payload": "{\"__proto__\": {\"isAdmin\": true}}"
+  },
+  {
+    "description": "Constructor pollution attempt",
+    "payload": "{\"constructor\": {\"prototype\": {\"polluted\": true}}}"
+  },
+  {
+    "description": "Extremely long string value",
+    "payload": "{\"data\": \"' + 'A'.repeat(100000) + '\"}"
+  },
+  {
+    "description": "Empty input",
+    "payload": ""
+  },
+  {
+    "description": "Null byte injection",
+    "payload": "{\"name\": \"test\\u0000null\"}"
+  },
+  {
+    "description": "Unicode escape injection",
+    "payload": "{\"name\": \"test\\u003cscript\\u003ealert(1)\\u003c/script\\u003e\"}"
+  },
+  {
+    "description": "Array of mixed types unclosed",
+    "payload": "[1, 2, 3, "
+  },
+  {
+    "description": "Negative zero",
+    "payload": "{\"value\": -0}"
+  },
+  {
+    "description": "Scientific notation bomb",
+    "payload": "{\"value\": 1e999}"
+  },
+  {
+    "description": "Unicode escapes for ASCII",
+    "payload": "{\"\\u006e\\u0061\\u006d\\u0065\": \"value\"}"
+  },
+  {
+    "description": "BOM prefix",
+    "payload": "\uFEFF{\"name\": \"test\"}"
+  },
+  {
+    "description": "Excessively large integer",
+    "payload": "{\"value\": 99999999999999999999999999999999999999999999999999}"
+  },
+  {
+    "description": "Array bomb (many elements)",
+    "payload": "[' + '\"x\",'.repeat(100000) + '\"x\"]"
+  }
+]

