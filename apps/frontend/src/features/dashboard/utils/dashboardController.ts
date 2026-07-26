@@ -1,4 +1,4 @@
-export interface DashboardCommand {
+﻿export interface DashboardCommand {
   action: 'SHOW_ALL' | 'SHOW_CHART' | 'FILTER' | 'GENERATE_CHART' | 'MODIFY_CHART' | 'ANSWER' | 'DELETE' | 'CLEAR' | 'COMPARE' | 'TREND';
   charts?: string[];
   filter?: Record<string, string>;

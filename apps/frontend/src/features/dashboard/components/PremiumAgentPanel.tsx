@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+﻿import { FormEvent, useState } from "react";
 import { Bot, BrainCircuit, Send, Sparkles } from "lucide-react";
 import type { AgentMessage, AgentReasoningStep } from "@/features/dashboard/types/premiumDashboardTypes";
 
@@ -116,7 +116,7 @@ export function PremiumAgentPanel({
       </section>
 
       <form onSubmit={submit} className="rounded-2xl border border-violet-400/20 bg-slate-950/80 p-3">
-        <textarea value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Ask anything..." className="h-20 w-full resize-none rounded-xl border border-slate-800 bg-slate-900/70 p-3 text-sm text-white outline-none placeholder:text-slate-600 focus:border-violet-400/50" />
+        <textarea aria-label="Ask anything" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Ask anything..." className="h-20 w-full resize-none rounded-xl border border-slate-800 bg-slate-900/70 p-3 text-sm text-white outline-none placeholder:text-slate-600 focus:border-violet-400/50" />
         <button type="submit" disabled={loading} className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-60">
           {loading ? <Sparkles className="h-4 w-4 animate-pulse" aria-hidden="true" /> : <Send className="h-4 w-4" aria-hidden="true" />}
           {loading ? "Thinking..." : "Send"}

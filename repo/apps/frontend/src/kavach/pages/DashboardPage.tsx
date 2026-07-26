@@ -165,7 +165,7 @@ export default function DashboardPage() {
       kavachApi.getDataQualitySummary(filters).then(res => setDqSummary(res.data?.data || res.data));
       kavachApi.getDataQualityIssues(filters).then(res => setDqIssues(res.data?.data?.data || res.data?.data || []));
     }
-  }, [activeTab, filters]);
+  }, [activeTab, alertGrowth, alertZ, filters]);
 
   // Timeline player logic
   useEffect(() => {

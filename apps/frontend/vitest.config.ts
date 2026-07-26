@@ -7,7 +7,7 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     globals: true,
-    setupFiles: ["./src/test/setup.ts"],
+    setupFiles: ["./src/test/setup.ts", "./src/__tests__/a11y/setup.ts"],
     include: ["src/**/*.{test,spec}.{ts,tsx}"],
     // Vitest defaults to one fork per available CPU. On local Windows setups
     // that can launch many isolated JSDOM workers at once and leave the full

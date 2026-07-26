@@ -337,7 +337,7 @@ export default function SchemaDashboardChat({
     } finally {
       setLocalLoading(false);
     }
-  }, [input, loading, controller, dataset, currentDashboard, onSend, onCommand]);
+  }, [input, loading, controller, dataset, currentDashboard, dashboardChartCount, onSend, onCommand]);
 
   function handleKeyDown(e: React.KeyboardEvent) {
     if (e.key === "Enter" && !e.shiftKey) {

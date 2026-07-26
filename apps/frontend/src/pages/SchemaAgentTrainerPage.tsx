@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { useAutoTrainSchema } from '../hooks/useAutoTrainSchema';
 import { SchemaTrainingStatus } from '../components/SchemaTrainingStatus';
 import { AgenticThinkingPanel } from '../features/dashboard/components/AgenticThinkingPanel';
@@ -27,9 +27,10 @@ export default function SchemaAgentTrainerPage() {
             value={datasetId}
             onChange={(event) => setDatasetId(event.target.value)}
             placeholder="Enter datasetId"
+            aria-label="Enter dataset ID"
             className="flex-1 rounded-xl border px-4 py-3"
           />
-          <button className="rounded-xl border px-5 py-3 font-semibold shadow-sm">
+          <button type="button" className="rounded-xl border px-5 py-3 font-semibold shadow-sm">
             Train Schema
           </button>
         </form>

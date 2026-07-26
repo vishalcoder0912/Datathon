@@ -1,4 +1,4 @@
-import { ChartConfig, ChatMessage, Dataset, DatasetAnalysis } from "@/features/data/model/dataStore";
+﻿import { ChartConfig, ChatMessage, Dataset, DatasetAnalysis } from "@/features/data/model/dataStore";
 import type { Aggregation, ChartSpec, KpiSpec } from "@/features/dashboard/types/dashboardTypes";
 import logger from "@/shared/lib/logger";
 import { API_ROUTES } from "@/api/routes";

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+﻿import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Globe2, LocateFixed, Maximize2, Minus, Plus } from "lucide-react";
 import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from "react-simple-maps";
@@ -181,7 +181,7 @@ export default function AnimatedDatasetGeoMap({ rows, columns = [] }: Props) {
           <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-500">Source: <span className="font-bold text-slate-700">{schema.mode}</span> · field: <span className="font-bold text-slate-700">{schema.location || "coordinates"}</span>. Click a mapped country or marker to inspect records calculated from the dataset.</p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          {metricColumns.length > 0 && <select value={metricColumn} onChange={(event) => setMetric(event.target.value)} className="h-10 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-bold text-slate-700 outline-none focus:border-violet-300"><option value="count">Record Count</option>{metricColumns.map((column) => <option key={column} value={column}>{pretty(column)} Avg</option>)}</select>}
+          {metricColumns.length > 0 && <select aria-label="Select metric" value={metricColumn} onChange={(event) => setMetric(event.target.value)} className="h-10 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-bold text-slate-700 outline-none focus:border-violet-300"><option value="count">Record Count</option>{metricColumns.map((column) => <option key={column} value={column}>{pretty(column)} Avg</option>)}</select>}
         </div>
       </header>
 
@@ -197,9 +197,9 @@ export default function AnimatedDatasetGeoMap({ rows, columns = [] }: Props) {
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(139,92,246,.28),transparent_28%),radial-gradient(circle_at_72%_65%,rgba(14,165,233,.16),transparent_32%)]" />
           <div className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full border border-violet-300/20 animate-ping" />
           <div className="absolute left-4 top-4 z-20 flex flex-col gap-1 rounded-2xl border border-white/10 bg-white/90 p-1 shadow-sm backdrop-blur">
-            <button type="button" onClick={() => setZoom((value) => Math.min(6, value + 0.35))} className="grid size-8 place-items-center rounded-xl text-slate-600 hover:bg-violet-50 hover:text-violet-700"><Plus className="size-4" /></button>
-            <button type="button" onClick={() => setZoom((value) => Math.max(0.8, value - 0.35))} className="grid size-8 place-items-center rounded-xl text-slate-600 hover:bg-violet-50 hover:text-violet-700"><Minus className="size-4" /></button>
-            <button type="button" onClick={() => { setZoom(1); setCenter([20, 18]); setActiveKey(null); setSelectedCountry(null); }} className="grid size-8 place-items-center rounded-xl text-slate-600 hover:bg-violet-50 hover:text-violet-700"><Maximize2 className="size-4" /></button>
+            <button type="button" aria-label="Zoom in" onClick={() => setZoom((value) => Math.min(6, value + 0.35))} className="grid size-8 place-items-center rounded-xl text-slate-600 hover:bg-violet-50 hover:text-violet-700"><Plus className="size-4" /></button>
+            <button type="button" aria-label="Zoom out" onClick={() => setZoom((value) => Math.max(0.8, value - 0.35))} className="grid size-8 place-items-center rounded-xl text-slate-600 hover:bg-violet-50 hover:text-violet-700"><Minus className="size-4" /></button>
+            <button type="button" aria-label="Reset map view" onClick={() => { setZoom(1); setCenter([20, 18]); setActiveKey(null); setSelectedCountry(null); }} className="grid size-8 place-items-center rounded-xl text-slate-600 hover:bg-violet-50 hover:text-violet-700"><Maximize2 className="size-4" /></button>
           </div>
 
           <ComposableMap projection="geoEqualEarth" projectionConfig={{ scale: 165 }} className="absolute inset-0 h-full w-full">

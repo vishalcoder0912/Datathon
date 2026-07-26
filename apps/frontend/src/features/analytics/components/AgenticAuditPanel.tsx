@@ -1,4 +1,4 @@
-import { Activity, AlertCircle, CheckCircle2, Cpu } from "lucide-react";
+﻿import { Activity, AlertCircle, CheckCircle2, Cpu } from "lucide-react";
 
 const CARD = "rounded-2xl border border-slate-700/60 bg-slate-900/70 shadow-xl backdrop-blur-md p-6";
 

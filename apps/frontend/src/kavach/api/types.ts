@@ -1,4 +1,4 @@
-export type KavachRole =
+﻿export type KavachRole =
   | "STATE_ADMIN"
   | "SCRB_ANALYST"
   | "DISTRICT_OFFICER"

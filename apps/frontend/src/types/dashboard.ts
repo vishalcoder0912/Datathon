@@ -1,4 +1,4 @@
-export type Aggregation =
+﻿export type Aggregation =
   | "none"
   | "count"
   | "sum"

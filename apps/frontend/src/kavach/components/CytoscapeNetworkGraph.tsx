@@ -85,9 +85,11 @@ export default function CytoscapeNetworkGraph({nodes, edges, layoutRevision, onN
   const edgeSelectRef = useRef(onEdgeSelect);
   const graphRef = useRef({nodes, edges});
 
-  nodeSelectRef.current = onNodeSelect;
-  edgeSelectRef.current = onEdgeSelect;
-  graphRef.current = {nodes, edges};
+  useEffect(() => {
+    nodeSelectRef.current = onNodeSelect;
+    edgeSelectRef.current = onEdgeSelect;
+    graphRef.current = {nodes, edges};
+  });
 
   useEffect(() => {
     if (!container.current) return;

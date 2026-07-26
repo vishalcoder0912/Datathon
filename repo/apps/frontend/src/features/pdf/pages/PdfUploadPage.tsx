@@ -192,7 +192,7 @@ export default function PdfUploadPage() {
       cancelled = true;
       window.clearInterval(timer);
     };
-  }, [activePdfDocumentId]);
+  }, [activePdfDocumentId, activeDataset]);
 
   async function uploadPdf(file?: File) {
     if (!file || uploadingRef.current) return;

@@ -22,11 +22,23 @@ interface MapLibreDistrictMapProps {
   onStationSelect?: (stationId: string) => void;
 }
 
-const bareMapStyle = {
+const mapTileUrl = import.meta.env.VITE_KAVACH_MAP_TILE_URL ?? "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
+const mapAttribution = import.meta.env.VITE_KAVACH_MAP_ATTRIBUTION
+  ?? '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors';
+
+const streetMapStyle: maplibregl.StyleSpecification = {
   version: 8,
-  sources: {},
-  layers: [{id: "background", type: "background", paint: {"background-color": "#eef6ff"}}],
-} as const;
+  sources: {
+    "openstreetmap-raster": {
+      type: "raster",
+      tiles: [mapTileUrl],
+      tileSize: 256,
+      maxzoom: 19,
+      attribution: mapAttribution,
+    },
+  },
+  layers: [{id: "openstreetmap-raster", type: "raster", source: "openstreetmap-raster"}],
+};
 
 export default function MapLibreDistrictMap({districts, stations = [], selectedDistrict, showRisk, showStations, onDistrictSelect, onStationSelect}: MapLibreDistrictMapProps) {
   const mapElement = useRef<HTMLDivElement | null>(null);
@@ -49,19 +61,19 @@ export default function MapLibreDistrictMap({districts, stations = [], selectedD
     if (!mapElement.current || mapInstance.current) return;
     const map = new maplibregl.Map({
       container: mapElement.current,
-      style: bareMapStyle,
+      style: streetMapStyle,
       center: [76.2, 14.5],
       zoom: 5.3,
       minZoom: 4.5,
       maxZoom: 12,
-      attributionControl: false,
+      attributionControl: true,
     });
 
     map.addControl(new maplibregl.NavigationControl({showCompass: false}), "top-right");
     map.addControl(new maplibregl.FullscreenControl(), "top-right");
     mapInstance.current = map;
 
-    map.on("load", () => {
+    const onLoad = () => {
       map.addSource("kavach-districts", {type: "geojson", data: districtData});
       map.addLayer({
         id: "kavach-district-fill",
@@ -89,9 +101,11 @@ export default function MapLibreDistrictMap({districts, stations = [], selectedD
       });
       map.on("mouseenter", "kavach-district-fill", () => { map.getCanvas().style.cursor = "pointer"; });
       map.on("mouseleave", "kavach-district-fill", () => { map.getCanvas().style.cursor = ""; });
-    });
+    };
+    map.on("load", onLoad);
 
     return () => {
+      map.off("load", onLoad);
       map.remove();
       mapInstance.current = null;
     };

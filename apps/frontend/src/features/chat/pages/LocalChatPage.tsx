@@ -1,4 +1,4 @@
-import LocalAIChatInterface from '@/features/chat/components/LocalAIChatInterface';
+﻿import LocalAIChatInterface from '@/features/chat/components/LocalAIChatInterface';
 
 const LocalChatPage = () => {
   return <LocalAIChatInterface />;

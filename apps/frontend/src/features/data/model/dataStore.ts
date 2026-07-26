@@ -1,4 +1,4 @@
-import {
+﻿import {
   toNumber,
   toLabel,
   normalizeText,

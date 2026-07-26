@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+﻿import type { ReactNode } from "react";
 import { MoreHorizontal, Sparkles } from "lucide-react";
 
 type ChartCardShellProps = {
@@ -29,13 +29,14 @@ export function ChartCardShell({
         </div>
 
         <div className="flex items-center gap-2">
-          <button className="inline-flex items-center gap-1 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm hover:bg-slate-50">
+          <button type="button" className="inline-flex items-center gap-1 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm hover:bg-slate-50">
             <Sparkles className="h-3.5 w-3.5 text-violet-600" />
             Explain
           </button>
 
           <select
             defaultValue={chartType}
+            aria-label="Change chart type"
             className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm outline-none"
           >
             <option value="bar">bar</option>
@@ -45,7 +46,7 @@ export function ChartCardShell({
             <option value="horizontal">horizontal</option>
           </select>
 
-          <button className="rounded-xl border border-slate-200 bg-white p-2 shadow-sm hover:bg-slate-50">
+          <button type="button" aria-label="More options" className="rounded-xl border border-slate-200 bg-white p-2 shadow-sm hover:bg-slate-50">
             <MoreHorizontal className="h-4 w-4 text-slate-500" />
           </button>
         </div>

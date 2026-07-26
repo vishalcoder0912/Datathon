@@ -2,7 +2,7 @@ import type { ChartType, ChartIntent } from "@/features/dashboard/types/dashboar
 import type { Row } from "@/features/dashboard/utils/dashboardAnalytics";
 
 /* ============================================================
-   INSIGHTFLOW — Universal Dashboard Intelligence Engine
+   INSIGHTFLOW ï¿½ Universal Dashboard Intelligence Engine
    Implements Master Prompt Steps 1-10 + Self-Critic Mode
    ============================================================ */
 
@@ -839,7 +839,7 @@ export function generateCharts(rows: Row[], schema: InsightFlowSchema, datasetTy
   const dateCol = schema.dates[0];
   const geoCol = schema.geo[0];
 
-  // 1. Trend — Date vs Metric
+  // 1. Trend ï¿½ Date vs Metric
   if (dateCol && primaryMetric) {
     addChart("line", `${primaryMetric.name.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} Over Time`,
       dateCol.name, primaryMetric.name, "sum", "trend",
@@ -847,7 +847,7 @@ export function generateCharts(rows: Row[], schema: InsightFlowSchema, datasetTy
       buildTrendData(rows, dateCol.name, primaryMetric.name, "sum"));
   }
 
-  // 2. Distribution — Histogram of primary metric
+  // 2. Distribution ï¿½ Histogram of primary metric
   if (primaryMetric) {
     addChart("histogram", `${primaryMetric.name.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} Distribution`,
       "range", primaryMetric.name, "count", "distribution",
@@ -855,7 +855,7 @@ export function generateCharts(rows: Row[], schema: InsightFlowSchema, datasetTy
       buildHistogramData(rows, primaryMetric.name));
   }
 
-  // 2b. Distribution — Histogram of secondary metric (if exists)
+  // 2b. Distribution ï¿½ Histogram of secondary metric (if exists)
   if (secondaryMetric && secondaryMetric.name !== primaryMetric?.name) {
     addChart("histogram",
       `${secondaryMetric.name.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} Distribution`,
@@ -864,7 +864,7 @@ export function generateCharts(rows: Row[], schema: InsightFlowSchema, datasetTy
       buildHistogramData(rows, secondaryMetric.name));
   }
 
-  // 3. Comparison — Bar: primary cat × primary metric
+  // 3. Comparison ï¿½ Bar: primary cat ï¿½ primary metric
   if (primaryCat && primaryMetric) {
     addChart("bar",
       `${primaryMetric.name.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} by ${primaryCat.name.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}`,
@@ -878,7 +878,7 @@ export function generateCharts(rows: Row[], schema: InsightFlowSchema, datasetTy
       buildGroupedData(rows, primaryMetric.name, secondaryMetric.name, "avg"));
   }
 
-  // 4. Correlation — Scatter
+  // 4. Correlation ï¿½ Scatter
   if (primaryMetric && secondaryMetric) {
     addChart("scatter",
       `${primaryMetric.name.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} vs ${secondaryMetric.name.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}`,
@@ -887,7 +887,7 @@ export function generateCharts(rows: Row[], schema: InsightFlowSchema, datasetTy
       buildScatterData(rows, primaryMetric.name, secondaryMetric.name));
   }
 
-  // 5. Composition — Donut of primary category
+  // 5. Composition ï¿½ Donut of primary category
   if (primaryCat) {
     addChart("donut", `Records by ${primaryCat.name.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}`,
       primaryCat.name, "count", "count", "composition",
@@ -895,7 +895,7 @@ export function generateCharts(rows: Row[], schema: InsightFlowSchema, datasetTy
       buildGroupedData(rows, primaryCat.name, primaryCat.name, "count"));
   }
 
-  // 6. Geographic — Horizontal bar ranking
+  // 6. Geographic ï¿½ Horizontal bar ranking
   if (geoCol && primaryMetric) {
     addChart("horizontalBar",
       `${primaryMetric.name.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} by ${geoCol.name.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}`,
@@ -904,7 +904,7 @@ export function generateCharts(rows: Row[], schema: InsightFlowSchema, datasetTy
       buildGroupedData(rows, geoCol.name, primaryMetric.name, "sum"));
   }
 
-  // 7. Relationship — Domain-specific deep insight (horizontalBar top-N)
+  // 7. Relationship ï¿½ Domain-specific deep insight (horizontalBar top-N)
   if (primaryCat && primaryMetric) {
     const deepInsightTitle = getDeepInsightTitle(datasetType, primaryCat.name, primaryMetric.name);
     addChart("horizontalBar", deepInsightTitle,
@@ -918,7 +918,7 @@ export function generateCharts(rows: Row[], schema: InsightFlowSchema, datasetTy
       buildGroupedData(rows, schema.categories[0].name, primaryMetric.name, "sum"));
   }
 
-  // 8+. Extra category charts — iterate unused categories (Gender, Board, Category, etc.)
+  // 8+. Extra category charts ï¿½ iterate unused categories (Gender, Board, Category, etc.)
   //     Add a bar chart for each, plus a donut for the second category.
   if (primaryMetric) {
     for (let i = 1; i < schema.categories.length && charts.length < 9; i++) {
@@ -934,7 +934,7 @@ export function generateCharts(rows: Row[], schema: InsightFlowSchema, datasetTy
           buildGroupedData(rows, cat.name, cat.name, "count"));
       }
 
-      // Bar for remaining categories × primary metric
+      // Bar for remaining categories ï¿½ primary metric
       if (charts.length < 9) {
         addChart("bar",
           `${primaryMetric.name.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} by ${cat.name.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}`,
@@ -1041,7 +1041,7 @@ export function buildGeoIntelligence(rows: Row[], schema: InsightFlowSchema): Ge
 
   const topLoc = locations[0] || null;
   const recommendation = topLoc
-    ? `${topLoc.name} leads with ${topLoc.formattedValue} — consider benchmarking other locations against this.`
+    ? `${topLoc.name} leads with ${topLoc.formattedValue} ï¿½ consider benchmarking other locations against this.`
     : "Add location data for geo insights.";
 
   return {
@@ -1187,7 +1187,7 @@ function validateChartQuality(
 }
 
 /* ============================================================
-   SELF-CRITIC MODE — Dashboard Self-Critic
+   SELF-CRITIC MODE ï¿½ Dashboard Self-Critic
    ============================================================ */
 
 export function runSelfCritic(
@@ -1263,7 +1263,7 @@ export function runSelfCritic(
     }
   }
 
-  // 6. Score — denominator is adjusted required intents length
+  // 6. Score ï¿½ denominator is adjusted required intents length
   const diversityScore = Math.min(100, (intents.size / Math.max(requiredIntents.length, 3)) * 100);
   const kpiScore = Math.min(100, (kpis.filter((k) => !uselessKpis.includes(k)).length / Math.max(kpis.length, 1)) * 100);
   const qualityScore = charts.length > 0
@@ -1321,7 +1321,7 @@ export function generateInsights(
   // Executive Insight
   const executiveParts: string[] = [];
   if (topKpi.length > 0) {
-    executiveParts.push(`Total Records: ${kpis[0]?.value || "—"}`);
+    executiveParts.push(`Total Records: ${kpis[0]?.value || "ï¿½"}`);
   }
   if (topKpi.length > 1) {
     executiveParts.push(`${topKpi[1].title}: ${topKpi[1].value}`);
@@ -1365,7 +1365,7 @@ export function generateInsights(
     if (trendChart && trendChart.data.length > 0) {
       const first = trendChart.data[0];
       const last = trendChart.data[trendChart.data.length - 1];
-      storyParts.push(`Over time, ${trendChart.yKey} moved from ${String(first[trendChart.yKey] ?? "—")} to ${String(last[trendChart.yKey] ?? "—")}.`);
+      storyParts.push(`Over time, ${trendChart.yKey} moved from ${String(first[trendChart.yKey] ?? "ï¿½")} to ${String(last[trendChart.yKey] ?? "ï¿½")}.`);
     }
     if (compChart && compChart.data.length > 1) {
       storyParts.push(`${compChart.title} reveals performance variations across segments.`);
@@ -1447,7 +1447,7 @@ export function scoreDashboard(
 }
 
 /* ============================================================
-   MAIN ENTRY POINT — Full Pipeline
+   MAIN ENTRY POINT ï¿½ Full Pipeline
    ============================================================ */
 
 export function runInsightFlow(rows: Row[]): InsightFlowResult {

@@ -1,4 +1,4 @@
-type AuditStep = {
+﻿type AuditStep = {
   agent: string;
   model?: string;
   action: string;

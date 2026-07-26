@@ -1,4 +1,4 @@
-import { Brain } from "lucide-react";
+﻿import { Brain } from "lucide-react";
 
 const CARD = "rounded-2xl border border-slate-700/60 bg-slate-900/70 shadow-xl backdrop-blur-md p-6";
 

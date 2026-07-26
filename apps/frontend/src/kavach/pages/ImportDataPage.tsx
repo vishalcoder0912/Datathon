@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+﻿import { useState, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Papa from 'papaparse';
 import * as XLSX from 'xlsx';
@@ -57,7 +57,7 @@ function StepIndicator({ current }: { current: number }) {
       {STEP_LABELS.map((label, i) => (
         <div key={i} className="flex items-center flex-1 last:flex-none">
           <div className="flex flex-col items-center gap-1.5">
-            <div className={`flex size-9 items-center justify-center rounded-full text-sm font-bold transition-all duration-300 ${
+            <div className={`flex size-9 items-center justify-center rounded-full text-sm font-bold transition-colors duration-300 ${
               i < current ? 'bg-[#15803D] text-white shadow-lg shadow-green-500/20'
               : i === current ? 'bg-gradient-to-br from-[#1D4ED8] to-[#0891B2] text-white shadow-lg shadow-blue-500/20'
               : 'bg-slate-100 text-slate-400'
@@ -69,7 +69,7 @@ function StepIndicator({ current }: { current: number }) {
             }`}>{label}</span>
           </div>
           {i < STEP_LABELS.length - 1 && (
-            <div className={`h-0.5 flex-1 mx-2 rounded transition-all duration-500 ${
+            <div className={`h-0.5 flex-1 mx-2 rounded transition-colors duration-500 ${
               i < current ? 'bg-[#15803D]' : 'bg-slate-200'
             }`} />
           )}
@@ -264,6 +264,7 @@ export default function ImportDataPage() {
           </p>
         </div>
         <button
+          type="button"
           onClick={() => navigate('/dashboard')}
           className="flex items-center gap-1.5 rounded-lg border border-slate-200 px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-50"
         >
@@ -302,9 +303,10 @@ export default function ImportDataPage() {
               className={`relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed p-16 text-center transition-all duration-200 cursor-pointer
                 ${dragging ? 'border-[#1D4ED8] bg-blue-50 scale-[1.01]' : 'border-slate-300 bg-white hover:border-[#1D4ED8] hover:bg-blue-50/30'}`}
               onClick={() => document.getElementById('file-input')?.click()}
+              {/* ponytail: transition-all covers both colors and scale transform; split to transition-colors transition-transform if perf matters */}
             >
-              <input id="file-input" type="file" accept=".csv,.xls,.xlsx,.json,.txt" className="hidden" onChange={handleFileInput} />
-              <div className={`mb-5 flex size-16 items-center justify-center rounded-2xl transition-all ${dragging ? 'bg-[#1D4ED8] text-white' : 'bg-slate-100 text-slate-400'}`}>
+              <input id="file-input" type="file" aria-label="Upload file" accept=".csv,.xls,.xlsx,.json,.txt" className="hidden" onChange={handleFileInput} />
+              <div className={`mb-5 flex size-16 items-center justify-center rounded-2xl transition-colors ${dragging ? 'bg-[#1D4ED8] text-white' : 'bg-slate-100 text-slate-400'}`}>
                 <Upload className="size-8" />
               </div>
               <p className="text-lg font-bold text-[#0F172A]">{dragging ? 'Drop to upload' : 'Drag & drop your file here'}</p>
@@ -387,6 +389,7 @@ export default function ImportDataPage() {
                       <ArrowRight className="size-3.5 text-slate-400 shrink-0" />
                       <select
                         value={mappings[col] || ''}
+                        aria-label={`Map column ${col}`}
                         onChange={e => setMappings(prev => ({ ...prev, [col]: e.target.value }))}
                         className="w-full rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs text-[#0F172A] focus:border-[#1D4ED8] focus:ring-1 focus:ring-[#1D4ED8] focus:outline-none"
                       >
@@ -471,7 +474,7 @@ export default function ImportDataPage() {
                         <span className="text-slate-500 ml-2 shrink-0">{count}</span>
                       </div>
                       <div className="h-1.5 w-full rounded-full bg-slate-100">
-                        <div className="h-1.5 rounded-full transition-all" style={{
+                        <div className="h-1.5 rounded-full transition-[width]" style={{
                           width: `${(count / rows.length) * 100}%`,
                           backgroundColor: CHART_COLORS[i % CHART_COLORS.length]
                         }} />
@@ -490,13 +493,14 @@ export default function ImportDataPage() {
             )}
 
             <div className="flex gap-2">
-              <button onClick={() => setStep(0)} className="flex items-center gap-1.5 rounded-lg border border-slate-200 px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">
+              <button type="button" onClick={() => setStep(0)} className="flex items-center gap-1.5 rounded-lg border border-slate-200 px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">
                 <ArrowLeft className="size-3.5" /> Back
               </button>
               <button
+                type="button"
                 onClick={handleValidate}
                 disabled={!requiredMapped || validating}
-                className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-[#1D4ED8] to-[#0891B2] px-4 py-2.5 text-xs font-semibold text-white shadow-lg shadow-blue-500/20 hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-[#1D4ED8] to-[#0891B2] px-4 py-2.5 text-xs font-semibold text-white shadow-lg shadow-blue-500/20 hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed transition-opacity"
               >
                 {validating ? <Loader2 className="size-3.5 animate-spin" /> : <ChevronRight className="size-3.5" />}
                 {validating ? 'Validating…' : 'Validate Data'}
@@ -638,13 +642,14 @@ export default function ImportDataPage() {
             </Card>
 
             <div className="flex gap-2">
-              <button onClick={() => setStep(1)} className="flex items-center gap-1.5 rounded-lg border border-slate-200 px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">
+              <button type="button" onClick={() => setStep(1)} className="flex items-center gap-1.5 rounded-lg border border-slate-200 px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-50">
                 <ArrowLeft className="size-3.5" /> Back
               </button>
               <button
+                type="button"
                 onClick={handleCommit}
                 disabled={committing}
-                className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-[#15803D] to-[#0891B2] px-4 py-2.5 text-xs font-semibold text-white shadow-lg shadow-green-500/20 hover:opacity-90 disabled:opacity-40 transition-all"
+                className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-[#15803D] to-[#0891B2] px-4 py-2.5 text-xs font-semibold text-white shadow-lg shadow-green-500/20 hover:opacity-90 disabled:opacity-40 transition-opacity"
               >
                 {committing ? <Loader2 className="size-3.5 animate-spin" /> : <Zap className="size-3.5" />}
                 {committing ? 'Committing…' : 'Commit & Analyse'}
@@ -682,6 +687,7 @@ export default function ImportDataPage() {
             ].map(({ label, icon: Icon, to, color }) => (
               <button
                 key={label}
+                type="button"
                 onClick={() => {
                   if (to === '/import-data') {
                     setStep(0); setRows([]); setColumns([]); setMappings({});
@@ -692,6 +698,7 @@ export default function ImportDataPage() {
                 }}
                 className="flex flex-col items-center gap-2.5 rounded-2xl border border-slate-200 bg-white p-5 text-center hover:shadow-md hover:border-slate-300 transition-all group"
               >
+                {/* ponytail: transition-all covers both shadow and border-color; split to transition-shadow transition-colors if perf matters */}
                 <div className="flex size-10 items-center justify-center rounded-xl group-hover:scale-110 transition-transform" style={{ backgroundColor: `${color}15` }}>
                   <Icon className="size-5" style={{ color }} />
                 </div>

@@ -1,4 +1,4 @@
-import { Moon, Sun } from "lucide-react";
+﻿import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 const ThemeToggle = () => {
@@ -9,7 +9,7 @@ const ThemeToggle = () => {
     <button
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="flex w-full items-center justify-between rounded-2xl border bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-all hover:bg-gray-50 shadow-sm"
+      className="flex w-full items-center justify-between rounded-2xl border bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 shadow-sm"
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
     >
       <span className="flex items-center gap-2">

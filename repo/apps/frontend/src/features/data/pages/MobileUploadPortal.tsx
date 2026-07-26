@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import {
   CheckCircle2,
@@ -60,18 +60,18 @@ export default function MobileUploadPortal() {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
 
-  async function refreshStatus() {
+  const refreshStatus = useCallback(async () => {
     if (!sessionId || !token) return;
 
     const next = await api.getQRSessionStatus(sessionId, token);
     setStatus(next);
-  }
+  }, [sessionId, token]);
 
   useEffect(() => {
     refreshStatus().catch((err) => {
       setError(err instanceof Error ? err.message : "Invalid upload session.");
     });
-  }, [sessionId, token]);
+  }, [refreshStatus]);
 
   function selectFiles(files: File[]) {
     const allowed = mode === "single" ? files.slice(0, 1) : files;

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+﻿import { useMemo } from "react";
 import type { Dataset,KPI,DataColumn } from "@/features/data/model/dataStore";
 import { buildAnalyticsDashboard } from "@/features/data/model/analyticsEngine";
 

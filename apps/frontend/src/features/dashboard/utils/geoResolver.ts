@@ -1,4 +1,4 @@
-export type GeoKind = "country" | "state" | "city";
+﻿export type GeoKind = "country" | "state" | "city";
 
 export type GeoResolvedLocation = {
   name: string;

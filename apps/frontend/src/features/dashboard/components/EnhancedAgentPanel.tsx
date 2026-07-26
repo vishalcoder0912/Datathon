@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+﻿import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { Bot, BrainCircuit, Send, Sparkles, Plus, PanelRightClose } from "lucide-react";
 import { motion } from "framer-motion";
 import type { AgentMessage, AgentReasoningStep, PremiumChart } from "@/features/dashboard/types/premiumDashboardTypes";
@@ -113,7 +113,7 @@ export function EnhancedAgentPanel({
       </section>
 
       <form onSubmit={submit} className="border-t border-slate-100 p-3">
-        <textarea value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Ask anything about your data..." className="h-24 w-full resize-none rounded-2xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-300 focus:bg-white" />
+        <textarea value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Ask anything about your data..." aria-label="Ask anything about your data" className="h-24 w-full resize-none rounded-2xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-300 focus:bg-white" />
         <div className="mt-2 flex items-center gap-3"><label className="flex items-center gap-2 text-xs font-medium text-slate-500"><input type="checkbox" checked={deepResearch} onChange={(event) => onDeepResearchChange?.(event.target.checked)} className="rounded border-slate-300 text-violet-600" />Deep Research</label><button type="submit" disabled={loading} className="ml-auto inline-flex items-center justify-center gap-2 rounded-2xl bg-violet-600 px-4 py-2 text-sm font-bold text-white shadow-sm disabled:opacity-60">{loading ? <><Sparkles className="h-4 w-4 animate-pulse" />Thinking...</> : <><Send className="h-4 w-4" />Send</>}</button></div>
       </form>
     </aside>

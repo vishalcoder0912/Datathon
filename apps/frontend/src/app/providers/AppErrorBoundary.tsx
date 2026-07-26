@@ -1,4 +1,4 @@
-import { Component, ErrorInfo, ReactNode } from "react";
+﻿import { Component, ErrorInfo, ReactNode } from "react";
 import StatusPanel from "@/shared/layout/StatusPanel";
 
 interface AppErrorBoundaryProps {

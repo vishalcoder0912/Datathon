@@ -1,4 +1,4 @@
-import { AlertTriangle, CheckCircle2, AlertCircle, XCircle, ShieldCheck, ShieldAlert, ShieldX } from 'lucide-react';
+﻿import { AlertTriangle, CheckCircle2, AlertCircle, XCircle, ShieldCheck, ShieldAlert, ShieldX } from 'lucide-react';
 import { DataQualityReport } from '@/features/data/model/dataStore';
 import { cn } from '@/shared/lib/utils';
 

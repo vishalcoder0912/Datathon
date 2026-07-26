@@ -230,7 +230,7 @@ export function useSchemaRagDashboard({
         setLoading(false);
       }
     },
-    [buildPayload, datasetId, setDashboard],
+    [buildPayload, datasetId, dashboard, setDashboard],
   );
 
   const askSchemaChat = useCallback(

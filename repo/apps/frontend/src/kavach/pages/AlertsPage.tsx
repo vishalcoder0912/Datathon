@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Bell, AlertTriangle, CheckCircle, ChevronDown, ChevronRight, Clock, Plus, Settings, MessageSquare } from 'lucide-react';
 import { kavachApi } from '@/kavach/api/kavachApi';
 import { useKavachFilters } from '@/kavach/context/FilterContext';
@@ -94,7 +94,7 @@ export default function AlertsPage() {
     "[ANPR Camera Rule] ➔ Dispatched to Beat Unit 4: 'Suspect vehicle KA-03-MM-7821 logged at toll checkpost. Focus search in sector 1.'"
   ]);
 
-  const fetchAlerts = () => {
+  const fetchAlerts = useCallback(() => {
     setLoading(true);
     setError(null);
     const apiFilters: Record<string, unknown> = { ...filters };
@@ -112,11 +112,11 @@ export default function AlertsPage() {
       })
       .catch((err) => setError(err?.message || 'Failed to load alerts'))
       .finally(() => setLoading(false));
-  };
+  }, [filters, typeFilter, severityFilter, reviewedFilter]);
 
   useEffect(() => {
     fetchAlerts();
-  }, [filters, typeFilter, severityFilter, reviewedFilter]);
+  }, [fetchAlerts]);
 
   const handleMarkReviewed = async (id: string) => {
     try {

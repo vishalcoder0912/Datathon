@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useData } from '@/features/data/context/useData';
 import { Lightbulb, AlertTriangle, TrendingUp, BarChart3, RefreshCw, Loader2 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
@@ -13,7 +13,7 @@ export function RecommendationsPanel() {
   const [loading, setLoading] = useState(false);
   const [expanded, setExpanded] = useState(null);
 
-  const fetchRecommendations = async () => {
+  const fetchRecommendations = useCallback(async () => {
     if (!activeDataset?.rows?.length) return;
     
     setLoading(true);
@@ -38,13 +38,13 @@ export function RecommendationsPanel() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [activeDataset]);
 
   useEffect(() => {
     if (activeDataset?.rows?.length) {
       fetchRecommendations();
     }
-  }, [activeDataset?.id]);
+  }, [activeDataset?.rows?.length, fetchRecommendations]);
 
   const getIcon = (type) => {
     switch (type) {

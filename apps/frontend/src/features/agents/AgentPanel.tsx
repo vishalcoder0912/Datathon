@@ -34,6 +34,7 @@ export const AgentPanel: React.FC = () => {
   const fetchAgents = async () => {
     try {
       const response = await fetch('/api/agents/list');
+      if (!response.ok) return;
       const data = await response.json();
       if (data.success && data.data) {
         setAgents(data.data.agents);
@@ -56,6 +57,7 @@ export const AgentPanel: React.FC = () => {
           input,
         }),
       });
+      if (!response.ok) return;
 
       const data = await response.json();
       if (data.success && data.data) {
@@ -65,6 +67,7 @@ export const AgentPanel: React.FC = () => {
         const thoughtsResponse = await fetch(
           `/api/agents/thoughts/${selectedAgent}`
         );
+        if (!thoughtsResponse.ok) return;
         const thoughtsData = await thoughtsResponse.json();
         if (thoughtsData.success && thoughtsData.data) {
           setThoughts(thoughtsData.data.thoughts);

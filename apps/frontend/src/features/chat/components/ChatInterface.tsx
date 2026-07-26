@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+﻿import { useEffect, useMemo, useRef, useState } from "react";
 import {
   CheckCircle2,
   Database,
@@ -204,7 +204,7 @@ export default function ChatInterface() {
   async function persistDashboardAction(action: NonNullable<Message["dashboardAction"]>) {
     if (!dataset?.id || !action.available) return;
     try {
-      await fetch("/api/dashboard/action", {
+      const dashResponse = await fetch("/api/dashboard/action", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -217,6 +217,7 @@ export default function ChatInterface() {
           },
         }),
       });
+      if (!dashResponse.ok) console.warn("Dashboard action endpoint returned", dashResponse.status);
     } catch (error) {
       console.warn("Dashboard action endpoint unavailable; saving locally.", error);
     }
@@ -312,10 +313,11 @@ export default function ChatInterface() {
         }),
       });
 
+      if (!response.ok) throw new Error(`Analytics request failed: ${response.status}`);
       const data = await response.json();
       const chatData = data.data || data;
 
-      if (!response.ok || !data.success || chatData.success === false) {
+      if (!data.success || chatData.success === false) {
         throw new Error(chatData.answer || data.error?.message || "I could not process that chat request.");
       }
 

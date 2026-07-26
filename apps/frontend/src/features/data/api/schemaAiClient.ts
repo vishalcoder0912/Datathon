@@ -1,4 +1,4 @@
-export type DatasetPayload = {
+﻿export type DatasetPayload = {
   id?: string;
   name?: string;
   rows?: Array<Record<string, unknown>>;

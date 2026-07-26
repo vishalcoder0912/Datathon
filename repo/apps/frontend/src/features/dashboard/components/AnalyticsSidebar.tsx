@@ -76,7 +76,7 @@ const AnalyticsSidebar = ({ isOpen, onClose, dataset, charts: _charts, onAddChar
     scrollToBottom();
   }, [messages]);
 
-  const applyDashboardCommand = async (query: string) => {
+  const applyDashboardCommand = useCallback(async (query: string) => {
     if (!dataset?.id) return;
 
     const userMessage: ChatMessage = {
@@ -155,14 +155,14 @@ const AnalyticsSidebar = ({ isOpen, onClose, dataset, charts: _charts, onAddChar
     } finally {
       setIsProcessing(false);
     }
-  };
+  }, [dataset?.id, onAddChart, onReplaceLatestChart, onRemoveLatestChart, onFilterChange]);
 
   const handleQuery = useCallback(async () => {
     if (!input.trim() || !dataset) return;
     const q = input.trim();
     setInput('');
     await applyDashboardCommand(q);
-  }, [input, dataset]);
+  }, [input, dataset, applyDashboardCommand]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {

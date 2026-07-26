@@ -1,4 +1,4 @@
-import { Copy, Edit2, Eye, EyeOff, Trash2 } from "lucide-react";
+﻿import { Copy, Edit2, Eye, EyeOff, Trash2 } from "lucide-react";
 import type { PremiumChart } from "@/features/dashboard/types/premiumDashboardTypes";
 
 interface ChartActionsPanelProps {

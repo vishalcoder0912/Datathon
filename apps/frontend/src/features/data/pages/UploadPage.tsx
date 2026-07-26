@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+﻿import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   AlertTriangle,
@@ -383,6 +383,7 @@ export default function UploadPage() {
             <input
               ref={singleInputRef}
               type="file"
+              aria-label="Select a single file to upload"
               accept=".csv,.xlsx,.xls,.json"
               className="hidden"
               onChange={(event) =>
@@ -416,6 +417,7 @@ export default function UploadPage() {
               ref={multiInputRef}
               type="file"
               multiple
+              aria-label="Select multiple files to upload"
               accept=".csv,.xlsx,.xls,.json"
               className="hidden"
               onChange={(event) =>

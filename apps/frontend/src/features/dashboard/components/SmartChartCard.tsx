@@ -1,4 +1,4 @@
-import { Fragment, useMemo, useRef } from "react";
+﻿import { Fragment, useMemo, useRef } from "react";
 import {
   Area,
   AreaChart,
@@ -246,6 +246,7 @@ export default function SmartChartCard({
               <Button
                 variant="outline"
                 size="icon"
+                aria-label="Chart options"
                 className="size-9 rounded-xl border border-[#E2E8F0] bg-white text-[#334155] shadow-sm hover:bg-gray-50"
               >
                 <MoreHorizontal className="size-4" />

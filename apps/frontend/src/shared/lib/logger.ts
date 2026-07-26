@@ -1,4 +1,4 @@
-/// <reference types="vite/client" />
+﻿/// <reference types="vite/client" />
 
 const LOG_LEVELS = {
   error: 0,
@@ -98,11 +98,12 @@ class Logger {
     if (!this.remoteUrl) return;
     
     try {
-      await fetch(this.remoteUrl, {
+      const response = await fetch(this.remoteUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: this.formatEntry(entry),
       });
+      if (!response.ok) console.warn("[Logger] Remote log returned", response.status);
     } catch {
       console.warn("[Logger] Failed to send logs to remote");
     }

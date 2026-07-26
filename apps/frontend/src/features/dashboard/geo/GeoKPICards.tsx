@@ -1,4 +1,4 @@
-import type { GeoLocationData } from "./geoIntelligenceEngine";
+﻿import type { GeoLocationData } from "./geoIntelligenceEngine";
 
 interface GeoKPICardsProps {
   topLocation: GeoLocationData | null;

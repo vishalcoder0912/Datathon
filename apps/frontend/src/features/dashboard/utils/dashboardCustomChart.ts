@@ -1,4 +1,4 @@
-import type { Dataset, DatasetRow } from "@/features/data/model/dataStore";
+﻿import type { Dataset, DatasetRow } from "@/features/data/model/dataStore";
 import type { PremiumChart, PremiumChartDatum } from "@/features/dashboard/types/premiumDashboardTypes";
 
 type Aggregation = "sum" | "avg" | "count" | "min" | "max" | "median";

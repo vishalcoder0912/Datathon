@@ -1,4 +1,4 @@
-import { Sparkles } from "lucide-react";
+﻿import { Sparkles } from "lucide-react";
 import type { PremiumInsight } from "@/features/dashboard/types/premiumDashboardTypes";
 
 const toneClass = {

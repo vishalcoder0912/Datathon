@@ -20,6 +20,7 @@ export function LlamaQueryBuilder({ dataset, className }) {
   const checkLlamaStatus = async () => {
     try {
       const res = await fetch('/api/llama/status');
+      if (!res.ok) throw new Error('Status request failed');
       const data = await res.json();
       setLlamaStatus(data);
     } catch (err) {
@@ -46,6 +47,7 @@ export function LlamaQueryBuilder({ dataset, className }) {
         }),
       });
 
+      if (!response.ok) throw new Error('Query request failed');
       const data = await response.json();
 
       if (!data.success) {

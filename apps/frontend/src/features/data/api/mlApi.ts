@@ -1,4 +1,4 @@
-export type DatasetRecord = Record<string, string | number | boolean | null | undefined>;
+﻿export type DatasetRecord = Record<string, string | number | boolean | null | undefined>;
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "") ?? "";
 

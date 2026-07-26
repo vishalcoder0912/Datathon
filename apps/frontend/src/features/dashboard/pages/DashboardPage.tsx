@@ -218,10 +218,10 @@ const DashboardPage = () => {
               {analysis ? (
                 <span className="flex items-center gap-2">
                   <Layers className="size-4" />
-                  {analysis.dataTypeLabel} • {filteredDataset.rowCount.toLocaleString()} records
+                  {analysis.dataTypeLabel} ï¿½ {filteredDataset.rowCount.toLocaleString()} records
                 </span>
               ) : (
-                `Analyzing ${dataset.name} • ${filteredDataset.rowCount.toLocaleString()} records`
+                `Analyzing ${dataset.name} ï¿½ ${filteredDataset.rowCount.toLocaleString()} records`
               )}
             </p>
             {(executionMeta.engine || executionMeta.durationMs !== undefined || executionMeta.cacheHit !== undefined) && (

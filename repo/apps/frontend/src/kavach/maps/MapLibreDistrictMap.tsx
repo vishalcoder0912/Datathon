@@ -73,7 +73,7 @@ export default function MapLibreDistrictMap({districts, stations = [], selectedD
     map.addControl(new maplibregl.FullscreenControl(), "top-right");
     mapInstance.current = map;
 
-    map.on("load", () => {
+    const onLoad = () => {
       map.addSource("kavach-districts", {type: "geojson", data: districtData});
       map.addLayer({
         id: "kavach-district-fill",
@@ -101,9 +101,11 @@ export default function MapLibreDistrictMap({districts, stations = [], selectedD
       });
       map.on("mouseenter", "kavach-district-fill", () => { map.getCanvas().style.cursor = "pointer"; });
       map.on("mouseleave", "kavach-district-fill", () => { map.getCanvas().style.cursor = ""; });
-    });
+    };
+    map.on("load", onLoad);
 
     return () => {
+      map.off("load", onLoad);
       map.remove();
       mapInstance.current = null;
     };

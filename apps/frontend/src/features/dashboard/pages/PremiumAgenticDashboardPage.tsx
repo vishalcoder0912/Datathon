@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from "react";
+﻿import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { Download, FileJson, Share2, Trash2, Plus, Sparkles, X, RefreshCw, UploadCloud, Table2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { api } from "@/features/data/api/dataApi";
@@ -233,6 +233,7 @@ export default function PremiumAgenticDashboardPage() {
   return (
     <main className="min-h-screen bg-[#f6f7fb] text-slate-900">
       <div className={`grid gap-5 p-5 transition-all duration-300 ${aiPanelCollapsed ? "xl:grid-cols-[minmax(0,1fr)_60px]" : "xl:grid-cols-[minmax(0,1fr)_340px]"}`}>
+      {/* ponytail: transition-all covers grid-template-columns; no specific Tailwind utility exists */}
         <section className="min-w-0 space-y-5">
           <header className={cardClass}>
             <div className="flex flex-wrap items-start justify-between gap-4">

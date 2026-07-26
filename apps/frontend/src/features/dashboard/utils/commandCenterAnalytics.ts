@@ -1,4 +1,4 @@
-import type { Dataset } from "@/features/data/model/dataStore";
+﻿import type { Dataset } from "@/features/data/model/dataStore";
 import type { ChartSpec, KpiSpec } from "@/features/dashboard/types/dashboardTypes";
 import {
   applyFilters,

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+﻿import type { ReactNode } from "react";
 import AppSidebar from "@/shared/layout/AppSidebar";
 import { TopCommandBar } from "@/shared/components/insightflow/TopCommandBar";
 

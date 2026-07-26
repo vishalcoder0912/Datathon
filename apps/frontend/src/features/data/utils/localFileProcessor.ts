@@ -1,4 +1,4 @@
-import Papa from 'papaparse';
+﻿import Papa from 'papaparse';
 import * as XLSX from 'xlsx';
 import { DataColumn, DatasetRow } from '@/features/data/model/dataStore';
 

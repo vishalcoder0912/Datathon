@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Send, User, Settings, Shield } from 'lucide-react';
 import { useLocalData } from '@/features/data/context/localDataContext';
@@ -139,9 +139,11 @@ const LocalAIChatInterface = () => {
             placeholder={localDataset ? "Enter query about your data..." : 'Upload a dataset first'}
             disabled={!localDataset || isProcessing}
             className="terminal-input flex-1 disabled:opacity-50"
+            aria-label={localDataset ? "Enter query about your data" : "Upload a dataset first"}
           />
           <button
             type="submit"
+            aria-label="Send query"
             disabled={!input.trim() || !localDataset || isProcessing}
             className="flex h-14 w-16 items-center justify-center border border-border bg-primary text-primary-foreground transition-colors hover:bg-secondary hover:text-secondary-foreground disabled:opacity-50"
           >
