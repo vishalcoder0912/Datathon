@@ -264,7 +264,7 @@ export default function UploadPage() {
                   <button type="button"
                     disabled={!qrSession}
                     onClick={() =>
-                      qrSession && window.open(qrSession.uploadUrl, "_blank")
+                      qrSession && window.open(qrSession.uploadUrl, "_blank", "noopener,noreferrer")
                     }
                     className="rounded-xl bg-violet-600 px-5 py-3 text-sm font-semibold text-white hover:bg-violet-500 disabled:opacity-50"
                   >
