@@ -3,7 +3,7 @@
   "type": "advanced",
   "runtime": "docker",
   "port": 3001,
-  "dockerfile": "../../backend.Dockerfile",
+  "dockerfile": "../../Dockerfile.backend",
   "env": {
     "NODE_ENV": "production"
   }
