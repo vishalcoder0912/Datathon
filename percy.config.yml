@@ -1,0 +1,33 @@
+version: 2
+
+static:
+  baseDir: apps/frontend/dist
+
+snapshot:
+  widths: [375, 768, 1280, 1440]
+  minHeight: 1024
+  enableJavaScript: true
+  cliEnabled: true
+  percyCSS: |
+    /* Hide flaky elements from visual diffs */
+    .loading-spinner,
+    .skeleton-loader,
+    [data-percy-hide="true"] {
+      visibility: hidden !important;
+    }
+
+    /* Stabilize animations */
+    *, *::before, *::after {
+      animation-duration: 0s !important;
+      transition-duration: 0s !important;
+    }
+
+discovery:
+  allowedHostnames:
+    - localhost
+    - 127.0.0.1
+  disallowedHostnames:
+    - analytics.google.com
+    - www.googletagmanager.com
+  networkIdleTimeout: 5000
+  concurrency: 4

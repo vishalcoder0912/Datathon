@@ -1,0 +1,87 @@
+config:
+  target: "{{ $processEnvironment.BASE_URL || 'http://localhost:3001' }}"
+  phases:
+    - name: "Warmup"
+      duration: 60
+      arrivalRate: 5
+      rampTo: 50
+    - name: "Ramp"
+      duration: 120
+      arrivalRate: 50
+      rampTo: 500
+    - name: "Spike"
+      duration: 30
+      arrivalRate: 500
+      rampTo: 2000
+    - name: "Sustain"
+      duration: 120
+      arrivalRate: 2000
+    - name: "Recovery"
+      duration: 60
+      arrivalRate: 5
+  defaults:
+    headers:
+      Content-Type: "application/json"
+  processor: "./stress-auth-processor.js"
+
+scenarios:
+  - name: "Auth Flow"
+    weight: 60
+    flow:
+      - post:
+          url: "/api/auth/login"
+          json:
+            email: "{{ $randomEmail }}"
+            password: "Test@123456!"
+          capture:
+            - json: "$.data.accessToken"
+              as: "accessToken"
+            - json: "$.data.user.userId"
+              as: "userId"
+          expect:
+            - statusCode: [200, 401, 429]
+      - think: 2
+      - get:
+          url: "/api/auth/me"
+          headers:
+            Authorization: "Bearer {{ accessToken }}"
+          expect:
+            - statusCode: [200, 401]
+      - think: 1
+      - post:
+          url: "/api/auth/refresh"
+          json:
+            refreshToken: ""
+          headers:
+            Authorization: "Bearer {{ accessToken }}"
+          expect:
+            - statusCode: [200, 401]
+
+  - name: "Registration Flow"
+    weight: 20
+    flow:
+      - post:
+          url: "/api/auth/register"
+          json:
+            email: "stress_{{ $randomString }}@test.insightflow.ai"
+            password: "StressTest@2024!"
+            name: "Stress Test User"
+          capture:
+            - json: "$.data.accessToken"
+              as: "accessToken"
+          expect:
+            - statusCode: [201, 409]
+      - think: 3
+
+  - name: "Auth Health Check"
+    weight: 20
+    flow:
+      - get:
+          url: "/api/health"
+          expect:
+            - statusCode: 200
+      - think: 1
+      - get:
+          url: "/api/health/detailed"
+          expect:
+            - statusCode: 200

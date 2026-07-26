@@ -1,0 +1,235 @@
+title = "InsightFlow gitleaks config"
+
+[allowlist]
+description = "Global allowlist for test data and example values"
+paths = [
+  '''node_modules''',
+  '''\.min\.js$''',
+  '''tests/fixtures/security/''',
+  '''test_.*\.py''',
+  '''__tests__/''',
+  '''\.spec\.''',
+]
+regexes = [
+  '''test-?secret''',
+  '''test-?key''',
+  '''example-?token''',
+  '''change-me''',
+  '''placeholder''',
+  '''YOUR_''',
+  '''<your_''',
+  '''sk-.*test''',
+  '''ghp_.*test''',
+  '''xoxb-.*test''',
+  '''AKIA.*TEST''',
+]
+
+[[rules]]
+  id = "aws-access-key"
+  description = "AWS Access Key ID"
+  regex = '''(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}'''
+  tags = ["key", "AWS", "credentials"]
+  keywords = ["AKIA", "ASIA"]
+
+[[rules]]
+  id = "aws-secret-key"
+  description = "AWS Secret Access Key"
+  regex = '''(?i)aws[_-]?(secret|private)?[_-]?(access[_-]?)?key\s*[:=]\s*["'][A-Za-z0-9\/+=]{40}["']'''
+  tags = ["key", "AWS", "secret"]
+  keywords = ["aws_secret", "aws secret", "aws-key"]
+
+[[rules]]
+  id = "google-api-key"
+  description = "Google API Key"
+  regex = '''AIza[0-9A-Za-z\-_]{35}'''
+  tags = ["key", "Google", "API"]
+  keywords = ["AIza"]
+
+[[rules]]
+  id = "google-oauth-client"
+  description = "Google OAuth Client ID"
+  regex = '''[0-9]+-[0-9A-Za-z_]{32}\.apps\.googleusercontent\.com'''
+  tags = ["key", "Google", "OAuth"]
+  keywords = ["apps.googleusercontent.com"]
+
+[[rules]]
+  id = "openai-api-key"
+  description = "OpenAI API Key"
+  regex = '''sk-[A-Za-z0-9]{20,}'''
+  tags = ["key", "OpenAI", "API"]
+  keywords = ["sk-"]
+
+[[rules]]
+  id = "openai-org-key"
+  description = "OpenAI Organization Key"
+  regex = '''org-[A-Za-z0-9]{20,}'''
+  tags = ["key", "OpenAI"]
+  keywords = ["org-"]
+
+[[rules]]
+  id = "anthropic-api-key"
+  description = "Anthropic API Key"
+  regex = '''sk-ant-[A-Za-z0-9]{32,}'''
+  tags = ["key", "Anthropic", "API"]
+  keywords = ["sk-ant-"]
+
+[[rules]]
+  id = "jwt-token"
+  description = "JWT Token (Base64-encoded)"
+  regex = '''(?i)(eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,})'''
+  tags = ["token", "JWT", "auth"]
+  keywords = ["eyJ"]
+
+[[rules]]
+  id = "jwt-secret"
+  description = "JWT Secret in config"
+  regex = '''(?i)(jwt[-_]?(secret|key|signing)|signing[-_]?key|token[-_]?secret)\s*[:=]\s*["'][A-Za-z0-9_\-!@#$%^&*()+=]{12,}["']'''
+  tags = ["key", "JWT", "secret"]
+  keywords = ["jwt_secret", "jwt-secret", "signing_key"]
+
+[[rules]]
+  id = "generic-api-key"
+  description = "Generic API Key / Secret in assignment"
+  regex = '''(?i)(api[_-]?key|api[_-]?secret|apikey|api_secret)[\s]*[:=][\s]*["'][A-Za-z0-9_\-+=/]{16,}["']'''
+  tags = ["key", "API", "generic"]
+  keywords = ["api_key", "api-key", "apikey"]
+
+[[rules]]
+  id = "generic-token"
+  description = "Generic Token with Bearer-like pattern"
+  regex = '''(?i)(token|bearer)[\s]*[:=][\s]*["'][A-Za-z0-9_\-+=/]{20,}["']'''
+  tags = ["token", "generic"]
+  keywords = ["token", "bearer"]
+
+[[rules]]
+  id = "private-key"
+  description = "Private Key (PEM)"
+  regex = '''-----BEGIN\s(?:RSA|DSA|EC|OPENSSH|SSH2|PGP|PRIVATE)\sKEY\s?-----'''
+  tags = ["key", "private"]
+  keywords = ["BEGIN RSA PRIVATE KEY", "BEGIN EC PRIVATE KEY"]
+
+[[rules]]
+  id = "github-pat"
+  description = "GitHub Personal Access Token"
+  regex = '''(ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9_]{36,}'''
+  tags = ["key", "GitHub", "token"]
+  keywords = ["ghp_", "gho_", "ghs_"]
+
+[[rules]]
+  id = "github-app-token"
+  description = "GitHub App Installation Token"
+  regex = '''(ghs|ghr)_[A-Za-z0-9_]{36,}'''
+  tags = ["key", "GitHub", "app"]
+  keywords = ["ghs_", "ghr_"]
+
+[[rules]]
+  id = "slack-token"
+  description = "Slack Bot / User Token"
+  regex = '''xox[baprs]-[A-Za-z0-9\-]{10,}'''
+  tags = ["key", "Slack", "token"]
+  keywords = ["xoxb-", "xoxa-", "xoxp-"]
+
+[[rules]]
+  id = "slack-webhook"
+  description = "Slack Webhook URL"
+  regex = '''https://hooks\.slack\.com/services/[A-Za-z0-9/]{20,}'''
+  tags = ["key", "Slack", "webhook"]
+  keywords = ["hooks.slack.com"]
+
+[[rules]]
+  id = "password-in-text"
+  description = "Password assignment (potential hardcoded credential)"
+  regex = '''(?i)(password|passwd|pwd)\s*[:=]\s*["'][A-Za-z0-9!@#$%^&*()_+]{8,}["']'''
+  tags = ["credential", "password"]
+  keywords = ["password", "passwd"]
+
+[[rules]]
+  id = "connection-string"
+  description = "Database connection string"
+  regex = '''(?i)(postgres(?:ql)?|mysql|mongodb|redis)://[^\s]{8,}'''
+  tags = ["credential", "database", "connection"]
+  keywords = ["postgres://", "mysql://", "mongodb://", "redis://"]
+
+[[rules]]
+  id = "heroku-api-key"
+  description = "Heroku API Key"
+  regex = '''[hH][eE][rR][oO][kK][uU]\s*[:=]\s*[A-Za-z0-9\-]{20,}'''
+  tags = ["key", "Heroku", "API"]
+  keywords = ["heroku"]
+
+[[rules]]
+  id = "ssh-private-key"
+  description = "SSH Private Key (full block)"
+  regex = '''-----BEGIN OPENSSH PRIVATE KEY-----'''
+  tags = ["key", "SSH"]
+  keywords = ["BEGIN OPENSSH PRIVATE KEY"]
+
+[[rules]]
+  id = "pgp-private-key"
+  description = "PGP Private Key Block"
+  regex = '''-----BEGIN PGP PRIVATE KEY BLOCK-----'''
+  tags = ["key", "PGP"]
+  keywords = ["BEGIN PGP PRIVATE KEY"]
+
+[[rules]]
+  id = "stripe-api-key"
+  description = "Stripe API Key (live)"
+  regex = '''(?i)(sk_live|pk_live)_[A-Za-z0-9]{20,}'''
+  tags = ["key", "Stripe", "API"]
+  keywords = ["sk_live", "pk_live"]
+
+[[rules]]
+  id = "twilio-api-key"
+  description = "Twilio API Key"
+  regex = '''SK[A-Z0-9a-z]{32}'''
+  tags = ["key", "Twilio", "API"]
+  keywords = ["SK"]
+
+[[rules]]
+  id = "high-entropy-base64"
+  description = "High-entropy base64 string (>=40 chars)"
+  regex = '''(?i)(?:secret|key|token|password|credential|auth)[\s=:]+["']?([A-Za-z0-9+/=_-]{40,})["']?'''
+  tags = ["entropy", "high"]
+  keywords = ["secret", "key", "token", "password"]
+
+[[rules]]
+  id = "high-entropy-hex"
+  description = "High-entropy hex string (>=32 chars)"
+  regex = '''(?i)(?:secret|key|token|password|credential|auth)[\s=:]+["']?([0-9a-f]{32,})["']?'''
+  tags = ["entropy", "hex"]
+  keywords = ["secret", "key", "token"]
+
+[[rules]]
+  id = "npm-token"
+  description = "npm Access Token"
+  regex = '''npm_[A-Za-z0-9]{36}'''
+  tags = ["key", "npm", "token"]
+  keywords = ["npm_"]
+
+[[rules]]
+  id = "gitlab-pat"
+  description = "GitLab Personal Access Token"
+  regex = '''glpat-[A-Za-z0-9\-_]{20,}'''
+  tags = ["key", "GitLab", "token"]
+  keywords = ["glpat-"]
+
+[[rules]]
+  id = "docker-hub"
+  description = "Docker Hub Access Token"
+  regex = '''dckr_pat_[A-Za-z0-9_\-]{20,}'''
+  tags = ["key", "Docker", "token"]
+  keywords = ["dckr_pat_"]
+
+[[rules]]
+  id = "authorization-bearer"
+  description = "Authorization Bearer header value"
+  regex = '''(?i)(?:Authorization|Bearer)\s*:\s*["']?[A-Za-z0-9_\-+=/]{20,}["']?'''
+  tags = ["token", "auth", "header"]
+  keywords = ["Authorization:", "Bearer "]
+
+[[rules]]
+  id = "vercel-token"
+  description = "Vercel API Token"
+  regex = '''[A-Za-z0-9]{24}_[A-Za-z0-9]{24}'''
+  tags = ["key", "Vercel", "token"]
+  keywords = ["_"]
