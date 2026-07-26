@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from 'react';
 
 interface ImportDataState {
   hasCustomData: boolean;
@@ -35,8 +35,10 @@ export function ImportDataProvider({ children }: { children: ReactNode }) {
     setState({ hasCustomData: false, importedCount: 0, lastImportAt: null, refreshKey: 0 });
   }, []);
 
+  const contextValue = useMemo(() => ({ ...state, notifyImported, reset }), [state, notifyImported, reset]);
+
   return (
-    <ImportDataContext.Provider value={{ ...state, notifyImported, reset }}>
+    <ImportDataContext.Provider value={contextValue}>
       {children}
     </ImportDataContext.Provider>
   );
