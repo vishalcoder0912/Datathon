@@ -1,3 +1,10 @@
+"""
+High-performance dashboard computation engine powered by DuckDB & Polars.
+
+Provides in-memory caching, column statistical profiling, KPI metric aggregation,
+and automated chart generation for instant data visualization.
+"""
+
 from __future__ import annotations
 
 import hashlib
@@ -12,6 +19,7 @@ import duckdb
 import polars as pl
 
 CACHE: Dict[str, Dict[str, Any]] = {}
+
 
 METRIC_PRIORITY = [
     "revenue",
