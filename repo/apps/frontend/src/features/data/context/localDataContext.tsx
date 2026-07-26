@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { api } from '@/features/data/api/dataApi';
 import { API_BASE_URL } from '@/config/apiConfig';
 import { Dataset, DatasetRow, ChatMessage } from '@/features/data/model/dataStore';
@@ -178,16 +178,18 @@ export const LocalDataProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     setChatMessages([]);
   }, []);
 
+  const contextValue = useMemo(() => ({
+    localDataset,
+    chatMessages,
+    isProcessing,
+    importLocalDataset,
+    sendLocalQuery,
+    getLocalData,
+    clearLocalDataset,
+  }), [localDataset, chatMessages, isProcessing, importLocalDataset, sendLocalQuery, getLocalData, clearLocalDataset]);
+
   return (
-    <LocalDataContext.Provider value={{
-      localDataset,
-      chatMessages,
-      isProcessing,
-      importLocalDataset,
-      sendLocalQuery,
-      getLocalData,
-      clearLocalDataset,
-    }}>
+    <LocalDataContext.Provider value={contextValue}>
       {children}
     </LocalDataContext.Provider>
   );
