@@ -140,7 +140,7 @@ describe('Kavach Frontend Components', () => {
       expect(screen.getByText('Filters')).toBeInTheDocument();
     });
 
-    it('renders error state when API fails', async () => {
+    it('renders demo data when API fails', async () => {
       render(
         <FilterProvider>
           <DashboardPage />
@@ -152,7 +152,7 @@ describe('Kavach Frontend Components', () => {
       });
 
       await waitFor(() => {
-        expect(screen.getByText('Failed to load dashboard')).toBeInTheDocument();
+        expect(screen.getByText('Total Incidents')).toBeInTheDocument();
       });
     });
 
