@@ -1,8 +1,25 @@
-// New entry point with organized structure
+/**
+ * @fileoverview Main entry point for the InsightFlow Backend API Service.
+ * Orchestrates server creation, environment configuration loading, request logging initialization,
+ * and global process level error handling.
+ * 
+ * @module backend/index
+ */
+
 import { createHttpServer, startServer } from './core/server.js';
 import { logStartup } from './middleware/request-logger.js';
 import config from './config/environment.js';
 
+/**
+ * Initializes and starts the InsightFlow HTTP server instance.
+ * Logs application startup information, binds to configured port,
+ * and handles fatal startup exceptions.
+ * 
+ * @async
+ * @function main
+ * @returns {Promise<void>} Resolves when the server has successfully bound and started.
+ * @throws {Error} Terminates process with exit code 1 if server fails to start.
+ */
 async function main() {
   try {
     // Log startup information
@@ -20,13 +37,19 @@ async function main() {
   }
 }
 
-// Handle uncaught exceptions
+/**
+ * Global handler for uncaught synchronous exceptions.
+ * Logs error payload and forces process exit to prevent undefined state execution.
+ */
 process.on('uncaughtException', (error) => {
   console.error('💥 Uncaught Exception:', error);
   process.exit(1);
 });
 
-// Handle unhandled promise rejections
+/**
+ * Global handler for unhandled asynchronous promise rejections.
+ * Logs target promise and rejection reason before terminating process.
+ */
 process.on('unhandledRejection', (reason, promise) => {
   console.error('💥 Unhandled Rejection at:', promise, 'reason:', reason);
   process.exit(1);
@@ -34,3 +57,4 @@ process.on('unhandledRejection', (reason, promise) => {
 
 // Start the application
 main();
+
