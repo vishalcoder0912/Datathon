@@ -72,23 +72,23 @@ export function FilterProvider({ children }: { children: ReactNode }) {
     return count;
   }, [filters]);
 
+  const contextValue = useMemo(() => ({
+    filters,
+    setDateFrom,
+    setDateTo,
+    setDistricts,
+    setPoliceStations,
+    setCrimeCategories,
+    setStatus,
+    setSeverity,
+    setTimeOfDay,
+    setFilter,
+    resetFilters,
+    activeFilterCount,
+  }), [filters, setDateFrom, setDateTo, setDistricts, setPoliceStations, setCrimeCategories, setStatus, setSeverity, setTimeOfDay, setFilter, resetFilters, activeFilterCount]);
+
   return (
-    <FilterContext.Provider
-      value={{
-        filters,
-        setDateFrom,
-        setDateTo,
-        setDistricts,
-        setPoliceStations,
-        setCrimeCategories,
-        setStatus,
-        setSeverity,
-        setTimeOfDay,
-        setFilter,
-        resetFilters,
-        activeFilterCount,
-      }}
-    >
+    <FilterContext.Provider value={contextValue}>
       {children}
     </FilterContext.Provider>
   );
