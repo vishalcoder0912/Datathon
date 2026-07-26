@@ -1,0 +1,199 @@
+name: Full Testing Pipeline
+on:
+  push:
+    branches-ignore: [gh-pages]
+  pull_request:
+    branches: [main, develop]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: 20
+  POSTGRES_DB: kavach_test
+  POSTGRES_USER: kavach
+  POSTGRES_PASSWORD: kavach_local_password
+
+jobs:
+  static-analysis:
+    name: Static Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - name: ESLint
+        run: npm run lint
+        continue-on-error: true
+      - name: TypeScript Check
+        run: npx tsc --noEmit -p apps/frontend/tsconfig.json
+        continue-on-error: true
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: npm audit
+        run: npm audit --audit-level=high
+        continue-on-error: true
+
+  unit-tests:
+    name: Unit Tests
+    needs: [static-analysis]
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        workspace: [apps/frontend, apps/backend, packages/kavach-domain]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - name: Run unit tests
+        run: npm run test -w ${{ matrix.workspace }}
+        env:
+          NODE_ENV: test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-${{ matrix.workspace }}
+          path: coverage/
+
+  integration-tests:
+    name: Integration Tests
+    needs: [unit-tests]
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgis/postgis:16-3.4
+        env:
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      qdrant:
+        image: qdrant/qdrant:latest
+        ports:
+          - 6333:6333
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - name: Integration tests
+        run: npm run test:integration
+        env:
+          NODE_ENV: test
+          DATABASE_URL: postgres://${{ env.POSTGRES_USER }}:${{ env.POSTGRES_PASSWORD }}@localhost:5432/${{ env.POSTGRES_DB }}
+          QDRANT_URL: http://localhost:6333
+      - name: Newman API Tests
+        run: node postman/run-newman.mjs
+        continue-on-error: true
+        env:
+          API_BASE_URL: http://localhost:3001
+
+  e2e-tests:
+    name: E2E Tests
+    needs: [integration-tests]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - name: Install Playwright
+        run: npx playwright install --with-deps chromium
+      - name: Run E2E tests
+        run: npm run test:e2e
+        env:
+          NODE_ENV: test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-artifacts
+          path: |
+            playwright-report/
+            test-results/
+
+  security-scan:
+    name: Security Scan
+    needs: [integration-tests]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Trivy FS Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: fs
+          scan-ref: .
+          format: sarif
+          output: trivy-results.sarif
+          severity: HIGH,CRITICAL
+      - uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: trivy-results.sarif
+      - name: Trivy Image Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: image
+          image-ref: insightflow-ml-service:latest
+          format: table
+
+  load-tests:
+    name: Load Tests
+    if: github.ref == 'refs/heads/main'
+    needs: [e2e-tests]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci
+      - name: k6 Load Test
+        uses: grafana/k6-action@v0.3.1
+        with:
+          filename: k6/health-check.js
+          flags: --vus 50 --duration 60s
+        continue-on-error: true
+      - name: Lighthouse CI
+        run: npx lhci autorun
+        continue-on-error: true
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+  quality-gate:
+    name: Quality Gate
+    if: always()
+    needs: [static-analysis, unit-tests, integration-tests, e2e-tests, security-scan]
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "=== Quality Gate ==="
+          echo "Static Analysis: ${{ needs.static-analysis.result }}"
+          echo "Unit Tests: ${{ needs.unit-tests.result }}"
+          echo "Integration Tests: ${{ needs.integration-tests.result }}"
+          echo "E2E Tests: ${{ needs.e2e-tests.result }}"
+          echo "Security Scan: ${{ needs.security-scan.result }}"
+          if [ "${{ needs.static-analysis.result }}" = "failure" ] || \
+             [ "${{ needs.unit-tests.result }}" = "failure" ] || \
+             [ "${{ needs.integration-tests.result }}" = "failure" ] || \
+             [ "${{ needs.e2e-tests.result }}" = "failure" ] || \
+             [ "${{ needs.security-scan.result }}" = "failure" ]; then
+            echo "❌ QUALITY GATE FAILED"
+            exit 1
+          fi
+          echo "✅ QUALITY GATE PASSED"

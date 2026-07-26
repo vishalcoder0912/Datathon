@@ -1,0 +1,156 @@
+name: CI - Test
+
+on:
+  push:
+    branches: [main, develop]
+    paths-ignore:
+      - "**.md"
+      - "docs/**"
+      - "exports/**"
+      - "graphify-out/**"
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      test-target:
+        description: "Test target"
+        type: choice
+        options: [all, unit, e2e]
+        default: all
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit:
+    name: Unit Tests (Vitest)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Build workspace packages
+        run: npm run build -w packages/shared-analytics 2>/dev/null || true
+
+      - name: Run frontend unit tests
+        run: npm run test -w apps/frontend
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: apps/frontend/coverage/
+          retention-days: 7
+
+  e2e:
+    name: E2E Tests (Playwright)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    if: ${{ github.event.inputs.test-target != 'unit' }}
+    services:
+      postgres:
+        image: postgis/postgis:16-3.4
+        env:
+          POSTGRES_DB: kavach
+          POSTGRES_USER: kavach
+          POSTGRES_PASSWORD: kavach_local_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready -U kavach -d kavach
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+
+      qdrant:
+        image: qdrant/qdrant:latest
+        ports:
+          - 6333:6333
+        options: >-
+          --health-cmd "curl -f http://localhost:6333/healthz"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Build frontend
+        run: npm run build -w apps/frontend
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Start backend
+        run: |
+          npm run dev:backend &
+          echo "Waiting for backend..."
+          timeout 30 bash -c 'until curl -s http://localhost:3001/health > /dev/null 2>&1; do sleep 2; done'
+        env:
+          NODE_ENV: test
+          POSTGRES_DB: kavach
+          POSTGRES_USER: kavach
+          POSTGRES_PASSWORD: kavach_local_password
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+          QDRANT_URL: http://localhost:6333
+
+      - name: Start frontend preview
+        run: |
+          npx serve -s apps/frontend/dist -l 45173 &
+          echo "Waiting for frontend..."
+          timeout 30 bash -c 'until curl -s http://localhost:45173 > /dev/null 2>&1; do sleep 2; done'
+        env:
+          CI: true
+
+      - name: Run E2E tests
+        run: npx playwright test --project=e2e-core
+        env:
+          PLAYWRIGHT_BASE_URL: http://localhost:45173
+          CI: true
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            reports/playwright-artifacts/
+          retention-days: 14
+
+  docker:
+    name: Docker Build Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker images
+        run: |
+          docker build -t insightflow-frontend -f Dockerfile.frontend .
+          docker build -t insightflow-backend -f Dockerfile.backend .
+
+      - name: Build test image
+        run: docker build -t insightflow-test -f Dockerfile.test --target unit .
+
+      - name: Run unit tests in Docker
+        run: docker run --rm insightflow-test
