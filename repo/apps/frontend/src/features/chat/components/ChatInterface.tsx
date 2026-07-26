@@ -312,6 +312,10 @@ export default function ChatInterface() {
         }),
       });
 
+      if (!response.ok) {
+        throw new Error("I could not process that chat request.");
+      }
+
       const data = await response.json();
       const chatData = data.data || data;
 
