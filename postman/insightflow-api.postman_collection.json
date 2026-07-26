@@ -1,0 +1,964 @@
+{
+  "info": {
+    "name": "InsightFlow API",
+    "description": "Complete API collection for InsightFlow — AI-powered data analytics platform with KAVACH AI crime analytics",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "insightflow-qa"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "GET /api/health",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Body has status field', () => pm.response.to.have.jsonBody('status'));",
+                  "pm.response.to.have.jsonBody('status', 'healthy');"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "health"]
+            }
+          }
+        },
+        {
+          "name": "GET /api/health/ping",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/health/ping",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "health", "ping"]
+            }
+          }
+        },
+        {
+          "name": "GET /api/health/detailed",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/health/detailed",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "health", "detailed"]
+            }
+          }
+        },
+        {
+          "name": "GET /api/health/live",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/health/live",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "health", "live"]
+            }
+          }
+        },
+        {
+          "name": "GET /api/health/ready",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/health/ready",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "health", "ready"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "const json = pm.response.json();",
+                  "if (json.data && json.data.accessToken) {",
+                  "  pm.collectionVariables.set('token', json.data.accessToken);",
+                  "  pm.collectionVariables.set('refreshToken', json.data.refreshToken || '');",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"e2e-postman-{{$randomInt}}@test.com\",\n  \"password\": \"PostmanTest1!\",\n  \"name\": \"Postman User\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Login succeeds', () => {",
+                  "  pm.response.to.have.status(200);",
+                  "  const json = pm.response.json();",
+                  "  pm.collectionVariables.set('token', json.data.accessToken);",
+                  "  pm.collectionVariables.set('refreshToken', json.data.refreshToken || '');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"e2e-postman-{{$randomInt}}@test.com\",\n  \"password\": \"PostmanTest1!\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Refresh succeeds', () => {",
+                  "  pm.response.to.have.status(200);",
+                  "  const json = pm.response.json();",
+                  "  if (json.data && json.data.accessToken) {",
+                  "    pm.collectionVariables.set('token', json.data.accessToken);",
+                  "    pm.collectionVariables.set('refreshToken', json.data.refreshToken || '');",
+                  "  }",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/refresh",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "refresh"]
+            }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "me"]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/logout",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "logout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Datasets",
+      "item": [
+        {
+          "name": "List Datasets",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Lists datasets', () => {",
+                  "  pm.response.to.have.status(200);",
+                  "  const json = pm.response.json();",
+                  "  if (json.data && json.data.datasets && json.data.datasets.length > 0) {",
+                  "    pm.collectionVariables.set('datasetId', json.data.datasets[0].id);",
+                  "  }",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/datasets",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "datasets"]
+            }
+          }
+        },
+        {
+          "name": "Import Dataset (CSV)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Dataset imported', () => {",
+                  "  pm.response.to.have.status(200);",
+                  "  const json = pm.response.json();",
+                  "  if (json.data && json.data.dataset && json.data.dataset.id) {",
+                  "    pm.collectionVariables.set('datasetId', json.data.dataset.id);",
+                  "  }",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "sample.csv"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/datasets/import",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "datasets", "import"]
+            }
+          }
+        },
+        {
+          "name": "Get Dataset by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/datasets/{{datasetId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "datasets", "{{datasetId}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Dataset",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/datasets/{{datasetId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "datasets", "{{datasetId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Chat",
+      "item": [
+        {
+          "name": "Send Chat Message",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Chat response received', () => {",
+                  "  pm.response.to.have.status(200);",
+                  "  const json = pm.response.json();",
+                  "  if (json.data && json.data.messageId) {",
+                  "    pm.collectionVariables.set('chatMessageId', json.data.messageId);",
+                  "  }",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"datasetId\": \"{{datasetId}}\",\n  \"message\": \"What is the average salary by country?\",\n  \"context\": \"analytics\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/datasets/{{datasetId}}/chat",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "datasets", "{{datasetId}}", "chat"]
+            }
+          }
+        },
+        {
+          "name": "Get Chat History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/datasets/{{datasetId}}/chat",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "datasets", "{{datasetId}}", "chat"]
+            }
+          }
+        },
+        {
+          "name": "Clear Chat",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/datasets/{{datasetId}}/chat",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "datasets", "{{datasetId}}", "chat"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "Analyze Dataset",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"datasetId\": \"{{datasetId}}\",\n  \"type\": \"overview\",\n  \"columns\": [\"name\", \"age\", \"score\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/datasets/{{datasetId}}/analyze",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "datasets", "{{datasetId}}", "analyze"]
+            }
+          }
+        },
+        {
+          "name": "Export Dataset",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/datasets/{{datasetId}}/export?format=csv",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "datasets", "{{datasetId}}", "export"],
+              "query": [
+                { "key": "format", "value": "csv" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "ML / AutoML",
+      "item": [
+        {
+          "name": "List ML Models",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ml/models",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "ml", "models"]
+            }
+          }
+        },
+        {
+          "name": "Train ML Model",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"datasetId\": \"{{datasetId}}\",\n  \"targetColumn\": \"score\",\n  \"modelType\": \"regression\",\n  \"features\": [\"age\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/ml/train",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "ml", "train"]
+            }
+          }
+        },
+        {
+          "name": "ML Prediction",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"modelId\": \"{{mlModelId}}\",\n  \"features\": {\"age\": 30}\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/ml/predict",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "ml", "predict"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "AI",
+      "item": [
+        {
+          "name": "AI Providers Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ai/providers/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "ai", "providers", "health"]
+            }
+          }
+        },
+        {
+          "name": "Ollama Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ai/ollama/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "ai", "ollama", "health"]
+            }
+          }
+        },
+        {
+          "name": "AI Analytics",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"datasetId\": \"{{datasetId}}\",\n  \"query\": \"Show me the trend of scores by age group\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/ai/analytics",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "ai", "analytics"]
+            }
+          }
+        },
+        {
+          "name": "AI Chat Completion",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"datasetId\": \"{{datasetId}}\",\n  \"message\": \"Summarize this dataset for me\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/ai/chat",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "ai", "chat"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Agentic",
+      "item": [
+        {
+          "name": "Schema Analysis (Agentic)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"datasetId\": \"{{datasetId}}\",\n  \"query\": \"Analyze the schema and suggest dashboard layout\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/agentic/schema",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "agentic", "schema"]
+            }
+          }
+        },
+        {
+          "name": "Analytics (Agentic)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"datasetId\": \"{{datasetId}}\",\n  \"query\": \"Generate a KPI for highest salary\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/agentic/analytics",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "agentic", "analytics"]
+            }
+          }
+        },
+        {
+          "name": "Agentic Models",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/agentic/models",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "agentic", "models"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "KAVACH AI",
+      "item": [
+        {
+          "name": "Overview",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/kavach/overview",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "kavach", "overview"]
+            }
+          }
+        },
+        {
+          "name": "Alerts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/kavach/alerts",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "kavach", "alerts"]
+            }
+          }
+        },
+        {
+          "name": "Review Alert",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reviewStatus\": \"ACKNOWLEDGED\",\n  \"notes\": \"Reviewed via API test\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/kavach/alerts/alert-1/review",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "kavach", "alerts", "alert-1", "review"]
+            }
+          }
+        },
+        {
+          "name": "Districts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/kavach/districts",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "kavach", "districts"]
+            }
+          }
+        },
+        {
+          "name": "Police Stations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/kavach/police-stations",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "kavach", "police-stations"]
+            }
+          }
+        },
+        {
+          "name": "Hotspots",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/kavach/hotspots",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "kavach", "hotspots"]
+            }
+          }
+        },
+        {
+          "name": "Network Intelligence",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/kavach/network",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "kavach", "network"]
+            }
+          }
+        },
+        {
+          "name": "Offenders List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/kavach/offenders",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "kavach", "offenders"]
+            }
+          }
+        },
+        {
+          "name": "Offender Detail",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/kavach/offenders/person-1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "kavach", "offenders", "person-1"]
+            }
+          }
+        },
+        {
+          "name": "Similar MO Cases",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/kavach/cases/CASE001/similar-mo",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "kavach", "cases", "CASE001", "similar-mo"]
+            }
+          }
+        },
+        {
+          "name": "Generate Report",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"format\": \"html\",\n  \"includeCharts\": true,\n  \"dateRange\": {\n    \"start\": \"2026-01-01\",\n    \"end\": \"2026-12-31\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/kavach/reports",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "kavach", "reports"]
+            }
+          }
+        },
+        {
+          "name": "Copilot Chat",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Show me high severity incidents this month\",\n  \"context\": \"analytics\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/kavach/copilot/chat",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "kavach", "copilot", "chat"]
+            }
+          }
+        },
+        {
+          "name": "Copilot Suggestions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/kavach/copilot/suggestions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "kavach", "copilot", "suggestions"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "PDF Intelligence",
+      "item": [
+        {
+          "name": "Import PDF",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "report.pdf"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/pdf/import",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pdf", "import"]
+            }
+          }
+        },
+        {
+          "name": "Ask PDF Question",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"What are the key findings in this document?\",\n  \"pdfId\": \"{{pdfId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/pdf/{{pdfId}}/ask",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pdf", "{{pdfId}}", "ask"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "QR Upload",
+      "item": [
+        {
+          "name": "Generate QR Upload Session",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sessionId\": \"postman-session-{{$randomInt}}\",\n  \"expiresIn\": 300\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/qr-upload/generate",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "qr-upload", "generate"]
+            }
+          }
+        },
+        {
+          "name": "Check Upload Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/qr-upload/session-1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "qr-upload", "session-1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Schema-Only",
+      "item": [
+        {
+          "name": "Dashboard Schema Plan",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"datasetId\": \"{{datasetId}}\",\n  \"mode\": \"schema-only\",\n  \"preferences\": {\n    \"chartTypes\": [\"bar\", \"line\", \"kpi\"],\n    \"theme\": \"professional\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/schema-dashboard",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "schema-dashboard"]
+            }
+          }
+        },
+        {
+          "name": "Dashboard Command (Schema)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"command\": \"add KPI for total records\",\n  \"context\": \"schema\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/dashboard-command",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dashboard-command"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Data Gateway",
+      "item": [
+        {
+          "name": "List Data Sources",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/kavach/data-sources",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "kavach", "data-sources"]
+            }
+          }
+        },
+        {
+          "name": "Connect Data Source",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"csv\",\n  \"name\": \"Postman Test Source\",\n  \"config\": {\n    \"filePath\": \"./sample.csv\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/kavach/data-sources/connect",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "kavach", "data-sources", "connect"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Playbook Analysis",
+      "item": [
+        {
+          "name": "Analyze Playbook",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"playbookId\": \"analytics-playbook-1\",\n  \"datasetId\": \"{{datasetId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/playbook/analyze",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "playbook", "analyze"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
