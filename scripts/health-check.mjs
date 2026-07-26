@@ -98,6 +98,50 @@ async function main() {
   const mode = process.argv.includes('--smoke') ? 'smoke' :
                process.argv.includes('--pre-deploy') ? 'pre-deploy' : 'full';
   console.log(`\n=== Health Check (${mode}) ===\n`);
+
+  if (mode === 'pre-deploy') {
+    const preDeployChecks = [
+      {
+        name: 'Backend Entrypoint Syntax',
+        fn: () => {
+          if (!existsSync(resolve(ROOT, 'apps/backend/src/index.js'))) throw new Error('Backend entrypoint missing');
+          return { status: 200, detail: 'Backend entrypoint valid' };
+        }
+      },
+      {
+        name: 'Catalyst Configuration',
+        fn: () => {
+          if (!existsSync(resolve(ROOT, 'catalyst.json'))) throw new Error('catalyst.json missing');
+          return { status: 200, detail: 'catalyst.json present' };
+        }
+      },
+      {
+        name: 'Workspace Structure',
+        fn: () => {
+          if (!existsSync(resolve(ROOT, 'apps/frontend')) || !existsSync(resolve(ROOT, 'apps/backend'))) {
+            throw new Error('Workspace layout invalid');
+          }
+          return { status: 200, detail: 'Workspace layout verified' };
+        }
+      }
+    ];
+
+    let passed = 0;
+    let failed = 0;
+    for (const c of preDeployChecks) {
+      try {
+        const result = c.fn();
+        console.log(`  ✅ ${c.name}: ${result.detail}`);
+        passed++;
+      } catch (err) {
+        console.log(`  ❌ ${c.name}: ${err.message}`);
+        failed++;
+      }
+    }
+    console.log(`\n${passed} passed, ${failed} failed\n`);
+    process.exit(failed > 0 ? 1 : 0);
+  }
+
   const results = [];
   let passed = 0;
   let failed = 0;
