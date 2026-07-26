@@ -1,0 +1,54 @@
+[tool.ruff]
+target-version = "py311"
+line-length = 140
+extend-exclude = [
+  "app/database.py",
+  "app/legacy_compat.py",
+  "app/routers/analytics.py",
+  "app/schemas.py",
+  "app/services/anomalies.py",
+  "app/services/common.py",
+  "app/services/explanations.py",
+  "app/services/hotspots.py",
+  "app/services/mo_similarity.py",
+  "app/services/networks.py",
+  "app/services/risk.py",
+  "app/services/socioeconomic.py",
+  "app/services/trend_alerts.py",
+  "tests/test_intelligence_upgrade.py",
+  "tests/test_kavach_analytics.py",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+check_untyped_defs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+warn_unused_ignores = true
+exclude = ["app.py", "fast_dashboard_engine.py", "pdf_intelligence"]
+
+[[tool.mypy.overrides]]
+module = [
+  "app.database",
+  "app.legacy_compat",
+  "app.routers.analytics",
+  "app.schemas",
+  "app.services.anomalies",
+  "app.services.common",
+  "app.services.explanations",
+  "app.services.hotspots",
+  "app.services.mo_similarity",
+  "app.services.networks",
+  "app.services.risk",
+  "app.services.socioeconomic",
+  "app.services.trend_alerts",
+]
+ignore_errors = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

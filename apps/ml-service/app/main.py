@@ -4,16 +4,20 @@ from __future__ import annotations
 
 import importlib.util
 import os
+from collections.abc import Awaitable, Callable
 from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from starlette.responses import Response
 
+from .config import settings
 from .database import database_health
 from .legacy_compat import router as compatibility_router
 from .routers import analytics_router
+from .routers.ciap import router as ciap_router
 from .services.common import PROTOTYPE_DISCLAIMER
 
 
@@ -61,6 +65,21 @@ def create_app() -> FastAPI:
         allow_headers=["Content-Type", "X-Request-Id"],
     )
 
+    @application.middleware("http")
+    async def enforce_request_size(request: Request, call_next: Callable[[Request], Awaitable[Response]]) -> Response:
+        content_length = request.headers.get("content-length")
+        if content_length:
+            try:
+                oversized = int(content_length) > settings.maximum_request_bytes
+            except ValueError:
+                oversized = True
+            if oversized:
+                return JSONResponse(
+                    status_code=413,
+                    content={"status": "error", "code": "REQUEST_TOO_LARGE", "message": "Request body exceeds the configured limit."},
+                )
+        return await call_next(request)
+
     @application.exception_handler(Exception)
     async def unhandled_exception(_request: Request, _error: Exception) -> JSONResponse:
         return JSONResponse(
@@ -80,10 +99,11 @@ def create_app() -> FastAPI:
             "service": "kavach-analytics",
             "version": "1.0.0",
             "database": database_health(),
-            "capabilities": ["hotspots", "anomalies", "risk", "network", "mo_similarity", "explanations"],
+            "capabilities": ["ingestion", "hotspots", "anomalies", "forecast", "risk", "network", "mo_similarity", "explanations"],
             "disclaimer": PROTOTYPE_DISCLAIMER,
         }
 
+    application.include_router(ciap_router)
     application.include_router(analytics_router)
     legacy_loaded = _attach_legacy_routes(application)
     if not legacy_loaded:

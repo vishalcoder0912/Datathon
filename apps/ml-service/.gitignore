@@ -6,9 +6,13 @@ __pycache__/
 .Python
 env/
 venv/
+.venv/
 *.egg-info/
 dist/
 build/
+data/*.sqlite3
+data/*.duckdb
+imports/
 
 # Models
 /tmp/
