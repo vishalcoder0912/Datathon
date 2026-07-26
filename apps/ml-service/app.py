@@ -1,3 +1,10 @@
+"""
+InsightFlow Machine Learning & Analytics Service.
+
+Provides RESTful FastAPI endpoints for fast dataset analytics, automated model training,
+clustering, anomaly detection, DuckDB transformations, and advanced PDF intelligence processing.
+"""
+
 from __future__ import annotations
 
 import hashlib
@@ -41,7 +48,8 @@ MAX_RESPONSE_ROWS = 500
 analytics_cache: dict[str, Any] = {}
 trained_models: dict[str, Any] = {}
 
-app = FastAPI(title="InsightFlow Analytics ML Service", version="3.0.0")
+app = FastAPI(title="InsightFlow Analytics ML Service", version="3.0.0", description="FastAPI microservice for ML analytics and PDF intelligence")
+
 
 
 class DatasetPayload(BaseModel):
