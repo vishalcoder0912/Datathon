@@ -22,8 +22,8 @@ export default defineConfig({
     screenshot: "only-on-failure",
     video: "retain-on-failure",
   },
-  globalSetup: require.resolve("./e2e/global-setup.ts"),
-  globalTeardown: require.resolve("./e2e/global-teardown.ts"),
+  globalSetup: "./e2e/global-setup.ts",
+  globalTeardown: "./e2e/global-teardown.ts",
   // Existing broad E2E commands retain their managed development servers.
   // The isolated KAVACH runner supplies PLAYWRIGHT_BASE_URL and owns its Vite
   // child process instead, avoiding the Windows teardown issue for that flow.
