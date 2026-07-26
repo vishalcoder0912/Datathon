@@ -17,7 +17,8 @@ const toNumber = (value: unknown) => {
   const parsed = typeof value === "number" ? value : Number(String(value ?? "").replace(/[$,%]/g, "").trim());
   return Number.isFinite(parsed) ? parsed : null;
 };
-const formatValue = (value: number, metric: string) => /amount|billing|sales|revenue|profit|price|cost|salary|income|usd|inr/i.test(metric) ? `$${Math.round(value).toLocaleString()}` : new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 }).format(value);
+const numberFormatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 });
+const formatValue = (value: number, metric: string) => /amount|billing|sales|revenue|profit|price|cost|salary|income|usd|inr/i.test(metric) ? `$${Math.round(value).toLocaleString()}` : numberFormatter.format(value);
 
 const findColumn = (columns: Column[], names: string[], regex: RegExp) =>
   columns.find((column) => names.includes(normalizeGeoValue(column.name)) || names.includes(normalizeGeoValue(column.type || "")) || names.includes(normalizeGeoValue(column.role || "")))?.name ||
