@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   CheckCircle2,
   Database,
@@ -313,7 +313,11 @@ export default function ChatInterface() {
         }),
       });
 
-      if (!response.ok) throw new Error(`Analytics request failed: ${response.status}`);
+      if (!response.ok) {
+        const errJson = await response.json().catch(() => null);
+        const errMsg = errJson?.error?.message || errJson?.message || errJson?.answer;
+        throw new Error(errMsg || `Analytics request failed: ${response.status}`);
+      }
       const data = await response.json();
       const chatData = data.data || data;
 
