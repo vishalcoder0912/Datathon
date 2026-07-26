@@ -140,7 +140,7 @@ export default function RAGPoweredDashboardChat({
           </span>
         </div>
         {charts.length > 0 && (
-          <button
+          <button type="button"
             onClick={onResetCharts}
             className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs text-slate-400 transition-colors hover:bg-slate-800 hover:text-slate-200"
           >
@@ -162,7 +162,7 @@ export default function RAGPoweredDashboardChat({
             </p>
             <div className="flex flex-wrap justify-center gap-2">
               {suggestions.slice(0, 4).map((s) => (
-                <button
+                <button type="button"
                   key={s}
                   onClick={() => handleSubmit(s)}
                   className="rounded-full border border-slate-700 px-3 py-1.5 text-xs text-slate-400 transition-colors hover:border-violet-600 hover:text-violet-300"
@@ -216,7 +216,7 @@ export default function RAGPoweredDashboardChat({
                                 RAG {Math.round(msg.confidence * 100)}%
                               </span>
                             )}
-                            <button
+                            <button type="button"
                               onClick={() => handleRemoveChart(msg.chart!.id)}
                               className="rounded p-1 text-slate-500 transition-colors hover:bg-slate-700 hover:text-slate-300"
                             >
@@ -268,7 +268,7 @@ export default function RAGPoweredDashboardChat({
         {messages.length > 0 && (
           <div className="mb-3 flex flex-wrap gap-1.5">
             {suggestions.map((s) => (
-              <button
+              <button type="button"
                 key={s}
                 onClick={() => handleSubmit(s)}
                 className="rounded-full border border-slate-700/50 px-2.5 py-1 text-[11px] text-slate-500 transition-colors hover:border-violet-600/50 hover:text-violet-400"
@@ -287,7 +287,7 @@ export default function RAGPoweredDashboardChat({
             placeholder="Ask me to create a chart..."
             className="flex-1 rounded-xl border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm text-slate-200 placeholder-slate-500 outline-none transition-colors focus:border-violet-600"
           />
-          <button
+          <button type="button"
             onClick={() => handleSubmit(input)}
             disabled={!input.trim() || loading}
             className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-violet-600 text-white transition-colors hover:bg-violet-500 disabled:opacity-40"
