@@ -17,12 +17,15 @@ export async function apiRequest<T>(path: string, options: RequestInit = {}): Pr
         },
   });
 
+  if (!response.ok) {
+    const errorText = await response.text().catch(() => "");
+    throw new Error(errorText || `API request failed with status ${response.status}`);
+  }
+
   const contentType = response.headers.get("content-type") || "";
   const data = contentType.includes("application/json")
     ? await response.json().catch(() => ({}))
     : { success: false, error: await response.text().catch(() => "") };
-
-  if (!response.ok) {
     const message =
       data?.message ||
       data?.error?.message ||
