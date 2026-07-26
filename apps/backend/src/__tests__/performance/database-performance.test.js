@@ -1,10 +1,13 @@
-import { describe, it, expect, beforeAll } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { createHttpServer, startServer } from '../../core/server.js';
 
-const BASE_URL = (process.env.BASE_URL || 'http://localhost:3001').replace(/\/+$/, '');
+let server;
+let baseUrl = process.env.BASE_URL ? process.env.BASE_URL.replace(/\/+$/, '') : null;
 
 async function fetchWithTiming(url, options = {}) {
+  const targetUrl = url.startsWith('http') ? url : `${baseUrl || 'http://127.0.0.1:3001'}${url.startsWith('/') ? '' : '/'}${url}`;
   const start = performance.now();
-  const response = await fetch(url, {
+  const response = await fetch(targetUrl, {
     ...options,
     signal: AbortSignal.timeout(30000),
   });
@@ -48,7 +51,7 @@ async function importDataset(name, rows) {
     rows,
   };
 
-  const { response, duration, body } = await fetchWithTiming(`${BASE_URL}/api/datasets/import`, {
+  const { response, duration, body } = await fetchWithTiming(`/api/datasets/import`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
@@ -66,15 +69,30 @@ async function importDataset(name, rows) {
 }
 
 async function querySchema(datasetId) {
-  return fetchWithTiming(`${BASE_URL}/api/datasets/${datasetId}/schema`);
+  return fetchWithTiming(`/api/datasets/${datasetId}/schema`);
 }
 
 async function queryProfile(datasetId) {
-  return fetchWithTiming(`${BASE_URL}/api/datasets/${datasetId}/ai/profile`);
+  return fetchWithTiming(`/api/datasets/${datasetId}/ai/profile`);
 }
 
 describe('Database Performance', () => {
   const datasetIds = {};
+
+  beforeAll(async () => {
+    if (!baseUrl) {
+      server = createHttpServer();
+      await startServer(server, 0);
+      const address = server.address();
+      baseUrl = `http://127.0.0.1:${address.port}`;
+    }
+  });
+
+  afterAll(async () => {
+    if (server) {
+      await new Promise((resolve) => server.close(resolve));
+    }
+  });
 
   describe('Dataset Loading Performance', () => {
     it('should load 100 rows within 500ms', async () => {
