@@ -87,6 +87,11 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
     window.clearTimeout(timeout);
   }
 
+  if (!response.ok) {
+    const errText = await response.text().catch(() => "");
+    throw new Error(errText || `API request failed with status ${response.status}`);
+  }
+
   const text = await response.text();
   let payload: unknown = null;
 
