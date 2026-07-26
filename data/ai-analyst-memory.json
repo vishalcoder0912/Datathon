@@ -277,9 +277,9 @@
         "aggregation": "sum"
       }
     ],
-    "usageCount": 12,
+    "usageCount": 36,
     "createdAt": "2026-07-25T17:42:15.799Z",
-    "lastUsedAt": "2026-07-25T17:42:20.512Z"
+    "lastUsedAt": "2026-07-25T19:00:25.171Z"
   },
   {
     "id": "68441b73-cb9d-4209-8ad5-c6058e7f8a9b",
@@ -338,9 +338,9 @@
         "aggregation": "count"
       }
     ],
-    "usageCount": 3,
+    "usageCount": 9,
     "createdAt": "2026-07-25T17:42:18.383Z",
-    "lastUsedAt": "2026-07-25T17:42:20.713Z"
+    "lastUsedAt": "2026-07-25T19:00:25.337Z"
   },
   {
     "id": "7b461bca-503e-475f-b1c3-930a00aca58c",
@@ -401,8 +401,8 @@
         "aggregation": "sum"
       }
     ],
-    "usageCount": 3,
+    "usageCount": 9,
     "createdAt": "2026-07-25T17:43:05.372Z",
-    "lastUsedAt": "2026-07-25T17:43:07.939Z"
+    "lastUsedAt": "2026-07-25T19:00:58.085Z"
   }
 ]
