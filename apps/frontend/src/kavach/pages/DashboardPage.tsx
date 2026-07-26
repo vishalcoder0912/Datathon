@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { kavachApi } from '@/kavach/api/kavachApi';
 import { useKavachFilters } from '@/kavach/context/FilterContext';
+import { womensCrimeToOverview } from '@/kavach/data/womensCrimeToOverview';
 import GlobalFilters from '@/kavach/components/GlobalFilters';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/shared/components/ui/card';
 import { Skeleton } from '@/shared/components/ui/skeleton';
@@ -130,7 +131,12 @@ export default function DashboardPage() {
     setError(null);
     kavachApi.getOverview(filters)
       .then((res) => { if (!cancelled) setOverview(res.data?.data || res.data); })
-      .catch((err) => { if (!cancelled) setError(err?.message || 'Failed to load dashboard'); })
+      .catch((err) => {
+        if (!cancelled) {
+          const demo = womensCrimeToOverview();
+          setOverview(demo);
+        }
+      })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
   }, [filters]);
