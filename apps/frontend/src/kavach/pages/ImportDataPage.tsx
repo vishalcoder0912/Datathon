@@ -1,4 +1,4 @@
-﻿import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Papa from 'papaparse';
 import * as XLSX from 'xlsx';
@@ -303,8 +303,8 @@ export default function ImportDataPage() {
               className={`relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed p-16 text-center transition-all duration-200 cursor-pointer
                 ${dragging ? 'border-[#1D4ED8] bg-blue-50 scale-[1.01]' : 'border-slate-300 bg-white hover:border-[#1D4ED8] hover:bg-blue-50/30'}`}
               onClick={() => document.getElementById('file-input')?.click()}
-              {/* ponytail: transition-all covers both colors and scale transform; split to transition-colors transition-transform if perf matters */}
             >
+              {/* ponytail: transition-all covers both colors and scale transform; split to transition-colors transition-transform if perf matters */}
               <input id="file-input" type="file" aria-label="Upload file" accept=".csv,.xls,.xlsx,.json,.txt" className="hidden" onChange={handleFileInput} />
               <div className={`mb-5 flex size-16 items-center justify-center rounded-2xl transition-colors ${dragging ? 'bg-[#1D4ED8] text-white' : 'bg-slate-100 text-slate-400'}`}>
                 <Upload className="size-8" />
