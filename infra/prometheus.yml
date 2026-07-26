@@ -1,0 +1,42 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+rule_files:
+  - "alerts.yml"
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "insightflow-backend"
+    metrics_path: "/metrics"
+    static_configs:
+      - targets: ["backend:3001"]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: "insightflow-backend"
+
+  - job_name: "insightflow-ml-service"
+    metrics_path: "/metrics"
+    static_configs:
+      - targets: ["ml-service:5000"]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: "insightflow-ml-service"
+
+  - job_name: "postgres"
+    static_configs:
+      - targets: ["postgres-exporter:9187"]
+
+  - job_name: "node"
+    static_configs:
+      - targets: ["node-exporter:9100"]

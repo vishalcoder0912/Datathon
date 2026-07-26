@@ -1,0 +1,46 @@
+FROM node:20-slim AS base
+WORKDIR /app
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
+FROM base AS deps
+COPY package.json package-lock.json ./
+COPY apps/frontend/package.json ./apps/frontend/
+COPY apps/backend/package.json ./apps/backend/
+COPY packages/shared-analytics/package.json ./packages/shared-analytics/
+COPY packages/kavach-domain/package.json ./packages/kavach-domain/
+RUN npm ci --ignore-scripts
+
+FROM base AS unit
+COPY --from=deps /app/node_modules ./node_modules
+COPY package.json package-lock.json ./
+COPY apps/frontend ./apps/frontend
+COPY packages ./packages
+RUN npm run test -w apps/frontend
+
+FROM mcr.microsoft.com/playwright:v1.52.0-noble AS playwright
+USER root
+RUN mkdir -p /app && chown -R pwuser:pwuser /app
+WORKDIR /app
+RUN npx playwright install --with-deps chromium
+USER pwuser
+
+FROM playwright AS test
+USER root
+COPY --from=deps /app/node_modules ./node_modules
+COPY package.json package-lock.json ./
+COPY apps/frontend ./apps/frontend
+COPY apps/backend ./apps/backend
+COPY packages ./packages
+COPY e2e ./e2e
+COPY playwright.config.ts ./
+COPY infra/nginx-frontend.conf ./infra/
+RUN chown -R pwuser:pwuser /app
+USER pwuser
+
+FROM test AS e2e
+CMD ["npx", "playwright", "test", "--project=e2e-core"]
+
+FROM test AS all
+CMD npm run test -w apps/frontend && npx playwright test --project=e2e-core

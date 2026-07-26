@@ -1,0 +1,143 @@
+name: insightflow-test
+
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    container_name: insightflow-test-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-kavach}
+      POSTGRES_USER: ${POSTGRES_USER:-kavach}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-kavach_local_password}
+      POSTGRES_INITDB_ARGS: --encoding=UTF8 --locale=C.UTF-8
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - insightflow_test_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-kavach} -d ${POSTGRES_DB:-kavach}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    networks:
+      - insightflow-test
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: insightflow-test-qdrant
+    ports:
+      - "6333:6333"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/healthz"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - insightflow-test
+
+  ml-service:
+    build:
+      context: ./apps/ml-service
+      dockerfile: Dockerfile
+    container_name: insightflow-test-ml-service
+    environment:
+      PORT: 5000
+      PYTHONUNBUFFERED: 1
+      KAVACH_INCLUDE_LEGACY_ML_ROUTES: "false"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - insightflow-test
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: insightflow-test-backend
+    environment:
+      NODE_ENV: test
+      PORT: 3001
+      POSTGRES_DB: ${POSTGRES_DB:-kavach}
+      POSTGRES_USER: ${POSTGRES_USER:-kavach}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-kavach_local_password}
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      QDRANT_URL: http://qdrant:6333
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3001/health', r => {process.exit(r.statusCode !== 200)})"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+    depends_on:
+      postgres:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+    networks:
+      - insightflow-test
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: insightflow-test-frontend
+    environment:
+      VITE_API_URL: /api
+    ports:
+      - "${FRONTEND_PORT:-45173}:80"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:80"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 20s
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - insightflow-test
+
+  test-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+      target: ${TEST_TARGET:-all}
+    container_name: insightflow-test-runner
+    depends_on:
+      frontend:
+        condition: service_healthy
+    environment:
+      CI: "true"
+      PLAYWRIGHT_BASE_URL: http://frontend:80
+      NODE_ENV: test
+    volumes:
+      - ./reports:/app/reports
+      - ./playwright-report:/app/playwright-report
+    networks:
+      - insightflow-test
+
+  test-unit:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+      target: unit
+    container_name: insightflow-test-unit
+    environment:
+      NODE_ENV: test
+    volumes:
+      - ./reports:/app/reports
+
+volumes:
+  insightflow_test_postgres_data:
+
+networks:
+  insightflow-test:
+    name: insightflow-test
