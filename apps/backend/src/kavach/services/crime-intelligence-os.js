@@ -33,6 +33,7 @@ const DISTRICT_ALIASES = Object.freeze({
   bangalore: 'Bengaluru Urban',
   bengaluru: 'Bengaluru Urban',
   "b'lore": 'Bengaluru Urban',
+  blore: 'Bengaluru Urban',
   blr: 'Bengaluru Urban',
   bengaluruurban: 'Bengaluru Urban',
   mysore: 'Mysuru',
