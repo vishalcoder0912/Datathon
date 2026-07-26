@@ -73,20 +73,21 @@ test.describe("Extreme UI Validation & Stress Testing Flow", () => {
     await page.goto("/login?auth=required");
     await page.getByLabel("Password").fill("synthetic-demo-password");
     await page.getByRole("button", {name: "Sign in"}).click();
+    await expect(page.getByRole("heading", { name: "KAVACH AI Workspace" })).toBeVisible();
   });
 
   test("resilience to multi-viewport displays (Mobile, Tablet, Desktop)", async ({ page }) => {
     // 1. Mobile width (320px)
     await page.setViewportSize({ width: 320, height: 568 });
-    await expect(page.getByRole("heading", { name: "KAVACH Command Centre" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "KAVACH AI Workspace" })).toBeVisible();
 
     // 2. Tablet width (768px)
     await page.setViewportSize({ width: 768, height: 1024 });
-    await expect(page.getByRole("heading", { name: "KAVACH Command Centre" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "KAVACH AI Workspace" })).toBeVisible();
 
     // 3. Ultra-wide (1440px)
     await page.setViewportSize({ width: 1440, height: 900 });
-    await expect(page.getByRole("heading", { name: "KAVACH Command Centre" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "KAVACH AI Workspace" })).toBeVisible();
   });
 
   test("button spamming resilience on interactive elements", async ({ page }) => {
@@ -102,20 +103,20 @@ test.describe("Extreme UI Validation & Stress Testing Flow", () => {
     }
     
     // Ensure the page did not crash
-    await expect(page.getByRole("heading", { name: "KAVACH Command Centre" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "State-wide Digital Twin" })).toBeVisible();
   });
 
   test("resilience to browser history back/forward operations", async ({ page }) => {
     await page.getByRole("link", { name: "Person Links" }).click();
-    await expect(page.locator("body")).toContainText("Offender Link Diagram");
+    await expect(page.getByText("Person Link Intelligence")).toBeVisible();
 
     // Click back
     await page.goBack();
-    await expect(page.getByRole("heading", { name: "KAVACH Command Centre" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "KAVACH AI Workspace" })).toBeVisible();
 
     // Click forward
     await page.goForward();
-    await expect(page.locator("body")).toContainText("Offender Link Diagram");
+    await expect(page.getByText("Person Link Intelligence")).toBeVisible();
   });
 
   test("safeguards against prompt injection inputs in AI dialog", async ({ page }) => {

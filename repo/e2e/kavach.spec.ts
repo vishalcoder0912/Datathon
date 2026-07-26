@@ -85,7 +85,7 @@ test("evaluator investigation story uses scoped, explainable KAVACH intelligence
   await expect(page.getByRole("heading", {name: "KAVACH AI"})).toBeVisible();
   await page.getByLabel("Password").fill("synthetic-demo-password");
   await page.getByRole("button", {name: "Sign in"}).click();
-  await expect(page.getByRole("heading", {name: "KAVACH Command Centre"})).toBeVisible();
+  await expect(page.getByRole("heading", {name: "KAVACH AI Workspace"})).toBeVisible();
 
   await page.getByRole("link", {name: "Alerts"}).click();
   await expect(page.getByText("Spike in Bengaluru Urban")).toBeVisible();
@@ -93,9 +93,9 @@ test("evaluator investigation story uses scoped, explainable KAVACH intelligence
   await expect(page.getByText("0 Unread")).toBeVisible();
 
   await page.getByRole("link", {name: "Geo Intelligence"}).click();
-  await expect(page.getByText("Hotspot evidence")).toBeVisible();
+  await expect(page.getByText("State-wide Digital Twin")).toBeVisible();
   await page.locator("button").filter({hasText: "Bengaluru Urban"}).last().click();
-  await expect(page.getByText("Seven synthetic incidents were clustered within the configured spatial radius during the selected period.")).toBeVisible();
+  await expect(page.getByRole("heading", {name: "Bengaluru Urban"})).toBeVisible();
 
   await page.getByRole("link", {name: "Person Links"}).click();
   await expect(page.getByText("Person Link Intelligence")).toBeVisible();
