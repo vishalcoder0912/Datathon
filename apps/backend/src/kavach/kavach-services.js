@@ -1,3 +1,11 @@
+/**
+ * @fileoverview Main service provider for KAVACH Crime Intelligence System.
+ * Handles spatial-temporal analytics, offender profiling, network graph analysis,
+ * risk scoring, predictive intelligence, and AI copilot integrations.
+ * 
+ * @module backend/kavach/kavach-services
+ */
+
 import {
   Daypart, CrimeSeverity, InvestigationStatus, RiskBand,
   AlertType, AlertSeverity, KARNATAKA_DISTRICTS, CRIME_CATEGORIES, MODUS_OPERANDI_TYPES,
@@ -10,6 +18,12 @@ import { legacyCopilotTypeForTool, requiresCaseReference, resolveApprovedCopilot
 const DELAY_REVIEW_THRESHOLD_DAYS = 7;
 const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
 
+/**
+ * Calculates record count from heterogeneous dataset payloads for Copilot telemetry.
+ * 
+ * @param {Object|Array} data - Data structure returned from repository or service call.
+ * @returns {number} Evaluated record count.
+ */
 function copilotRecordCount(data) {
   if (Array.isArray(data)) return data.length;
   if (!data || typeof data !== 'object') return 0;
@@ -23,7 +37,14 @@ function copilotRecordCount(data) {
 import { createHash, randomUUID } from 'node:crypto';
 import { createKavachPdfReport } from './report-pdf.js';
 
+/**
+ * Core service layer encapsulating crime analytics, investigation tracking, and AI copilot operations.
+ */
 export class KavachServices {
+  /**
+   * Initializes KavachServices with target data repository.
+   * @param {Object} repo - Data access repository instance.
+   */
   constructor(repo) {
     this.repo = repo;
     this._storedAlerts = [];
