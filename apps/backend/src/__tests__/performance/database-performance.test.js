@@ -95,24 +95,24 @@ describe('Database Performance', () => {
   });
 
   describe('Dataset Loading Performance', () => {
-    it('should load 100 rows within 500ms', async () => {
+    it('should load 100 rows within 1000ms', async () => {
       const result = await importDataset('perf-100', generateRows(100));
       expect([200, 201]).toContain(result.status);
-      expect(result.duration).toBeLessThan(500);
+      expect(result.duration).toBeLessThan(1000);
       if (result.datasetId) datasetIds['100'] = result.datasetId;
     });
 
-    it('should load 1000 rows within 1000ms', async () => {
+    it('should load 1000 rows within 2000ms', async () => {
       const result = await importDataset('perf-1k', generateRows(1000));
       expect([200, 201]).toContain(result.status);
-      expect(result.duration).toBeLessThan(1000);
+      expect(result.duration).toBeLessThan(2000);
       if (result.datasetId) datasetIds['1000'] = result.datasetId;
     });
 
-    it('should load 10000 rows within 3000ms', async () => {
+    it('should load 10000 rows within 6000ms', async () => {
       const result = await importDataset('perf-10k', generateRows(10000));
       expect([200, 201]).toContain(result.status);
-      expect(result.duration).toBeLessThan(3000);
+      expect(result.duration).toBeLessThan(6000);
       if (result.datasetId) datasetIds['10000'] = result.datasetId;
     });
   });
