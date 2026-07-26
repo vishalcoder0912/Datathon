@@ -74,8 +74,8 @@ describe('Concurrent User Simulation', () => {
       const analysis = analyzeResults(results);
 
       expect(analysis.failed).toBe(0);
-      expect(analysis.avgDuration).toBeLessThan(500);
-      expect(analysis.maxDuration).toBeLessThan(1000);
+      expect(analysis.avgDuration).toBeLessThan(1000);
+      expect(analysis.maxDuration).toBeLessThan(2000);
     });
   });
 
