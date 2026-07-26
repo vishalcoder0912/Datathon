@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { interpretCommand } from "@/features/dashboard/utils/commandCenterAnalytics";
 
 const rows = [

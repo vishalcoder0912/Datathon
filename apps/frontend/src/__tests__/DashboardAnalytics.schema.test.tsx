@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+﻿import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import DashboardPage from "@/features/dashboard/pages/DashboardPage";
 
@@ -6,7 +6,7 @@ import DashboardPage from "@/features/dashboard/pages/DashboardPage";
 vi.mock("framer-motion", () => ({
   motion: {
     div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
-    button: ({ children, ...props }: any) => <button {...props}>{children}</button>,
+    button: ({ children, ...props }: any) => <button type="button" {...props}>{children}</button>,
   },
   AnimatePresence: ({ children }: any) => <>{children}</>,
 }));

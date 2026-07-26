@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+﻿import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi, beforeEach } from "vitest";
 import ChatPage from "@/features/chat/pages/ChatPage";
 import { useData } from "@/features/data/context/useData";

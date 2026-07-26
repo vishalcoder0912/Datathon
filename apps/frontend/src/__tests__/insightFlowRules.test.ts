@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { runInsightFlow, detectDatasetType, buildInsightFlowSchema } from "@/features/dashboard/utils/insightFlowEngine";
 import { computeGeoIntelligence, detectGeoField, detectMetricField } from "@/features/dashboard/geo/geoIntelligenceEngine";
 

@@ -1,4 +1,4 @@
-type Props = {
+﻿type Props = {
   loading: boolean;
   error?: string | null;
   result?: {

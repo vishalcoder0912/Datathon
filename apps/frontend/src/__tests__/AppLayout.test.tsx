@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+﻿import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
 import AppLayout from "@/shared/layout/AppLayout";
