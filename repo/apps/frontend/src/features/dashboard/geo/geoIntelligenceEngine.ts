@@ -132,6 +132,8 @@ function resolveAggregation(metricField: string): "avg" | "sum" | "count" {
   return "sum";
 }
 
+const currencyFormatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+
 function formatMetric(value: number, field: string): string {
   if (!field || value === null || value === undefined) return "-";
 
@@ -141,7 +143,7 @@ function formatMetric(value: number, field: string): string {
     fl.includes("profit") || fl.includes("income") || fl.includes("price") ||
     fl.includes("cost") || fl.includes("budget") || fl.includes("amount")
   ) {
-    return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
+    return currencyFormatter.format(value);
   }
 
   if (fl.includes("percent") || fl.includes("rate") || fl.includes("ratio")) {
