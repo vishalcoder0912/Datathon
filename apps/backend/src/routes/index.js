@@ -22,6 +22,7 @@ import {
 import { handleAgenticModelRoutes } from './agentic-models.js';
 import { handleKavachRoutes } from './kavach.js';
 import { handleDataGatewayRoutes } from './data-gateway.js';
+import { handleIntelligenceOSRoutes } from './intelligence-os.js';
 import { handleAuthRoutes } from './auth.js';
 import { handleAgenticRoutes } from './agentic.js';
 import {
@@ -65,6 +66,11 @@ export async function setupRoutes(request, response) {
 
     // Secure multi-source ingestion and connector orchestration
     if (await handleDataGatewayRoutes(request, response, pathname)) {
+      return;
+    }
+
+    // State-wide Crime Intelligence Operating System orchestration
+    if (await handleIntelligenceOSRoutes(request, response, pathname)) {
       return;
     }
 
@@ -169,7 +175,8 @@ export async function setupRoutes(request, response) {
           chat: '/api/datasets/:id/chat',
           analytics: '/api/datasets/:id/analyze',
           export: '/api/datasets/:id/export',
-          dataGateway: '/api/kavach/data-sources/*'
+          dataGateway: '/api/kavach/data-sources/*',
+          crimeIntelligenceOS: '/api/kavach/intelligence-os/*'
         },
         documentation: '/api/docs',
         timestamp: new Date().toISOString()
