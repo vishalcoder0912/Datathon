@@ -70,3 +70,16 @@ reports/demo-data-migration-report.json
 .opencode/agents/
 .opencode/commands/
 .opencode/skills/
+.agents-wshobson/
+.ponytail/
+
+# Playwright & test reports
+playwright-report/
+reports/playwright-artifacts/
+reports/playwright-report.json
+repo/playwright-report/
+repo/reports/playwright-artifacts/
+graphify-out/.graphify_python
+graphify-out/.vocab.txt
+
+
