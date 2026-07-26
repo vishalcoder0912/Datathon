@@ -41,9 +41,11 @@ const toNumber = (value: unknown) => {
 
 const moneyLike = (metric: string) => /revenue|sales|profit|amount|price|cost|salary|income|billing|usd|inr/i.test(metric);
 
+const numberFormatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 });
+
 const formatValue = (value: number, metric: string) => {
   if (moneyLike(metric)) return `$${Math.round(value).toLocaleString()}`;
-  return new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 }).format(value);
+  return numberFormatter.format(value);
 };
 
 const findColumn = (columns: Column[], names: string[], regex: RegExp) =>
