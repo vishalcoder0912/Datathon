@@ -1,4 +1,4 @@
-pipeline {
+﻿pipeline {
     agent any
 
     options {
@@ -27,8 +27,8 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 dir('repo') {
-                    sh 'npm ci'
-                    sh 'python -m venv .venv && .venv/bin/pip install -r apps/ml-service/requirements.txt'
+                    bat 'npm ci'
+                    bat 'python -m venv .venv && .venv\\Scripts\\pip install -r apps/ml-service/requirements.txt'
                 }
             }
         }
@@ -36,8 +36,8 @@ pipeline {
         stage('Lint & Typecheck') {
             steps {
                 dir('repo') {
-                    sh 'npm run lint'
-                    sh 'npm run typecheck'
+                    bat 'npm run lint'
+                    bat 'npm run typecheck'
                 }
             }
         }
@@ -47,22 +47,22 @@ pipeline {
                 stage('Frontend') {
                     steps {
                         dir('repo') {
-                            sh 'npm run test -w apps/frontend'
+                            bat 'npm run test -w apps/frontend'
                         }
                     }
                 }
                 stage('Backend') {
                     steps {
                         dir('repo') {
-                            sh 'npm run test:run -w apps/backend'
-                            sh 'npm run test:integration'
+                            bat 'npm run test:run -w apps/backend'
+                            bat 'npm run test:integration'
                         }
                     }
                 }
                 stage('ML Service') {
                     steps {
                         dir('repo') {
-                            sh '.venv/bin/python -m pytest apps/ml-service -q'
+                            bat '.venv\\Scripts\\python -m pytest apps/ml-service -q'
                         }
                     }
                 }
@@ -72,8 +72,8 @@ pipeline {
         stage('Security Checks') {
             steps {
                 dir('repo') {
-                    sh 'npm run test:security || true'
-                    sh 'npm run audit:npm'
+                    bat 'npm run test:security || true'
+                    bat 'npm run audit:npm'
                 }
             }
         }
@@ -83,14 +83,14 @@ pipeline {
                 stage('Frontend Build') {
                     steps {
                         dir('repo') {
-                            sh 'npm run build'
+                            bat 'npm run build'
                         }
                     }
                 }
                 stage('Backend Build') {
                     steps {
                         dir('repo') {
-                            sh 'npm run build:backend'
+                            bat 'npm run build:backend'
                         }
                     }
                 }
@@ -101,7 +101,7 @@ pipeline {
             when { expression { return params.RUN_E2E } }
             steps {
                 dir('repo') {
-                    sh 'npm run test:e2e'
+                    bat 'npm run test:e2e'
                 }
             }
         }
@@ -120,3 +120,4 @@ pipeline {
         }
     }
 }
+
