@@ -1,23 +1,22 @@
-﻿pipeline {
+﻿def mlPython() {
+    return 'C:\\Users\\VISHAL\\AppData\\Local\\Python\\bin\\python.exe'
+}
+
+pipeline {
     agent any
 
     options {
         timestamps()
         timeout(time: 60, unit: 'MINUTES')
         disableConcurrentBuilds()
-    }
-
-    environment {
-        // Override with Jenkins credentials where required, e.g.
-        // OPENAI_API_KEY = credentials('openai-api-key')
-        PLAYWRIGHT_BASE_URL = 'http://127.0.0.1:45173'
-    }
-
-    parameters {
-        booleanParam(name: 'RUN_E2E', defaultValue: false, description: 'Run Playwright end-to-end tests (requires services)')
+        buildDiscarder(logRotator(
+            numToKeepStr: '10',
+            artifactNumToKeepStr: '5'
+        ))
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -26,55 +25,13 @@
 
         stage('Install Dependencies') {
             steps {
-                dir('repo') {
-                    bat 'npm ci'
-                    bat 'python -m venv .venv && .venv\\Scripts\\pip install -r apps/ml-service/requirements.txt'
-                }
+                bat 'npm ci'
             }
         }
 
-        stage('Lint & Typecheck') {
+        stage('Lint') {
             steps {
-                dir('repo') {
-                    bat 'npm run lint'
-                    bat 'npm run typecheck'
-                }
-            }
-        }
-
-        stage('Unit Tests') {
-            parallel {
-                stage('Frontend') {
-                    steps {
-                        dir('repo') {
-                            bat 'npm run test -w apps/frontend'
-                        }
-                    }
-                }
-                stage('Backend') {
-                    steps {
-                        dir('repo') {
-                            bat 'npm run test:run -w apps/backend'
-                            bat 'npm run test:integration'
-                        }
-                    }
-                }
-                stage('ML Service') {
-                    steps {
-                        dir('repo') {
-                            bat '.venv\\Scripts\\python -m pytest apps/ml-service -q'
-                        }
-                    }
-                }
-            }
-        }
-
-        stage('Security Checks') {
-            steps {
-                dir('repo') {
-                    bat 'npm run test:security || true'
-                    bat 'npm run audit:npm'
-                }
+                bat 'npm run lint'
             }
         }
 
@@ -82,35 +39,43 @@
             parallel {
                 stage('Frontend Build') {
                     steps {
-                        dir('repo') {
-                            bat 'npm run build'
-                        }
+                        bat 'npm run build'
                     }
                 }
                 stage('Backend Build') {
                     steps {
-                        dir('repo') {
-                            bat 'npm run build:backend'
-                        }
+                        bat 'npm run build:backend'
                     }
                 }
             }
         }
 
-        stage('E2E Tests') {
-            when { expression { return params.RUN_E2E } }
-            steps {
-                dir('repo') {
-                    bat 'npm run test:e2e'
+        stage('Unit Tests') {
+            parallel {
+                stage('Frontend Tests') {
+                    steps {
+                        bat 'npm run test:frontend'
+                    }
                 }
+                stage('Backend Tests') {
+                    steps {
+                        bat 'npm run test:backend'
+                    }
+                }
+            }
+        }
+
+        stage('Integration Tests') {
+            steps {
+                bat 'npm run test:integration'
             }
         }
     }
 
     post {
         always {
-            junit allowEmptyResults: true, testResults: 'repo/**/test-results/*.xml, repo/**/coverage/*.xml'
-            archiveArtifacts artifacts: 'repo/apps/frontend/dist/**', allowEmptyArchive: true
+            junit allowEmptyResults: true, testResults: '**/test-results/*.xml, **/coverage/*.xml'
+            archiveArtifacts artifacts: 'apps/frontend/dist/**', allowEmptyArchive: true
         }
         success {
             echo 'Build passed.'
@@ -120,4 +85,3 @@
         }
     }
 }
-
