@@ -65,8 +65,8 @@ pipeline {
                 }
                 stage('Backend Tests') {
                     steps {
-                        dir('repo') {
-                            bat 'npm run test:backend -- --exclude "src/__tests__/performance/**"'
+                        dir('repo/apps/backend') {
+                            bat 'npx vitest run --exclude "src/__tests__/performance/**"'
                         }
                     }
                 }
