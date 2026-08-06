@@ -47,6 +47,6 @@ describe("AppLayout", () => {
     );
 
     expect(screen.getByText("Dashboard content")).toBeInTheDocument();
-    expect(screen.getAllByText(/InsightFlow|Salary Small/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/KAVACH AI/).length).toBeGreaterThan(0);
   });
 });

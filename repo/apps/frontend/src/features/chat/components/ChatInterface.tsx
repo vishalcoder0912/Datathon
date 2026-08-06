@@ -313,7 +313,12 @@ export default function ChatInterface() {
       });
 
       if (!response.ok) {
-        throw new Error("I could not process that chat request.");
+        let message = "I could not process that chat request.";
+        try {
+          const errData = await response.json();
+          message = errData?.error?.message || errData?.message || message;
+        } catch { /* keep generic */ }
+        throw new Error(message);
       }
 
       const data = await response.json();
