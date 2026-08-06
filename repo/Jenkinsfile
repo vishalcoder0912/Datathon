@@ -1,8 +1,4 @@
-﻿def mlPython() {
-    return 'C:\\Users\\VISHAL\\AppData\\Local\\Python\\bin\\python.exe'
-}
-
-pipeline {
+﻿pipeline {
     agent any
 
     options {
@@ -25,13 +21,17 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat 'npm ci'
+                dir('repo') {
+                    bat 'npm ci'
+                }
             }
         }
 
         stage('Lint') {
             steps {
-                bat 'npm run lint'
+                dir('repo') {
+                    bat 'npm run lint'
+                }
             }
         }
 
@@ -39,12 +39,16 @@ pipeline {
             parallel {
                 stage('Frontend Build') {
                     steps {
-                        bat 'npm run build'
+                        dir('repo') {
+                            bat 'npm run build'
+                        }
                     }
                 }
                 stage('Backend Build') {
                     steps {
-                        bat 'npm run build:backend'
+                        dir('repo') {
+                            bat 'npm run build:backend'
+                        }
                     }
                 }
             }
@@ -54,12 +58,16 @@ pipeline {
             parallel {
                 stage('Frontend Tests') {
                     steps {
-                        bat 'npm run test:frontend'
+                        dir('repo') {
+                            bat 'npm run test:frontend'
+                        }
                     }
                 }
                 stage('Backend Tests') {
                     steps {
-                        bat 'npm run test:backend'
+                        dir('repo') {
+                            bat 'npm run test:backend'
+                        }
                     }
                 }
             }
@@ -67,15 +75,17 @@ pipeline {
 
         stage('Integration Tests') {
             steps {
-                bat 'npm run test:integration'
+                dir('repo') {
+                    bat 'npm run test:integration'
+                }
             }
         }
     }
 
     post {
         always {
-            junit allowEmptyResults: true, testResults: '**/test-results/*.xml, **/coverage/*.xml'
-            archiveArtifacts artifacts: 'apps/frontend/dist/**', allowEmptyArchive: true
+            junit allowEmptyResults: true, testResults: 'repo/**/test-results/*.xml, repo/**/coverage/*.xml'
+            archiveArtifacts artifacts: 'repo/apps/frontend/dist/**', allowEmptyArchive: true
         }
         success {
             echo 'Build passed.'
