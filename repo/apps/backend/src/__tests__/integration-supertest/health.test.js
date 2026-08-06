@@ -10,7 +10,8 @@ beforeAll(async () => {
   await startServer(server, 0);
   const address = server.address();
   const port = address.port;
-  request = supertest(`http://127.0.0.1:${port}`);
+  const host = address.address.includes(':') ? `[${address.address}]` : address.address;
+  request = supertest(`http://${host}:${port}`);
 });
 
 afterAll(async () => {
